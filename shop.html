@@ -41,73 +41,48 @@
     .product-card button { background: #ffca28; color: white; border: none; padding: 10px 20px; border-radius: 5px; margin-top: 10px; cursor: pointer; font-weight: bold; }
     .product-card button:hover { background: #d90429; }
 
-    /* Collections Section */
-    .collections { padding: 40px 20px; background: #f1f1f1; text-align: center; }
-    .collection-boxes { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; }
-    .collection { background: #333; border: 1px solid #444; padding: 20px; width: 200px; border-radius: 10px; font-weight: bold; cursor: pointer; transition: 0.3s; color: #fff; }
-    .collection:hover { background: #ffca28; color: #222; }
-
-    /* Footer */
-    footer { background-color: #111; color: #ccc; text-align: center; padding: 30px 10px; font-size: 0.95em; }
-
-    /* Cart Icon */
-    .cart-icon {
-      font-size: 1.2em;
-      background: #ffca28;
-      color: white;
-      padding: 10px 15px;
-      border-radius: 50%;
-      cursor: pointer;
-    }
-    .cart-icon:hover { background: #d90429; }
-
     /* Cart Popup */
     .cart-popup {
-      display: none;
       position: fixed;
       top: 0;
-      left: 0;
-      width: 100%;
+      right: 0;
+      width: 300px;
       height: 100%;
-      background: rgba(0, 0, 0, 0.7);
-      color: white;
-      padding: 50px;
-      z-index: 1000;
+      background-color: #fff;
+      box-shadow: -2px 0 5px rgba(0, 0, 0, 0.3);
+      padding: 20px;
+      display: none;
       overflow-y: auto;
     }
-    .cart-popup .cart-content {
-      background: #333;
-      padding: 20px;
-      border-radius: 10px;
-      max-width: 400px;
-      margin: 0 auto;
-    }
-    .cart-popup .cart-content h2 {
-      margin-bottom: 20px;
-      font-size: 1.8em;
-    }
-    .cart-popup .cart-content .cart-item {
-      margin: 10px 0;
-      font-size: 1.2em;
-    }
-    .cart-popup .close-btn {
-      color: white;
+    .cart-popup h2 {
       font-size: 1.5em;
+      margin-bottom: 15px;
+      color: #111;
+    }
+    .cart-item {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+    .cart-item h3 { margin: 0; font-size: 1.1em; }
+    .cart-item button {
+      background: #ffca28;
+      color: white;
+      border: none;
+      padding: 5px 10px;
+      font-size: 0.9em;
       cursor: pointer;
-      padding: 10px;
-      background: #d90429;
-      border-radius: 5px;
-      margin-top: 20px;
+    }
+    .cart-item button:hover { background-color: #d90429; }
+    .cart-total {
+      font-size: 1.2em;
+      font-weight: bold;
+      margin-top: 15px;
       text-align: center;
     }
 
-    /* Responsive */
-    @media (max-width: 768px) {
-      .nav-center ul { flex-direction: column; gap: 10px; padding-top: 10px; }
-      .products { flex-direction: column; align-items: center; }
-      .hero { height: 300px; }
-      .slides { animation: none; }
-    }
+    /* Footer */
+    footer { background-color: #111; color: #ccc; text-align: center; padding: 30px 10px; font-size: 0.95em; }
   </style>
 </head>
 <body>
@@ -123,15 +98,17 @@
         <li><a href="#">Contact</a></li>
       </ul>
     </div>
-    <div class="cart-icon" onclick="toggleCartPopup()">🛒 <span id="cart-count">0</span></div>
+    <div class="nav-right">
+      <button id="cart-btn" onclick="toggleCart()">Cart (<span id="cart-count">0</span>)</button>
+    </div>
   </nav>
 
-  <!-- Cart Popup -->
-  <div class="cart-popup" id="cart-popup">
-    <div class="cart-content">
-      <h2>Your Cart</h2>
-      <div id="cart-items"></div>
-      <div class="close-btn" onclick="toggleCartPopup()">Close</div>
+  <!-- Hero Section -->
+  <div class="hero">
+    <div class="slides">
+      <div class="slide" style="background-image: url('https://static.vecteezy.com/system/resources/previews/029/226/849/non_2x/long-wavy-palestine-flag-free-vector.jpg');"></div>
+      <div class="slide" style="background-image: url('https://images-cdn.ubuy.co.in/652c7dca1a3ae52f9855d705-soulbuty-big-palestine-flag-for-wall-3x5.jpg');"></div>
+      <div class="slide" style="background-image: url('https://i0.wp.com/3sjshop.com/wp-content/uploads/2024/09/img_5079-scaled.jpeg');"></div>
     </div>
   </div>
 
@@ -139,59 +116,86 @@
   <section class="product-section">
     <h2>🌟 Best Sellers</h2>
     <div class="products">
-      <div class="product-card">
-        <img src="https://www.meesho.com/free-palestine-hood/p/61ylov" alt="Freedom Hoodie">
+      <div class="product-card" data-product="Freedom Hoodie" data-price="30">
+        <img src="https://www.meesho.com/free-palestine-hood/p/61ylov" />
         <h3>Freedom Hoodie</h3>
         <p>Soft fleece hoodie with embroidered message of hope. 100% proceeds to Gaza.</p>
-        <button onclick="addToCart('Freedom Hoodie')">Add to Cart</button>
+        <button onclick="addToCart('Freedom Hoodie', 30)">Add to Cart</button>
       </div>
-      <div class="product-card">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/5/56/Palestinian_flag_t-shirt.jpg" alt="Peace Tee">
+      <div class="product-card" data-product="Peace Tee" data-price="20">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/5/56/Palestinian_flag_t-shirt.jpg" />
         <h3>Peace Tee</h3>
         <p>100% cotton t-shirt with bold peace design. Wear it with purpose!</p>
-        <button onclick="addToCart('Peace Tee')">Add to Cart</button>
+        <button onclick="addToCart('Peace Tee', 20)">Add to Cart</button>
       </div>
-      <div class="product-card">
-        <img src="https://www.aftaab.com/wp-content/uploads/2021/10/bracelet-palestine-flag.jpg" alt="Palestine Flag Bracelet">
+      <div class="product-card" data-product="Palestine Flag Bracelet" data-price="15">
+        <img src="https://www.aftaab.com/wp-content/uploads/2021/10/bracelet-palestine-flag.jpg" />
         <h3>Palestine Flag Bracelet</h3>
         <p>Handmade bracelet featuring the Palestinian flag colors.</p>
-        <button onclick="addToCart('Palestine Flag Bracelet')">Add to Cart</button>
+        <button onclick="addToCart('Palestine Flag Bracelet', 15)">Add to Cart</button>
       </div>
     </div>
   </section>
 
+  <!-- Cart Popup -->
+  <div class="cart-popup" id="cart-popup">
+    <h2>Your Cart</h2>
+    <div id="cart-items"></div>
+    <div class="cart-total">Total: $<span id="cart-total">0</span></div>
+  </div>
+
   <!-- Footer -->
   <footer>
     <p>&copy; 2025 Silent Aid | All Rights Reserved</p>
+    <p>Powered by Purpose</p>
   </footer>
 
   <script>
+    // Cart functionality
     let cart = JSON.parse(localStorage.getItem('cart')) || [];
-    function updateCartCount() {
-      document.getElementById('cart-count').textContent = cart.length;
-    }
 
-    function addToCart(productName) {
-      cart.push(productName);
-      localStorage.setItem('cart', JSON.stringify(cart));
-      updateCartCount();
-      alert(`${productName} added to cart!`);
-    }
-
-    function toggleCartPopup() {
+    function toggleCart() {
       const cartPopup = document.getElementById('cart-popup');
-      const cartItemsDiv = document.getElementById('cart-items');
-      cartItemsDiv.innerHTML = '';  // Clear previous cart items
-      cart.forEach(item => {
-        const itemDiv = document.createElement('div');
-        itemDiv.className = 'cart-item';
-        itemDiv.textContent = item;
-        cartItemsDiv.appendChild(itemDiv);
-      });
-      cartPopup.style.display = (cartPopup.style.display === 'none' || cartPopup.style.display === '') ? 'block' : 'none';
+      cartPopup.style.display = cartPopup.style.display === 'block' ? 'none' : 'block';
+      updateCart();
     }
 
-    window.onload = updateCartCount;
+    function addToCart(product, price) {
+      cart.push({ product, price });
+      localStorage.setItem('cart', JSON.stringify(cart));
+      updateCart();
+    }
+
+    function removeFromCart(index) {
+      cart.splice(index, 1);
+      localStorage.setItem('cart', JSON.stringify(cart));
+      updateCart();
+    }
+
+    function updateCart() {
+      const cartCount = document.getElementById('cart-count');
+      const cartItems = document.getElementById('cart-items');
+      const cartTotal = document.getElementById('cart-total');
+      
+      cartItems.innerHTML = '';
+      let total = 0;
+      cart.forEach((item, index) => {
+        const cartItem = document.createElement('div');
+        cartItem.classList.add('cart-item');
+        cartItem.innerHTML = `
+          <h3>${item.product}</h3>
+          <p>$${item.price}</p>
+          <button onclick="removeFromCart(${index})">Remove</button>
+        `;
+        cartItems.appendChild(cartItem);
+        total += item.price;
+      });
+      
+      cartCount.textContent = cart.length;
+      cartTotal.textContent = total;
+    }
+
+    updateCart();
   </script>
 </body>
 </html>
