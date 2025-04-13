@@ -1,293 +1,91 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Silent Aid - Humanitarian Initiative for Gaza</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Segoe UI', sans-serif;
-            line-height: 1.6;
-            background-color: #2e2e2e;
-            color: #fff;
-            overflow-x: hidden;
-            padding-top: 60px;
-        }
-
-        nav {
-            background-color: #111;
-            padding: 10px 0;
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 1000;
-            width: 100%;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
-        }
-
-        nav ul {
-            list-style: none;
-            text-align: center;
-        }
-
-        nav ul li {
-            display: inline-block;
-            margin: 0 20px;
-        }
-
-        nav ul li a {
-            color: #fff;
-            text-decoration: none;
-            font-size: 1.1em;
-            font-weight: bold;
-            text-transform: uppercase;
-            transition: color 0.3s;
-        }
-
-        nav ul li a:hover {
-            color: #d32f2f;
-        }
-
-        header {
-            background: url('YOUR_IMAGE_PATH_HERE') no-repeat center center/cover;
-            color: #fff;
-            text-align: center;
-            padding: 150px 20px;
-            background-size: cover;
-            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.7);
-            margin-top: 60px;
-        }
-
-        header h1 {
-            font-size: 4.5em;
-            margin-bottom: 20px;
-            text-shadow: 3px 3px 15px rgba(0, 0, 0, 0.6);
-            color: #d32f2f;
-        }
-
-        header p {
-            font-size: 1.5em;
-            max-width: 800px;
-            margin: auto;
-            margin-bottom: 30px;
-            font-weight: 400;
-            color: #fff;
-        }
-
-        .button {
-            display: inline-block;
-            background: #e53935;
-            color: #fff;
-            padding: 15px 30px;
-            border-radius: 6px;
-            text-decoration: none;
-            font-weight: bold;
-            margin-top: 30px;
-            transition: background 0.3s ease;
-            border: 2px solid #d32f2f;
-        }
-
-        .button:hover {
-            background: #c62828;
-            border: 2px solid #d32f2f;
-        }
-
-        /* Section styles */
-        section {
-            background: #333;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
-            border-radius: 8px;
-            margin-bottom: 30px;
-            padding: 30px;
-            cursor: pointer;
-        }
-
-        section h2 {
-            color: #e53935;
-            font-size: 2.8em;
-            margin-bottom: 20px;
-            text-align: center;
-        }
-
-        section p {
-            font-size: 1.2em;
-            color: #ddd;
-            margin-bottom: 20px;
-            text-align: center;
-        }
-
-        /* Modal styling */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: rgba(0, 0, 0, 0.7);
-            padding-top: 60px;
-        }
-
-        .modal-content {
-            background-color: #fefefe;
-            margin: 5% auto;
-            padding: 20px;
-            border: 1px solid #888;
-            width: 80%;
-            color: #333;
-            text-align: left;
-            font-size: 1.1em;
-            line-height: 1.8;
-            border-radius: 8px;
-            max-width: 800px;
-        }
-
-        .close {
-            color: #aaa;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
-        }
-
-        .close:hover,
-        .close:focus {
-            color: #000;
-            text-decoration: none;
-            cursor: pointer;
-        }
-
-        footer {
-            background: #222;
-            color: #888;
-            text-align: center;
-            padding: 30px;
-            font-size: 1em;
-            margin-top: 40px;
-        }
-
-        .product {
-            background: #444;
-            padding: 25px;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
-            transition: transform 0.3s ease;
-        }
-
-        .product:hover {
-            transform: translateY(-10px);
-        }
-
-        .product img {
-            width: 100%;
-            border-radius: 8px;
-        }
-
-        .product h3 {
-            color: #e53935;
-            font-size: 1.8em;
-            margin-top: 20px;
-        }
-
-        .product p {
-            font-size: 1.2em;
-            color: #ddd;
-        }
-
-        .product .price {
-            font-size: 1.5em;
-            font-weight: bold;
-            color: #ffab00;
-        }
-    </style>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Silent Aid | Echoes of Humanity</title>
+  <link rel="stylesheet" href="styles.css"/>
 </head>
-
 <body>
-    <!-- Navigation Menu -->
-    <nav>
-        <ul>
-            <li><a href="#our-mission">Our Mission</a></li>
-            <li><a href="#join-newsletter">Join Our Newsletter</a></li>
-            <li><a href="#return-policy">Return & Exchange Policy</a></li>
-            <li><a href="#refer-friend">Refer a Friend</a></li>
-            <li><a href="#privacy-policy">Privacy Policy</a></li>
-            <li><a href="#terms">Terms of Service</a></li>
-            <li><a href="#shipping-policy">Shipping Policy</a></li>
-            <li><a href="#accessibility">Accessibility</a></li>
-            <li><a href="#wholesale">Wholesale</a></li>
-            <li><a href="#ambassador">Ambassador Program</a></li>
-            <li><a href="#contact">Contact Us</a></li>
-        </ul>
-    </nav>
-
-    <!-- Header Section -->
-    <header>
-        <h1>Silent Aid</h1>
-        <p>A student-led humanitarian initiative providing aid to Gaza through silent strength and creative action.</p>
-        <a class="button" href="https://instagram.com/silent_aid" target="_blank">Follow on Instagram</a>
-    </header>
-
-    <!-- Our Mission Section -->
-    <section id="our-mission" onclick="openModal('missionModal')">
-        <h2>📌 Our Mission</h2>
-        <p>Click to read more...</p>
-    </section>
-
-    <!-- Join Newsletter Section -->
-    <section id="join-newsletter" onclick="openModal('newsletterModal')">
-        <h2>📬 Join Our Newsletter</h2>
-        <p>Click to read more...</p>
-    </section>
-
-    <!-- Modal for Our Mission -->
-    <div id="missionModal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal('missionModal')">&times;</span>
-            <h2>Our Mission</h2>
-            <p>Silent Aid is a student-led initiative focused on providing vital humanitarian support to Gaza. We aim to deliver food, water, medical supplies, and educational resources to those affected by the ongoing crisis. By raising awareness and mobilizing support, we strive to amplify the voices of the voiceless. Our efforts go beyond charity — they represent solidarity, dignity, and justice for the people of Gaza.</p>
-            <p>We believe in the power of community, and through creative campaigns, we can inspire action that leads to tangible change.</p>
-        </div>
+  <header class="hero">
+    <div class="overlay">
+      <h1>Silent Aid</h1>
+      <p>Echoing hope where silence reigns. 100% for Gaza.</p>
+      <a class="button" href="mission.html">Explore Our Mission</a>
     </div>
+  </header>
 
-    <!-- Modal for Join Newsletter -->
-    <div id="newsletterModal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal('newsletterModal')">&times;</span>
-            <h2>Join Our Newsletter</h2>
-            <p>Stay updated with the latest news, campaigns, and events related to Silent Aid. We regularly share stories of impact, ways you can get involved, and news about Gaza.</p>
-            <p>Our newsletter is a direct link to our community. Sign up today to be a part of the change!</p>
-            <form action="https://formsubmit.co/YOUR_EMAIL@example.com" method="POST">
-                <input type="email" name="email" placeholder="Enter Your Email" required />
-                <input type="submit" value="Subscribe" />
-            </form>
-        </div>
-    </div>
+  <main class="section dark">
+    <h2>🩸 Why Silent Aid?</h2>
+    <p>
+      When the world scrolls past suffering, we stay. Silent Aid was born not out of noise, but out of **empathy, urgency, and unwavering conviction**.
+      <br><br>
+      We are a student-powered force that turns silence into **shelter**, clicks into **care packages**, and creativity into **global awareness**.
+      <br><br>
+      We refuse to be passive spectators. Through powerful campaigns, 100% nonprofit merchandise, and impactful storytelling — we are the **unheard voice** of Gaza’s resilience.
+    </p>
+  </main>
 
-    <!-- Footer Section -->
-    <footer>
-        © 2025 Silent Aid. Powered by purpose, led by students, inspired by humanity.
-    </footer>
+  <section class="section blood">
+    <h2>🕊️ Our Promise to Gaza</h2>
+    <p>
+      Every penny you give, every shirt you wear, every story you share — becomes part of something **bigger than us**.
+      <br><br>
+      We fund:
+      <ul>
+        <li>🍞 Emergency food kits</li>
+        <li>🏥 Critical medical supplies</li>
+        <li>🧼 Hygiene and shelter for displaced families</li>
+        <li>📚 Education & healing for Gaza’s children</li>
+      </ul>
+      <br>
+      And we do it **without excuses**, without waste, and without fear.
+    </p>
+  </section>
 
-    <script>
-        // Function to open modals
-        function openModal(modalId) {
-            document.getElementById(modalId).style.display = "block";
-        }
+  <section class="section dark">
+    <h2>📸 Echoes of the Unseen</h2>
+    <p>
+      Our content isn’t just designed to go viral — it’s crafted to **pierce through suppression**, bypass censorship, and awaken the numb.
+      <br><br>
+      We use:
+      <ul>
+        <li>🎞️ Symbolic reels & carousels</li>
+        <li>🖌️ Hidden meanings in art & design</li>
+        <li>✍️ Written pieces that bleed honesty</li>
+      </ul>
+      <br>
+      Silence isn’t weakness — it’s our **weapon**.
+    </p>
+  </section>
 
-        // Function to close modals
-        function closeModal(modalId) {
-            document.getElementById(modalId).style.display = "none";
-        }
-    </script>
+  <section class="section red">
+    <h2>🤲 Join the Movement</h2>
+    <p>
+      You don’t need a million followers. You don’t need to scream.
+      <br><br>
+      You just need a heart, a voice, and a will to care.
+      <br><br>
+      Here’s how you can help:
+      <ul>
+        <li>💬 Share our stories</li>
+        <li>🎨 Volunteer your design/video/editing skills</li>
+        <li>💸 Donate or shop our 100% charity products</li>
+      </ul>
+    </p>
+    <a class="button" href="products.html">Shop for Gaza</a>
+  </section>
+
+  <footer class="footer-links">
+    <h3>More</h3>
+    <ul>
+      <li><a href="mission.html">Our Mission</a></li>
+      <li><a href="newsletter.html">Join Our Newsletter</a></li>
+      <li><a href="return-policy.html">Return & Exchange Policy</a></li>
+      <li><a href="privacy-policy.html">Privacy Policy</a></li>
+      <li><a href="contact.html">Contact Us</a></li>
+    </ul>
+    <p style="margin-top: 30px; font-size: 0.8em;">© 2025 Silent Aid. All rights reserved.</p>
+  </footer>
 </body>
-
 </html>
