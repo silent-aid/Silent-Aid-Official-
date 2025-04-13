@@ -5,11 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Silent Aid – Shop</title>
   <style>
-    /* Reset & Base */
+    /* Reset & Base Styles */
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
       font-family: 'Segoe UI', sans-serif;
-      background-color: #f0f2f5;
+      background-color: #f7f7f7;
       color: #222;
       line-height: 1.6;
     }
@@ -19,20 +19,18 @@
       text-decoration: none;
     }
 
-    /* Header - Navigation */
+    /* Navigation Bar */
     nav {
       background-color: #0a0a0a;
       padding: 15px 30px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      flex-wrap: wrap;
     }
 
     .nav-left h1 {
       color: #fff;
       font-size: 1.8em;
-      letter-spacing: 1px;
     }
 
     .nav-center ul {
@@ -48,14 +46,15 @@
     .nav-center li a {
       color: #fff;
       font-weight: 600;
+      padding: 10px 15px;
       transition: 0.3s;
     }
 
     .nav-center li a:hover {
-      color: #ffca28;
+      background-color: #ffca28;
+      border-radius: 5px;
     }
 
-    /* Dropdown Menu */
     .dropdown-menu {
       display: none;
       position: absolute;
@@ -64,7 +63,6 @@
       min-width: 180px;
       z-index: 1000;
       border-radius: 5px;
-      overflow: hidden;
       box-shadow: 0 5px 20px rgba(0,0,0,0.1);
     }
 
@@ -79,7 +77,6 @@
 
     .dropdown-menu li a {
       color: #333;
-      display: block;
     }
 
     .dropdown-menu li:hover {
@@ -104,7 +101,6 @@
     .slide {
       width: 100%;
       height: 100%;
-      flex-shrink: 0;
       background-size: cover;
       background-position: center;
     }
@@ -116,7 +112,7 @@
       100% { transform: translateX(0); }
     }
 
-    /* Shop Page */
+    /* Filter Section */
     .filters {
       padding: 20px;
       background: #fff;
@@ -132,15 +128,17 @@
       border: none;
       cursor: pointer;
       border-radius: 5px;
+      font-weight: bold;
     }
 
     .filter-btn:hover {
       background-color: #d90429;
     }
 
+    /* Product Section */
     .product-section {
       padding: 60px 20px;
-      background: #f7f7f7;
+      background: #fff;
       text-align: center;
     }
 
@@ -182,6 +180,8 @@
 
     .product-card p {
       color: #666;
+      font-size: 0.9em;
+      margin-bottom: 10px;
     }
 
     .product-card button {
@@ -219,6 +219,12 @@
       width: 200px;
       border-radius: 10px;
       font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .collection:hover {
+      background: #ffca28;
     }
 
     /* Footer */
@@ -241,6 +247,10 @@
       .products {
         flex-direction: column;
         align-items: center;
+      }
+
+      .hero {
+        height: 300px;
       }
 
       .slides {
@@ -267,7 +277,7 @@
             <li><a href="#">Best Sellers</a></li>
           </ul>
         </li>
-        <li><a href="#">Collections 🍉</a></li>
+        <li><a href="#">Collections</a></li>
         <li><a href="#">Impact</a></li>
         <li><a href="#">Rewards</a></li>
         <li><a href="#">Contact</a></li>
