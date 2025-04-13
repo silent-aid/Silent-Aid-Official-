@@ -55,6 +55,19 @@
     /* Footer */
     footer { background-color: #111; color: #ccc; text-align: center; padding: 30px 10px; font-size: 0.95em; }
 
+    /* Cart Icon */
+    .cart-icon {
+      color: #fff;
+      font-size: 1.8em;
+      text-decoration: none;
+      padding: 5px 10px;
+      transition: color 0.3s;
+    }
+
+    .cart-icon:hover {
+      color: #ffca28;
+    }
+
     /* Responsive */
     @media (max-width: 768px) {
       .nav-center ul { flex-direction: column; gap: 10px; padding-top: 10px; }
@@ -85,6 +98,7 @@
         <li><a href="#">Impact</a></li>
         <li><a href="#">Rewards</a></li>
         <li><a href="#">Contact</a></li>
+        <li><a href="cart.html" class="cart-icon">🛒</a></li> <!-- Cart Icon -->
       </ul>
     </div>
   </nav>
@@ -111,19 +125,19 @@
     <h2>🌟 Best Sellers</h2>
     <div class="products">
       <div class="product-card" data-category="hoodie">
-        <img src="https://www.meesho.com/free-palestine-hood/p/61ylov">
+        <img src="https://www.meesho.com/free-palestine-hood/p/61ylov" alt="Freedom Hoodie">
         <h3>Freedom Hoodie</h3>
         <p>Soft fleece hoodie with embroidered message of hope. 100% proceeds to Gaza.</p>
         <button onclick="addToCart('Freedom Hoodie')">Add to Cart</button>
       </div>
       <div class="product-card" data-category="tee">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/5/56/Palestinian_flag_t-shirt.jpg">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/5/56/Palestinian_flag_t-shirt.jpg" alt="Peace Tee">
         <h3>Peace Tee</h3>
         <p>100% cotton t-shirt with bold peace design. Wear it with purpose!</p>
         <button onclick="addToCart('Peace Tee')">Add to Cart</button>
       </div>
       <div class="product-card" data-category="accessory">
-        <img src="https://www.aftaab.com/wp-content/uploads/2021/10/bracelet-palestine-flag.jpg">
+        <img src="https://www.aftaab.com/wp-content/uploads/2021/10/bracelet-palestine-flag.jpg" alt="Palestine Flag Bracelet">
         <h3>Palestine Flag Bracelet</h3>
         <p>Handmade bracelet featuring the Palestinian flag colors.</p>
         <button onclick="addToCart('Palestine Flag Bracelet')">Add to Cart</button>
