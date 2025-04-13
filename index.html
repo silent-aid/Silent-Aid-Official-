@@ -1,207 +1,205 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Silent Aid - Gaza Relief</title>
-  <style>
-    /* Reset some default styles */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Silent Aid - Humanitarian Initiative for Gaza</title>
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    /* Global Styles */
-    body {
-      font-family: 'Arial', sans-serif;
-      background-color: #f4f4f4;
-      color: #333;
-    }
+        /* Body Styling */
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            background: #f4f4f4;
+            color: #333;
+        }
 
-    /* Header Section */
-    header {
-      background: linear-gradient(to right, #007A4D, #f00); /* Palestinian flag colors */
-      color: #fff;
-      padding: 60px 20px;
-      text-align: center;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    }
-    header h1 {
-      font-size: 3.5em;
-      font-weight: 700;
-      margin-bottom: 10px;
-    }
-    header p {
-      font-size: 1.1em;
-      margin-bottom: 20px;
-      max-width: 800px;
-      margin: 0 auto;
-      line-height: 1.5;
-    }
-    header .button {
-      display: inline-block;
-      background-color: #f36f6f;
-      color: white;
-      padding: 12px 30px;
-      border-radius: 25px;
-      font-weight: bold;
-      text-decoration: none;
-      margin-top: 20px;
-      transition: background-color 0.3s ease;
-    }
-    header .button:hover {
-      background-color: #c64b4b;
-    }
+        /* Header Section */
+        header {
+            background: url('YOUR_IMAGE_PATH_HERE') center/cover no-repeat;
+            color: #fff;
+            text-align: center;
+            padding: 120px 20px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
 
-    /* Section Styles */
-    section {
-      padding: 60px 20px;
-      text-align: center;
-      margin: auto;
-      max-width: 1200px;
-    }
+        header h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+        }
 
-    section h2 {
-      font-size: 2.5em;
-      color: #004d7a;
-      margin-bottom: 30px;
-      font-weight: 600;
-    }
+        header p {
+            font-size: 1.2em;
+            margin-bottom: 30px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
 
-    section p {
-      font-size: 1.1em;
-      line-height: 1.7;
-      color: #333;
-      margin-bottom: 40px;
-      max-width: 900px;
-      margin: 20px auto;
-    }
+        .button {
+            display: inline-block;
+            background: #007BFF;
+            color: #fff;
+            padding: 12px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 20px;
+        }
 
-    /* About Section */
-    section ul {
-      list-style-type: none;
-      margin-bottom: 40px;
-    }
-    section ul li {
-      font-size: 1.2em;
-      margin-bottom: 20px;
-    }
+        .button:hover {
+            background: #0056b3;
+        }
 
-    /* Team Section */
-    .team {
-      display: flex;
-      justify-content: center;
-      gap: 40px;
-      margin-top: 40px;
-      flex-wrap: wrap;
-    }
-    .member {
-      background-color: #fff;
-      padding: 20px;
-      border-radius: 12px;
-      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
-      text-align: center;
-      width: 220px;
-      transition: transform 0.3s ease;
-    }
-    .member:hover {
-      transform: translateY(-5px);
-    }
-    .member h3 {
-      font-size: 1.5em;
-      color: #333;
-    }
-    .member p {
-      font-size: 1.1em;
-      color: #666;
-    }
+        /* About Section */
+        section {
+            padding: 40px 20px;
+            max-width: 900px;
+            margin: 40px auto;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            animation: fadeIn 1.5s ease-out;
+        }
 
-    /* Footer Section */
-    footer {
-      background-color: #111;
-      color: #fff;
-      padding: 30px;
-      text-align: center;
-      font-size: 1em;
-      margin-top: 80px;
-    }
+        section h2 {
+            color: #111;
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
 
-    /* Responsive Styles */
-    @media (max-width: 768px) {
-      header h1 {
-        font-size: 2.5em;
-      }
-      section h2 {
-        font-size: 2em;
-      }
-      .team {
-        flex-direction: column;
-      }
-    }
-  </style>
+        /* Fade In Effect */
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Video Embed */
+        iframe {
+            width: 100%;
+            height: 500px;
+            border: none;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Contact Section */
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        input,
+        textarea {
+            padding: 10px;
+            font-size: 1em;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            width: 100%;
+        }
+
+        input[type="submit"] {
+            background: #007BFF;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        input[type="submit"]:hover {
+            background: #0056b3;
+        }
+
+        /* Footer Section */
+        footer {
+            background: #222;
+            color: #aaa;
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9em;
+            margin-top: 40px;
+        }
+
+        /* Media Queries */
+        @media (max-width: 600px) {
+            header h1 {
+                font-size: 2.5em;
+            }
+
+            header p {
+                font-size: 1em;
+            }
+        }
+    </style>
 </head>
 
 <body>
+    <!-- Header Section with Hero Image -->
+    <header>
+        <h1>Silent Aid</h1>
+        <p>A student-led humanitarian initiative providing critical aid to Gaza through silent strength and creative action.</p>
+        <a class="button" href="https://instagram.com/silent_aid" target="_blank">Follow on Instagram</a>
+    </header>
 
-  <header>
-    <img src="https://github.com/silent-aid/Silent-Aid-Official-/raw/main/Silent.png" alt="Silent Aid Logo" style="max-width: 180px; margin-bottom: 20px;">
-    <h1>Silent Aid: Gaza Relief</h1>
-    <p>A student-led humanitarian initiative raising awareness and providing critical aid to the people of Gaza through impactful action.</p>
-    <a href="https://instagram.com/silent_aid" class="button" target="_blank">Follow on Instagram</a>
-  </header>
+    <!-- About Section -->
+    <section>
+        <h2>📌 About Us</h2>
+        <p>Silent Aid is a youth-led movement delivering emergency aid and raising awareness through symbolic, powerful content. We believe that silence does not mean inaction — and our silence echoes louder through impact. Join us in standing for Gaza.</p>
+    </section>
 
-  <section>
-    <h2>📌 About Us</h2>
-    <p>Silent Aid is a youth-led humanitarian movement with a mission to bring emergency aid to Gaza. We aim to raise global awareness through powerful, symbolic content and help those in need with food, shelter, medical supplies, and educational resources.</p>
-  </section>
+    <!-- Campaign Section -->
+    <section>
+        <h2>🎯 Current Campaign: Echoes of the Unseen</h2>
+        <p>This campaign uses creative storytelling — reels, carousels, and symbolic art — to raise awareness for Palestine in ways that bypass suppression and ignite global empathy.</p>
+        <!-- Video Embed -->
+        <iframe src="https://www.youtube.com/embed/YOUR_VIDEO_ID" allowfullscreen></iframe>
+    </section>
 
-  <section>
-    <h2>🎯 Current Campaign: Echoes of the Unseen</h2>
-    <p>Our latest campaign leverages creative storytelling and impactful visuals to raise awareness of the ongoing humanitarian crisis in Gaza. Through our reels, posts, and art, we aim to inspire global empathy and action.</p>
-  </section>
+    <!-- How You Can Help Section -->
+    <section>
+        <h2>🤝 How You Can Help</h2>
+        <ul>
+            <li>🔁 Share our posts and reels</li>
+            <li>✍️ Volunteer your skills (design, editing, writing)</li>
+            <li>💸 Donate to support food kits, shelter, and aid</li>
+        </ul>
+        <a class="button" href="donate.html">💸 Donate Now</a>
+    </section>
 
-  <section>
-    <h2>🤝 How You Can Help</h2>
-    <ul>
-      <li>🔁 Share our posts and reels to amplify the message.</li>
-      <li>✍️ Volunteer your skills: design, writing, editing, and more.</li>
-      <li>💸 Donate to support emergency food kits, shelter, and medical aid.</li>
-    </ul>
-    <a class="button" href="donate.html">💸 Donate Now</a>
-  </section>
+    <!-- Contact Us Section -->
+    <section>
+        <h2>📨 Contact Us</h2>
+        <form action="https://formsubmit.co/YOUR_EMAIL@example.com" method="POST">
+            <input type="text" name="name" placeholder="Your Name" required />
+            <input type="email" name="email" placeholder="Your Email" required />
+            <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+            <input type="submit" value="Send Message" />
+        </form>
+        <p style="font-size: 0.9em; color: gray;">* Form will email your messages to you. Replace with your real email.</p>
+    </section>
 
-  <section>
-    <h2>📨 Contact Us</h2>
-    <form action="https://formsubmit.co/YOUR_EMAIL@example.com" method="POST">
-      <input type="text" name="name" placeholder="Your Name" required>
-      <input type="email" name="email" placeholder="Your Email" required>
-      <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
-      <input type="submit" value="Send Message">
-    </form>
-  </section>
-
-  <section>
-    <h2>🧑‍🤝‍🧑 Meet the Team</h2>
-    <div class="team">
-      <div class="member">
-        <h3>Yahya</h3>
-        <p>Founder</p>
-      </div>
-      <div class="member">
-        <h3>Aziz Ul Hassan</h3>
-        <p>Creative Director</p>
-      </div>
-      <div class="member">
-        <h3>Ibrahim Wajid</h3>
-        <p>Technical Advisor</p>
-      </div>
-    </div>
-  </section>
-
-  <footer>
-    © 2025 Silent Aid. Empowering youth, supporting Gaza, raising awareness for global change.
-  </footer>
-
+    <!-- Footer Section -->
+    <footer>
+        © 2025 Silent Aid. Powered by purpose, led by students, inspired by humanity.
+    </footer>
 </body>
+
 </html>
