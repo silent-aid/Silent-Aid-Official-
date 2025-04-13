@@ -1,144 +1,212 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Silent Aid – Hope for Gaza</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background: #1a1a1a;
-      color: #f2f2f2;
-      line-height: 1.6;
-    }
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Silent Aid</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            margin: 0;
+            background-color: #fff;
+            color: #222;
+            line-height: 1.6;
+            transition: all 0.3s ease;
+        }
 
-    header {
-      background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.8)), url('Silent.png') center/contain no-repeat;
-      background-color: #111;
-      background-size: 200px;
-      background-position: center 30px;
-      background-repeat: no-repeat;
-      padding: 180px 20px 100px;
-      text-align: center;
-    }
+        h1, h2 {
+            margin: 0;
+            padding: 0;
+        }
 
-    header h1 {
-      font-size: 3em;
-      margin-top: 160px;
-      color: #f44336;
-      text-shadow: 0 0 10px rgba(255, 0, 0, 0.6);
-    }
+        a {
+            text-decoration: none;
+        }
 
-    header p {
-      font-size: 1.2em;
-      max-width: 800px;
-      margin: auto;
-      color: #ddd;
-    }
+        /* Header Styles */
+        header {
+            background-color: #111;
+            color: #fff;
+            padding: 80px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            animation: fadeIn 2s ease-in-out;
+        }
 
-    section {
-      padding: 60px 20px;
-      max-width: 1000px;
-      margin: auto;
-      border-bottom: 1px solid #333;
-    }
+        header h1 {
+            font-size: 4em;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+            animation: slideIn 1.5s ease-out;
+        }
 
-    h2 {
-      color: #f44336;
-      font-size: 2.2em;
-      margin-bottom: 20px;
-    }
+        header p {
+            font-size: 1.5em;
+            max-width: 700px;
+            margin: auto;
+            opacity: 0.9;
+            animation: fadeIn 2s ease-in-out;
+        }
 
-    .highlight {
-      color: #ffa726;
-    }
+        header .button {
+            display: inline-block;
+            margin-top: 20px;
+            background: #007BFF;
+            color: #fff;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: background 0.3s ease;
+        }
 
-    .button {
-      display: inline-block;
-      margin-top: 20px;
-      background: #f44336;
-      color: #fff;
-      padding: 12px 24px;
-      border-radius: 6px;
-      text-decoration: none;
-      font-weight: bold;
-      transition: background 0.3s ease;
-    }
+        header .button:hover {
+            background-color: #0056b3;
+        }
 
-    .button:hover {
-      background: #d32f2f;
-    }
+        /* Section Styles */
+        section {
+            padding: 40px 20px;
+            max-width: 900px;
+            margin: auto;
+            transition: background 0.3s ease;
+        }
 
-    footer {
-      background: #111;
-      color: #bbb;
-      text-align: center;
-      padding: 40px 20px;
-      font-size: 0.95em;
-    }
+        section:nth-child(even) {
+            background-color: #f9f9f9;
+        }
 
-    @media (max-width: 768px) {
-      header {
-        padding: 140px 20px 80px;
-        background-size: 150px;
-      }
+        h2 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            color: #111;
+            text-align: center;
+            animation: fadeIn 2s ease-in-out;
+        }
 
-      header h1 {
-        font-size: 2.4em;
-      }
+        p {
+            font-size: 1.2em;
+            text-align: center;
+            animation: fadeIn 2s ease-in-out;
+        }
 
-      h2 {
-        font-size: 1.8em;
-      }
-    }
-  </style>
+        .team {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        .member {
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 250px;
+            transition: transform 0.3s ease;
+        }
+
+        .member:hover {
+            transform: translateY(-10px);
+        }
+
+        /* Footer Styles */
+        footer {
+            background-color: #222;
+            color: #aaa;
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9em;
+            margin-top: 40px;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateY(-50px);
+            }
+            to {
+                transform: translateY(0);
+            }
+        }
+
+        /* Media Query for Small Screens */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.5em;
+            }
+
+            section {
+                padding: 20px;
+            }
+
+            .member {
+                width: 100%;
+            }
+
+            .button {
+                width: 100%;
+            }
+        }
+    </style>
 </head>
 <body>
 
-<header>
-  <h1>Silent Aid</h1>
-  <p>Empowering Humanity in Silence. Delivering hope, aid, and dignity to Gaza through creative action, student unity, and powerful compassion.</p>
-</header>
+    <header>
+        <h1>Silent Aid</h1>
+        <p>A student-led humanitarian initiative providing critical aid to Gaza through silent strength and creative action.</p>
+        <a class="button" href="https://instagram.com/silent_aid" target="_blank">Follow on Instagram</a>
+    </header>
 
-<section>
-  <h2>🌍 Our Mission</h2>
-  <p>Silent Aid is a global student-led humanitarian movement inspired by the silent screams of Gaza. Through art, storytelling, and action, we bring voices to the unheard, comfort to the suffering, and power to the powerless. We believe that <span class="highlight">silence can be louder than words</span> — when it speaks through compassion.</p>
-  <p>We are committed to:</p>
-  <ul>
-    <li>Providing food, shelter, and medical aid for displaced families</li>
-    <li>Amplifying the voices of children, parents, and students trapped in crisis</li>
-    <li>Creating powerful visual campaigns that bypass censorship and speak to the world</li>
-    <li>Building a future where no child suffers in silence</li>
-  </ul>
-  <a href="donate.html" class="button">💸 Donate Now</a>
-</section>
+    <section>
+        <h2>📌 About Us</h2>
+        <p>Silent Aid is a youth-led movement delivering emergency aid and raising awareness through symbolic, powerful content. We believe that silence does not mean inaction — and our silence echoes louder through impact.</p>
+    </section>
 
-<section>
-  <h2>🕊️ Why Gaza?</h2>
-  <p>Gaza is not just a place; it's a symbol of resilience. With limited access to basic necessities, Gaza’s children wake up to bombings, sleep to silence, and live in fear. But even in the rubble, there's hope. Through <span class="highlight">Silent Aid</span>, we aim to turn international apathy into global empathy.</p>
-  <p>Every post, reel, and product tells their story — raw, real, and unstoppable.</p>
-</section>
+    <section>
+        <h2>🎯 Current Campaign: Echoes of the Unseen</h2>
+        <p>This campaign uses creative storytelling — reels, carousels, and symbolic art — to raise awareness for Palestine in ways that bypass suppression and ignite global empathy.</p>
+    </section>
 
-<section>
-  <h2>🛍️ Shop with Purpose</h2>
-  <p>We are launching a collection of exclusive, ethically produced apparel and goods. Every item purchased supports emergency food kits, shelter boxes, and medical aid in Gaza. <strong>100% of profits go directly to our humanitarian missions.</strong></p>
-  <a href="products.html" class="button">🛍️ Visit the Store</a>
-</section>
+    <section>
+        <h2>🤝 How You Can Help</h2>
+        <p>Join us by volunteering your skills, sharing our content, or donating to support essential humanitarian aid in Gaza. Your voice makes a difference.</p>
+        <a class="button" href="donate.html">💸 Donate Now</a>
+    </section>
 
-<section>
-  <h2>📨 Join the Movement</h2>
-  <p>Subscribe to our newsletter and become a part of the change. Get early access to updates, campaigns, behind-the-scenes, and stories from the ground.</p>
-  <form action="https://formsubmit.co/YOUR_EMAIL@example.com" method="POST" style="max-width: 500px; margin-top: 20px;">
-    <input type="email" name="email" placeholder="Your Email Address" required style="width: 100%; padding: 12px; border-radius: 6px; border: none; margin-bottom: 10px;" />
-    <input type="submit" value="Subscribe" class="button" />
-  </form>
-</section>
+    <section>
+        <h2>🧑‍🤝‍🧑 Meet the Team</h2>
+        <div class="team">
+            <div class="member">
+                <h3>Yahya</h3>
+                <p>Founder</p>
+            </div>
+            <div class="member">
+                <h3>Aziz Ul Hassan</h3>
+                <p>Creative Director</p>
+            </div>
+            <div class="member">
+                <h3>Ibrahim Wajid</h3>
+                <p>Technical Advisor</p>
+            </div>
+        </div>
+    </section>
 
-<footer>
-  <p>© 2025 Silent Aid. Built with love, led by students, and driven by purpose.</p>
-  <p>Follow us on Instagram & Twitter @silent_aid</p>
-</footer>
+    <footer>
+        © 2025 Silent Aid. Powered by purpose, led by students, inspired by humanity.
+    </footer>
 
 </body>
 </html>
