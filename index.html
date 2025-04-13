@@ -3,291 +3,142 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Silent Aid | Echoes of Humanity</title>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
+  <title>Silent Aid – Hope for Gaza</title>
   <style>
-    /* Reset */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
     body {
-      font-family: 'Roboto', sans-serif;
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: #1a1a1a;
+      color: #f2f2f2;
+      line-height: 1.6;
+    }
+
+    header {
+      background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.8)), url('Silent.png') center/contain no-repeat;
       background-color: #111;
-      color: #eee;
-      line-height: 1.8;
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    .hero-section {
-      background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(139, 0, 0, 0.9)),
-        url('https://images.unsplash.com/photo-1604852768664-2c596e1e5a53?ixlib=rb-4.0.3&auto=format&fit=crop&w=1500&q=80') center/cover no-repeat;
-      height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      background-size: 200px;
+      background-position: center 30px;
+      background-repeat: no-repeat;
+      padding: 180px 20px 100px;
       text-align: center;
-      color: #fff;
-      padding: 20px;
     }
 
-    .hero-overlay h1 {
-      font-size: 3.5rem;
-      margin-bottom: 20px;
-      animation: fadeIn 1s ease-out forwards;
+    header h1 {
+      font-size: 3em;
+      margin-top: 160px;
+      color: #f44336;
+      text-shadow: 0 0 10px rgba(255, 0, 0, 0.6);
     }
 
-    .hero-overlay p {
-      font-size: 1.3rem;
-      max-width: 700px;
-      margin: 0 auto 30px;
-      animation: fadeIn 1.5s ease-out forwards;
-    }
-
-    .button {
-      padding: 12px 28px;
-      background-color: #e50914;
-      color: #fff;
-      font-weight: bold;
-      border-radius: 6px;
-      transition: background 0.3s ease;
-      display: inline-block;
-      margin-top: 10px;
-    }
-
-    .button:hover {
-      background-color: #c1050f;
-    }
-
-    .section {
-      padding: 60px 20px;
-      max-width: 1000px;
+    header p {
+      font-size: 1.2em;
+      max-width: 800px;
       margin: auto;
-    }
-
-    .dark {
-      background-color: #1c1c1c;
-    }
-
-    .red {
-      background-color: #300000;
-    }
-
-    .blood {
-      background-color: #4c0000;
-    }
-
-    h2 {
-      font-size: 2rem;
-      margin-bottom: 20px;
-      color: #fff;
-    }
-
-    p, ul {
-      font-size: 1.1rem;
-      margin-bottom: 20px;
       color: #ddd;
     }
 
-    ul {
-      list-style-type: square;
-      padding-left: 20px;
+    section {
+      padding: 60px 20px;
+      max-width: 1000px;
+      margin: auto;
+      border-bottom: 1px solid #333;
     }
 
-    .footer {
-      background-color: #0d0d0d;
-      color: #999;
-      padding: 40px 20px;
-      text-align: center;
+    h2 {
+      color: #f44336;
+      font-size: 2.2em;
+      margin-bottom: 20px;
     }
 
-    .footer-columns {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 60px;
-      margin-bottom: 30px;
+    .highlight {
+      color: #ffa726;
     }
 
-    .footer-columns ul {
-      list-style-type: none;
-    }
-
-    .footer-columns h4 {
+    .button {
+      display: inline-block;
+      margin-top: 20px;
+      background: #f44336;
       color: #fff;
-      margin-bottom: 12px;
+      padding: 12px 24px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: background 0.3s ease;
     }
 
-    .footer-columns li {
-      margin-bottom: 10px;
+    .button:hover {
+      background: #d32f2f;
     }
 
-    .footer-columns a:hover {
-      text-decoration: underline;
+    footer {
+      background: #111;
+      color: #bbb;
+      text-align: center;
+      padding: 40px 20px;
+      font-size: 0.95em;
     }
 
-    /* Animations */
-    .fade-in {
-      opacity: 0;
-      animation: fadeIn 1s ease-out forwards;
-    }
-
-    .delay-1 {
-      animation-delay: 0.5s;
-    }
-
-    .delay-2 {
-      animation-delay: 1s;
-    }
-
-    .fade-up {
-      opacity: 0;
-      transform: translateY(20px);
-      animation: fadeUp 1.2s ease-out forwards;
-    }
-
-    @keyframes fadeIn {
-      to {
-        opacity: 1;
+    @media (max-width: 768px) {
+      header {
+        padding: 140px 20px 80px;
+        background-size: 150px;
       }
-    }
 
-    @keyframes fadeUp {
-      to {
-        opacity: 1;
-        transform: translateY(0);
+      header h1 {
+        font-size: 2.4em;
       }
-    }
 
-    @media (max-width: 600px) {
-      .hero-overlay h1 {
-        font-size: 2.2rem;
+      h2 {
+        font-size: 1.8em;
       }
     }
   </style>
 </head>
-
 <body>
 
-  <header class="hero-section">
-    <div class="hero-overlay">
-      <h1 class="fade-in">Silent Aid</h1>
-      <p class="fade-in delay-1">Where silence becomes a roar for Gaza. 100% of everything we do goes to the people — not pockets.</p>
-      <a href="products.html" class="button fade-in delay-2">Shop to Support Gaza</a>
-    </div>
-  </header>
+<header>
+  <h1>Silent Aid</h1>
+  <p>Empowering Humanity in Silence. Delivering hope, aid, and dignity to Gaza through creative action, student unity, and powerful compassion.</p>
+</header>
 
-  <section class="section dark fade-up">
-    <h2>🩸 A Crisis Ignored</h2>
-    <p>
-      Gaza bleeds. And yet, the world scrolls past.  
-      The media silences the truth. Platforms restrict the voice of the oppressed.  
-      But **we refuse silence to mean inaction.**
-    </p>
-    <p>
-      **Silent Aid** is a youth-led force — forged in heartbreak and driven by conviction.  
-      We turn stillness into **strength**, and words into **waves** of global awareness.
-    </p>
-    <p>
-      In Gaza, children wake up to rubble. In Gaza, hospitals cry out for supplies.  
-      In Gaza, hope is currency — and we’re here to **deliver** it.
-    </p>
-  </section>
+<section>
+  <h2>🌍 Our Mission</h2>
+  <p>Silent Aid is a global student-led humanitarian movement inspired by the silent screams of Gaza. Through art, storytelling, and action, we bring voices to the unheard, comfort to the suffering, and power to the powerless. We believe that <span class="highlight">silence can be louder than words</span> — when it speaks through compassion.</p>
+  <p>We are committed to:</p>
+  <ul>
+    <li>Providing food, shelter, and medical aid for displaced families</li>
+    <li>Amplifying the voices of children, parents, and students trapped in crisis</li>
+    <li>Creating powerful visual campaigns that bypass censorship and speak to the world</li>
+    <li>Building a future where no child suffers in silence</li>
+  </ul>
+  <a href="donate.html" class="button">💸 Donate Now</a>
+</section>
 
-  <section class="section red fade-up">
-    <h2>🎯 What We Do</h2>
-    <ul>
-      <li>🍞 Deliver food, shelter kits, and hygiene supplies directly to the people.</li>
-      <li>🏥 Send emergency medical aid through verified partners.</li>
-      <li>🎨 Create content that breaks through censorship using symbolism & storytelling.</li>
-      <li>🛍️ Sell 100% profit-donated products to fund every campaign.</li>
-    </ul>
-    <p>Every reel. Every shirt. Every word. It all carries Gaza forward.</p>
-  </section>
+<section>
+  <h2>🕊️ Why Gaza?</h2>
+  <p>Gaza is not just a place; it's a symbol of resilience. With limited access to basic necessities, Gaza’s children wake up to bombings, sleep to silence, and live in fear. But even in the rubble, there's hope. Through <span class="highlight">Silent Aid</span>, we aim to turn international apathy into global empathy.</p>
+  <p>Every post, reel, and product tells their story — raw, real, and unstoppable.</p>
+</section>
 
-  <section class="section dark fade-up">
-    <h2>📸 Our Voice, Our Weapon</h2>
-    <p>
-      Our campaigns, like <strong>"Echoes of the Unseen"</strong>, go beyond simple posts.  
-      We craft reels that resonate, carousels that educate, and designs that slip past suppression algorithms.
-    </p>
-    <p>
-      We use **indirect symbolism** — doves, keys, olives, resistance art — to deliver truth without being silenced.
-    </p>
-    <p>
-      Your share can spark empathy.  
-      Your like can become a lifeline.  
-      **Your silence can echo with power.**
-    </p>
-  </section>
+<section>
+  <h2>🛍️ Shop with Purpose</h2>
+  <p>We are launching a collection of exclusive, ethically produced apparel and goods. Every item purchased supports emergency food kits, shelter boxes, and medical aid in Gaza. <strong>100% of profits go directly to our humanitarian missions.</strong></p>
+  <a href="products.html" class="button">🛍️ Visit the Store</a>
+</section>
 
-  <section class="section blood fade-up">
-    <h2>💸 Transparent Impact</h2>
-    <p>
-      Not a single cent goes to waste.  
-      We share monthly impact reports, donation receipts, and partner verifications.
-    </p>
-    <p>You’re not just donating. You’re funding a legacy of resilience.</p>
-    <a class="button" href="donate.html">Donate Now</a>
-  </section>
+<section>
+  <h2>📨 Join the Movement</h2>
+  <p>Subscribe to our newsletter and become a part of the change. Get early access to updates, campaigns, behind-the-scenes, and stories from the ground.</p>
+  <form action="https://formsubmit.co/YOUR_EMAIL@example.com" method="POST" style="max-width: 500px; margin-top: 20px;">
+    <input type="email" name="email" placeholder="Your Email Address" required style="width: 100%; padding: 12px; border-radius: 6px; border: none; margin-bottom: 10px;" />
+    <input type="submit" value="Subscribe" class="button" />
+  </form>
+</section>
 
-  <section class="section red fade-up">
-    <h2>🛍️ Our Products = Pure Purpose</h2>
-    <p>
-      Every shirt, sticker, and hoodie we offer is:
-    </p>
-    <ul>
-      <li>🩷 Designed with symbolic protest art</li>
-      <li>💯 100% profit donated to Gaza causes</li>
-      <li>🌍 Shipped globally to spread awareness</li>
-    </ul>
-    <p>Wear your support. Walk with purpose.</p>
-    <a class="button" href="products.html">Shop Now</a>
-  </section>
-
-  <section class="section dark fade-up">
-    <h2>🌱 Join the Movement</h2>
-    <p>
-      We need editors, storytellers, designers, coders, donors, and voices.  
-      Silent Aid is built by students — **driven by belief, not salary.**
-    </p>
-    <p>
-      Fill out the volunteer form, DM us, or simply share a reel.  
-      Every little thing **builds the wave**.
-    </p>
-    <a class="button" href="contact.html">Contact Us</a>
-  </section>
-
-  <footer class="footer fade-in">
-    <div class="footer-columns">
-      <div>
-        <h4>Quick Links</h4>
-        <ul>
-          <li><a href="mission.html">Our Mission</a></li>
-          <li><a href="newsletter.html">Join Our Newsletter</a></li>
-          <li><a href="return-policy.html">Return & Exchange Policy</a></li>
-          <li><a href="privacy-policy.html">Privacy Policy</a></li>
-          <li><a href="contact.html">Contact Us</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4>Support</h4>
-        <ul>
-          <li><a href="faq.html">FAQ</a></li>
-          <li><a href="shipping.html">Shipping Policy</a></li>
-          <li><a href="wholesale.html">Wholesale</a></li>
-          <li><a href="ambassadors.html">Ambassador Program</a></li>
-        </ul>
-      </div>
-    </div>
-    <p>© 2025 Silent Aid. Built for humanity. Powered by students.</p>
-  </footer>
+<footer>
+  <p>© 2025 Silent Aid. Built with love, led by students, and driven by purpose.</p>
+  <p>Follow us on Instagram & Twitter @silent_aid</p>
+</footer>
 
 </body>
 </html>
