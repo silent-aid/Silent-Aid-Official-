@@ -2,15 +2,21 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Shop – Silent Aid</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Silent Aid – Shop</title>
   <style>
-    /* Reset and Base Styles */
+    /* Reset & Base Styles */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
-      margin: 0;
       font-family: 'Segoe UI', sans-serif;
-      background: #f9f9f9;
-      color: #111;
+      background-color: #111;
+      color: #fff;
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
     }
 
     /* Navigation Bar */
@@ -20,97 +26,147 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      flex-wrap: wrap;
     }
 
-    nav .logo h1 {
-      color: #fff;
+    .nav-left h1 {
+      color: #ffca28;
       font-size: 1.8em;
     }
 
-    nav ul {
+    .nav-center ul {
       list-style: none;
       display: flex;
       gap: 20px;
     }
 
-    nav ul li {
+    .nav-center li {
       position: relative;
     }
 
-    nav ul li a {
-      color: white;
-      text-decoration: none;
+    .nav-center li a {
+      color: #fff;
       font-weight: 600;
+      padding: 10px 15px;
+      transition: 0.3s;
     }
 
-    nav ul li a:hover {
-      color: #ffca28;
+    .nav-center li a:hover {
+      background-color: #ffca28;
+      border-radius: 5px;
     }
 
-    /* Dropdown Menu */
-    nav ul li:hover .dropdown {
-      display: block;
-    }
-
-    .dropdown {
+    .dropdown-menu {
       display: none;
       position: absolute;
-      background-color: #222;
-      padding: 10px;
-      top: 30px;
+      background: #333;
+      color: #fff;
+      min-width: 180px;
+      z-index: 1000;
       border-radius: 5px;
-      z-index: 10;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.1);
     }
 
-    .dropdown a {
+    .dropdown:hover .dropdown-menu {
       display: block;
-      color: white;
-      padding: 5px 10px;
+    }
+
+    .dropdown-menu li {
+      padding: 10px 15px;
       white-space: nowrap;
     }
 
-    .dropdown a:hover {
-      background-color: #444;
+    .dropdown-menu li a {
+      color: #fff;
     }
 
-    /* Shop Header */
-    .shop-header {
-      text-align: center;
-      padding: 60px 20px 20px;
-      background: #fff;
+    .dropdown-menu li:hover {
+      background: #444;
     }
 
-    .shop-header h2 {
-      font-size: 2.5em;
+    /* Hero Section */
+    .hero {
+      width: 100%;
+      height: 450px;
+      overflow: hidden;
+      position: relative;
     }
 
-    .shop-header p {
-      color: #777;
-      font-size: 1.2em;
+    .slides {
+      display: flex;
+      width: 300%;
+      height: 100%;
+      animation: slide 12s infinite;
+    }
+
+    .slide {
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+      background-position: center;
+    }
+
+    @keyframes slide {
+      0% { transform: translateX(0); }
+      33% { transform: translateX(-100%); }
+      66% { transform: translateX(-200%); }
+      100% { transform: translateX(0); }
+    }
+
+    /* Filter Section */
+    .filters {
+      padding: 20px;
+      background: #222;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .filter-btn {
+      padding: 10px 20px;
+      background-color: #ffca28;
+      color: white;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+      font-weight: bold;
+    }
+
+    .filter-btn:hover {
+      background-color: #d90429;
     }
 
     /* Product Section */
-    .products {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 30px;
-      justify-content: center;
-      padding: 40px 20px;
-    }
-
-    .product-card {
-      background: white;
-      border-radius: 10px;
-      padding: 20px;
-      width: 250px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-      transition: 0.3s;
+    .product-section {
+      padding: 60px 20px;
+      background: #111;
       text-align: center;
     }
 
+    .product-section h2 {
+      font-size: 2.2em;
+      margin-bottom: 30px;
+      color: #ffca28;
+    }
+
+    .products {
+      display: flex;
+      gap: 30px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .product-card {
+      background: #333;
+      padding: 20px;
+      border-radius: 10px;
+      width: 250px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+      transition: 0.3s;
+    }
+
     .product-card:hover {
-      transform: translateY(-6px);
+      transform: translateY(-8px);
+      background: #444;
     }
 
     .product-card img {
@@ -120,20 +176,22 @@
 
     .product-card h3 {
       margin: 10px 0;
-      font-size: 1.2em;
+      color: #ffca28;
     }
 
     .product-card p {
-      color: #555;
+      color: #ccc;
+      font-size: 0.9em;
+      margin-bottom: 10px;
     }
 
     .product-card button {
-      margin-top: 10px;
       background: #d90429;
       color: white;
       border: none;
-      padding: 10px 15px;
+      padding: 10px 20px;
       border-radius: 5px;
+      margin-top: 10px;
       cursor: pointer;
     }
 
@@ -141,87 +199,176 @@
       background: #a4031f;
     }
 
-    /* Footer */
-    footer {
+    /* Collections Section */
+    .collections {
+      padding: 40px 20px;
+      background: #222;
       text-align: center;
-      padding: 30px 10px;
-      background-color: #0a0a0a;
-      color: #ccc;
     }
 
-    /* Responsive Design */
+    .collection-boxes {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .collection {
+      background: #333;
+      border: 1px solid #444;
+      padding: 20px;
+      width: 200px;
+      border-radius: 10px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+      color: #fff;
+    }
+
+    .collection:hover {
+      background: #ffca28;
+      color: #222;
+    }
+
+    /* Footer */
+    footer {
+      background-color: #0a0a0a;
+      color: #ccc;
+      text-align: center;
+      padding: 30px 10px;
+      font-size: 0.95em;
+    }
+
+    /* Responsive */
     @media (max-width: 768px) {
-      nav ul {
+      .nav-center ul {
         flex-direction: column;
-        gap: 15px;
+        gap: 10px;
+        padding-top: 10px;
       }
 
       .products {
         flex-direction: column;
         align-items: center;
       }
+
+      .hero {
+        height: 300px;
+      }
+
+      .slides {
+        animation: none;
+      }
     }
   </style>
 </head>
-
 <body>
 
-  <!-- Navigation Bar -->
+  <!-- Navigation -->
   <nav>
-    <div class="logo"><h1>Silent Aid</h1></div>
-    <ul>
-      <li>
-        <a href="#">Shop</a>
-        <div class="dropdown">
-          <a href="#">All Products</a>
-          <a href="#">Hoodies</a>
-          <a href="#">Tees</a>
-          <a href="#">Accessories</a>
-          <a href="#">Jewelry</a>
-          <a href="#">Deals</a>
-        </div>
-      </li>
-      <li><a href="impact.html">Impact</a></li>
-      <li><a href="#">New Arrivals</a></li>
-      <li><a href="#">Rewards</a></li>
-      <li><a href="#">Contact</a></li>
-    </ul>
+    <div class="nav-left"><h1>Silent Aid</h1></div>
+    <div class="nav-center">
+      <ul>
+        <li class="dropdown">
+          <a href="#">Shop ⌄</a>
+          <ul class="dropdown-menu">
+            <li><a href="#">All Products</a></li>
+            <li><a href="#">Hoodies</a></li>
+            <li><a href="#">Tees</a></li>
+            <li><a href="#">Accessories</a></li>
+            <li><a href="#">Jewelry</a></li>
+            <li><a href="#">Best Sellers</a></li>
+          </ul>
+        </li>
+        <li><a href="#">Collections</a></li>
+        <li><a href="#">Impact</a></li>
+        <li><a href="#">Rewards</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </div>
   </nav>
 
-  <!-- Shop Header -->
-  <div class="shop-header">
-    <h2>Shop to Support Gaza ❤️‍🩹</h2>
-    <p>Every product funds food, water, shelter & medical aid in Gaza.</p>
-  </div>
-
-  <!-- Products -->
-  <div class="products">
-    <div class="product-card">
-      <img src="https://i.ibb.co/wK6bfzM/gaza-pin.jpg" alt="Gaza Pin" />
-      <h3>Gaza Support Pin</h3>
-      <p>Wear it. Share it. Support Gaza.</p>
-      <button>Buy Now</button>
-    </div>
-
-    <div class="product-card">
-      <img src="https://m.media-amazon.com/images/I/711xBPyijML.jpg" alt="Kufiya Blanket" />
-      <h3>Kufiya Blanket</h3>
-      <p>Traditional comfort. 100% for Palestine.</p>
-      <button>Buy Now</button>
-    </div>
-
-    <div class="product-card">
-      <img src="https://www.meesho.com/free-palestine-hood/p/61ylov" alt="Freedom Hoodie" />
-      <h3>Freedom Hoodie</h3>
-      <p>Soft fleece hoodie – proceeds to humanitarian aid.</p>
-      <button>Buy Now</button>
+  <!-- Hero Section -->
+  <div class="hero">
+    <div class="slides">
+      <div class="slide" style="background-image: url('https://static.vecteezy.com/system/resources/previews/029/226/849/non_2x/long-wavy-palestine-flag-free-vector.jpg');"></div>
+      <div class="slide" style="background-image: url('https://images-cdn.ubuy.co.in/652c7dca1a3ae52f9855d705-soulbuty-big-palestine-flag-for-wall-3x5.jpg');"></div>
+      <div class="slide" style="background-image: url('https://i0.wp.com/3sjshop.com/wp-content/uploads/2024/09/img_5079-scaled.jpeg');"></div>
     </div>
   </div>
+
+  <!-- Product Filters -->
+  <div class="filters">
+    <button class="filter-btn" data-category="all">All</button>
+    <button class="filter-btn" data-category="hoodie">Hoodies</button>
+    <button class="filter-btn" data-category="tee">Tees</button>
+    <button class="filter-btn" data-category="accessory">Accessories</button>
+  </div>
+
+  <!-- Products Section -->
+  <section class="product-section">
+    <h2>🌟 Best Sellers</h2>
+    <div class="products">
+      <div class="product-card" data-category="hoodie">
+        <img src="https://www.meesho.com/free-palestine-hood/p/61ylov">
+        <h3>Freedom Hoodie</h3>
+        <p>Soft fleece hoodie with embroidered message of hope. 100% proceeds to Gaza.</p>
+        <button onclick="addToCart('Freedom Hoodie')">Add to Cart</button>
+      </div>
+      <div class="product-card" data-category="tee">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/5/56/Palestinian_flag_t-shirt.jpg">
+        <h3>Peace Tee</h3>
+        <p>100% cotton t-shirt with bold peace design. Wear it with purpose!</p>
+        <button onclick="addToCart('Peace Tee')">Add to Cart</button>
+      </div>
+      <div class="product-card" data-category="accessory">
+        <img src="https://www.aftaab.com/wp-content/uploads/2021/10/bracelet-palestine-flag.jpg">
+        <h3>Palestine Flag Bracelet</h3>
+        <p>Handmade bracelet featuring the Palestinian flag colors.</p>
+        <button onclick="addToCart('Palestine Flag Bracelet')">Add to Cart</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Collections Section -->
+  <section class="collections">
+    <h2>Featured Collections</h2>
+    <div class="collection-boxes">
+      <div class="collection">Tees for Palestine</div>
+      <div class="collection">Gaza Art Pins</div>
+      <div class="collection">Palestinian Jewelry</div>
+    </div>
+  </section>
 
   <!-- Footer -->
   <footer>
-    © 2025 Silent Aid | Wear Your Support | All Rights Reserved
+    <p>&copy; 2025 Silent Aid | All Rights Reserved</p>
+    <p>Powered by Purpose</p>
   </footer>
 
+  <script>
+    // Product Filter Functionality
+    document.querySelectorAll('.filter-btn').forEach(button => {
+      button.addEventListener('click', (e) => {
+        const category = e.target.getAttribute('data-category');
+        document.querySelectorAll('.product-card').forEach(card => {
+          if (category === 'all' || card.getAttribute('data-category') === category) {
+            card.style.display = 'block';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    });
+
+    // Cart Functionality
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+    function addToCart(productName) {
+      cart.push(productName);
+      localStorage.setItem('cart', JSON.stringify(cart));
+      alert(`${productName} added to cart!`);
+    }
+  </script>
 </body>
 </html>
