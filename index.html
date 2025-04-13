@@ -1,346 +1,295 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Silent Aid</title>
-    <style>
-        /* General Styles */
-        body {
-            font-family: 'Segoe UI', sans-serif;
-            margin: 0;
-            background-color: #fff;
-            color: #222;
-            line-height: 1.6;
-            transition: all 0.3s ease;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Silent Aid - Support Gaza</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-        a {
-            text-decoration: none;
-        }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #fdfdfd;
+      color: #222;
+    }
 
-        /* Top Announcement Bar */
-        .announcement-bar {
-            background-color: #ff6600;
-            color: white;
-            padding: 10px;
-            text-align: center;
-            font-weight: bold;
-        }
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
 
-        /* Navigation Bar */
-        nav {
-            background-color: #111;
-            color: #fff;
-            padding: 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+    /* Announcement Bar */
+    .announcement {
+      background-color: #c0392b;
+      color: #fff;
+      text-align: center;
+      padding: 10px 0;
+      font-weight: bold;
+    }
 
-        nav ul {
-            list-style-type: none;
-            display: flex;
-            gap: 20px;
-        }
+    /* Navbar */
+    nav {
+      background-color: #ffffff;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+      padding: 15px 0;
+    }
 
-        nav ul li {
-            display: inline;
-        }
+    .nav-center {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 40px;
+      flex-wrap: wrap;
+    }
 
-        nav ul li a {
-            color: white;
-            font-size: 1.1em;
-            padding: 10px;
-            transition: background-color 0.3s ease;
-        }
+    .nav-center a {
+      font-weight: bold;
+      font-size: 1.1em;
+      transition: color 0.3s;
+    }
 
-        nav ul li a:hover {
-            background-color: #ff6600;
-            border-radius: 4px;
-        }
+    .nav-center a:hover {
+      color: #e74c3c;
+    }
 
-        .social-icons a {
-            color: white;
-            margin-left: 15px;
-            font-size: 1.5em;
-        }
+    /* Cart, Search, Profile */
+    .nav-extras {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+    }
 
-        /* Hero Section */
-        .hero {
-            background-image: url('https://via.placeholder.com/1920x800?text=Hero+Banner');
-            background-size: cover;
-            color: white;
-            padding: 150px 20px;
-            text-align: center;
-            position: relative;
-        }
+    .nav-extras span {
+      margin: 0 10px;
+      font-size: 1.2em;
+      cursor: pointer;
+    }
 
-        .hero h1 {
-            font-size: 4em;
-            font-weight: 700;
-            margin-bottom: 20px;
-        }
+    /* Hero Section */
+    .hero {
+      background: linear-gradient(to right, #f6f6f6, #eaeaea);
+      padding: 80px 20px;
+      text-align: center;
+      animation: fadeIn 1.5s ease-in;
+    }
 
-        .hero p {
-            font-size: 1.5em;
-            margin-bottom: 30px;
-        }
+    .hero h1 {
+      font-size: 3.5em;
+      margin-bottom: 20px;
+      color: #333;
+    }
 
-        .hero .button {
-            background-color: #ff6600;
-            color: white;
-            padding: 15px 30px;
-            font-size: 1.2em;
-            border-radius: 6px;
-            font-weight: bold;
-            transition: background-color 0.3s ease;
-        }
+    .hero p {
+      font-size: 1.2em;
+      max-width: 700px;
+      margin: 0 auto 30px;
+      color: #555;
+    }
 
-        .hero .button:hover {
-            background-color: #e65c00;
-        }
+    .hero a {
+      background-color: #e74c3c;
+      color: #fff;
+      padding: 12px 25px;
+      border-radius: 30px;
+      font-weight: bold;
+      transition: background 0.3s ease;
+    }
 
-        /* Featured Products Section */
-        .featured-products {
-            display: flex;
-            gap: 30px;
-            justify-content: space-around;
-            padding: 60px 20px;
-            background-color: #f9f9f9;
-        }
+    .hero a:hover {
+      background-color: #c0392b;
+    }
 
-        .featured-product {
-            width: 30%;
-            background-color: white;
-            padding: 20px;
-            text-align: center;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            border-radius: 8px;
-        }
+    /* Best Sellers */
+    .section {
+      padding: 60px 20px;
+      max-width: 1200px;
+      margin: auto;
+    }
 
-        .featured-product img {
-            width: 100%;
-            height: auto;
-            border-radius: 8px;
-        }
+    .section h2 {
+      text-align: center;
+      font-size: 2.5em;
+      color: #222;
+      margin-bottom: 40px;
+    }
 
-        .featured-product h3 {
-            font-size: 1.5em;
-            margin-top: 15px;
-        }
+    .products {
+      display: flex;
+      gap: 30px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
 
-        .featured-product p {
-            font-size: 1.1em;
-            color: #555;
-            margin-top: 10px;
-        }
+    .product-card {
+      background: white;
+      width: 250px;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      overflow: hidden;
+      transition: transform 0.3s ease;
+    }
 
-        .featured-product .button {
-            background-color: #ff6600;
-            color: white;
-            padding: 12px 25px;
-            border-radius: 6px;
-            font-weight: bold;
-            margin-top: 20px;
-            transition: background-color 0.3s ease;
-        }
+    .product-card:hover {
+      transform: translateY(-5px);
+    }
 
-        .featured-product .button:hover {
-            background-color: #e65c00;
-        }
+    .product-card img {
+      width: 100%;
+      height: auto;
+    }
 
-        /* Impact Section */
-        .impact-section {
-            background-color: #222;
-            color: white;
-            padding: 80px 20px;
-            text-align: center;
-        }
+    .product-card h3 {
+      font-size: 1.1em;
+      margin: 15px;
+    }
 
-        .impact-section h2 {
-            font-size: 2.5em;
-            color: #ff6600;
-        }
+    .product-card p {
+      color: #666;
+      font-size: 0.95em;
+      margin: 0 15px 15px;
+    }
 
-        .impact-section p {
-            font-size: 1.5em;
-            margin-top: 20px;
-        }
+    /* Impact */
+    .impact {
+      background-color: #fafafa;
+      padding: 60px 20px;
+      text-align: center;
+    }
 
-        /* Product Categories Section */
-        .product-categories {
-            display: flex;
-            justify-content: space-around;
-            padding: 80px 20px;
-            background-color: #f9f9f9;
-        }
+    .impact h2 {
+      font-size: 2.2em;
+      color: #e74c3c;
+    }
 
-        .category {
-            width: 25%;
-            text-align: center;
-            background-color: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease;
-        }
+    .impact p {
+      max-width: 800px;
+      margin: 20px auto;
+      font-size: 1.1em;
+      color: #444;
+    }
 
-        .category:hover {
-            transform: translateY(-10px);
-        }
+    /* Newsletter */
+    .newsletter {
+      background-color: #f2f2f2;
+      padding: 50px 20px;
+      text-align: center;
+    }
 
-        .category h3 {
-            font-size: 1.5em;
-            margin-bottom: 15px;
-        }
+    .newsletter input {
+      padding: 12px;
+      width: 300px;
+      max-width: 80%;
+      border: 1px solid #ccc;
+      border-radius: 25px;
+      margin-right: 10px;
+    }
 
-        .category a {
-            display: block;
-            padding: 12px 25px;
-            background-color: #ff6600;
-            color: white;
-            font-weight: bold;
-            border-radius: 6px;
-            text-transform: uppercase;
-            margin-top: 20px;
-            text-decoration: none;
-        }
+    .newsletter button {
+      padding: 12px 25px;
+      background-color: #e74c3c;
+      color: #fff;
+      border: none;
+      border-radius: 25px;
+      font-weight: bold;
+      cursor: pointer;
+    }
 
-        .category a:hover {
-            background-color: #e65c00;
-        }
+    /* Footer */
+    footer {
+      background-color: #111;
+      color: #aaa;
+      padding: 40px 20px;
+      text-align: center;
+    }
 
-        /* Footer Section */
-        footer {
-            background-color: #111;
-            color: #aaa;
-            padding: 40px 20px;
-            text-align: center;
-            font-size: 0.9em;
-        }
+    footer h3 {
+      color: #fff;
+      margin-bottom: 10px;
+    }
 
-        footer .social-icons {
-            margin-top: 20px;
-        }
+    footer p {
+      margin: 5px 0;
+    }
 
-        footer .social-icons a {
-            color: white;
-            margin-left: 15px;
-            font-size: 1.5em;
-        }
-
-        /* Media Query for Small Screens */
-        @media (max-width: 768px) {
-            .featured-products, .product-categories {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .featured-product, .category {
-                width: 80%;
-                margin-bottom: 20px;
-            }
-        }
-    </style>
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
 </head>
 <body>
 
-    <!-- Announcement Bar -->
-    <div class="announcement-bar">
-        EVERY ORDER GIVES BACK TO HUMANITY | Free shipping on orders over $59 (US) / $200 (CA) / £160 (UK)
+  <!-- Announcement Bar -->
+  <div class="announcement">🚨 EVERY ORDER GIVES BACK TO HUMANITY — FREE SHIPPING OVER $59 (US) / CA $200 / UK £160</div>
+
+  <!-- Navigation -->
+  <nav>
+    <div class="nav-center">
+      <a href="#">Shop</a>
+      <a href="#">Collections For 🍉</a>
+      <a href="#">New Arrivals</a>
+      <a href="#">Impact</a>
+      <a href="#">Rewards Program</a>
+      <a href="#">Contact Us</a>
     </div>
-
-    <!-- Navigation Bar -->
-    <nav>
-        <div class="logo">Silent Aid</div>
-        <ul>
-            <li><a href="#">Shop</a>
-                <ul>
-                    <li><a href="#">All Products</a></li>
-                    <li><a href="#">Clothing</a></li>
-                    <li><a href="#">Accessories</a></li>
-                    <li><a href="#">Jewelry</a></li>
-                    <li><a href="#">Deals</a></li>
-                    <li><a href="#">Collabs</a></li>
-                    <li><a href="#">Best Sellers</a></li>
-                </ul>
-            </li>
-            <li><a href="#">Collections For</a>
-                <ul>
-                    <li><a href="#">Tees</a></li>
-                    <li><a href="#">Hoodies & Crews</a></li>
-                    <li><a href="#">Pins & Accessories</a></li>
-                </ul>
-            </li>
-            <li><a href="#">New Arrivals</a></li>
-            <li><a href="#">Impact</a></li>
-            <li><a href="#">Rewards Program</a></li>
-            <li><a href="#">Contact Us</a></li>
-        </ul>
-        <div class="social-icons">
-            <a href="https://facebook.com" target="_blank">Facebook</a>
-            <a href="https://instagram.com" target="_blank">Instagram</a>
-            <a href="https://youtube.com" target="_blank">YouTube</a>
-            <a href="https://tiktok.com" target="_blank">TikTok</a>
-        </div>
-    </nav>
-
-    <!-- Hero Section -->
-    <div class="hero">
-        <h1>Wear The Peace</h1>
-        <p>Every piece sold contributes to humanitarian efforts in Gaza.</p>
-        <a class="button" href="#">Shop Now</a>
+    <div class="nav-extras">
+      <span>🔍</span>
+      <span>🛒</span>
+      <span>👤</span>
     </div>
+  </nav>
 
-    <!-- Featured Products Section -->
-    <div class="featured-products">
-        <div class="featured-product">
-            <img src="https://via.placeholder.com/300" alt="Freedom Melon Hoodie">
-            <h3>Freedom Melon Hoodie</h3>
-            <p>Cozy, soft, and warm. A statement for peace.</p>
-            <a class="button" href="#">Buy Now</a>
-        </div>
-        <div class="featured-product">
-            <img src="https://via.placeholder.com/300" alt="Kufiya Blanket Hoodie">
-            <h3>Kufiya Blanket Hoodie</h3>
-            <p>Comfort meets culture. Wear the spirit of Gaza.</p>
-            <a class="button" href="#">Buy Now</a>
-        </div>
+  <!-- Hero Section -->
+  <div class="hero">
+    <h1>Silent Aid</h1>
+    <p>A student-led humanitarian initiative providing critical aid to Gaza through silent strength and creative action.</p>
+    <a href="https://instagram.com/silent_aid" target="_blank">Follow on Instagram</a>
+  </div>
+
+  <!-- Best Sellers Section -->
+  <div class="section">
+    <h2>🌟 Best Sellers</h2>
+    <div class="products">
+      <div class="product-card">
+        <img src="https://via.placeholder.com/250x300" alt="Product 1" />
+        <h3>Freedom Hoodie</h3>
+        <p>100% of profits support Gaza relief</p>
+      </div>
+      <div class="product-card">
+        <img src="https://via.placeholder.com/250x300" alt="Product 2" />
+        <h3>Kufiya Tee</h3>
+        <p>Wear the message of solidarity</p>
+      </div>
     </div>
+  </div>
 
-    <!-- Impact Section -->
-    <div class="impact-section">
-        <h2>Our Impact</h2>
-        <p>Over $2M Donated to Humanitarian Causes. Every purchase helps support peace efforts in Gaza.</p>
-    </div>
+  <!-- Impact Section -->
+  <div class="impact">
+    <h2>🌍 Our Impact</h2>
+    <p>Every purchase directly supports food, shelter, and medical aid for the people of Gaza. Silent Aid channels student-led passion into global change—thank you for making it possible.</p>
+  </div>
 
-    <!-- Product Categories Section -->
-    <div class="product-categories">
-        <div class="category">
-            <h3>Clothing</h3>
-            <a href="#">Explore Clothing</a>
-        </div>
-        <div class="category">
-            <h3>Accessories</h3>
-            <a href="#">Explore Accessories</a>
-        </div>
-        <div class="category">
-            <h3>Jewelry</h3>
-            <a href="#">Explore Jewelry</a>
-        </div>
-    </div>
+  <!-- Newsletter Signup -->
+  <div class="newsletter">
+    <h2>📬 Join Our Newsletter</h2>
+    <p>Be the first to hear about new launches, relief missions, and how your order helps Gaza.</p>
+    <input type="email" placeholder="Enter your email" />
+    <button>Subscribe</button>
+  </div>
 
-    <!-- Footer Section -->
-    <footer>
-        <div>© 2025 Silent Aid</div>
-        <div class="social-icons">
-            <a href="https://facebook.com" target="_blank">Facebook</a>
-            <a href="https://instagram.com" target="_blank">Instagram</a>
-            <a href="https://youtube.com" target="_blank">YouTube</a>
-            <a href="https://tiktok.com" target="_blank">TikTok</a>
-        </div>
-    </footer>
+  <!-- Footer -->
+  <footer>
+    <h3>Silent Aid</h3>
+    <p>Our Mission | Return & Exchange Policy | Refer a Friend</p>
+    <p>Privacy Policy | Terms of Service | Shipping Policy</p>
+    <p>Wholesale | Ambassador Program | Contact Us</p>
+    <p>Email us | Where To Find Us | FAQ | Track Order</p>
+    <p>© 2025 Silent Aid. Built by hearts that care. Powered by youth. Inspired by humanity.</p>
+  </footer>
 
 </body>
 </html>
