@@ -24,98 +24,14 @@
             text-decoration: none;
         }
 
-        /* Header Bar with Cart, Search, Profile */
-        .header-bar {
-            background-color: #333;
-            color: white;
-            padding: 10px 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-        }
-
-        .header-bar .logo {
-            font-size: 1.8em;
-            font-weight: bold;
-        }
-
-        .header-bar .nav-links {
-            display: flex;
-            gap: 20px;
-        }
-
-        .header-bar .nav-links a {
-            color: white;
-            font-size: 1.1em;
-            text-transform: uppercase;
-            padding: 8px 16px;
-            border-radius: 6px;
-            transition: background-color 0.3s ease;
-        }
-
-        .header-bar .nav-links a:hover {
-            background-color: #ff6600;
-        }
-
-        .header-bar .nav-icons {
-            display: flex;
-            gap: 20px;
-        }
-
-        .header-bar .nav-icons i {
-            font-size: 1.6em;
-            cursor: pointer;
-        }
-
-        /* Sliding Poster Section */
-        .slider {
-            position: relative;
-            width: 100%;
-            height: 500px;
-            overflow: hidden;
-            margin-top: 70px; /* Adjusts the slider below the header bar */
-        }
-
-        .slider img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            position: absolute;
-            animation: slide 10s infinite;
-        }
-
-        @keyframes slide {
-            0% {
-                transform: translateX(100%);
-            }
-            20% {
-                transform: translateX(0);
-            }
-            40% {
-                transform: translateX(-100%);
-            }
-            60% {
-                transform: translateX(-200%);
-            }
-            80% {
-                transform: translateX(-300%);
-            }
-            100% {
-                transform: translateX(-400%);
-            }
-        }
-
-        /* Header Section */
+        /* Header Styles */
         header {
             background-color: #111;
             color: #fff;
             padding: 80px 20px;
             text-align: center;
             position: relative;
+            overflow: hidden;
             animation: fadeIn 2s ease-in-out;
         }
 
@@ -187,6 +103,33 @@
             transform: scale(1.1);
         }
 
+        /* Intro Section */
+        .intro-section {
+            text-align: center;
+            padding: 40px 20px;
+            background-color: #f0f0f0;
+        }
+
+        .intro-section p {
+            font-size: 1.5em;
+            max-width: 700px;
+            margin: auto;
+            opacity: 0.9;
+        }
+
+        .intro-section .button {
+            background: #007BFF;
+            color: #fff;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: background 0.3s ease;
+        }
+
+        .intro-section .button:hover {
+            background-color: #0056b3;
+        }
+
         /* Product Section Styles */
         .product-section {
             padding: 40px 20px;
@@ -254,6 +197,24 @@
             background: #ff5500;
         }
 
+        /* Impact Section */
+        .impact-section {
+            background-color: #222;
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .impact-section h2 {
+            font-size: 2.5em;
+            color: #ff6600;
+        }
+
+        .impact-section p {
+            font-size: 1.2em;
+            margin: 20px 0;
+        }
+
         /* Footer Styles */
         footer {
             background-color: #111;
@@ -305,54 +266,63 @@
 </head>
 <body>
 
-    <!-- Header Bar with Cart, Search, Profile -->
-    <div class="header-bar">
-        <div class="logo">Silent Aid</div>
-        <div class="nav-links">
-            <a href="#">Shop</a>
-            <a href="#">Collections</a>
-            <a href="#">New Arrivals</a>
-            <a href="#">Impact</a>
-            <a href="#">Rewards</a>
-            <a href="#">Contact</a>
-        </div>
-        <div class="nav-icons">
-            <i class="fa fa-search"></i>
-            <i class="fa fa-user"></i>
-            <i class="fa fa-shopping-cart"></i>
-        </div>
-    </div>
+    <!-- Navigation Bar -->
+    <nav>
+        <ul>
+            <li><a href="#">Shop</a></li>
+            <li><a href="#">Collections For 🍉</a></li>
+            <li><a href="#">New Arrivals</a></li>
+            <li><a href="#">Impact</a></li>
+            <li><a href="#">Rewards Program</a></li>
+            <li><a href="#">Contact Us</a></li>
+        </ul>
+    </nav>
 
-    <!-- Sliding Poster Section (Now before Best Sellers) -->
-    <div class="slider">
-        <img src="https://via.placeholder.com/1920x500.png?text=Silent+Aid+Campaign+1" alt="Silent Aid Campaign">
-        <img src="https://via.placeholder.com/1920x500.png?text=Silent+Aid+Campaign+2" alt="Silent Aid Campaign">
-        <img src="https://via.placeholder.com/1920x500.png?text=Silent+Aid+Campaign+3" alt="Silent Aid Campaign">
+    <!-- Header Section -->
+    <header>
+        <h1>Silent Aid</h1>
+        <p>A student-led humanitarian initiative providing critical aid to Gaza through silent strength and creative action.</p>
+    </header>
+
+    <!-- Intro Section: Instagram Follow & Message -->
+    <div class="intro-section">
+        <p>A student-led humanitarian initiative providing critical aid to Gaza through silent strength and creative action.</p>
+        <a class="button" href="https://instagram.com/silent_aid" target="_blank">Follow on Instagram</a>
     </div>
 
     <!-- Product Section: Best Sellers -->
     <div class="product-section">
         <h2>🌟 Best Sellers</h2>
         <div class="products">
+            <!-- Product 1 -->
             <div class="product-card">
-                <img src="https://via.placeholder.com/220" alt="Product 1">
+                <img src="https://via.placeholder.com/220" alt="Product Image">
                 <h3>Product 1</h3>
                 <p>Description of Product 1</p>
                 <button class="button">Buy Now</button>
             </div>
+            <!-- Product 2 -->
             <div class="product-card">
-                <img src="https://via.placeholder.com/220" alt="Product 2">
+                <img src="https://via.placeholder.com/220" alt="Product Image">
                 <h3>Product 2</h3>
                 <p>Description of Product 2</p>
                 <button class="button">Buy Now</button>
             </div>
+            <!-- Product 3 -->
             <div class="product-card">
-                <img src="https://via.placeholder.com/220" alt="Product 3">
+                <img src="https://via.placeholder.com/220" alt="Product Image">
                 <h3>Product 3</h3>
                 <p>Description of Product 3</p>
                 <button class="button">Buy Now</button>
             </div>
         </div>
+    </div>
+
+    <!-- Impact Section -->
+    <div class="impact-section">
+        <h2>🎯 Our Impact</h2>
+        <p>Silent Aid is committed to supporting the people of Gaza through your generous contributions. Every donation helps provide food, shelter, medical supplies, and educational resources.</p>
+        <p>Together, we make a difference. Join our mission to support and uplift those who need it the most.</p>
     </div>
 
     <!-- Footer Section -->
