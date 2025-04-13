@@ -8,24 +8,32 @@
     body {
       font-family: 'Segoe UI', sans-serif;
       margin: 0;
-      background: #f9f9f9;
-      color: #222;
+      background: #f0f4f8;
+      color: #333;
+      transition: all 0.3s ease;
     }
+    
     header {
-      background: #111;
+      background: linear-gradient(45deg, #FF6F61, #FF3D00);
       color: #fff;
       padding: 60px 20px;
       text-align: center;
+      transition: all 0.3s ease;
     }
+
     header h1 {
-      font-size: 3em;
+      font-size: 3.5em;
       margin-bottom: 10px;
+      text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
     }
+
     header p {
       font-size: 1.2em;
       max-width: 600px;
       margin: auto;
+      text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3);
     }
+
     .button {
       display: inline-block;
       margin-top: 20px;
@@ -35,50 +43,87 @@
       border-radius: 8px;
       text-decoration: none;
       font-weight: bold;
+      transition: background 0.3s ease, transform 0.3s ease;
     }
+
+    .button:hover {
+      background: #0056b3;
+      transform: scale(1.05);
+    }
+
     section {
       padding: 40px 20px;
       max-width: 900px;
       margin: auto;
+      text-align: center;
     }
+
     h2 {
       color: #111;
+      font-size: 2.5em;
+      margin-bottom: 20px;
+      animation: fadeIn 2s ease-in;
     }
+
     ul {
       padding-left: 20px;
+      font-size: 1.1em;
+      line-height: 1.8;
     }
+
     form {
       display: flex;
       flex-direction: column;
       gap: 10px;
+      max-width: 400px;
+      margin: auto;
     }
-    input, textarea {
+
+    input,
+    textarea {
       padding: 10px;
       font-size: 1em;
       border-radius: 6px;
       border: 1px solid #ccc;
+      transition: border-color 0.3s ease;
     }
+
     input[type="submit"] {
-      background: #007BFF;
+      background: #FF6F61;
       color: #fff;
       border: none;
       cursor: pointer;
       font-weight: bold;
     }
+
+    input:focus,
+    textarea:focus {
+      border-color: #FF3D00;
+    }
+
     .team {
       display: flex;
       gap: 20px;
       flex-wrap: wrap;
       justify-content: center;
+      margin-top: 30px;
     }
+
     .member {
       background: #fff;
       padding: 20px;
       border-radius: 10px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
       text-align: center;
       width: 200px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
+
+    .member:hover {
+      transform: scale(1.05);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+
     footer {
       background: #222;
       color: #aaa;
@@ -87,30 +132,31 @@
       font-size: 0.9em;
       margin-top: 40px;
     }
+
+    @keyframes fadeIn {
+      0% {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
     @media (max-width: 600px) {
       header h1 {
-        font-size: 2em;
+        font-size: 2.5em;
       }
+
       .member {
         width: 100%;
       }
     }
   </style>
-
-  <!-- Google Analytics 4 (GA4) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-E2FR3MGX91"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'G-E2FR3MGX91');
-  </script>
-  <!-- End Google Analytics 4 (GA4) -->
-
 </head>
-<body>
 
+<body>
   <header>
     <h1>Silent Aid</h1>
     <p>A student-led humanitarian initiative providing critical aid to Gaza through silent strength and creative action.</p>
@@ -170,6 +216,5 @@
   <footer>
     © 2025 Silent Aid. Powered by purpose, led by students, inspired by humanity.
   </footer>
-
 </body>
 </html>
