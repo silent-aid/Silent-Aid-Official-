@@ -17,38 +17,38 @@
         body {
             font-family: 'Segoe UI', sans-serif;
             line-height: 1.6;
-            background: #f4f4f4;
+            background-color: #f8f8f8;
             color: #333;
+            overflow-x: hidden;
         }
 
         /* Header Section */
         header {
-            background: url('YOUR_IMAGE_PATH_HERE') center/cover no-repeat;
+            background: #111 url('YOUR_IMAGE_PATH_HERE') no-repeat center center/cover;
             color: #fff;
             text-align: center;
-            padding: 120px 20px;
+            padding: 80px 20px;
             background-size: cover;
-            background-position: center;
             position: relative;
+            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.3);
         }
 
         header h1 {
-            font-size: 3em;
+            font-size: 3.5em;
             margin-bottom: 20px;
             text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
         }
 
         header p {
-            font-size: 1.2em;
-            margin-bottom: 30px;
+            font-size: 1.4em;
             max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
+            margin: auto;
+            margin-bottom: 30px;
         }
 
         .button {
             display: inline-block;
-            background: #007BFF;
+            background: #e63946;
             color: #fff;
             padding: 12px 24px;
             border-radius: 8px;
@@ -58,7 +58,7 @@
         }
 
         .button:hover {
-            background: #0056b3;
+            background: #d62828;
         }
 
         /* About Section */
@@ -67,15 +67,36 @@
             max-width: 900px;
             margin: 40px auto;
             background: #fff;
-            border-radius: 10px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             animation: fadeIn 1.5s ease-out;
         }
 
         section h2 {
-            color: #111;
-            font-size: 2em;
+            color: #e63946;
+            font-size: 2.5em;
             margin-bottom: 20px;
+        }
+
+        section p {
+            font-size: 1.1em;
+            margin-bottom: 20px;
+            color: #444;
+        }
+
+        /* Donate Section */
+        .donate-section {
+            text-align: center;
+            margin-top: 40px;
+            padding: 30px;
+            background: #f1faee;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .donate-section h3 {
+            font-size: 2em;
+            color: #e63946;
         }
 
         /* Fade In Effect */
@@ -91,41 +112,49 @@
             }
         }
 
-        /* Video Embed */
-        iframe {
-            width: 100%;
-            height: 500px;
-            border: none;
-            border-radius: 8px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        /* Contact Section */
-        form {
+        /* Product Section */
+        .product-section {
             display: flex;
-            flex-direction: column;
-            gap: 10px;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 20px;
         }
 
-        input,
-        textarea {
-            padding: 10px;
+        .product {
+            width: 250px;
+            background: #fff;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .product:hover {
+            transform: translateY(-10px);
+        }
+
+        .product img {
+            max-width: 100%;
+            border-radius: 8px;
+        }
+
+        .product h3 {
+            color: #e63946;
+            margin-top: 20px;
+            font-size: 1.5em;
+        }
+
+        .product p {
             font-size: 1em;
-            border-radius: 6px;
-            border: 1px solid #ccc;
-            width: 100%;
+            margin-top: 10px;
+            color: #777;
         }
 
-        input[type="submit"] {
-            background: #007BFF;
-            color: #fff;
-            border: none;
-            cursor: pointer;
+        .product .price {
+            font-size: 1.2em;
             font-weight: bold;
-        }
-
-        input[type="submit"]:hover {
-            background: #0056b3;
+            color: #2a9d8f;
         }
 
         /* Footer Section */
@@ -145,55 +174,64 @@
             }
 
             header p {
-                font-size: 1em;
+                font-size: 1.2em;
+            }
+
+            .product-section {
+                flex-direction: column;
+                align-items: center;
             }
         }
     </style>
 </head>
 
 <body>
-    <!-- Header Section with Hero Image -->
+    <!-- Header Section -->
     <header>
         <h1>Silent Aid</h1>
         <p>A student-led humanitarian initiative providing critical aid to Gaza through silent strength and creative action.</p>
         <a class="button" href="https://instagram.com/silent_aid" target="_blank">Follow on Instagram</a>
     </header>
 
-    <!-- About Section -->
+    <!-- About Us Section -->
     <section>
         <h2>📌 About Us</h2>
-        <p>Silent Aid is a youth-led movement delivering emergency aid and raising awareness through symbolic, powerful content. We believe that silence does not mean inaction — and our silence echoes louder through impact. Join us in standing for Gaza.</p>
+        <p>Silent Aid is a youth-led movement delivering emergency aid and raising awareness for Gaza. We believe that our silence echoes louder through action, and we aim to support the people of Gaza with food, water, medical supplies, and more.</p>
     </section>
 
-    <!-- Campaign Section -->
+    <!-- Current Campaign Section -->
     <section>
         <h2>🎯 Current Campaign: Echoes of the Unseen</h2>
-        <p>This campaign uses creative storytelling — reels, carousels, and symbolic art — to raise awareness for Palestine in ways that bypass suppression and ignite global empathy.</p>
-        <!-- Video Embed -->
-        <iframe src="https://www.youtube.com/embed/YOUR_VIDEO_ID" allowfullscreen></iframe>
+        <p>Our campaign uses creative storytelling and symbolic art to bypass censorship and ignite empathy worldwide for Gaza. Join us in amplifying the voices of the oppressed.</p>
     </section>
 
-    <!-- How You Can Help Section -->
-    <section>
-        <h2>🤝 How You Can Help</h2>
-        <ul>
-            <li>🔁 Share our posts and reels</li>
-            <li>✍️ Volunteer your skills (design, editing, writing)</li>
-            <li>💸 Donate to support food kits, shelter, and aid</li>
-        </ul>
+    <!-- Donate Section -->
+    <div class="donate-section">
+        <h3>💸 Donate Now</h3>
+        <p>Your donations will directly contribute to food, shelter, and medical aid for Gaza. 100% of the proceeds go to the cause. Every penny counts.</p>
         <a class="button" href="donate.html">💸 Donate Now</a>
-    </section>
+    </div>
 
-    <!-- Contact Us Section -->
+    <!-- Product Section (100% profit to Gaza) -->
     <section>
-        <h2>📨 Contact Us</h2>
-        <form action="https://formsubmit.co/YOUR_EMAIL@example.com" method="POST">
-            <input type="text" name="name" placeholder="Your Name" required />
-            <input type="email" name="email" placeholder="Your Email" required />
-            <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
-            <input type="submit" value="Send Message" />
-        </form>
-        <p style="font-size: 0.9em; color: gray;">* Form will email your messages to you. Replace with your real email.</p>
+        <h2>🛍️ Our Products - 100% Profit to Gaza</h2>
+        <div class="product-section">
+            <div class="product">
+                <img src="YOUR_PRODUCT_IMAGE_PATH" alt="Product 1">
+                <h3>Product Name</h3>
+                <p>A description of the product goes here.</p>
+                <p class="price">$10.00</p>
+                <a class="button" href="purchase-link-here">Buy Now</a>
+            </div>
+
+            <div class="product">
+                <img src="YOUR_PRODUCT_IMAGE_PATH" alt="Product 2">
+                <h3>Product Name</h3>
+                <p>A description of the product goes here.</p>
+                <p class="price">$15.00</p>
+                <a class="button" href="purchase-link-here">Buy Now</a>
+            </div>
+        </div>
     </section>
 
     <!-- Footer Section -->
