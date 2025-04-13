@@ -3,119 +3,116 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Impact | Silent Aid</title>
+  <title>Our Impact – Silent Aid</title>
   <style>
+    * {
+      margin: 0; padding: 0; box-sizing: border-box;
+    }
+
     body {
-      margin: 0;
       font-family: 'Segoe UI', sans-serif;
-      background-color: #fdfdfd;
-      color: #111;
-      line-height: 1.6;
+      background-color: #f4f4f4;
+      color: #222;
+      line-height: 1.7;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
     }
 
     header {
       background-color: #0a0a0a;
       color: white;
-      padding: 20px;
-      text-align: center;
-    }
-
-    .hero-impact {
-      background: linear-gradient(to right, #111, #d90429);
-      color: white;
-      padding: 80px 20px;
-      text-align: center;
-    }
-
-    .hero-impact h1 {
-      font-size: 2.8em;
-      margin-bottom: 10px;
-    }
-
-    .hero-impact p {
-      font-size: 1.2em;
-      max-width: 700px;
-      margin: auto;
-    }
-
-    .impact-stats {
+      padding: 20px 30px;
       display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 30px;
-      padding: 60px 20px;
-      background: #fff;
-      text-align: center;
+      justify-content: space-between;
+      align-items: center;
     }
 
-    .stat-box {
-      background: #f7f7f7;
-      padding: 30px;
-      border-radius: 12px;
-      width: 250px;
-      box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+    header h1 {
+      font-size: 1.8em;
     }
 
-    .stat-box h2 {
-      font-size: 2.2em;
-      color: #d90429;
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 20px;
     }
 
-    .stat-box p {
-      font-size: 1em;
-      color: #444;
-    }
-
-    .stories {
-      background: #fafafa;
-      padding: 60px 20px;
-      text-align: center;
-    }
-
-    .stories h2 {
-      font-size: 2em;
-      margin-bottom: 30px;
-    }
-
-    .quote-box {
-      background: #fff;
-      padding: 25px;
-      margin: 10px auto;
-      max-width: 700px;
-      border-left: 5px solid #d90429;
-      font-style: italic;
-      color: #333;
-    }
-
-    .pledge {
-      background: #111;
+    nav ul li a {
       color: white;
-      padding: 50px 20px;
-      text-align: center;
+      font-weight: bold;
     }
 
-    .pledge h2 {
-      font-size: 2em;
+    nav ul li a:hover {
       color: #ffca28;
     }
 
-    .cta {
-      padding: 40px 20px;
-      text-align: center;
-    }
-
-    .cta button {
-      padding: 14px 30px;
+    .announcement {
       background: #d90429;
-      border: none;
-      border-radius: 6px;
       color: white;
-      font-size: 1.1em;
-      cursor: pointer;
+      text-align: center;
+      padding: 10px;
+      font-weight: bold;
     }
 
-    .cta button:hover {
-      background: #a4031f;
+    .impact-hero {
+      background: url('https://www.aljazeera.com/wp-content/uploads/2023/11/AP23308779553928-1699991993.jpg') no-repeat center center/cover;
+      height: 300px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      text-shadow: 1px 1px 3px black;
+    }
+
+    .impact-hero h2 {
+      font-size: 3em;
+    }
+
+    .impact-content {
+      max-width: 1000px;
+      margin: 60px auto;
+      padding: 0 20px;
+    }
+
+    .impact-content h3 {
+      font-size: 2em;
+      margin-bottom: 20px;
+      color: #d90429;
+    }
+
+    .impact-content p {
+      font-size: 1.1em;
+      margin-bottom: 30px;
+    }
+
+    .impact-metrics {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px;
+      justify-content: center;
+      margin: 40px 0;
+    }
+
+    .metric-box {
+      background: white;
+      border-radius: 8px;
+      padding: 30px;
+      width: 250px;
+      text-align: center;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    .metric-box h4 {
+      font-size: 2em;
+      color: #0a0a0a;
+    }
+
+    .metric-box p {
+      color: #444;
+      font-weight: 600;
     }
 
     footer {
@@ -125,38 +122,80 @@
       padding: 20px;
       font-size: 0.9em;
     }
+
+    @media (max-width: 768px) {
+      .impact-hero h2 {
+        font-size: 2em;
+        text-align: center;
+        padding: 0 10px;
+      }
+
+      nav ul {
+        flex-direction: column;
+        gap: 10px;
+        padding-top: 10px;
+      }
+    }
   </style>
 </head>
 <body>
 
+  <div class="announcement">
+    EVERY ORDER GIVES BACK TO HUMANITY | Free Shipping: US $59, CA $200, UK £160
+  </div>
+
   <header>
     <h1>Silent Aid</h1>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="shop.html">Shop</a></li>
+        <li><a href="#">Collections</a></li>
+        <li><a href="#">New Arrivals</a></li>
+        <li><a href="impact.html">Impact</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </nav>
   </header>
 
-  <section class="hero-impact">
-    <h1>Your Purchase Has Power</h1>
-    <p>Every order supports food, shelter, education & medical aid in Gaza. This is impact through action.</p>
+  <section class="impact-hero">
+    <h2>Our Impact in Gaza</h2>
   </section>
 
-  <section class="impact-stats">
-    <div class="stat-box">
-      <h2>12,000+</h2>
-      <p>Meals Delivered</p>
+  <section class="impact-content">
+    <h3>100% Transparency. 100% Humanity.</h3>
+    <p>
+      Silent Aid is a student-led movement supporting the people of Gaza through creative campaigns and direct humanitarian aid.
+      Every product purchase helps deliver food packs, medical kits, hygiene essentials, and shelter supplies to families in crisis.
+    </p>
+
+    <div class="impact-metrics">
+      <div class="metric-box">
+        <h4>1,200+</h4>
+        <p>Families Fed</p>
+      </div>
+      <div class="metric-box">
+        <h4>$14,800</h4>
+        <p>Donations Raised</p>
+      </div>
+      <div class="metric-box">
+        <h4>3,500+</h4>
+        <p>Medical Kits Sent</p>
+      </div>
+      <div class="metric-box">
+        <h4>100%</h4>
+        <p>Volunteer-Driven</p>
+      </div>
     </div>
-    <div class="stat-box">
-      <h2>1,400+</h2>
-      <p>Shelter Kits Provided</p>
-    </div>
-    <div class="stat-box">
-      <h2>800+</h2>
-      <p>Medical Packs Shipped</p>
-    </div>
-    <div class="stat-box">
-      <h2>3,200+</h2>
-      <p>Children Reached</p>
-    </div>
+
+    <p>
+      We believe in silent strength. In letting actions speak louder than words. In uniting compassion with creativity. Whether you support through purchases, donations, or simply spreading awareness — you're making a difference.
+    </p>
   </section>
 
-  <section class="stories">
-    <h2>Real Stories from Gaza</h2>
-    <div class="quote-box">"Because of Silent Aid, we were able to
+  <footer>
+    © 2025 Silent Aid | Built by Youth | Powered by Purpose
+  </footer>
+
+</body>
+</html>
