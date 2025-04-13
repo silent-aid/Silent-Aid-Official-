@@ -1,79 +1,129 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Cart</title>
-    <style>
-        /* Basic styling for the cart page */
-        body {
-            font-family: 'Segoe UI', sans-serif;
-            background-color: #f0f2f5;
-            color: #222;
-            line-height: 1.6;
-        }
-        .cart-container {
-            width: 80%;
-            margin: auto;
-            padding: 20px;
-        }
-        .cart-item {
-            display: flex;
-            justify-content: space-between;
-            padding: 15px 0;
-            border-bottom: 1px solid #ddd;
-        }
-        .cart-item h3 {
-            margin: 0;
-        }
-        .total-price {
-            text-align: right;
-            font-size: 1.2em;
-            padding: 20px 0;
-            border-top: 2px solid #ddd;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Silent Aid – Cart</title>
+  <style>
+    /* Reset & Base Styles */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Segoe UI', sans-serif; background-color: #f8f8f8; color: #333; line-height: 1.6; }
+    a { color: inherit; text-decoration: none; }
+
+    /* Navigation Bar */
+    nav { background-color: #111; padding: 20px 30px; display: flex; justify-content: space-between; align-items: center; }
+    .nav-left h1 { color: #ffca28; font-size: 2em; }
+    .nav-center ul { list-style: none; display: flex; gap: 20px; }
+    .nav-center li { position: relative; }
+    .nav-center li a { color: #fff; font-weight: 600; padding: 10px 15px; transition: 0.3s; }
+    .nav-center li a:hover { background-color: #ffca28; border-radius: 5px; }
+
+    /* Cart Page Styles */
+    .cart-page { padding: 60px 20px; background: #fff; text-align: center; }
+    .cart-page h2 { font-size: 2.2em; margin-bottom: 30px; color: #111; }
+    .cart-items { display: flex; flex-direction: column; gap: 20px; padding: 20px; }
+    .cart-item { background: #fff; padding: 15px; border-radius: 10px; width: 80%; margin: 10px auto; box-shadow: 0 4px 8px rgba(0,0,0,0.1); border: 1px solid #f0f0f0; display: flex; justify-content: space-between; align-items: center; }
+    .cart-item img { width: 80px; height: 80px; object-fit: cover; border-radius: 8px; margin-right: 20px; }
+    .cart-item h3 { margin: 0; font-size: 1.1em; }
+    .cart-item .price { font-size: 1.1em; font-weight: bold; color: #d90429; margin-right: 20px; }
+    .cart-item button { background: #ffca28; color: white; border: none; padding: 8px 16px; border-radius: 5px; cursor: pointer; font-weight: bold; }
+    .cart-item button:hover { background-color: #d90429; }
+
+    /* Checkout Section */
+    .cart-total { font-size: 1.5em; font-weight: bold; color: #111; margin-top: 30px; }
+    .checkout-btn { background-color: #d90429; color: white; border: none; padding: 15px 20px; width: 100%; font-size: 1.1em; cursor: pointer; border-radius: 5px; }
+    .checkout-btn:hover { background-color: #ffca28; }
+
+    /* Footer */
+    footer { background-color: #111; color: #ccc; text-align: center; padding: 30px 10px; font-size: 0.95em; }
+  </style>
 </head>
 <body>
-    <div class="cart-container">
-        <h1>Your Cart</h1>
-        <div id="cart-items"></div>
-        <div class="total-price">
-            <p>Total: <span id="total-price">0</span> USD</p>
-        </div>
-        <button onclick="checkout()">Checkout</button>
+  <!-- Navigation -->
+  <nav>
+    <div class="nav-left"><h1>Silent Aid</h1></div>
+    <div class="nav-center">
+      <ul>
+        <li><a href="#">Shop</a></li>
+        <li><a href="#">Collections</a></li>
+        <li><a href="#">Impact</a></li>
+        <li><a href="#">Rewards</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
     </div>
+    <div class="nav-right">
+      <button id="cart-btn" onclick="toggleCart()">Cart (<span id="cart-count">0</span>)</button>
+    </div>
+  </nav>
 
-    <script>
-    // Retrieve cart from localStorage
-    const cart = JSON.parse(localStorage.getItem('cart')) || [];
-    const cartItemsContainer = document.getElementById('cart-items');
-    const totalPriceElement = document.getElementById('total-price');
+  <!-- Cart Page -->
+  <div class="cart-page">
+    <h2>Your Cart</h2>
+    <div class="cart-items" id="cart-items"></div>
+    <div class="cart-total">Total: $<span id="cart-total">0</span></div>
+    <button class="checkout-btn" onclick="checkout()">Proceed to Checkout</button>
+  </div>
 
-    if (cart.length === 0) {
-        cartItemsContainer.innerHTML = "<p>Your cart is empty.</p>";
-    } else {
-        let totalPrice = 0;
-        cart.forEach(item => {
-            const cartItemElement = document.createElement('div');
-            cartItemElement.classList.add('cart-item');
-            cartItemElement.innerHTML = `
-                <h3>${item.name}</h3>
-                <p>${item.price} USD</p>
-            `;
-            cartItemsContainer.appendChild(cartItemElement);
-            totalPrice += item.price;
-        });
-        totalPriceElement.textContent = totalPrice + " USD";  // Update the total price
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 Silent Aid | All Rights Reserved</p>
+    <p>Powered by Purpose</p>
+  </footer>
+
+  <script>
+    // Cart functionality
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+    function toggleCart() {
+      const cartPopup = document.getElementById('cart-popup');
+      cartPopup.style.display = cartPopup.style.display === 'block' ? 'none' : 'block';
+      updateCart();
     }
 
-    // Checkout function (could redirect to a payment gateway or clear the cart)
+    function addToCart(product, price) {
+      cart.push({ product, price });
+      localStorage.setItem('cart', JSON.stringify(cart));
+      updateCart();
+    }
+
+    function removeFromCart(index) {
+      cart.splice(index, 1);
+      localStorage.setItem('cart', JSON.stringify(cart));
+      updateCart();
+    }
+
+    function updateCart() {
+      const cartCount = document.getElementById('cart-count');
+      const cartItems = document.getElementById('cart-items');
+      const cartTotal = document.getElementById('cart-total');
+      
+      cartItems.innerHTML = '';
+      let total = 0;
+      cart.forEach((item, index) => {
+        const cartItem = document.createElement('div');
+        cartItem.classList.add('cart-item');
+        cartItem.innerHTML = `
+          <img src="https://via.placeholder.com/80" alt="Product Image" />
+          <div>
+            <h3>${item.product}</h3>
+            <p class="price">$${item.price}</p>
+          </div>
+          <button onclick="removeFromCart(${index})">Remove</button>
+        `;
+        cartItems.appendChild(cartItem);
+        total += item.price;
+      });
+      
+      cartCount.textContent = cart.length;
+      cartTotal.textContent = total;
+    }
+
     function checkout() {
-        alert("Proceeding to checkout...");
-        // You can implement further checkout steps here, such as redirecting to a payment page.
-        localStorage.removeItem('cart');  // Clear cart after checkout
-        window.location.href = "shop.html";  // Redirect back to shop
+      alert("Proceeding to checkout...");
+      // Here you can integrate a real checkout process
     }
-    </script>
+
+    updateCart();
+  </script>
 </body>
 </html>
