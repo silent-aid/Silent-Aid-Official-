@@ -15,8 +15,9 @@
         body {
             font-family: 'Segoe UI', sans-serif;
             line-height: 1.6;
-            background-color: #f4f4f4;
-            color: #333;
+            background-color: #2e2e2e;
+            color: #fff;
+            overflow-x: hidden;
         }
 
         header {
@@ -26,13 +27,14 @@
             padding: 150px 20px;
             position: relative;
             background-size: cover;
-            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.3);
+            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.7);
         }
 
         header h1 {
-            font-size: 4em;
+            font-size: 4.5em;
             margin-bottom: 20px;
-            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+            text-shadow: 3px 3px 15px rgba(0, 0, 0, 0.6);
+            color: #d32f2f;
         }
 
         header p {
@@ -41,11 +43,12 @@
             margin: auto;
             margin-bottom: 30px;
             font-weight: 400;
+            color: #fff;
         }
 
         .button {
             display: inline-block;
-            background: #e63946;
+            background: #e53935;
             color: #fff;
             padding: 15px 30px;
             border-radius: 6px;
@@ -53,51 +56,57 @@
             font-weight: bold;
             margin-top: 30px;
             transition: background 0.3s ease;
+            border: 2px solid #d32f2f;
         }
 
         .button:hover {
-            background: #d62828;
+            background: #c62828;
+            border: 2px solid #d32f2f;
         }
 
         section {
             padding: 60px 20px;
             max-width: 1000px;
             margin: auto;
-            background: #fff;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            background: #333;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
             margin-bottom: 60px;
+            border-radius: 8px;
         }
 
         section h2 {
-            color: #e63946;
-            font-size: 2.5em;
+            color: #e53935;
+            font-size: 2.8em;
             margin-bottom: 20px;
+            text-align: center;
         }
 
         section p {
             font-size: 1.2em;
-            color: #333;
+            color: #ddd;
             margin-bottom: 20px;
-        }
-
-        .donate-section {
-            background: #f1faee;
-            padding: 40px;
-            border-radius: 8px;
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
             text-align: center;
         }
 
+        .donate-section {
+            background: #d32f2f;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.6);
+            text-align: center;
+            margin-top: 40px;
+        }
+
         .donate-section h3 {
-            font-size: 2em;
-            color: #e63946;
+            font-size: 2.5em;
+            color: #fff;
             margin-bottom: 20px;
         }
 
         .donate-section p {
             font-size: 1.2em;
             margin-bottom: 20px;
-            color: #333;
+            color: #fff;
         }
 
         .product-section {
@@ -108,11 +117,11 @@
         }
 
         .product {
-            background: #fff;
+            background: #444;
             padding: 25px;
             border-radius: 10px;
             text-align: center;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
             transition: transform 0.3s ease;
         }
 
@@ -126,37 +135,38 @@
         }
 
         .product h3 {
-            color: #e63946;
-            font-size: 1.6em;
+            color: #e53935;
+            font-size: 1.8em;
             margin-top: 20px;
         }
 
         .product p {
-            font-size: 1.1em;
-            color: #777;
+            font-size: 1.2em;
+            color: #ddd;
         }
 
         .product .price {
-            font-size: 1.3em;
+            font-size: 1.5em;
             font-weight: bold;
-            color: #2a9d8f;
+            color: #ffab00;
         }
 
         footer {
             background: #222;
-            color: #aaa;
+            color: #888;
             text-align: center;
             padding: 30px;
-            font-size: 0.9em;
+            font-size: 1em;
+            margin-top: 40px;
         }
 
         @media (max-width: 768px) {
             header h1 {
-                font-size: 2.5em;
+                font-size: 3em;
             }
 
-            header p {
-                font-size: 1.2em;
+            section h2 {
+                font-size: 2.4em;
             }
 
             .product-section {
@@ -166,11 +176,11 @@
 
         @media (max-width: 480px) {
             header h1 {
-                font-size: 2em;
+                font-size: 2.5em;
             }
 
-            header p {
-                font-size: 1.1em;
+            section h2 {
+                font-size: 2em;
             }
 
             .product-section {
