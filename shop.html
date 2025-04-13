@@ -38,6 +38,7 @@
     .product-card img { width: 100%; border-radius: 8px; margin-bottom: 15px; }
     .product-card h3 { margin: 10px 0; color: #111; font-size: 1.1em; }
     .product-card p { color: #666; font-size: 0.9em; margin-bottom: 10px; }
+    .product-card .price { font-size: 1.2em; font-weight: bold; color: #d90429; margin-bottom: 15px; }
     .product-card button { background: #ffca28; color: white; border: none; padding: 10px 20px; border-radius: 5px; margin-top: 10px; cursor: pointer; font-weight: bold; }
     .product-card button:hover { background: #d90429; }
 
@@ -80,6 +81,19 @@
       margin-top: 15px;
       text-align: center;
     }
+    .checkout-btn {
+      background-color: #d90429;
+      color: white;
+      border: none;
+      padding: 15px 20px;
+      width: 100%;
+      font-size: 1.1em;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+    .checkout-btn:hover {
+      background-color: #ffca28;
+    }
 
     /* Footer */
     footer { background-color: #111; color: #ccc; text-align: center; padding: 30px 10px; font-size: 0.95em; }
@@ -120,18 +134,21 @@
         <img src="https://www.meesho.com/free-palestine-hood/p/61ylov" />
         <h3>Freedom Hoodie</h3>
         <p>Soft fleece hoodie with embroidered message of hope. 100% proceeds to Gaza.</p>
+        <p class="price">$30</p>
         <button onclick="addToCart('Freedom Hoodie', 30)">Add to Cart</button>
       </div>
       <div class="product-card" data-product="Peace Tee" data-price="20">
         <img src="https://upload.wikimedia.org/wikipedia/commons/5/56/Palestinian_flag_t-shirt.jpg" />
         <h3>Peace Tee</h3>
         <p>100% cotton t-shirt with bold peace design. Wear it with purpose!</p>
+        <p class="price">$20</p>
         <button onclick="addToCart('Peace Tee', 20)">Add to Cart</button>
       </div>
       <div class="product-card" data-product="Palestine Flag Bracelet" data-price="15">
         <img src="https://www.aftaab.com/wp-content/uploads/2021/10/bracelet-palestine-flag.jpg" />
         <h3>Palestine Flag Bracelet</h3>
         <p>Handmade bracelet featuring the Palestinian flag colors.</p>
+        <p class="price">$15</p>
         <button onclick="addToCart('Palestine Flag Bracelet', 15)">Add to Cart</button>
       </div>
     </div>
@@ -142,6 +159,7 @@
     <h2>Your Cart</h2>
     <div id="cart-items"></div>
     <div class="cart-total">Total: $<span id="cart-total">0</span></div>
+    <button class="checkout-btn" onclick="checkout()">Checkout</button>
   </div>
 
   <!-- Footer -->
@@ -193,6 +211,11 @@
       
       cartCount.textContent = cart.length;
       cartTotal.textContent = total;
+    }
+
+    function checkout() {
+      alert("Proceeding to checkout...");
+      // Here you can integrate a real checkout process
     }
 
     updateCart();
