@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Silent Aid – Products</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: #121212;
+      color: #f5f5f5;
+    }
+    header {
+      background: #1f1f1f;
+      padding: 40px 20px;
+      text-align: center;
+      border-bottom: 2px solid #f44336;
+    }
+    header h1 {
+      font-size: 2.5em;
+      color: #f44336;
+    }
+    .product-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+      padding: 40px 20px;
+    }
+    .product {
+      background: #222;
+      border-radius: 12px;
+      padding: 20px;
+      width: 280px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      transition: transform 0.2s;
+    }
+    .product:hover {
+      transform: scale(1.03);
+    }
+    .product img {
+      width: 100%;
+      border-radius: 8px;
+    }
+    .product h3 {
+      margin-top: 10px;
+      color: #f44336;
+    }
+    .product p {
+      font-size: 0.95em;
+      margin-bottom: 10px;
+    }
+    .product .price {
+      color: #f9c74f;
+      font-weight: bold;
+    }
+    .product a {
+      display: inline-block;
+      margin-top: 10px;
+      background: #f44336;
+      color: white;
+      text-decoration: none;
+      padding: 10px 18px;
+      border-radius: 6px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Support Through Products</h1>
+    <p>100% of profits go directly to Gaza relief efforts</p>
+  </header>
+
+  <div class="product-grid">
+    <div class="product">
+      <img src="https://via.placeholder.com/280x200?text=T-Shirt+Design+1" alt="T-shirt 1">
+      <h3>Freedom T-Shirt</h3>
+      <p>Symbolic design to raise your voice without words.</p>
+      <p class="price">₹799</p>
+      <a href="#">Buy Now</a>
+    </div>
+
+    <div class="product">
+      <img src="https://via.placeholder.com/280x200?text=Cap+Design" alt="Cap">
+      <h3>Hope Cap</h3>
+      <p>Wear hope. Share strength.</p>
+      <p class="price">₹499</p>
+      <a href="#">Buy Now</a>
+    </div>
+
+    <div class="product">
+      <img src="https://via.placeholder.com/280x200?text=Bracelet" alt="Bracelet">
+      <h3>Solidarity Bracelet</h3>
+      <p>Every band sold delivers food in Gaza.</p>
+      <p class="price">₹299</p>
+      <a href="#">Buy Now</a>
+    </div>
+  </div>
+</body>
+</html>
