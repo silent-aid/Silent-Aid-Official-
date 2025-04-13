@@ -1,26 +1,79 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cart - Silent Aid</title>
-  <link rel="stylesheet" href="assets/css/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Cart</title>
+    <style>
+        /* Basic styling for the cart page */
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #f0f2f5;
+            color: #222;
+            line-height: 1.6;
+        }
+        .cart-container {
+            width: 80%;
+            margin: auto;
+            padding: 20px;
+        }
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 15px 0;
+            border-bottom: 1px solid #ddd;
+        }
+        .cart-item h3 {
+            margin: 0;
+        }
+        .total-price {
+            text-align: right;
+            font-size: 1.2em;
+            padding: 20px 0;
+            border-top: 2px solid #ddd;
+        }
+    </style>
 </head>
 <body>
-  <!-- Include Header -->
-  <?php include('includes/header.html'); ?>
-
-  <section class="cart">
-    <h2>Your Cart</h2>
-    <div id="cart-items">
-      <!-- Cart items will be dynamically added here -->
+    <div class="cart-container">
+        <h1>Your Cart</h1>
+        <div id="cart-items"></div>
+        <div class="total-price">
+            <p>Total: <span id="total-price">0</span> USD</p>
+        </div>
+        <button onclick="checkout()">Checkout</button>
     </div>
-    <button onclick="proceedToCheckout()">Proceed to Checkout</button>
-  </section>
 
-  <!-- Include Footer -->
-  <?php include('includes/footer.html'); ?>
+    <script>
+    // Retrieve cart from localStorage
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const cartItemsContainer = document.getElementById('cart-items');
+    const totalPriceElement = document.getElementById('total-price');
 
-  <script src="assets/js/script.js"></script>
+    if (cart.length === 0) {
+        cartItemsContainer.innerHTML = "<p>Your cart is empty.</p>";
+    } else {
+        let totalPrice = 0;
+        cart.forEach(item => {
+            const cartItemElement = document.createElement('div');
+            cartItemElement.classList.add('cart-item');
+            cartItemElement.innerHTML = `
+                <h3>${item.name}</h3>
+                <p>${item.price} USD</p>
+            `;
+            cartItemsContainer.appendChild(cartItemElement);
+            totalPrice += item.price;
+        });
+        totalPriceElement.textContent = totalPrice + " USD";  // Update the total price
+    }
+
+    // Checkout function (could redirect to a payment gateway or clear the cart)
+    function checkout() {
+        alert("Proceeding to checkout...");
+        // You can implement further checkout steps here, such as redirecting to a payment page.
+        localStorage.removeItem('cart');  // Clear cart after checkout
+        window.location.href = "shop.html";  // Redirect back to shop
+    }
+    </script>
 </body>
-</
+</html>
