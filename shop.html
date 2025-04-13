@@ -2,25 +2,24 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Silent Aid – Shop</title>
   <style>
     /* Reset & Base Styles */
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: 'Segoe UI', sans-serif; background-color: #111; color: #fff; line-height: 1.6; }
+    body { font-family: 'Segoe UI', sans-serif; background-color: #f8f8f8; color: #333; line-height: 1.6; }
     a { color: inherit; text-decoration: none; }
-    
+
     /* Navigation Bar */
-    nav { background-color: #0a0a0a; padding: 15px 30px; display: flex; justify-content: space-between; align-items: center; }
-    .nav-left h1 { color: #ffca28; font-size: 1.8em; }
+    nav { background-color: #111; padding: 20px 30px; display: flex; justify-content: space-between; align-items: center; }
+    .nav-left h1 { color: #ffca28; font-size: 2em; }
     .nav-center ul { list-style: none; display: flex; gap: 20px; }
     .nav-center li { position: relative; }
     .nav-center li a { color: #fff; font-weight: 600; padding: 10px 15px; transition: 0.3s; }
     .nav-center li a:hover { background-color: #ffca28; border-radius: 5px; }
-    
     .dropdown-menu { display: none; position: absolute; background: #333; color: #fff; min-width: 180px; z-index: 1000; border-radius: 5px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); }
     .dropdown:hover .dropdown-menu { display: block; }
-    .dropdown-menu li { padding: 10px 15px; }
+    .dropdown-menu li { padding: 10px 15px; white-space: nowrap; }
     .dropdown-menu li a { color: #fff; }
     .dropdown-menu li:hover { background: #444; }
 
@@ -31,30 +30,30 @@
     @keyframes slide { 0% { transform: translateX(0); } 33% { transform: translateX(-100%); } 66% { transform: translateX(-200%); } 100% { transform: translateX(0); } }
 
     /* Filter Section */
-    .filters { padding: 20px; background: #222; display: flex; justify-content: center; gap: 20px; }
+    .filters { padding: 20px; background: #fff; display: flex; justify-content: center; gap: 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
     .filter-btn { padding: 10px 20px; background-color: #ffca28; color: white; border: none; cursor: pointer; border-radius: 5px; font-weight: bold; }
     .filter-btn:hover { background-color: #d90429; }
 
     /* Product Section */
-    .product-section { padding: 60px 20px; background: #111; text-align: center; }
-    .product-section h2 { font-size: 2.2em; margin-bottom: 30px; color: #ffca28; }
+    .product-section { padding: 60px 20px; background: #fff; text-align: center; }
+    .product-section h2 { font-size: 2.2em; margin-bottom: 30px; color: #111; }
     .products { display: flex; gap: 30px; flex-wrap: wrap; justify-content: center; }
-    .product-card { background: #333; padding: 20px; border-radius: 10px; width: 250px; box-shadow: 0 4px 8px rgba(0,0,0,0.3); transition: 0.3s; }
-    .product-card:hover { transform: translateY(-8px); background: #444; }
-    .product-card img { width: 100%; border-radius: 8px; }
-    .product-card h3 { margin: 10px 0; color: #ffca28; }
-    .product-card p { color: #ccc; font-size: 0.9em; margin-bottom: 10px; }
-    .product-card button { background: #d90429; color: white; border: none; padding: 10px 20px; border-radius: 5px; margin-top: 10px; cursor: pointer; }
-    .product-card button:hover { background: #a4031f; }
+    .product-card { background: #fff; padding: 20px; border-radius: 10px; width: 250px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); transition: 0.3s; border: 1px solid #f0f0f0; }
+    .product-card:hover { transform: translateY(-8px); box-shadow: 0 6px 12px rgba(0,0,0,0.2); }
+    .product-card img { width: 100%; border-radius: 8px; margin-bottom: 15px; }
+    .product-card h3 { margin: 10px 0; color: #111; font-size: 1.1em; }
+    .product-card p { color: #666; font-size: 0.9em; margin-bottom: 10px; }
+    .product-card button { background: #ffca28; color: white; border: none; padding: 10px 20px; border-radius: 5px; margin-top: 10px; cursor: pointer; font-weight: bold; }
+    .product-card button:hover { background: #d90429; }
 
     /* Collections Section */
-    .collections { padding: 40px 20px; background: #222; text-align: center; }
+    .collections { padding: 40px 20px; background: #f1f1f1; text-align: center; }
     .collection-boxes { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; }
     .collection { background: #333; border: 1px solid #444; padding: 20px; width: 200px; border-radius: 10px; font-weight: bold; cursor: pointer; transition: 0.3s; color: #fff; }
     .collection:hover { background: #ffca28; color: #222; }
 
     /* Footer */
-    footer { background-color: #0a0a0a; color: #ccc; text-align: center; padding: 30px 10px; font-size: 0.95em; }
+    footer { background-color: #111; color: #ccc; text-align: center; padding: 30px 10px; font-size: 0.95em; }
 
     /* Responsive */
     @media (max-width: 768px) {
@@ -66,7 +65,6 @@
   </style>
 </head>
 <body>
-
   <!-- Navigation -->
   <nav>
     <div class="nav-left"><h1>Silent Aid</h1></div>
@@ -113,19 +111,19 @@
     <h2>🌟 Best Sellers</h2>
     <div class="products">
       <div class="product-card" data-category="hoodie">
-        <img src="https://www.meesho.com/free-palestine-hood/p/61ylov" alt="Freedom Hoodie">
+        <img src="https://www.meesho.com/free-palestine-hood/p/61ylov">
         <h3>Freedom Hoodie</h3>
         <p>Soft fleece hoodie with embroidered message of hope. 100% proceeds to Gaza.</p>
         <button onclick="addToCart('Freedom Hoodie')">Add to Cart</button>
       </div>
       <div class="product-card" data-category="tee">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/5/56/Palestinian_flag_t-shirt.jpg" alt="Peace Tee">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/5/56/Palestinian_flag_t-shirt.jpg">
         <h3>Peace Tee</h3>
         <p>100% cotton t-shirt with bold peace design. Wear it with purpose!</p>
         <button onclick="addToCart('Peace Tee')">Add to Cart</button>
       </div>
       <div class="product-card" data-category="accessory">
-        <img src="https://www.aftaab.com/wp-content/uploads/2021/10/bracelet-palestine-flag.jpg" alt="Palestine Flag Bracelet">
+        <img src="https://www.aftaab.com/wp-content/uploads/2021/10/bracelet-palestine-flag.jpg">
         <h3>Palestine Flag Bracelet</h3>
         <p>Handmade bracelet featuring the Palestinian flag colors.</p>
         <button onclick="addToCart('Palestine Flag Bracelet')">Add to Cart</button>
@@ -147,6 +145,7 @@
   <footer>
     <p>&copy; 2025 Silent Aid | All Rights Reserved</p>
     <p>Powered by Purpose</p>
+    <a href="cart.html">View Cart</a>  <!-- Add cart link -->
   </footer>
 
   <script>
