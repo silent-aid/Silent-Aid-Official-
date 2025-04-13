@@ -57,16 +57,14 @@
 
     /* Cart Icon */
     .cart-icon {
-      color: #fff;
-      font-size: 1.8em;
-      text-decoration: none;
-      padding: 5px 10px;
-      transition: color 0.3s;
+      font-size: 1.2em;
+      background: #ffca28;
+      color: white;
+      padding: 10px 15px;
+      border-radius: 50%;
+      cursor: pointer;
     }
-
-    .cart-icon:hover {
-      color: #ffca28;
-    }
+    .cart-icon:hover { background: #d90429; }
 
     /* Responsive */
     @media (max-width: 768px) {
@@ -98,9 +96,9 @@
         <li><a href="#">Impact</a></li>
         <li><a href="#">Rewards</a></li>
         <li><a href="#">Contact</a></li>
-        <li><a href="cart.html" class="cart-icon">🛒</a></li> <!-- Cart Icon -->
       </ul>
     </div>
+    <div class="cart-icon" onclick="viewCart()">🛒 <span id="cart-count">0</span></div> <!-- Cart Icon -->
   </nav>
 
   <!-- Hero Section -->
@@ -163,6 +161,12 @@
   </footer>
 
   <script>
+    // Update Cart Icon with Count
+    function updateCartCount() {
+      let cart = JSON.parse(localStorage.getItem('cart')) || [];
+      document.getElementById('cart-count').textContent = cart.length;
+    }
+
     // Product Filter Functionality
     document.querySelectorAll('.filter-btn').forEach(button => {
       button.addEventListener('click', (e) => {
@@ -177,13 +181,22 @@
       });
     });
 
-    // Cart Functionality
+    // Add to Cart Functionality
     let cart = JSON.parse(localStorage.getItem('cart')) || [];
     function addToCart(productName) {
       cart.push(productName);
       localStorage.setItem('cart', JSON.stringify(cart));
+      updateCartCount();  // Update the cart count on the cart icon
       alert(`${productName} added to cart!`);
     }
+
+    // View Cart Functionality (Optional)
+    function viewCart() {
+      alert('Cart opened!');  // Replace this with actual cart page or functionality
+    }
+
+    // Initialize Cart Count on Page Load
+    window.onload = updateCartCount;
   </script>
 </body>
 </html>
