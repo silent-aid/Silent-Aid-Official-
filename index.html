@@ -3,46 +3,52 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Silent Aid</title>
+  <title>Silent Aid - Gaza Relief</title>
   <style>
-    /* General Styles */
+    /* Reset some default styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* Global Styles */
     body {
       font-family: 'Arial', sans-serif;
-      margin: 0;
-      background-color: #f1f1f1;
+      background-color: #f4f4f4;
       color: #333;
-      line-height: 1.6;
     }
 
     /* Header Section */
     header {
-      background-color: #004d7a;
+      background: linear-gradient(to right, #007A4D, #f00); /* Palestinian flag colors */
       color: #fff;
+      padding: 60px 20px;
       text-align: center;
-      padding: 80px 20px;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     }
     header h1 {
       font-size: 3.5em;
+      font-weight: 700;
       margin-bottom: 10px;
-      letter-spacing: 2px;
     }
     header p {
-      font-size: 1.2em;
-      max-width: 700px;
-      margin: auto;
-      font-weight: 300;
+      font-size: 1.1em;
+      margin-bottom: 20px;
+      max-width: 800px;
+      margin: 0 auto;
+      line-height: 1.5;
     }
     header .button {
       display: inline-block;
-      margin-top: 20px;
       background-color: #f36f6f;
       color: white;
-      padding: 12px 24px;
+      padding: 12px 30px;
       border-radius: 25px;
-      text-decoration: none;
       font-weight: bold;
-      transition: background-color 0.3s;
+      text-decoration: none;
+      margin-top: 20px;
+      transition: background-color 0.3s ease;
     }
     header .button:hover {
       background-color: #c64b4b;
@@ -51,28 +57,35 @@
     /* Section Styles */
     section {
       padding: 60px 20px;
-      max-width: 900px;
+      text-align: center;
       margin: auto;
+      max-width: 1200px;
     }
+
     section h2 {
-      font-size: 2em;
+      font-size: 2.5em;
       color: #004d7a;
-      margin-bottom: 20px;
+      margin-bottom: 30px;
+      font-weight: 600;
     }
+
     section p {
       font-size: 1.1em;
-      line-height: 1.8;
-      margin-bottom: 20px;
+      line-height: 1.7;
+      color: #333;
+      margin-bottom: 40px;
+      max-width: 900px;
+      margin: 20px auto;
     }
 
     /* About Section */
     section ul {
       list-style-type: none;
-      padding-left: 0;
+      margin-bottom: 40px;
     }
     section ul li {
-      margin-bottom: 10px;
-      font-size: 1.1em;
+      font-size: 1.2em;
+      margin-bottom: 20px;
     }
 
     /* Team Section */
@@ -81,21 +94,22 @@
       justify-content: center;
       gap: 40px;
       margin-top: 40px;
+      flex-wrap: wrap;
     }
     .member {
       background-color: #fff;
       padding: 20px;
-      border-radius: 15px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      border-radius: 12px;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
       text-align: center;
-      width: 200px;
+      width: 220px;
       transition: transform 0.3s ease;
     }
     .member:hover {
       transform: translateY(-5px);
     }
     .member h3 {
-      font-size: 1.4em;
+      font-size: 1.5em;
       color: #333;
     }
     .member p {
@@ -105,11 +119,12 @@
 
     /* Footer Section */
     footer {
-      background-color: #222;
-      color: #aaa;
-      text-align: center;
+      background-color: #111;
+      color: #fff;
       padding: 30px;
-      margin-top: 60px;
+      text-align: center;
+      font-size: 1em;
+      margin-top: 80px;
     }
 
     /* Responsive Styles */
@@ -117,44 +132,41 @@
       header h1 {
         font-size: 2.5em;
       }
-      header p {
-        font-size: 1.1em;
-      }
-      section {
-        padding: 40px 20px;
+      section h2 {
+        font-size: 2em;
       }
       .team {
         flex-direction: column;
-        gap: 20px;
       }
     }
   </style>
 </head>
+
 <body>
 
   <header>
-    <img src="https://github.com/silent-aid/Silent-Aid-Official-/raw/main/Silent.png" alt="Silent Aid Logo" style="max-width: 150px; height: auto;">
-    <h1>Silent Aid</h1>
-    <p>A student-led humanitarian initiative providing critical aid to Gaza through silent strength and creative action.</p>
+    <img src="https://github.com/silent-aid/Silent-Aid-Official-/raw/main/Silent.png" alt="Silent Aid Logo" style="max-width: 180px; margin-bottom: 20px;">
+    <h1>Silent Aid: Gaza Relief</h1>
+    <p>A student-led humanitarian initiative raising awareness and providing critical aid to the people of Gaza through impactful action.</p>
     <a href="https://instagram.com/silent_aid" class="button" target="_blank">Follow on Instagram</a>
   </header>
 
   <section>
     <h2>📌 About Us</h2>
-    <p>Silent Aid is a youth-led movement delivering emergency aid and raising awareness through symbolic, powerful content. We believe that silence does not mean inaction — and our silence echoes louder through impact.</p>
+    <p>Silent Aid is a youth-led humanitarian movement with a mission to bring emergency aid to Gaza. We aim to raise global awareness through powerful, symbolic content and help those in need with food, shelter, medical supplies, and educational resources.</p>
   </section>
 
   <section>
     <h2>🎯 Current Campaign: Echoes of the Unseen</h2>
-    <p>This campaign uses creative storytelling — reels, carousels, and symbolic art — to raise awareness for Palestine in ways that bypass suppression and ignite global empathy.</p>
+    <p>Our latest campaign leverages creative storytelling and impactful visuals to raise awareness of the ongoing humanitarian crisis in Gaza. Through our reels, posts, and art, we aim to inspire global empathy and action.</p>
   </section>
 
   <section>
     <h2>🤝 How You Can Help</h2>
     <ul>
-      <li>🔁 Share our posts and reels</li>
-      <li>✍️ Volunteer your skills (design, editing, writing)</li>
-      <li>💸 Donate to support food kits, shelter, and aid (coming soon)</li>
+      <li>🔁 Share our posts and reels to amplify the message.</li>
+      <li>✍️ Volunteer your skills: design, writing, editing, and more.</li>
+      <li>💸 Donate to support emergency food kits, shelter, and medical aid.</li>
     </ul>
     <a class="button" href="donate.html">💸 Donate Now</a>
   </section>
@@ -188,7 +200,7 @@
   </section>
 
   <footer>
-    © 2025 Silent Aid. Powered by purpose, led by students, inspired by humanity.
+    © 2025 Silent Aid. Empowering youth, supporting Gaza, raising awareness for global change.
   </footer>
 
 </body>
