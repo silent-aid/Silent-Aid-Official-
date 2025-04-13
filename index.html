@@ -15,150 +15,146 @@
             transition: all 0.3s ease;
         }
 
-        h1, h2 {
-            margin: 0;
-            padding: 0;
-        }
-
         a {
             text-decoration: none;
         }
 
-        /* Header Styles */
-        header {
+        /* Top Announcement Bar */
+        .announcement-bar {
+            background-color: #ff6600;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        /* Navigation Bar */
+        nav {
             background-color: #111;
             color: #fff;
-            padding: 80px 20px;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav ul {
+            list-style-type: none;
+            display: flex;
+            gap: 20px;
+        }
+
+        nav ul li {
+            display: inline;
+        }
+
+        nav ul li a {
+            color: white;
+            font-size: 1.1em;
+            padding: 10px;
+            transition: background-color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            background-color: #ff6600;
+            border-radius: 4px;
+        }
+
+        .social-icons a {
+            color: white;
+            margin-left: 15px;
+            font-size: 1.5em;
+        }
+
+        /* Hero Section */
+        .hero {
+            background-image: url('https://via.placeholder.com/1920x800?text=Hero+Banner');
+            background-size: cover;
+            color: white;
+            padding: 150px 20px;
             text-align: center;
             position: relative;
-            overflow: hidden;
-            animation: fadeIn 2s ease-in-out;
         }
 
-        header h1 {
+        .hero h1 {
             font-size: 4em;
-            letter-spacing: 2px;
-            margin-bottom: 10px;
-            animation: slideIn 1.5s ease-out;
+            font-weight: 700;
+            margin-bottom: 20px;
         }
 
-        header p {
+        .hero p {
             font-size: 1.5em;
-            max-width: 700px;
-            margin: auto;
-            opacity: 0.9;
-            animation: fadeIn 2s ease-in-out;
-        }
-
-        header .button {
-            display: inline-block;
-            margin-top: 20px;
-            background: #007BFF;
-            color: #fff;
-            padding: 12px 24px;
-            border-radius: 8px;
-            font-weight: bold;
-            transition: background 0.3s ease;
-        }
-
-        header .button:hover {
-            background-color: #0056b3;
-        }
-
-        /* Scrollable Bar */
-        .scrollable-bar {
-            width: 100%;
-            overflow-x: auto;
-            white-space: nowrap;
-            background-color: #111;
-            padding: 20px 0;
-        }
-
-        .scrollable-bar img {
-            width: 100%;
-            height: auto;
-            display: inline-block;
-            border-radius: 8px;
-            margin-right: 20px;
-            transition: transform 0.3s ease;
-        }
-
-        .scrollable-bar img:hover {
-            transform: scale(1.05);
-        }
-
-        /* Product Section Styles */
-        .product-section {
-            padding: 40px 20px;
-            max-width: 1200px;
-            margin: auto;
-            background-color: #f9f9f9;
-            text-align: center;
-        }
-
-        .product-section h2 {
-            font-size: 2.5em;
-            color: #111;
             margin-bottom: 30px;
         }
 
-        .products {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-            justify-content: center;
+        .hero .button {
+            background-color: #ff6600;
+            color: white;
+            padding: 15px 30px;
+            font-size: 1.2em;
+            border-radius: 6px;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
         }
 
-        .product-card {
+        .hero .button:hover {
+            background-color: #e65c00;
+        }
+
+        /* Featured Products Section */
+        .featured-products {
+            display: flex;
+            gap: 30px;
+            justify-content: space-around;
+            padding: 60px 20px;
+            background-color: #f9f9f9;
+        }
+
+        .featured-product {
+            width: 30%;
             background-color: white;
             padding: 20px;
-            width: 220px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease;
         }
 
-        .product-card:hover {
-            transform: translateY(-10px);
-        }
-
-        .product-card img {
+        .featured-product img {
             width: 100%;
             height: auto;
             border-radius: 8px;
         }
 
-        .product-card h3 {
-            font-size: 1.2em;
-            margin: 10px 0;
-            color: #333;
+        .featured-product h3 {
+            font-size: 1.5em;
+            margin-top: 15px;
         }
 
-        .product-card p {
+        .featured-product p {
             font-size: 1.1em;
             color: #555;
-            margin-bottom: 15px;
+            margin-top: 10px;
         }
 
-        .product-card .button {
-            background: #ff6600;
+        .featured-product .button {
+            background-color: #ff6600;
             color: white;
-            padding: 10px 20px;
+            padding: 12px 25px;
             border-radius: 6px;
             font-weight: bold;
-            cursor: pointer;
-            transition: background 0.3s ease;
+            margin-top: 20px;
+            transition: background-color 0.3s ease;
         }
 
-        .product-card .button:hover {
-            background: #ff5500;
+        .featured-product .button:hover {
+            background-color: #e65c00;
         }
 
         /* Impact Section */
         .impact-section {
             background-color: #222;
             color: white;
-            padding: 40px 20px;
+            padding: 80px 20px;
             text-align: center;
         }
 
@@ -168,127 +164,182 @@
         }
 
         .impact-section p {
-            font-size: 1.2em;
-            margin: 20px 0;
+            font-size: 1.5em;
+            margin-top: 20px;
         }
 
-        /* Footer Styles */
+        /* Product Categories Section */
+        .product-categories {
+            display: flex;
+            justify-content: space-around;
+            padding: 80px 20px;
+            background-color: #f9f9f9;
+        }
+
+        .category {
+            width: 25%;
+            text-align: center;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .category:hover {
+            transform: translateY(-10px);
+        }
+
+        .category h3 {
+            font-size: 1.5em;
+            margin-bottom: 15px;
+        }
+
+        .category a {
+            display: block;
+            padding: 12px 25px;
+            background-color: #ff6600;
+            color: white;
+            font-weight: bold;
+            border-radius: 6px;
+            text-transform: uppercase;
+            margin-top: 20px;
+            text-decoration: none;
+        }
+
+        .category a:hover {
+            background-color: #e65c00;
+        }
+
+        /* Footer Section */
         footer {
             background-color: #111;
             color: #aaa;
+            padding: 40px 20px;
             text-align: center;
-            padding: 20px;
             font-size: 0.9em;
-            margin-top: 40px;
         }
 
-        /* Animations */
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
+        footer .social-icons {
+            margin-top: 20px;
         }
 
-        @keyframes slideIn {
-            from {
-                transform: translateY(-50px);
-            }
-            to {
-                transform: translateY(0);
-            }
+        footer .social-icons a {
+            color: white;
+            margin-left: 15px;
+            font-size: 1.5em;
         }
 
         /* Media Query for Small Screens */
         @media (max-width: 768px) {
-            header h1 {
-                font-size: 2.5em;
+            .featured-products, .product-categories {
+                flex-direction: column;
+                align-items: center;
             }
 
-            section {
-                padding: 20px;
-            }
-
-            .product-card {
-                width: 100%;
-            }
-
-            .button {
-                width: 100%;
+            .featured-product, .category {
+                width: 80%;
+                margin-bottom: 20px;
             }
         }
     </style>
 </head>
 <body>
 
+    <!-- Announcement Bar -->
+    <div class="announcement-bar">
+        EVERY ORDER GIVES BACK TO HUMANITY | Free shipping on orders over $59 (US) / $200 (CA) / £160 (UK)
+    </div>
+
     <!-- Navigation Bar -->
     <nav>
+        <div class="logo">Silent Aid</div>
         <ul>
-            <li><a href="#">Shop</a></li>
-            <li><a href="#">Collections For 🍉</a></li>
+            <li><a href="#">Shop</a>
+                <ul>
+                    <li><a href="#">All Products</a></li>
+                    <li><a href="#">Clothing</a></li>
+                    <li><a href="#">Accessories</a></li>
+                    <li><a href="#">Jewelry</a></li>
+                    <li><a href="#">Deals</a></li>
+                    <li><a href="#">Collabs</a></li>
+                    <li><a href="#">Best Sellers</a></li>
+                </ul>
+            </li>
+            <li><a href="#">Collections For</a>
+                <ul>
+                    <li><a href="#">Tees</a></li>
+                    <li><a href="#">Hoodies & Crews</a></li>
+                    <li><a href="#">Pins & Accessories</a></li>
+                </ul>
+            </li>
             <li><a href="#">New Arrivals</a></li>
             <li><a href="#">Impact</a></li>
             <li><a href="#">Rewards Program</a></li>
             <li><a href="#">Contact Us</a></li>
         </ul>
+        <div class="social-icons">
+            <a href="https://facebook.com" target="_blank">Facebook</a>
+            <a href="https://instagram.com" target="_blank">Instagram</a>
+            <a href="https://youtube.com" target="_blank">YouTube</a>
+            <a href="https://tiktok.com" target="_blank">TikTok</a>
+        </div>
     </nav>
 
-    <!-- Header Section -->
-    <header>
-        <h1>Silent Aid</h1>
-        <p>A student-led humanitarian initiative providing critical aid to Gaza through silent strength and creative action.</p>
-        <a class="button" href="https://instagram.com/silent_aid" target="_blank">Follow on Instagram</a>
-    </header>
-
-    <!-- Scrollable Bar Section -->
-    <div class="scrollable-bar">
-        <img src="https://via.placeholder.com/1500x500?text=Poster+1" alt="Poster 1">
-        <img src="https://via.placeholder.com/1500x500?text=Poster+2" alt="Poster 2">
-        <img src="https://via.placeholder.com/1500x500?text=Poster+3" alt="Poster 3">
-        <img src="https://via.placeholder.com/1500x500?text=Poster+4" alt="Poster 4">
-        <img src="https://via.placeholder.com/1500x500?text=Poster+5" alt="Poster 5">
+    <!-- Hero Section -->
+    <div class="hero">
+        <h1>Wear The Peace</h1>
+        <p>Every piece sold contributes to humanitarian efforts in Gaza.</p>
+        <a class="button" href="#">Shop Now</a>
     </div>
 
-    <!-- Product Section: Best Sellers -->
-    <div class="product-section">
-        <h2>🌟 Best Sellers</h2>
-        <div class="products">
-            <!-- Product 1 -->
-            <div class="product-card">
-                <img src="https://via.placeholder.com/220" alt="Product Image">
-                <h3>Product 1</h3>
-                <p>Description of Product 1</p>
-                <button class="button">Buy Now</button>
-            </div>
-            <!-- Product 2 -->
-            <div class="product-card">
-                <img src="https://via.placeholder.com/220" alt="Product Image">
-                <h3>Product 2</h3>
-                <p>Description of Product 2</p>
-                <button class="button">Buy Now</button>
-            </div>
-            <!-- Product 3 -->
-            <div class="product-card">
-                <img src="https://via.placeholder.com/220" alt="Product Image">
-                <h3>Product 3</h3>
-                <p>Description of Product 3</p>
-                <button class="button">Buy Now</button>
-            </div>
+    <!-- Featured Products Section -->
+    <div class="featured-products">
+        <div class="featured-product">
+            <img src="https://via.placeholder.com/300" alt="Freedom Melon Hoodie">
+            <h3>Freedom Melon Hoodie</h3>
+            <p>Cozy, soft, and warm. A statement for peace.</p>
+            <a class="button" href="#">Buy Now</a>
+        </div>
+        <div class="featured-product">
+            <img src="https://via.placeholder.com/300" alt="Kufiya Blanket Hoodie">
+            <h3>Kufiya Blanket Hoodie</h3>
+            <p>Comfort meets culture. Wear the spirit of Gaza.</p>
+            <a class="button" href="#">Buy Now</a>
         </div>
     </div>
 
     <!-- Impact Section -->
     <div class="impact-section">
-        <h2>🎯 Our Impact</h2>
-        <p>Silent Aid is committed to supporting the people of Gaza through your generous contributions. Every donation helps provide food, shelter, medical supplies, and educational resources.</p>
-        <p>Together, we make a difference. Join our mission to support and uplift those who need it the most.</p>
+        <h2>Our Impact</h2>
+        <p>Over $2M Donated to Humanitarian Causes. Every purchase helps support peace efforts in Gaza.</p>
+    </div>
+
+    <!-- Product Categories Section -->
+    <div class="product-categories">
+        <div class="category">
+            <h3>Clothing</h3>
+            <a href="#">Explore Clothing</a>
+        </div>
+        <div class="category">
+            <h3>Accessories</h3>
+            <a href="#">Explore Accessories</a>
+        </div>
+        <div class="category">
+            <h3>Jewelry</h3>
+            <a href="#">Explore Jewelry</a>
+        </div>
     </div>
 
     <!-- Footer Section -->
     <footer>
-        © 2025 Silent Aid. Powered by purpose, led by students, inspired by humanity.
+        <div>© 2025 Silent Aid</div>
+        <div class="social-icons">
+            <a href="https://facebook.com" target="_blank">Facebook</a>
+            <a href="https://instagram.com" target="_blank">Instagram</a>
+            <a href="https://youtube.com" target="_blank">YouTube</a>
+            <a href="https://tiktok.com" target="_blank">TikTok</a>
+        </div>
     </footer>
 
 </body>
