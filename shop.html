@@ -17,11 +17,6 @@
     .nav-center li { position: relative; }
     .nav-center li a { color: #fff; font-weight: 600; padding: 10px 15px; transition: 0.3s; }
     .nav-center li a:hover { background-color: #ffca28; border-radius: 5px; }
-    .dropdown-menu { display: none; position: absolute; background: #333; color: #fff; min-width: 180px; z-index: 1000; border-radius: 5px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); }
-    .dropdown:hover .dropdown-menu { display: block; }
-    .dropdown-menu li { padding: 10px 15px; white-space: nowrap; }
-    .dropdown-menu li a { color: #fff; }
-    .dropdown-menu li:hover { background: #444; }
 
     /* Hero Section */
     .hero { width: 100%; height: 450px; overflow: hidden; position: relative; }
@@ -66,6 +61,46 @@
     }
     .cart-icon:hover { background: #d90429; }
 
+    /* Cart Popup */
+    .cart-popup {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.7);
+      color: white;
+      padding: 50px;
+      z-index: 1000;
+      overflow-y: auto;
+    }
+    .cart-popup .cart-content {
+      background: #333;
+      padding: 20px;
+      border-radius: 10px;
+      max-width: 400px;
+      margin: 0 auto;
+    }
+    .cart-popup .cart-content h2 {
+      margin-bottom: 20px;
+      font-size: 1.8em;
+    }
+    .cart-popup .cart-content .cart-item {
+      margin: 10px 0;
+      font-size: 1.2em;
+    }
+    .cart-popup .close-btn {
+      color: white;
+      font-size: 1.5em;
+      cursor: pointer;
+      padding: 10px;
+      background: #d90429;
+      border-radius: 5px;
+      margin-top: 20px;
+      text-align: center;
+    }
+
     /* Responsive */
     @media (max-width: 768px) {
       .nav-center ul { flex-direction: column; gap: 10px; padding-top: 10px; }
@@ -81,60 +116,42 @@
     <div class="nav-left"><h1>Silent Aid</h1></div>
     <div class="nav-center">
       <ul>
-        <li class="dropdown">
-          <a href="#">Shop ⌄</a>
-          <ul class="dropdown-menu">
-            <li><a href="#">All Products</a></li>
-            <li><a href="#">Hoodies</a></li>
-            <li><a href="#">Tees</a></li>
-            <li><a href="#">Accessories</a></li>
-            <li><a href="#">Jewelry</a></li>
-            <li><a href="#">Best Sellers</a></li>
-          </ul>
-        </li>
+        <li><a href="#">Shop</a></li>
         <li><a href="#">Collections</a></li>
         <li><a href="#">Impact</a></li>
         <li><a href="#">Rewards</a></li>
         <li><a href="#">Contact</a></li>
       </ul>
     </div>
-    <div class="cart-icon" onclick="viewCart()">🛒 <span id="cart-count">0</span></div> <!-- Cart Icon -->
+    <div class="cart-icon" onclick="toggleCartPopup()">🛒 <span id="cart-count">0</span></div>
   </nav>
 
-  <!-- Hero Section -->
-  <div class="hero">
-    <div class="slides">
-      <div class="slide" style="background-image: url('https://static.vecteezy.com/system/resources/previews/029/226/849/non_2x/long-wavy-palestine-flag-free-vector.jpg');"></div>
-      <div class="slide" style="background-image: url('https://images-cdn.ubuy.co.in/652c7dca1a3ae52f9855d705-soulbuty-big-palestine-flag-for-wall-3x5.jpg');"></div>
-      <div class="slide" style="background-image: url('https://i0.wp.com/3sjshop.com/wp-content/uploads/2024/09/img_5079-scaled.jpeg');"></div>
+  <!-- Cart Popup -->
+  <div class="cart-popup" id="cart-popup">
+    <div class="cart-content">
+      <h2>Your Cart</h2>
+      <div id="cart-items"></div>
+      <div class="close-btn" onclick="toggleCartPopup()">Close</div>
     </div>
   </div>
 
-  <!-- Product Filters -->
-  <div class="filters">
-    <button class="filter-btn" data-category="all">All</button>
-    <button class="filter-btn" data-category="hoodie">Hoodies</button>
-    <button class="filter-btn" data-category="tee">Tees</button>
-    <button class="filter-btn" data-category="accessory">Accessories</button>
-  </div>
-
-  <!-- Products Section -->
+  <!-- Product Section -->
   <section class="product-section">
     <h2>🌟 Best Sellers</h2>
     <div class="products">
-      <div class="product-card" data-category="hoodie">
+      <div class="product-card">
         <img src="https://www.meesho.com/free-palestine-hood/p/61ylov" alt="Freedom Hoodie">
         <h3>Freedom Hoodie</h3>
         <p>Soft fleece hoodie with embroidered message of hope. 100% proceeds to Gaza.</p>
         <button onclick="addToCart('Freedom Hoodie')">Add to Cart</button>
       </div>
-      <div class="product-card" data-category="tee">
+      <div class="product-card">
         <img src="https://upload.wikimedia.org/wikipedia/commons/5/56/Palestinian_flag_t-shirt.jpg" alt="Peace Tee">
         <h3>Peace Tee</h3>
         <p>100% cotton t-shirt with bold peace design. Wear it with purpose!</p>
         <button onclick="addToCart('Peace Tee')">Add to Cart</button>
       </div>
-      <div class="product-card" data-category="accessory">
+      <div class="product-card">
         <img src="https://www.aftaab.com/wp-content/uploads/2021/10/bracelet-palestine-flag.jpg" alt="Palestine Flag Bracelet">
         <h3>Palestine Flag Bracelet</h3>
         <p>Handmade bracelet featuring the Palestinian flag colors.</p>
@@ -143,59 +160,37 @@
     </div>
   </section>
 
-  <!-- Collections Section -->
-  <section class="collections">
-    <h2>Featured Collections</h2>
-    <div class="collection-boxes">
-      <div class="collection">Tees for Palestine</div>
-      <div class="collection">Gaza Art Pins</div>
-      <div class="collection">Palestinian Jewelry</div>
-    </div>
-  </section>
-
   <!-- Footer -->
   <footer>
     <p>&copy; 2025 Silent Aid | All Rights Reserved</p>
-    <p>Powered by Purpose</p>
-    <a href="cart.html">View Cart</a>  <!-- Add cart link -->
   </footer>
 
   <script>
-    // Update Cart Icon with Count
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
     function updateCartCount() {
-      let cart = JSON.parse(localStorage.getItem('cart')) || [];
       document.getElementById('cart-count').textContent = cart.length;
     }
 
-    // Product Filter Functionality
-    document.querySelectorAll('.filter-btn').forEach(button => {
-      button.addEventListener('click', (e) => {
-        const category = e.target.getAttribute('data-category');
-        document.querySelectorAll('.product-card').forEach(card => {
-          if (category === 'all' || card.getAttribute('data-category') === category) {
-            card.style.display = 'block';
-          } else {
-            card.style.display = 'none';
-          }
-        });
-      });
-    });
-
-    // Add to Cart Functionality
-    let cart = JSON.parse(localStorage.getItem('cart')) || [];
     function addToCart(productName) {
       cart.push(productName);
       localStorage.setItem('cart', JSON.stringify(cart));
-      updateCartCount();  // Update the cart count on the cart icon
+      updateCartCount();
       alert(`${productName} added to cart!`);
     }
 
-    // View Cart Functionality (Optional)
-    function viewCart() {
-      alert('Cart opened!');  // Replace this with actual cart page or functionality
+    function toggleCartPopup() {
+      const cartPopup = document.getElementById('cart-popup');
+      const cartItemsDiv = document.getElementById('cart-items');
+      cartItemsDiv.innerHTML = '';  // Clear previous cart items
+      cart.forEach(item => {
+        const itemDiv = document.createElement('div');
+        itemDiv.className = 'cart-item';
+        itemDiv.textContent = item;
+        cartItemsDiv.appendChild(itemDiv);
+      });
+      cartPopup.style.display = (cartPopup.style.display === 'none' || cartPopup.style.display === '') ? 'block' : 'none';
     }
 
-    // Initialize Cart Count on Page Load
     window.onload = updateCartCount;
   </script>
 </body>
