@@ -5,154 +5,75 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Silent Aid</title>
   <style>
+    /* Your styles here */
     body {
       font-family: 'Segoe UI', sans-serif;
       margin: 0;
-      background: #f9f9f9;
+      background: #f7f7f7;
       color: #222;
     }
+
     header {
       background: #111;
       color: #fff;
-      padding: 60px 20px;
       text-align: center;
+      padding: 50px 20px;
     }
+
     header h1 {
-      font-size: 3em;
-      margin-bottom: 10px;
+      font-size: 2.5em;
+      margin: 0 0 10px;
     }
+
     header p {
-      font-size: 1.2em;
+      font-size: 1.1em;
+      margin: 0 auto;
       max-width: 600px;
-      margin: auto;
     }
-    .button {
-      display: inline-block;
-      margin-top: 20px;
-      background: #007BFF;
-      color: #fff;
-      padding: 12px 24px;
-      border-radius: 8px;
-      text-decoration: none;
-      font-weight: bold;
-    }
+
     section {
-      padding: 40px 20px;
-      max-width: 900px;
-      margin: auto;
+      max-width: 800px;
+      margin: 40px auto;
+      padding: 0 20px;
     }
-    h2 {
-      color: #111;
-    }
-    ul {
-      padding-left: 20px;
-    }
-    form {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-    input, textarea {
-      padding: 10px;
-      font-size: 1em;
-      border-radius: 6px;
-      border: 1px solid #ccc;
-    }
-    input[type="submit"] {
-      background: #007BFF;
-      color: #fff;
-      border: none;
-      cursor: pointer;
-      font-weight: bold;
-    }
-    .team {
-      display: flex;
-      gap: 20px;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-    .member {
-      background: #fff;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-      text-align: center;
-      width: 200px;
-    }
+
     footer {
-      background: #222;
-      color: #aaa;
       text-align: center;
+      margin-top: 50px;
       padding: 20px;
+      color: #666;
       font-size: 0.9em;
-      margin-top: 40px;
     }
-    @media (max-width: 600px) {
-      header h1 { font-size: 2em; }
-      .member { width: 100%; }
-    }
+
   </style>
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-XXXXXXX-X"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-XXXXXXX-X');
+  </script>
+  <!-- End Google Analytics -->
+
 </head>
 <body>
 
   <header>
     <h1>Silent Aid</h1>
-    <p>A student-led humanitarian initiative providing critical aid to Gaza through silent strength and creative action.</p>
-    <a class="button" href="https://instagram.com/silent_aid" target="_blank">Follow on Instagram</a>
+    <p>Your help can make a difference. Together, we can support the people of Gaza.</p>
   </header>
 
   <section>
-    <h2>📌 About Us</h2>
-    <p>Silent Aid is a youth-led movement delivering emergency aid and raising awareness through symbolic, powerful content. We believe that silence does not mean inaction — and our silence echoes louder through impact.</p>
-  </section>
-
-  <section>
-    <h2>🎯 Current Campaign: Echoes of the Unseen</h2>
-    <p>This campaign uses creative storytelling — reels, carousels, and symbolic art — to raise awareness for Palestine in ways that bypass suppression and ignite global empathy.</p>
-  </section>
-
-  <section>
-    <h2>🤝 How You Can Help</h2>
-    <ul>
-      <li>🔁 Share our posts and reels</li>
-      <li>✍️ Volunteer your skills (design, editing, writing)</li>
-      <li>💸 Donate to support food kits, shelter, and aid (coming soon)</li>
-    </ul>
-   <a class="button" href="donate.html">💸 Donate Now</a>
-<a class="button" href="https://twitter.com/silent_aid" target="_blank">Follow on Twitter</a>
-  </section>
-
-  <section>
-    <h2>📨 Contact Us</h2>
-    <form action="https://formsubmit.co/YOUR_EMAIL@example.com" method="POST">
-      <input type="text" name="name" placeholder="Your Name" required />
-      <input type="email" name="email" placeholder="Your Email" required />
-      <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
-      <input type="submit" value="Send Message" />
-    </form>
-    <p style="font-size: 0.9em; color: gray;">* Form will email your messages to you. Replace with your real email.</p>
-  </section>
-
-  <section>
-    <h2>🧑‍🤝‍🧑 Meet the Team</h2>
-    <div class="team">
-      <div class="member">
-        <h3>Yahya</h3>
-        <p>Founder</p>
-      </div>
-      <div class="member">
-        <h3>Aziz Ul Hassan</h3>
-        <p>Creative Director</p>
-      </div>
-      <div class="member">
-        <h3>Ibrahim Wajid</h3>
-        <p>Technical Advisor</p>
-      </div>
-    </div>
+    <h2>How You Can Help:</h2>
+    <p>Learn more about our mission and how your contribution can make a real impact.</p>
+    <a class="button" href="donate.html">💸 Donate Now</a>
   </section>
 
   <footer>
-    © 2025 Silent Aid. Powered by purpose, led by students, inspired by humanity.
+    <p>© 2025 Silent Aid. All Rights Reserved.</p>
   </footer>
 
 </body>
