@@ -8,17 +8,31 @@
   <style>
     body {
       font-family: Arial, sans-serif;
-      background-color: #f9f9f9;
-      color: #333;
+      background-color: #000;
+      color: #fff;
       padding: 20px;
+      margin: 0;
+    }
+    .sliding-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background-color: red;
+      color: white;
+      text-align: center;
+      padding: 10px;
+      font-size: 18px;
+      z-index: 1000;
     }
     .form-container {
-      background-color: #fff;
+      background-color: #222;
       padding: 20px;
       border-radius: 8px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
       max-width: 500px;
       margin: 0 auto;
+      margin-top: 50px;
     }
     input, textarea, button {
       width: 100%;
@@ -26,6 +40,8 @@
       margin: 8px 0;
       border-radius: 5px;
       border: 1px solid #ddd;
+      background-color: #333;
+      color: #fff;
     }
     button {
       background-color: #4CAF50;
@@ -40,11 +56,19 @@
       color: red;
       font-size: 14px;
     }
+    .payment-method {
+      margin-top: 20px;
+    }
   </style>
 </head>
 <body>
 
-  <h1>Checkout</h1>
+  <div class="sliding-bar">
+    Support Gaza with Your Purchase | Every donation counts!
+  </div>
+
+  <h1 style="text-align: center;">Checkout</h1>
+  
   <div class="form-container">
     <form id="checkoutForm">
       <label for="name">Full Name:</label>
@@ -59,6 +83,15 @@
       <label for="address">Shipping Address:</label>
       <textarea id="address" name="address" required></textarea><br><br>
 
+      <div class="payment-method">
+        <label for="paymentMethod">Payment Method:</label><br>
+        <select id="paymentMethod" name="paymentMethod" required>
+          <option value="razorpay">Razorpay</option>
+          <option value="paypal">PayPal</option>
+          <option value="stripe">Stripe</option>
+        </select>
+      </div><br><br>
+
       <button type="button" id="placeOrderButton">Place Order</button>
 
       <p id="errorMessage" class="error"></p>
@@ -71,10 +104,11 @@
       const email = document.getElementById('email').value;
       const phone = document.getElementById('phone').value;
       const address = document.getElementById('address').value;
+      const paymentMethod = document.getElementById('paymentMethod').value;
       const errorMessage = document.getElementById('errorMessage');
 
       // Basic validation
-      if (!name || !email || !phone || !address) {
+      if (!name || !email || !phone || !address || !paymentMethod) {
         errorMessage.textContent = "Please fill in all the required fields.";
         return;
       }
@@ -94,13 +128,16 @@
       }
 
       // Store customer details in localStorage (for confirmation page)
-      localStorage.setItem('customerDetails', JSON.stringify({ name, email, phone, address }));
+      localStorage.setItem('customerDetails', JSON.stringify({ name, email, phone, address, paymentMethod }));
 
-      // Proceed with payment gateway integration (Razorpay in this case)
-      initiatePayment();
+      // Proceed with payment gateway integration (based on selected method)
+      if (paymentMethod === 'razorpay') {
+        initiateRazorpayPayment();
+      }
+      // You can add Stripe or PayPal integration similarly here
     });
 
-    function initiatePayment() {
+    function initiateRazorpayPayment() {
       const customerDetails = JSON.parse(localStorage.getItem('customerDetails'));
 
       // Total price (replace this with actual total calculation)
@@ -134,7 +171,6 @@
 
     function saveOrderToBackend(response) {
       // Here you would send the payment response and customer details to your backend
-      // Example: Send to server via AJAX to save the order
       console.log('Order saved to backend:', response);
     }
   </script>
