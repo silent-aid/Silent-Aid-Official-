@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Checkout | Silent Aid</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    :root {
+      --primary: #111;
+      --accent: #d64c4c;
+      --bg: #121212;
+      --text: #f1f1f1;
+      --card: #222;
+    }
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+    }
+    header {
+      background: var(--primary);
+      color: var(--text);
+      padding: 20px;
+      font-size: 24px;
+      font-weight: bold;
+      text-align: center;
+      border-bottom: 3px solid var(--accent);
+    }
+
+    .slider-text {
+      background: var(--accent);
+      color: #fff;
+      font-size: 16px;
+      font-weight: bold;
+      padding: 10px 0;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+
+    .slider-text span {
+      display: inline-block;
+      padding-left: 100%;
+      animation: slideText 12s linear infinite;
+    }
+
+    @keyframes slideText {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-100%); }
+    }
+
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      padding: 40px 20px;
+      gap: 40px;
+    }
+
+    .summary, .form {
+      background: var(--card);
+      padding: 30px;
+      border-radius: 10px;
+      width: 350px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.4);
+    }
+
+    h2 {
+      margin-bottom: 20px;
+      color: var(--accent);
+    }
+
+    .summary-item {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+
+    .total {
+      margin-top: 20px;
+      font-weight: bold;
+      font-size: 18px;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border-radius: 6px;
+      border: none;
+      background: #1e1e1e;
+      color: var(--text);
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      background: var(--accent);
+      border: none;
+      color: white;
+      font-size: 16px;
+      font-weight: bold;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px;
+      font-size: 14px;
+      color: #888;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    Silent Aid - Checkout
+  </header>
+
+  <!-- Sliding Text -->
+  <div class="slider-text">
+    <span>Every purchase supports urgent relief in Gaza • Together we stand for justice • Humanity above all •</span>
+  </div>
+
+  <!-- Checkout Section -->
+  <div class="container">
+    <!-- Order Summary -->
+    <div class="summary">
+      <h2>Order Summary</h2>
+      <div id="summary-items"></div>
+      <div class="total" id="summary-total">Total: $0</div>
+    </div>
+
+    <!-- Shipping Form -->
+    <div class="form">
+      <h2>Shipping Details</h2>
+      <input type="text" placeholder="Full Name" required />
+      <input type="email" placeholder="Email Address" required />
+      <input type="text" placeholder="Shipping Address" required />
+      <input type="text" placeholder="City" required />
+      <input type="text" placeholder="Postal Code" required />
+      <textarea rows="4" placeholder="Additional Notes"></textarea>
+      <button onclick="placeOrder()">Place Order</button>
+    </div>
+  </div>
+
+  <footer>
+    &copy; 2025 Silent Aid. All Rights Reserved.
+  </footer>
+
+  <script>
+    // Load cart from localStorage
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+    function renderSummary() {
+      const summaryItems = document.getElementById('summary-items');
+      const summaryTotal = document.getElementById('summary-total');
+      let total = 0;
+
+      summaryItems.innerHTML = cart.map(item => {
+        const subtotal = item.price * item.qty;
+        total += subtotal;
+        return `
+          <div class="summary-item">
+            <div>${item.name} x${item.qty}</div>
+            <div>$${subtotal.toFixed(2)}</div>
+          </div>
+        `;
+      }).join('');
+
+      summaryTotal.textContent = `Total: $${total.toFixed(2)}`;
+    }
+
+    function placeOrder() {
+      alert('Order placed! Thank you for supporting Gaza.');
+      localStorage.removeItem('cart');
+      window.location.href = 'thankyou.html'; // Create a thank you page if you want
+    }
+
+    renderSummary();
+  </script>
+
+</body>
+</html>
