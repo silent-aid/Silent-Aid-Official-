@@ -5,142 +5,131 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Silent Aid | Checkout</title>
   <style>
-    :root {
-      --primary: #111;
-      --accent: #d64c4c;
-      --bg: #121212;
-      --text: #f1f1f1;
-    }
     body {
-      margin: 0;
-      background: var(--bg);
-      color: var(--text);
       font-family: 'Segoe UI', sans-serif;
+      background-color: #121212;
+      color: #f1f1f1;
+      margin: 0;
+      padding: 0;
     }
 
-    /* Gaza Support Bar */
-    .gaza-bar {
-      background: var(--accent);
+    .slider-bar {
+      background-color: #d64c4c;
       color: white;
-      padding: 10px 0;
+      padding: 12px;
       text-align: center;
       font-weight: bold;
       font-size: 16px;
-      overflow: hidden;
+      animation: slideIn 2s ease-out;
     }
-    .gaza-bar span {
-      display: inline-block;
-      padding-left: 100%;
-      animation: ticker 15s linear infinite;
-      white-space: nowrap;
-    }
-    @keyframes ticker {
-      0% { transform: translateX(0); }
-      100% { transform: translateX(-100%); }
+
+    @keyframes slideIn {
+      from { transform: translateY(-100%); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
     }
 
     .container {
-      max-width: 600px;
+      max-width: 800px;
       margin: 40px auto;
       padding: 20px;
-      background: #1e1e1e;
-      border-radius: 10px;
+      background-color: #1e1e1e;
+      border-radius: 8px;
     }
-    h1 {
-      text-align: center;
-      color: var(--accent);
+
+    h2 {
+      margin-bottom: 20px;
     }
-    .cart-review {
-      margin-top: 20px;
-    }
+
     .cart-item {
       display: flex;
       justify-content: space-between;
-      padding: 10px 0;
-      border-bottom: 1px solid #333;
-    }
-    .cart-total {
-      text-align: right;
-      font-weight: bold;
-      margin-top: 10px;
+      margin-bottom: 10px;
+      border-bottom: 1px solid #444;
+      padding-bottom: 10px;
     }
 
-    form {
+    .total {
+      font-size: 18px;
+      font-weight: bold;
+      margin-top: 20px;
+    }
+
+    .payment-options {
       margin-top: 30px;
     }
-    input, button {
-      width: 100%;
-      padding: 10px;
-      margin: 8px 0;
-      border-radius: 5px;
-      border: none;
-    }
-    button {
-      background: var(--accent);
-      color: white;
+
+    .payment-options label {
+      display: block;
+      margin-bottom: 10px;
       cursor: pointer;
+    }
+
+    button {
+      margin-top: 30px;
+      background-color: #d64c4c;
+      color: white;
+      border: none;
+      padding: 12px 20px;
       font-size: 16px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #b43737;
     }
   </style>
 </head>
 <body>
-
-  <!-- Gaza Support Bar -->
-  <div class="gaza-bar">
-    <span>All proceeds from your purchase go towards providing urgent aid, food, water, and shelter in Gaza 🇵🇸❤️</span>
+  <div class="slider-bar">
+    Every purchase helps deliver aid to Gaza 🇵🇸 – Thank you for supporting Silent Aid ❤️
   </div>
 
   <div class="container">
-    <h1>Checkout</h1>
+    <h2>Review Your Order</h2>
+    <div id="cart-items"></div>
+    <div class="total" id="cart-total">Total: $0</div>
 
-    <!-- Cart Review Section -->
-    <div class="cart-review" id="cart-review">
-      <!-- Cart items will be injected here -->
+    <div class="payment-options">
+      <h3>Choose Payment Method</h3>
+      <label><input type="radio" name="payment" value="card" checked> Credit/Debit Card</label>
+      <label><input type="radio" name="payment" value="paypal"> PayPal</label>
+      <label><input type="radio" name="payment" value="cod"> Cash on Delivery</label>
     </div>
 
-    <!-- Checkout Form -->
-    <form onsubmit="submitOrder(event)">
-      <input type="text" placeholder="Full Name" required />
-      <input type="email" placeholder="Email Address" required />
-      <input type="text" placeholder="Shipping Address" required />
-      <button type="submit">Place Order</button>
-    </form>
+    <button onclick="placeOrder()">Place Order</button>
   </div>
 
   <script>
-    function renderCartReview() {
-      const cart = JSON.parse(localStorage.getItem('cart')) || [];
-      const container = document.getElementById('cart-review');
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const cartItems = document.getElementById('cart-items');
+    const cartTotal = document.getElementById('cart-total');
 
+    function renderCart() {
       if (cart.length === 0) {
-        container.innerHTML = '<p>Your cart is empty.</p>';
+        cartItems.innerHTML = "<p>Your cart is empty.</p>";
+        cartTotal.textContent = "Total: $0";
         return;
       }
 
-      let html = '';
-      let total = 0;
-      cart.forEach(item => {
-        const itemTotal = item.qty * item.price;
-        total += itemTotal;
-        html += `
-          <div class="cart-item">
-            <div>${item.name} (x${item.qty})</div>
-            <div>$${itemTotal.toFixed(2)}</div>
-          </div>
-        `;
-      });
-      html += `<div class="cart-total">Total: $${total.toFixed(2)}</div>`;
-      container.innerHTML = html;
+      cartItems.innerHTML = cart.map(item => `
+        <div class="cart-item">
+          <div>${item.name} (x${item.qty})</div>
+          <div>$${(item.qty * item.price).toFixed(2)}</div>
+        </div>
+      `).join("");
+
+      const total = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
+      cartTotal.textContent = "Total: $" + total.toFixed(2);
     }
 
-    function submitOrder(event) {
-      event.preventDefault();
+    function placeOrder() {
+      alert("Thank you for your support! Redirecting...");
       localStorage.removeItem('cart');
-      window.location.href = 'thankyou.html';
+      window.location.href = "thankyou.html";
     }
 
-    // Load cart info on page load
-    renderCartReview();
+    renderCart();
   </script>
 </body>
 </html>
