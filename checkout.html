@@ -183,6 +183,18 @@
       window.location.href = 'thankyou.html'; // Optional thank you page
     }
 
+<!-- Inside checkout.html -->
+<button onclick="confirmOrder()">Confirm Order</button>
+
+<script>
+  function confirmOrder() {
+    // You could clear the cart here if needed
+    localStorage.removeItem('cart');
+    window.location.href = 'thankyou.html';
+  }
+</script>
+
+
     renderSummary();
   </script>
 </body>
