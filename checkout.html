@@ -1,179 +1,175 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Checkout | Silent Aid</title>
-  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #000;
-      color: #fff;
-      padding: 20px;
-      margin: 0;
-    }
-    .sliding-bar {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      background-color: red;
-      color: white;
-      text-align: center;
-      padding: 10px;
-      font-size: 18px;
-      z-index: 1000;
-    }
-    .form-container {
-      background-color: #222;
-      padding: 20px;
-      border-radius: 8px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-      max-width: 500px;
-      margin: 0 auto;
-      margin-top: 50px;
-    }
-    input, textarea, button {
-      width: 100%;
-      padding: 12px;
-      margin: 8px 0;
-      border-radius: 5px;
-      border: 1px solid #ddd;
-      background-color: #333;
-      color: #fff;
-    }
-    button {
-      background-color: #4CAF50;
-      color: white;
-      font-size: 16px;
-      cursor: pointer;
-    }
-    button:hover {
-      background-color: #45a049;
-    }
-    .error {
-      color: red;
-      font-size: 14px;
-    }
-    .payment-method {
-      margin-top: 20px;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://www.paypal.com/sdk/js?client-id=YOUR_PAYPAL_CLIENT_ID&currency=INR"></script>
+    <script src="https://js.stripe.com/v3/"></script>
 </head>
-<body>
+<body style="background-color: black; color: white;">
 
-  <div class="sliding-bar">
-    Support Gaza with Your Purchase | Every donation counts!
-  </div>
+    <!-- Sliding Bar -->
+    <div class="slide-bar">
+        <p>Support Gaza - Every contribution counts!</p>
+    </div>
 
-  <h1 style="text-align: center;">Checkout</h1>
-  
-  <div class="form-container">
-    <form id="checkoutForm">
-      <label for="name">Full Name:</label>
-      <input type="text" id="name" name="name" required><br><br>
+    <h2>Checkout</h2>
+    
+    <form id="checkout-form">
+        <label for="name">Full Name:</label>
+        <input type="text" id="name" required>
 
-      <label for="email">Email:</label>
-      <input type="email" id="email" name="email" required><br><br>
+        <label for="email">Email:</label>
+        <input type="email" id="email" required>
 
-      <label for="phone">Phone Number:</label>
-      <input type="text" id="phone" name="phone" required><br><br>
+        <label for="phone">Phone Number:</label>
+        <input type="tel" id="phone" required>
 
-      <label for="address">Shipping Address:</label>
-      <textarea id="address" name="address" required></textarea><br><br>
+        <label for="address">Shipping Address:</label>
+        <textarea id="address" required></textarea>
 
-      <div class="payment-method">
-        <label for="paymentMethod">Payment Method:</label><br>
-        <select id="paymentMethod" name="paymentMethod" required>
-          <option value="razorpay">Razorpay</option>
-          <option value="paypal">PayPal</option>
-          <option value="stripe">Stripe</option>
+        <label for="payment-method">Payment Method:</label>
+        <select id="payment-method" required>
+            <option value="razorpay">Razorpay</option>
+            <option value="paypal">PayPal</option>
+            <option value="stripe">Stripe</option>
         </select>
-      </div><br><br>
 
-      <button type="button" id="placeOrderButton">Place Order</button>
-
-      <p id="errorMessage" class="error"></p>
+        <button type="submit" id="place-order-btn">Place Order</button>
     </form>
-  </div>
 
-  <script>
-    document.getElementById('placeOrderButton').addEventListener('click', function() {
-      const name = document.getElementById('name').value;
-      const email = document.getElementById('email').value;
-      const phone = document.getElementById('phone').value;
-      const address = document.getElementById('address').value;
-      const paymentMethod = document.getElementById('paymentMethod').value;
-      const errorMessage = document.getElementById('errorMessage');
+    <!-- PayPal Button -->
+    <div id="paypal-button-container"></div>
 
-      // Basic validation
-      if (!name || !email || !phone || !address || !paymentMethod) {
-        errorMessage.textContent = "Please fill in all the required fields.";
-        return;
-      }
+    <script>
+        const totalAmount = 1000;  // Example total amount, update as needed
 
-      // Validate email format
-      const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
-      if (!emailPattern.test(email)) {
-        errorMessage.textContent = "Please enter a valid email address.";
-        return;
-      }
+        // Handle form submission
+        document.getElementById('checkout-form').addEventListener('submit', function (e) {
+            e.preventDefault();
 
-      // Validate phone number (simple check for digits)
-      const phonePattern = /^[0-9]{10}$/;
-      if (!phonePattern.test(phone)) {
-        errorMessage.textContent = "Please enter a valid phone number.";
-        return;
-      }
+            // Collect customer details
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const address = document.getElementById('address').value;
+            const paymentMethod = document.getElementById('payment-method').value;
 
-      // Store customer details in localStorage (for confirmation page)
-      localStorage.setItem('customerDetails', JSON.stringify({ name, email, phone, address, paymentMethod }));
+            // Basic validation
+            if (!name || !email || !phone || !address) {
+                alert('Please fill in all fields.');
+                return;
+            }
 
-      // Proceed with payment gateway integration (based on selected method)
-      if (paymentMethod === 'razorpay') {
-        initiateRazorpayPayment();
-      }
-      // You can add Stripe or PayPal integration similarly here
-    });
+            if (!validateEmail(email)) {
+                alert('Please enter a valid email.');
+                return;
+            }
 
-    function initiateRazorpayPayment() {
-      const customerDetails = JSON.parse(localStorage.getItem('customerDetails'));
+            // Send data to backend for order creation
+            fetch('/create-order', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    name,
+                    email,
+                    phone,
+                    address,
+                    paymentMethod,
+                    totalAmount
+                })
+            }).then(response => response.json())
+              .then(data => {
+                  const orderId = data.orderId;
+                  proceedToPayment(paymentMethod, orderId);
+              });
+        });
 
-      // Total price (replace this with actual total calculation)
-      const totalAmount = 1000; // Example: 1000 INR (or your currency)
-
-      var options = {
-        "key": "YOUR_RAZORPAY_KEY",  // Replace with your Razorpay key
-        "amount": totalAmount * 100, // Amount in paise
-        "currency": "INR",
-        "name": "Silent Aid",
-        "description": "Support for Gaza",
-        "image": "YOUR_LOGO_URL",  // Replace with your logo URL
-        "handler": function(response) {
-          console.log(response);
-          saveOrderToBackend(response);
-          window.location.href = "thankyou.html";
-        },
-        "prefill": {
-          "name": customerDetails.name,
-          "email": customerDetails.email,
-          "contact": customerDetails.phone
-        },
-        "theme": {
-          "color": "#d64c4c"
+        // Validate Email Format
+        function validateEmail(email) {
+            const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+            return regex.test(email);
         }
-      };
 
-      var rzp1 = new Razorpay(options);
-      rzp1.open();
-    }
+        // Payment Process (Razorpay, PayPal, Stripe)
+        function proceedToPayment(paymentMethod, orderId) {
+            if (paymentMethod === 'razorpay') {
+                createRazorpayPayment(orderId);
+            } else if (paymentMethod === 'paypal') {
+                createPayPalPayment(orderId);
+            } else if (paymentMethod === 'stripe') {
+                createStripeSession(orderId);
+            }
+        }
 
-    function saveOrderToBackend(response) {
-      // Here you would send the payment response and customer details to your backend
-      console.log('Order saved to backend:', response);
-    }
-  </script>
+        // Razorpay Payment (client-side)
+        function createRazorpayPayment(orderId) {
+            fetch(`/create-razorpay-order/${orderId}`).then(response => response.json()).then(data => {
+                var options = {
+                    key: 'YOUR_RAZORPAY_KEY',
+                    amount: totalAmount * 100,  // Convert to paise
+                    currency: "INR",
+                    order_id: data.razorpay_order_id,
+                    handler: function (response) {
+                        saveOrderToBackend(orderId, 'razorpay', response.razorpay_payment_id);
+                        window.location.href = "thankyou.html";
+                    },
+                    prefill: {
+                        name: document.getElementById('name').value,
+                        email: document.getElementById('email').value,
+                        contact: document.getElementById('phone').value,
+                    },
+                    theme: { color: "#000" }
+                };
+                var rzp1 = new Razorpay(options);
+                rzp1.open();
+            });
+        }
 
+        // PayPal Payment (client-side)
+        function createPayPalPayment(orderId) {
+            paypal.Buttons({
+                createOrder: function(data, actions) {
+                    return actions.order.create({
+                        purchase_units: [{
+                            amount: { value: totalAmount }
+                        }]
+                    });
+                },
+                onApprove: function(data, actions) {
+                    return actions.order.capture().then(function(details) {
+                        saveOrderToBackend(orderId, 'paypal', details.id);
+                        window.location.href = "thankyou.html";
+                    });
+                }
+            }).render('#paypal-button-container');
+        }
+
+        // Stripe Payment (client-side)
+        function createStripeSession(orderId) {
+            fetch(`/create-stripe-session/${orderId}`).then(response => response.json()).then(data => {
+                var stripe = Stripe('YOUR_STRIPE_PUBLIC_KEY');
+                stripe.redirectToCheckout({ sessionId: data.sessionId });
+            });
+        }
+
+        // Save Order to Backend after payment success
+        function saveOrderToBackend(orderId, paymentMethod, transactionId) {
+            fetch('/update-order', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    orderId,
+                    paymentMethod,
+                    transactionId,
+                    status: 'Paid'
+                })
+            }).then(response => response.json()).then(data => {
+                console.log('Order updated in backend:', data);
+            });
+        }
+    </script>
 </body>
 </html>
