@@ -179,63 +179,80 @@
       font-size: 18px;
       font-weight: bold;
       margin-top: 10px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    .section {
+      padding: 40px;
+      text-align: center;
+    }
+    .slider {
+      width: 100%;
+      overflow: hidden;
+      position: relative;
+      margin-top: 40px;
+    }
+    .slider-content {
+      display: flex;
+      transition: transform 0.5s ease;
+    }
+    .slider-content img {
+      width: 100%;
+      height: 400px;
+      object-fit: cover;
+    }
+    .slider-button {
+      position: absolute;
+      top: 50%;
+      background-color: rgba(0, 0, 0, 0.5);
+      color: white;
+      padding: 10px;
+      border: none;
+      cursor: pointer;
+      z-index: 10;
+    }
+    .slider-button.prev {
+      left: 10px;
+      transform: translateY(-50%);
+    }
+    .slider-button.next {
+      right: 10px;
+      transform: translateY(-50%);
     }
   </style>
 </head>
 <body>
-  <!-- Header -->
-  <header>
-    <div class="logo">Silent Aid</div>
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="shop.html">Shop</a>
-      <a href="impact.html">Impact</a>
-      <a href="collabs.html">Collabs</a>
-      <a href="about.html">About</a>
-      <a href="contact.html">Contact</a>
-    </nav>
-    <div class="cart-btn" onclick="toggleCart()">
-      <i class="fas fa-shopping-cart"></i>
-    </div>
-  </header>
-
-  <!-- Welcome Message -->
+  <!-- Fixed Welcome Message -->
   <div class="welcome-message">
     Welcome to Silent Aid's Shop! Your purchase supports humanitarian efforts in Gaza.
   </div>
 
-  <!-- Filters -->
-  <div class="filters">
-    <button onclick="filterProducts('all')">All</button>
-    <button onclick="filterProducts('tshirt')">T-Shirts</button>
-    <button onclick="filterProducts('hoodie')">Hoodies</button>
-    <button onclick="filterProducts('cap')">Caps</button>
+  <!-- Sections Below Welcome Message -->
+  <div class="section" id="home">
+    <h2>Home</h2>
+    <p>Explore our mission and the story behind Silent Aid.</p>
   </div>
 
-  <!-- Product List -->
-  <div class="products" id="product-list">
-    <!-- Example products -->
-    <div class="product" data-category="tshirt">
-      <img src="https://via.placeholder.com/250x250?text=T-Shirt+1" alt="">
-      <h3>Palestine Tee</h3>
-      <p>Freedom-inspired cotton tee.</p>
-      <div class="price">$25</div>
-      <button onclick="addToCart('Palestine Tee', 25)">Buy Now</button>
+  <div class="section" id="impact">
+    <h2>Impact</h2>
+    <p>Learn about how your contributions make a difference.</p>
+  </div>
+
+  <div class="section" id="collabs">
+    <h2>Collabs</h2>
+    <p>Discover our collaborations with artists and influencers.</p>
+  </div>
+
+  <!-- Image Slider -->
+  <div class="slider">
+    <div class="slider-content" id="slider-content">
+      <img src="https://via.placeholder.com/1200x400?text=Poster+1" alt="Poster 1">
+      <img src="https://via.placeholder.com/1200x400?text=Poster+2" alt="Poster 2">
+      <img src="https://via.placeholder.com/1200x400?text=Poster+3" alt="Poster 3">
     </div>
-    <div class="product" data-category="hoodie">
-      <img src="https://via.placeholder.com/250x250?text=Hoodie+1" alt="">
-      <h3>Hope Hoodie</h3>
-      <p>Warmth with a cause.</p>
-      <div class="price">$40</div>
-      <button onclick="addToCart('Hope Hoodie', 40)">Buy Now</button>
-    </div>
-    <div class="product" data-category="cap">
-      <img src="https://via.placeholder.com/250x250?text=Cap+1" alt="">
-      <h3>Unity Cap</h3>
-      <p>Wear the message.</p>
-      <div class="price">$15</div>
-      <button onclick="addToCart('Unity Cap', 15)">Buy Now</button>
-    </div>
+    <button class="slider-button prev" onclick="moveSlider(-1)">&#10094;</button>
+    <button class="slider-button next" onclick="moveSlider(1)">&#10095;</button>
   </div>
 
   <!-- Cart Sidebar -->
@@ -305,33 +322,20 @@
       `).join('');
       document.getElementById('cart-total').textContent = `Total: $${cart.reduce((total, item) => total + (item.price * item.qty), 0).toFixed(2)}`;
     }
-    function changeQty(name, amount) {
-      const item = cart.find(item => item.name === name);
-      if (item) {
-        item.qty += amount;
-        if (item.qty <= 0) {
-          removeFromCart(name);
-        } else {
-          saveCart();
-          updateCart();
-        }
-      }
-    }
     function saveCart() {
       localStorage.setItem('cart', JSON.stringify(cart));
     }
     function checkout() {
       alert("Proceeding to checkout");
     }
-    function filterProducts(category) {
-      const products = document.querySelectorAll('.product');
-      products.forEach(product => {
-        if (category === 'all' || product.getAttribute('data-category') === category) {
-          product.style.display = 'block';
-        } else {
-          product.style.display = 'none';
-        }
-      });
+    let currentSlide = 0;
+    function moveSlider(direction) {
+      const sliderContent = document.getElementById('slider-content');
+      const slides = sliderContent.children.length;
+      currentSlide += direction;
+      if (currentSlide >= slides) currentSlide = 0;
+      if (currentSlide < 0) currentSlide = slides - 1;
+      sliderContent.style.transform = `translateX(-${currentSlide * 100}%)`;
     }
   </script>
 </body>
