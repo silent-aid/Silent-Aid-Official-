@@ -1,330 +1,122 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Silent Aid | Shop</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Silent Aid Shop</title>
+  <link rel="stylesheet" href="style.css"> <!-- Link to your external stylesheet -->
   <style>
-    :root {
-      --primary: #222;
-      --accent: #f04c4c;
-      --bg: #f9f9f9;
-      --card: #fff;
-      --text: #333;
-    }
+    /* Inline styles for black theme and red top border */
     body {
+      background-color: #000000;
+      color: #ffffff;
+      font-family: Arial, sans-serif;
       margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background: var(--bg);
-      color: var(--text);
-    }
-    header {
-      background: white;
-      padding: 15px 40px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-bottom: 1px solid #eee;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-    }
-    header nav a {
-      margin: 0 15px;
-      text-decoration: none;
-      color: var(--text);
-      font-weight: 500;
-    }
-    .logo {
-      font-size: 24px;
-      font-weight: bold;
-    }
-    .cart-btn {
-      cursor: pointer;
-      font-size: 18px;
-    }
-    .filters {
-      padding: 20px;
-      text-align: center;
-    }
-    .filters button {
-      margin: 0 10px;
-      padding: 8px 18px;
-      border: none;
-      background: var(--primary);
-      color: white;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-    .products {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      padding: 20px;
-      gap: 20px;
-    }
-    .product {
-      background: var(--card);
-      border: 1px solid #ddd;
-      border-radius: 8px;
-      padding: 15px;
-      width: 250px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-    }
-    .product img {
-      width: 100%;
-      border-radius: 6px;
-    }
-    .product h3 {
-      margin: 10px 0 5px;
-      font-size: 18px;
-    }
-    .product p {
-      font-size: 14px;
-      color: #555;
-    }
-    .product .price {
-      font-weight: bold;
-      margin-top: 5px;
-    }
-    .product button {
-      margin-top: 10px;
-      background: var(--accent);
-      color: white;
-      border: none;
-      padding: 8px 14px;
-      border-radius: 5px;
-      cursor: pointer;
+      padding: 0;
     }
 
-    /* Cart Sidebar */
-    .cart {
+    header {
+      background-color: #000000;
+      color: #ffffff;
+      padding: 10px 0;
+      border-top: 5px solid #ff0000; /* Red top border */
+    }
+
+    h1, h2, h3 {
+      color: #ffffff;
+    }
+
+    a {
+      color: #ffffff;
+      text-decoration: none;
+    }
+
+    a:hover {
+      color: #ff0000; /* Red on hover for links */
+    }
+
+    /* Sliding Welcome Message */
+    #welcome-message {
       position: fixed;
       top: 0;
-      right: -400px;
-      width: 350px;
-      height: 100%;
-      background: #fff;
-      box-shadow: -2px 0 10px rgba(0,0,0,0.1);
-      transition: right 0.3s ease;
-      padding: 20px;
-      overflow-y: auto;
-      z-index: 999;
-    }
-    .cart.open {
-      right: 0;
-    }
-    .cart h2 {
-      margin-top: 0;
-    }
-    .cart-item {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin: 15px 0;
-    }
-    .cart-item-name {
-      flex: 1;
-    }
-    .cart-item-qty {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-    .cart-item-qty button {
-      padding: 4px 8px;
-    }
-    .cart-total {
-      font-weight: bold;
-      margin-top: 20px;
-    }
-    .checkout-btn {
-      background: var(--primary);
-      color: white;
-      border: none;
-      padding: 10px 15px;
-      margin-top: 10px;
-      cursor: pointer;
+      left: 0;
       width: 100%;
-      border-radius: 5px;
+      background-color: #000000;
+      color: #ffffff;
+      padding: 10px 0;
+      text-align: center;
+      font-size: 16px;
+      animation: slideMessage 5s infinite;
     }
 
-    footer {
-      background: #222;
-      color: white;
-      padding: 40px;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-    }
-    footer div {
-      width: 200px;
-      margin-bottom: 20px;
-    }
-    footer h4 {
-      margin-bottom: 10px;
-    }
-    footer a {
-      display: block;
-      color: #ccc;
-      text-decoration: none;
-      margin-bottom: 5px;
+    @keyframes slideMessage {
+      0% {
+        top: -50px;
+      }
+      10% {
+        top: 0;
+      }
+      90% {
+        top: 0;
+      }
+      100% {
+        top: -50px;
+      }
     }
 
+    /* Your existing styles for cart, products, etc. */
+    .shop-container {
+      padding-top: 50px; /* Make space for the sliding welcome message */
+    }
+
+    /* Add any other styling as needed for the rest of the page */
   </style>
 </head>
 <body>
 
-  <!-- Header -->
+  <!-- Sliding Welcome Message -->
+  <div id="welcome-message">
+    Welcome to Silent Aid's Shop! All profits support humanitarian aid for Gaza.
+  </div>
+
   <header>
-    <div class="logo">Silent Aid</div>
     <nav>
-      <a href="index.html">Home</a>
-      <a href="shop.html">Shop</a>
-      <a href="impact.html">Impact</a>
-      <a href="collabs.html">Collabs</a>
-      <a href="about.html">About</a>
-      <a href="contact.html">Contact</a>
+      <!-- Your navigation content -->
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Shop</a></li>
+        <li><a href="#">Impact</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
     </nav>
-    <div class="cart-btn" onclick="toggleCart()">
-      <i class="fas fa-shopping-cart"></i>
-    </div>
   </header>
 
-  <!-- Filters -->
-  <div class="filters">
-    <button onclick="filterProducts('all')">All</button>
-    <button onclick="filterProducts('tshirt')">T-Shirts</button>
-    <button onclick="filterProducts('hoodie')">Hoodies</button>
-    <button onclick="filterProducts('cap')">Caps</button>
-  </div>
+  <div class="shop-container">
+    <!-- Your shop page content here -->
+    <h1>Shop Silent Aid Products</h1>
 
-  <!-- Product List -->
-  <div class="products" id="product-list">
-    <!-- Example products -->
-    <div class="product" data-category="tshirt">
-      <img src="https://via.placeholder.com/250x250?text=T-Shirt+1" alt="">
-      <h3>Palestine Tee</h3>
-      <p>Freedom-inspired cotton tee.</p>
-      <div class="price">$25</div>
-      <button onclick="addToCart('Palestine Tee', 25)">Buy Now</button>
+    <!-- Product Listings -->
+    <div class="product-list">
+      <!-- Product Item 1 -->
+      <div class="product-item">
+        <img src="path-to-image.jpg" alt="Product 1" class="product-img">
+        <h2>Product Name</h2>
+        <p>Description of the product</p>
+        <p class="price">$XX.XX</p>
+        <button class="add-to-cart">Add to Cart</button>
+      </div>
+      <!-- Add more product items as needed -->
     </div>
-    <div class="product" data-category="hoodie">
-      <img src="https://via.placeholder.com/250x250?text=Hoodie+1" alt="">
-      <h3>Hope Hoodie</h3>
-      <p>Warmth with a cause.</p>
-      <div class="price">$40</div>
-      <button onclick="addToCart('Hope Hoodie', 40)">Buy Now</button>
-    </div>
-    <div class="product" data-category="cap">
-      <img src="https://via.placeholder.com/250x250?text=Cap+1" alt="">
-      <h3>Unity Cap</h3>
-      <p>Wear the message.</p>
-      <div class="price">$15</div>
-      <button onclick="addToCart('Unity Cap', 15)">Buy Now</button>
+
+    <!-- Cart Information -->
+    <div class="cart-info">
+      <p>Total Price: $0.00</p> <!-- You can dynamically update this -->
     </div>
   </div>
-
-  <!-- Cart Sidebar -->
-  <div class="cart" id="cart">
-    <h2>Your Cart</h2>
-    <div id="cart-items"></div>
-    <div class="cart-total" id="cart-total">Total: $0</div>
-    <button class="checkout-btn" onclick="checkout()">Checkout</button>
-  </div>
-
-  <!-- Footer -->
-  <footer>
-    <div>
-      <h4>Silent Aid</h4>
-      <a href="index.html">Home</a>
-      <a href="shop.html">Shop</a>
-      <a href="impact.html">Impact</a>
-    </div>
-    <div>
-      <h4>Connect</h4>
-      <a href="#">Instagram</a>
-      <a href="#">Twitter</a>
-      <a href="#">Email</a>
-    </div>
-    <div>
-      <h4>More</h4>
-      <a href="about.html">About</a>
-      <a href="contact.html">Contact</a>
-      <a href="#">FAQs</a>
-    </div>
-  </footer>
 
   <script>
-    let cart = JSON.parse(localStorage.getItem('cart')) || [];
-
-    function toggleCart() {
-      document.getElementById('cart').classList.toggle('open');
-      updateCart();
-    }
-
-    function addToCart(name, price) {
-      const existing = cart.find(item => item.name === name);
-      if (existing) {
-        existing.qty++;
-      } else {
-        cart.push({ name, price, qty: 1 });
-      }
-      saveCart();
-      updateCart();
-    }
-
-    function updateCart() {
-      const cartItems = document.getElementById('cart-items');
-      cartItems.innerHTML = '';
-      let total = 0;
-
-      cart.forEach((item, index) => {
-        total += item.price * item.qty;
-        cartItems.innerHTML += `
-          <div class="cart-item">
-            <div class="cart-item-name">${item.name}</div>
-            <div class="cart-item-qty">
-              <button onclick="changeQty(${index}, -1)">-</button>
-              ${item.qty}
-              <button onclick="changeQty(${index}, 1)">+</button>
-            </div>
-          </div>
-        `;
-      });
-
-      document.getElementById('cart-total').textContent = 'Total: $' + total;
-    }
-
-    function changeQty(index, delta) {
-      cart[index].qty += delta;
-      if (cart[index].qty <= 0) cart.splice(index, 1);
-      saveCart();
-      updateCart();
-    }
-
-    function saveCart() {
-      localStorage.setItem('cart', JSON.stringify(cart));
-    }
-
-    function checkout() {
-      alert("Checkout feature coming soon!");
-    }
-
-    function filterProducts(category) {
-      const products = document.querySelectorAll('.product');
-      products.forEach(product => {
-        if (category === 'all' || product.dataset.category === category) {
-          product.style.display = 'block';
-        } else {
-          product.style.display = 'none';
-        }
-      });
-    }
-
-    updateCart();
+    // Your existing cart and other scripts
   </script>
-
 </body>
 </html>
