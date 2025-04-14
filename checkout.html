@@ -1,95 +1,146 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Checkout | Silent Aid</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Silent Aid | Checkout</title>
   <style>
+    :root {
+      --primary: #111;
+      --accent: #d64c4c;
+      --bg: #121212;
+      --text: #f1f1f1;
+    }
     body {
-      background: #121212;
-      color: #f1f1f1;
-      font-family: 'Segoe UI', sans-serif;
       margin: 0;
-      padding: 40px 20px;
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Segoe UI', sans-serif;
     }
 
+    /* Gaza Support Bar */
+    .gaza-bar {
+      background: var(--accent);
+      color: white;
+      padding: 10px 0;
+      text-align: center;
+      font-weight: bold;
+      font-size: 16px;
+      overflow: hidden;
+    }
+    .gaza-bar span {
+      display: inline-block;
+      padding-left: 100%;
+      animation: ticker 15s linear infinite;
+      white-space: nowrap;
+    }
+    @keyframes ticker {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-100%); }
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 40px auto;
+      padding: 20px;
+      background: #1e1e1e;
+      border-radius: 10px;
+    }
     h1 {
       text-align: center;
-      color: #d64c4c;
+      color: var(--accent);
+    }
+    .cart-review {
+      margin-top: 20px;
+    }
+    .cart-item {
+      display: flex;
+      justify-content: space-between;
+      padding: 10px 0;
+      border-bottom: 1px solid #333;
+    }
+    .cart-total {
+      text-align: right;
+      font-weight: bold;
+      margin-top: 10px;
     }
 
     form {
-      max-width: 500px;
-      margin: 0 auto;
-      background: #222;
-      padding: 30px;
-      border-radius: 8px;
+      margin-top: 30px;
     }
-
-    label {
-      display: block;
-      margin-bottom: 5px;
-      font-weight: bold;
-    }
-
-    input, select, textarea {
+    input, button {
       width: 100%;
       padding: 10px;
-      margin-bottom: 20px;
-      border: none;
+      margin: 8px 0;
       border-radius: 5px;
-      background: #333;
-      color: #fff;
+      border: none;
     }
-
     button {
-      background: #d64c4c;
+      background: var(--accent);
       color: white;
-      border: none;
-      padding: 12px;
-      width: 100%;
-      font-size: 16px;
-      border-radius: 5px;
       cursor: pointer;
-    }
-
-    button:hover {
-      background: #b83838;
+      font-size: 16px;
     }
   </style>
 </head>
 <body>
-  <h1>Checkout</h1>
-  <form id="checkout-form">
-    <label for="name">Full Name</label>
-    <input type="text" id="name" required>
 
-    <label for="address">Shipping Address</label>
-    <textarea id="address" rows="3" required></textarea>
+  <!-- Gaza Support Bar -->
+  <div class="gaza-bar">
+    <span>All proceeds from your purchase go towards providing urgent aid, food, water, and shelter in Gaza 🇵🇸❤️</span>
+  </div>
 
-    <label for="email">Email</label>
-    <input type="email" id="email" required>
+  <div class="container">
+    <h1>Checkout</h1>
 
-    <label for="payment">Payment Method</label>
-    <select id="payment" required>
-      <option value="cod">Cash on Delivery</option>
-      <option value="stripe">Stripe</option>
-      <option value="paypal">PayPal</option>
-    </select>
+    <!-- Cart Review Section -->
+    <div class="cart-review" id="cart-review">
+      <!-- Cart items will be injected here -->
+    </div>
 
-    <button type="submit">Place Order</button>
-  </form>
+    <!-- Checkout Form -->
+    <form onsubmit="submitOrder(event)">
+      <input type="text" placeholder="Full Name" required />
+      <input type="email" placeholder="Email Address" required />
+      <input type="text" placeholder="Shipping Address" required />
+      <button type="submit">Place Order</button>
+    </form>
+  </div>
 
   <script>
-    document.getElementById('checkout-form').addEventListener('submit', function(e) {
-      e.preventDefault();
+    function renderCartReview() {
+      const cart = JSON.parse(localStorage.getItem('cart')) || [];
+      const container = document.getElementById('cart-review');
 
-      // You can send this data to a backend in future
-      localStorage.removeItem('cart'); // Clear the cart
+      if (cart.length === 0) {
+        container.innerHTML = '<p>Your cart is empty.</p>';
+        return;
+      }
 
-      // Redirect to thank you page
+      let html = '';
+      let total = 0;
+      cart.forEach(item => {
+        const itemTotal = item.qty * item.price;
+        total += itemTotal;
+        html += `
+          <div class="cart-item">
+            <div>${item.name} (x${item.qty})</div>
+            <div>$${itemTotal.toFixed(2)}</div>
+          </div>
+        `;
+      });
+      html += `<div class="cart-total">Total: $${total.toFixed(2)}</div>`;
+      container.innerHTML = html;
+    }
+
+    function submitOrder(event) {
+      event.preventDefault();
+      localStorage.removeItem('cart');
       window.location.href = 'thankyou.html';
-    });
+    }
+
+    // Load cart info on page load
+    renderCartReview();
   </script>
 </body>
 </html>
