@@ -47,6 +47,43 @@
       font-size: 18px;
     }
 
+    /* Cart modal styles */
+    .cart-modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      justify-content: center;
+      align-items: center;
+    }
+    .cart-content {
+      background: #333;
+      color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      width: 400px;
+    }
+    .cart-item {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+    .cart-item button {
+      background: var(--accent);
+      color: white;
+      border: none;
+      padding: 5px 10px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .cart-total {
+      font-weight: bold;
+      margin-top: 20px;
+    }
+
     /* Sliding Bar */
     .slider {
       position: relative;
@@ -187,8 +224,9 @@
       <a href="about.html">About</a>
       <a href="contact.html">Contact</a>
     </nav>
-    <div class="cart-btn" onclick="toggleCart()"> 
-      <i class="fas fa-shopping-cart"></i> 
+    <div class="cart-btn" onclick="toggleCart()">
+      <i class="fas fa-shopping-cart"></i>
+      <span id="cart-count">0</span> <!-- Display cart item count -->
     </div>
   </header>
 
@@ -249,6 +287,17 @@
     </div>
   </div>
 
+  <!-- Cart Modal -->
+  <div class="cart-modal" id="cart-modal">
+    <div class="cart-content">
+      <h3>Your Cart</h3>
+      <div id="cart-items"></div>
+      <div class="cart-total" id="cart-total">Total: $0</div>
+      <button onclick="checkout()">Proceed to Checkout</button>
+      <button onclick="toggleCart()">Close</button>
+    </div>
+  </div>
+
   <!-- Footer -->
   <footer>
     <div>
@@ -272,14 +321,17 @@
   </footer>
 
   <script>
-    // JavaScript functions for cart and product filtering
+    // Initialize cart as empty or load from localStorage
     let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
+    // Toggle the cart modal visibility
     function toggleCart() {
-      document.getElementById('cart').classList.toggle('open');
+      const cartModal = document.getElementById('cart-modal');
+      cartModal.style.display = cartModal.style.display === 'flex' ? 'none' : 'flex';
       updateCart();
     }
 
+    // Add items to the cart
     function addToCart(name, price) {
       const existing = cart.find(item => item.name === name);
       if (existing) {
@@ -291,50 +343,45 @@
       updateCart();
     }
 
+    // Remove items from the cart
     function removeFromCart(name) {
       cart = cart.filter(item => item.name !== name);
       saveCart();
       updateCart();
     }
 
+    // Update the cart view and total
     function updateCart() {
       const cartItems = document.getElementById('cart-items');
+      const cartCount = document.getElementById('cart-count');
+      const cartTotal = document.getElementById('cart-total');
+      
       cartItems.innerHTML = cart.map(item => `
         <div class="cart-item">
-          <div class="cart-item-name">${item.name}</div>
-          <div class="cart-item-qty">
-            <button onclick="changeQty('${item.name}', -1)">-</button>
-            ${item.qty}
-            <button onclick="changeQty('${item.name}', 1)">+</button>
-          </div>
+          <div>${item.name} (x${item.qty})</div>
           <div>$${(item.qty * item.price).toFixed(2)}</div>
           <button onclick="removeFromCart('${item.name}')">Remove</button>
         </div>
       `).join('');
-      document.getElementById('cart-total').textContent = `Total: $${cart.reduce((total, item) => total + (item.price * item.qty), 0).toFixed(2)}`;
+
+      // Update total
+      cartTotal.textContent = `Total: $${cart.reduce((total, item) => total + (item.price * item.qty), 0).toFixed(2)}`;
+      
+      // Update cart item count
+      cartCount.textContent = cart.reduce((total, item) => total + item.qty, 0);
     }
 
-    function changeQty(name, amount) {
-      const item = cart.find(item => item.name === name);
-      if (item) {
-        item.qty += amount;
-        if (item.qty <= 0) {
-          removeFromCart(name);
-        } else {
-          saveCart();
-          updateCart();
-        }
-      }
-    }
-
+    // Save the cart to localStorage
     function saveCart() {
       localStorage.setItem('cart', JSON.stringify(cart));
     }
 
+    // Proceed to checkout
     function checkout() {
       alert("Proceeding to checkout");
     }
 
+    // Filter products based on category
     function filterProducts(category) {
       const products = document.querySelectorAll('.product');
       products.forEach(product => {
