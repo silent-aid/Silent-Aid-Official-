@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Silent Aid – Shop & Cart</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Segoe UI', sans-serif; background: #f8f8f8; color: #333; line-height: 1.6; }
+    a { color: inherit; text-decoration: none; }
+
+    nav { background: #111; color: #fff; padding: 20px 30px; display: flex; justify-content: space-between; align-items: center; }
+    .nav-left h1 { color: #ffca28; font-size: 2em; }
+    .nav-center ul { list-style: none; display: flex; gap: 20px; }
+    .nav-center li a { color: #fff; font-weight: 600; padding: 10px 15px; transition: 0.3s; }
+    .nav-center li a:hover { background: #ffca28; border-radius: 5px; color: #111; }
+
+    .hero { width: 100%; height: 300px; background: url('https://static.vecteezy.com/system/resources/previews/029/226/849/non_2x/long-wavy-palestine-flag-free-vector.jpg') center/cover no-repeat; }
+
+    .filters { display: flex; justify-content: center; padding: 20px; gap: 10px; background: #fff; }
+    .filter-btn { padding: 10px 20px; background: #ffca28; border: none; border-radius: 5px; font-weight: bold; cursor: pointer; }
+    .filter-btn:hover { background: #d90429; color: #fff; }
+
+    .products { display: flex; flex-wrap: wrap; justify-content: center; gap: 30px; padding: 30px 20px; background: #fff; }
+    .product-card { width: 250px; background: #fff; padding: 20px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); transition: 0.3s; }
+    .product-card:hover { transform: translateY(-5px); }
+    .product-card img { width: 100%; border-radius: 8px; }
+    .product-card h3 { margin: 10px 0; font-size: 1.2em; }
+    .product-card p { color: #666; font-size: 0.9em; }
+    .product-card button { background: #ffca28; border: none; padding: 10px 15px; border-radius: 5px; font-weight: bold; cursor: pointer; margin-top: 10px; }
+    .product-card button:hover { background: #d90429; color: #fff; }
+
+    .cart-container { max-width: 900px; margin: 50px auto; background: #1c1c1c; color: #fff; padding: 30px; border-radius: 10px; }
+    .cart-container h2 { color: #ffca28; text-align: center; margin-bottom: 20px; }
+    .cart-item { display: flex; align-items: center; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #333; }
+    .cart-item img { width: 60px; height: 60px; object-fit: cover; border-radius: 5px; margin-right: 10px; }
+    .item-info { display: flex; align-items: center; gap: 10px; flex: 1; }
+    .item-name { font-weight: bold; }
+    .item-price { margin-left: auto; margin-right: 20px; }
+    .remove-btn { background: #d90429; border: none; color: #fff; padding: 5px 10px; border-radius: 5px; cursor: pointer; }
+
+    .total { text-align: right; font-size: 1.2em; margin-top: 15px; }
+    .checkout-btn { width: 100%; padding: 15px; margin-top: 20px; background: #ffca28; color: #111; font-weight: bold; border: none; border-radius: 8px; cursor: pointer; }
+    .checkout-btn:hover { background: #e0a800; }
+    .empty-message { text-align: center; color: #ccc; margin-top: 20px; }
+
+    footer { background: #111; color: #ccc; text-align: center; padding: 30px 10px; margin-top: 50px; font-size: 0.95em; }
+
+    @media (max-width: 768px) {
+      .products { flex-direction: column; align-items: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav>
+    <div class="nav-left"><h1>Silent Aid</h1></div>
+    <div class="nav-center">
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Impact</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <div class="hero"></div>
+
+  <!-- Filters -->
+  <div class="filters">
+    <button class="filter-btn" data-category="all">All</button>
+    <button class="filter-btn" data-category="hoodie">Hoodies</button>
+    <button class="filter-btn" data-category="tee">Tees</button>
+    <button class="filter-btn" data-category="accessory">Accessories</button>
+  </div>
+
+  <!-- Products -->
+  <div class="products" id="products">
+    <div class="product-card" data-category="hoodie">
+      <img src="https://www.meesho.com/free-palestine-hood/p/61ylov" alt="Freedom Hoodie">
+      <h3>Freedom Hoodie</h3>
+      <p>Soft fleece hoodie with embroidered message of hope.</p>
+      <button onclick="addToCart('Freedom Hoodie')">Add to Cart</button>
+    </div>
+    <div class="product-card" data-category="tee">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/5/56/Palestinian_flag_t-shirt.jpg" alt="Peace Tee">
+      <h3>Peace Tee</h3>
+      <p>100% cotton tee with peace design. Wear it with purpose!</p>
+      <button onclick="addToCart('Peace Tee')">Add to Cart</button>
+    </div>
+    <div class="product-card" data-category="accessory">
+      <img src="https://www.aftaab.com/wp-content/uploads/2021/10/bracelet-palestine-flag.jpg" alt="Bracelet">
+      <h3>Palestine Flag Bracelet</h3>
+      <p>Handmade bracelet with flag colors. Limited edition.</p>
+      <button onclick="addToCart('Palestine Flag Bracelet')">Add to Cart</button>
+    </div>
+  </div>
+
+  <!-- Cart -->
+  <div class="cart-container">
+    <h2>Your Cart 🛒</h2>
+    <div id="cart-items"></div>
+    <div class="total" id="cart-total"></div>
+    <button class="checkout-btn" onclick="checkout()">Proceed to Checkout</button>
+    <p class="empty-message" id="empty-msg" style="display: none;">Your cart is empty.</p>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 Silent Aid | All Rights Reserved</p>
+    <p>Powered by Purpose</p>
+  </footer>
+
+  <script>
+    const products = {
+      "Freedom Hoodie": { price: 25.99, image: "https://www.meesho.com/free-palestine-hood/p/61ylov" },
+      "Peace Tee": { price: 19.99, image: "https://upload.wikimedia.org/wikipedia/commons/5/56/Palestinian_flag_t-shirt.jpg" },
+      "Palestine Flag Bracelet": { price: 14.99, image: "https://www.aftaab.com/wp-content/uploads/2021/10/bracelet-palestine-flag.jpg" }
+    };
+
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+    function addToCart(productName) {
+      cart.push(productName);
+      localStorage.setItem("cart", JSON.stringify(cart));
+      renderCart();
+    }
+
+    function removeFromCart(index) {
+      cart.splice(index, 1);
+      localStorage.setItem("cart", JSON.stringify(cart));
+      renderCart();
+    }
+
+    function renderCart() {
+      const cartItemsDiv = document.getElementById("cart-items");
+      const totalDiv = document.getElementById("cart-total");
+      const emptyMsg = document.getElementById("empty-msg");
+
+      cartItemsDiv.innerHTML = "";
+      if (cart.length === 0) {
+        emptyMsg.style.display = "block";
+        totalDiv.innerText = "";
+        return;
+      }
+
+      let total = 0;
+      cart.forEach((itemName, index) => {
+        const product = products[itemName];
+        total += product.price;
+
+        const item = document.createElement("div");
+        item.className = "cart-item";
+        item.innerHTML = `
+          <div class="item-info">
+            <img src="${product.image}" alt="${itemName}">
+            <span class="item-name">${itemName}</span>
+          </div>
+          <div class="item-price">$${product.price.toFixed(2)}</div>
+          <button class="remove-btn" onclick="removeFromCart(${index})">Remove</button>
+        `;
+        cartItemsDiv.appendChild(item);
+      });
+
+      totalDiv.innerText = `Total: $${total.toFixed(2)}`;
+      emptyMsg.style.display = "none";
+    }
+
+    function checkout() {
+      if (cart.length === 0) return alert("Your cart is empty.");
+      alert("Checkout coming soon!");
+    }
+
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+      btn.addEventListener('click', e => {
+        const category = e.target.getAttribute('data-category');
+        document.querySelectorAll('.product-card').forEach(card => {
+          const cat = card.getAttribute('data-category');
+          card.style.display = (category === 'all' || cat === category) ? 'block' : 'none';
+        });
+      });
+    });
+
+    renderCart();
+  </script>
+
+</body>
+</html>
