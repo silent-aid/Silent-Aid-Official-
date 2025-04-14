@@ -1,58 +1,189 @@
-<script>
-  let cart = JSON.parse(localStorage.getItem('cart')) || [];
-
-  function renderSummary() {
-    const summaryItems = document.getElementById('summary-items');
-    const summaryTotal = document.getElementById('summary-total');
-    let total = 0;
-
-    if (cart.length === 0) {
-      summaryItems.innerHTML = `<p style="color: #ccc;">Your cart is empty.</p>`;
-      summaryTotal.textContent = `Total: $0`;
-      return;
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Silent Aid | Checkout</title>
+  <style>
+    :root {
+      --primary: #111;
+      --accent: #d64c4c;
+      --bg: #000;
+      --card: #1a1a1a;
+      --text: #f1f1f1;
+    }
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: var(--bg);
+      color: var(--text);
     }
 
-    summaryItems.innerHTML = cart.map(item => {
-      const subtotal = item.price * item.qty;
-      total += subtotal;
-      return `
-        <div class="summary-item">
-          <div>${item.name} x${item.qty}</div>
-          <div>$${subtotal.toFixed(2)}</div>
-        </div>
-      `;
-    }).join('');
-
-    summaryTotal.textContent = `Total: $${total.toFixed(2)}`;
-  }
-
-  function placeOrder() {
-    if (cart.length === 0) {
-      alert("Your cart is empty. Please add at least one item before placing an order.");
-      return;
+    header {
+      background: var(--primary);
+      color: var(--accent);
+      text-align: center;
+      padding: 20px;
+      font-size: 24px;
+      font-weight: bold;
     }
 
-    const name = document.querySelector('input[placeholder="Full Name"]').value.trim();
-    const email = document.querySelector('input[placeholder="Email Address"]').value.trim();
-    const address = document.querySelector('input[placeholder="Shipping Address"]').value.trim();
-    const city = document.querySelector('input[placeholder="City"]').value.trim();
-    const postal = document.querySelector('input[placeholder="Postal Code"]').value.trim();
-
-    if (!name || !email || !address || !city || !postal) {
-      alert("Please fill in all required shipping details.");
-      return;
+    .notice-bar {
+      background: var(--accent);
+      color: #fff;
+      padding: 10px;
+      text-align: center;
+      font-weight: bold;
+      animation: slideNotice 20s linear infinite;
     }
 
-    if (!email.endsWith('@gmail.com') || !/^[^\s@]+@gmail\.com$/.test(email)) {
-      alert("Please enter a valid Gmail address.");
-      return;
+    @keyframes slideNotice {
+      0% { transform: translateX(100%); }
+      100% { transform: translateX(-100%); }
     }
 
-    // Everything is valid
-    alert('Order placed successfully! Thank you for supporting Gaza. ❤️');
-    localStorage.removeItem('cart');
-    window.location.href = 'thankyou.html'; // You can create a thank you page or redirect
-  }
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      padding: 30px;
+    }
 
-  renderSummary();
-</script>
+    .form-section, .summary-section {
+      background: var(--card);
+      padding: 25px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.05);
+      width: 400px;
+      max-width: 90%;
+      margin-bottom: 30px;
+    }
+
+    .form-section h2, .summary-section h2 {
+      margin-bottom: 20px;
+      color: var(--accent);
+    }
+
+    input {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border: 1px solid #444;
+      border-radius: 5px;
+      background: #111;
+      color: #fff;
+    }
+
+    button {
+      background: var(--accent);
+      color: #fff;
+      padding: 12px;
+      border: none;
+      border-radius: 5px;
+      width: 100%;
+      margin-top: 20px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    .summary-item {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+
+    .summary-total {
+      font-weight: bold;
+      margin-top: 20px;
+      font-size: 18px;
+      border-top: 1px solid #555;
+      padding-top: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="notice-bar">Every purchase supports urgent aid to Gaza — thank you for standing with humanity 🇵🇸❤️</div>
+
+  <header>Silent Aid — Checkout</header>
+
+  <div class="container">
+    <!-- Checkout Form -->
+    <div class="form-section">
+      <h2>Shipping Details</h2>
+      <input type="text" id="name" placeholder="Full Name" required />
+      <input type="email" id="email" placeholder="Gmail Address" required />
+      <input type="text" id="address" placeholder="Shipping Address" required />
+      <input type="text" id="city" placeholder="City" required />
+      <input type="text" id="postal" placeholder="Postal Code" required />
+      <button onclick="placeOrder()">Place Order</button>
+    </div>
+
+    <!-- Order Summary -->
+    <div class="summary-section">
+      <h2>Your Order</h2>
+      <div id="summary-items"></div>
+      <div class="summary-total" id="summary-total">Total: $0</div>
+    </div>
+  </div>
+
+  <script>
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+    function renderSummary() {
+      const summaryItems = document.getElementById('summary-items');
+      const summaryTotal = document.getElementById('summary-total');
+      let total = 0;
+
+      if (cart.length === 0) {
+        summaryItems.innerHTML = `<p style="color: #ccc;">Your cart is empty.</p>`;
+        summaryTotal.textContent = `Total: $0`;
+        return;
+      }
+
+      summaryItems.innerHTML = cart.map(item => {
+        const subtotal = item.price * item.qty;
+        total += subtotal;
+        return `
+          <div class="summary-item">
+            <div>${item.name} x${item.qty}</div>
+            <div>$${subtotal.toFixed(2)}</div>
+          </div>
+        `;
+      }).join('');
+
+      summaryTotal.textContent = `Total: $${total.toFixed(2)}`;
+    }
+
+    function placeOrder() {
+      if (cart.length === 0) {
+        alert("🛒 Your cart is empty. Please add at least one item before placing an order.");
+        return;
+      }
+
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const address = document.getElementById('address').value.trim();
+      const city = document.getElementById('city').value.trim();
+      const postal = document.getElementById('postal').value.trim();
+
+      if (!name || !email || !address || !city || !postal) {
+        alert("⚠️ Please fill in all required shipping details.");
+        return;
+      }
+
+      if (!email.endsWith('@gmail.com') || !/^[^\s@]+@gmail\.com$/.test(email)) {
+        alert("📧 Please enter a valid Gmail address.");
+        return;
+      }
+
+      // Everything is valid
+      alert("✅ Order placed successfully! Thank you for supporting Gaza.");
+      localStorage.removeItem('cart');
+      window.location.href = 'thankyou.html'; // Optional thank you page
+    }
+
+    renderSummary();
+  </script>
+</body>
+</html>
