@@ -47,7 +47,7 @@
       font-size: 18px;
     }
 
-    /* Cart modal styles */
+    /* Cart Modal */
     .cart-modal {
       display: none;
       position: fixed;
@@ -55,63 +55,48 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: rgba(0, 0, 0, 0.5);
-      justify-content: center;
-      align-items: center;
+      background: rgba(0, 0, 0, 0.8);
+      color: var(--text);
+      z-index: 1001;
+      padding: 20px;
+      overflow-y: auto;
     }
-    .cart-content {
-      background: #333;
-      color: #fff;
+    .cart-modal-content {
+      background: var(--card);
       padding: 20px;
       border-radius: 8px;
-      width: 400px;
+      width: 60%;
+      margin: auto;
+      max-height: 80vh;
+      overflow-y: auto;
     }
-    .cart-item {
+    .cart-modal-content .cart-item {
       display: flex;
       justify-content: space-between;
-      margin-bottom: 10px;
+      margin-bottom: 15px;
     }
-    .cart-item button {
+    .cart-modal-content .cart-item button {
       background: var(--accent);
       color: white;
       border: none;
       padding: 5px 10px;
-      border-radius: 5px;
       cursor: pointer;
     }
-    .cart-total {
-      font-weight: bold;
-      margin-top: 20px;
+
+    /* Checkout Section */
+    .checkout-section {
+      margin-top: 30px;
+      text-align: center;
     }
 
-    /* Sliding Bar */
-    .slider {
-      position: relative;
-      width: 100%;
-      overflow: hidden;
-      margin-top: 20px;
-    }
-    .slider-container {
-      display: flex;
-      width: 100%;
-      animation: slide 10s infinite;
-    }
-    .slider-item {
-      width: 100%;
-      flex-shrink: 0;
-    }
-    .slider-item img {
-      width: 100%;
-      height: 400px;
-      object-fit: cover;
-    }
-    @keyframes slide {
-      0% { transform: translateX(0); }
-      20% { transform: translateX(-100%); }
-      40% { transform: translateX(-200%); }
-      60% { transform: translateX(-300%); }
-      80% { transform: translateX(-400%); }
-      100% { transform: translateX(0); }
+    .checkout-section button {
+      background: var(--accent);
+      color: white;
+      padding: 15px 30px;
+      border: none;
+      border-radius: 5px;
+      font-size: 18px;
+      cursor: pointer;
     }
 
     .filters {
@@ -224,29 +209,22 @@
       <a href="about.html">About</a>
       <a href="contact.html">Contact</a>
     </nav>
-    <div class="cart-btn" onclick="toggleCart()">
-      <i class="fas fa-shopping-cart"></i>
-      <span id="cart-count">0</span> <!-- Display cart item count -->
+    <div class="cart-btn" onclick="toggleCart()"> 
+      <i class="fas fa-shopping-cart"></i> 
     </div>
   </header>
 
-  <!-- Sliding Poster Banner -->
-  <div class="slider">
-    <div class="slider-container">
-      <div class="slider-item">
-        <img src="https://static.vecteezy.com/system/resources/thumbnails/031/127/635/small/save-gaza-free-palestine-typography-concept-background-design-template-with-palestine-national-flag-vector.jpg">
-      </div>
-      <div class="slider-item">
-        <img src="https://www.middleeasteye.net/sites/default/files/styles/max_2600x2600/public/images-story/Palestinian%20children%20hold%20posters%20during%20a%20protest%20in%20solidarity%20with%20children%20in%20the%20Gaza%20Strip%2C%20in%20the%20city%20of%20Ramallah%20on%20November%2C4%2C%202023-afp.jpg.jpg?itok=dJgqRnjg">
-      </div>
-      <div class="slider-item">
-        <img src="https://img.freepik.com/premium-photo/save-palestine-save-gaza-save-al-aksha-mosque_539680-4602.jpg">
-      </div>
-      <div class="slider-item">
-        <img src="https://static.independent.co.uk/2024/03/03/16/494f9b1abf12752417cdac391b60b099Y29udGVudHNlYXJjaGFwaSwxNzA5NTY1ODA5-2.75519518.jpg">
-      </div>
+  <!-- Cart Modal -->
+  <div class="cart-modal" id="cart-modal">
+    <div class="cart-modal-content">
+      <h3>Your Cart</h3>
+      <div id="cart-items"></div>
+      <div id="cart-total">Total: $0.00</div>
+      <button onclick="checkout()">Proceed to Checkout</button>
+      <button onclick="toggleCart()">Close</button>
     </div>
   </div>
+
   <!-- Welcome Message -->
   <div class="welcome-message"> 
     Welcome to Silent Aid's Shop! Your purchase supports humanitarian efforts in Gaza.
@@ -286,17 +264,6 @@
     </div>
   </div>
 
-  <!-- Cart Modal -->
-  <div class="cart-modal" id="cart-modal">
-    <div class="cart-content">
-      <h3>Your Cart</h3>
-      <div id="cart-items"></div>
-      <div class="cart-total" id="cart-total">Total: $0</div>
-      <button onclick="checkout()">Proceed to Checkout</button>
-      <button onclick="toggleCart()">Close</button>
-    </div>
-  </div>
-
   <!-- Footer -->
   <footer>
     <div>
@@ -320,17 +287,13 @@
   </footer>
 
   <script>
-    // Initialize cart as empty or load from localStorage
     let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
-    // Toggle the cart modal visibility
     function toggleCart() {
-      const cartModal = document.getElementById('cart-modal');
-      cartModal.style.display = cartModal.style.display === 'flex' ? 'none' : 'flex';
+      document.getElementById('cart-modal').style.display = document.getElementById('cart-modal').style.display === 'block' ? 'none' : 'block';
       updateCart();
     }
 
-    // Add items to the cart
     function addToCart(name, price) {
       const existing = cart.find(item => item.name === name);
       if (existing) {
@@ -342,45 +305,51 @@
       updateCart();
     }
 
-    // Remove items from the cart
     function removeFromCart(name) {
       cart = cart.filter(item => item.name !== name);
       saveCart();
       updateCart();
     }
 
-    // Update the cart view and total
     function updateCart() {
       const cartItems = document.getElementById('cart-items');
-      const cartCount = document.getElementById('cart-count');
-      const cartTotal = document.getElementById('cart-total');
-      
       cartItems.innerHTML = cart.map(item => `
         <div class="cart-item">
-          <div>${item.name} (x${item.qty})</div>
+          <div class="cart-item-name">${item.name}</div>
+          <div class="cart-item-qty">
+            <button onclick="changeQty('${item.name}', -1)">-</button>
+            ${item.qty}
+            <button onclick="changeQty('${item.name}', 1)">+</button>
+          </div>
           <div>$${(item.qty * item.price).toFixed(2)}</div>
           <button onclick="removeFromCart('${item.name}')">Remove</button>
         </div>
       `).join('');
-
-      // Update total
-      cartTotal.textContent = `Total: $${cart.reduce((total, item) => total + (item.price * item.qty), 0).toFixed(2)}`;
-      
-      // Update cart item count
-      cartCount.textContent = cart.reduce((total, item) => total + item.qty, 0);
+      document.getElementById('cart-total').textContent = `Total: $${cart.reduce((total, item) => total + (item.price * item.qty), 0).toFixed(2)}`;
     }
 
-    // Save the cart to localStorage
+    function changeQty(name, amount) {
+      const item = cart.find(item => item.name === name);
+      if (item) {
+        item.qty += amount;
+        if (item.qty <= 0) {
+          removeFromCart(name);
+        } else {
+          saveCart();
+          updateCart();
+        }
+      }
+    }
+
     function saveCart() {
       localStorage.setItem('cart', JSON.stringify(cart));
     }
 
-    // Proceed to checkout
     function checkout() {
       alert("Proceeding to checkout");
+      // Here you can add the actual checkout logic, or redirect to another section.
     }
 
-    // Filter products based on category
     function filterProducts(category) {
       const products = document.querySelectorAll('.product');
       products.forEach(product => {
