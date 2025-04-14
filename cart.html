@@ -3,14 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Your Cart – Silent Aid</title>
+  <title>Silent Aid – Cart</title>
   <style>
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      margin: 0;
-      background-color: #111;
-      color: #fff;
-    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', sans-serif; background-color: #111; color: #fff; }
+    a { color: inherit; text-decoration: none; }
 
     nav {
       background-color: #111;
@@ -18,7 +15,6 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      border-bottom: 1px solid #444;
     }
 
     .nav-left h1 {
@@ -26,186 +22,207 @@
       font-size: 2em;
     }
 
-    .nav-right a {
+    .nav-center ul {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+    }
+
+    .nav-center li a {
       color: #fff;
-      text-decoration: none;
-      font-weight: bold;
+      font-weight: 600;
+      padding: 10px 15px;
+      transition: 0.3s;
+    }
+
+    .nav-center li a:hover {
       background-color: #ffca28;
-      padding: 8px 15px;
+      color: #111;
       border-radius: 5px;
     }
 
     .cart-container {
-      max-width: 800px;
-      margin: 40px auto;
-      background-color: #1a1a1a;
-      border-radius: 10px;
+      max-width: 900px;
+      margin: 50px auto;
+      background: #1c1c1c;
       padding: 30px;
-      box-shadow: 0 0 15px rgba(255, 202, 40, 0.2);
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.5);
     }
 
     h2 {
-      margin-bottom: 25px;
-      text-align: center;
-      font-size: 2em;
+      margin-bottom: 20px;
       color: #ffca28;
+      text-align: center;
     }
 
     .cart-item {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      border-bottom: 1px solid #333;
       padding: 15px 0;
+      border-bottom: 1px solid #333;
     }
 
     .cart-item img {
-      width: 70px;
+      width: 80px;
+      height: 80px;
       border-radius: 8px;
-      margin-right: 15px;
+      object-fit: cover;
+      margin-right: 20px;
     }
 
-    .cart-details {
+    .item-info {
       flex: 1;
       display: flex;
       align-items: center;
     }
 
-    .cart-info {
-      display: flex;
-      flex-direction: column;
-    }
-
-    .cart-info h4 {
-      margin: 0;
+    .item-name {
       font-size: 1.1em;
-      color: #fff;
+      font-weight: 600;
     }
 
-    .cart-info p {
-      margin: 5px 0;
-      font-size: 0.9em;
+    .item-price {
       color: #ccc;
+      margin-left: auto;
+      margin-right: 20px;
     }
 
     .remove-btn {
-      background-color: #d90429;
-      color: #fff;
+      background: #d90429;
       border: none;
+      color: white;
       padding: 6px 12px;
       border-radius: 5px;
       cursor: pointer;
-      font-size: 0.85em;
     }
 
-    .cart-summary {
+    .total {
       text-align: right;
-      margin-top: 30px;
-    }
-
-    .cart-summary h3 {
-      font-size: 1.4em;
-      color: #ffca28;
+      font-size: 1.2em;
+      margin-top: 20px;
+      color: #fff;
     }
 
     .checkout-btn {
-      margin-top: 15px;
-      padding: 10px 25px;
-      background-color: #ffca28;
+      display: block;
+      width: 100%;
+      padding: 15px;
+      margin-top: 30px;
+      background: #ffca28;
       color: #111;
-      border: none;
-      border-radius: 6px;
+      font-size: 1.1em;
       font-weight: bold;
-      font-size: 1em;
+      border: none;
+      border-radius: 8px;
       cursor: pointer;
+      transition: 0.3s;
     }
 
     .checkout-btn:hover {
-      background-color: #d1a300;
+      background-color: #e0a800;
     }
 
-    @media (max-width: 600px) {
-      .cart-item {
-        flex-direction: column;
-        align-items: flex-start;
-      }
+    .empty-message {
+      text-align: center;
+      font-size: 1.1em;
+      margin-top: 30px;
+      color: #ccc;
+    }
 
-      .cart-details {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-
-      .cart-summary {
-        text-align: left;
-      }
+    footer {
+      background: #111;
+      color: #ccc;
+      text-align: center;
+      padding: 20px 10px;
+      margin-top: 50px;
+      font-size: 0.95em;
     }
   </style>
 </head>
 <body>
 
+  <!-- Nav -->
   <nav>
-    <div class="nav-left">
-      <h1>Silent Aid</h1>
-    </div>
-    <div class="nav-right">
-      <a href="index.html">← Continue Shopping</a>
+    <div class="nav-left"><h1>Silent Aid</h1></div>
+    <div class="nav-center">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="shop.html">Shop</a></li>
+        <li><a href="#">Impact</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
     </div>
   </nav>
 
+  <!-- Cart -->
   <div class="cart-container">
-    <h2>Your Cart</h2>
+    <h2>Your Cart 🛒</h2>
     <div id="cart-items"></div>
-    <div class="cart-summary">
-      <h3>Total: $<span id="total-price">0</span></h3>
-      <button class="checkout-btn">Proceed to Checkout</button>
-    </div>
+    <div class="total" id="cart-total"></div>
+    <button class="checkout-btn" onclick="checkout()">Proceed to Checkout</button>
+    <p class="empty-message" id="empty-msg" style="display: none;">Your cart is empty.</p>
   </div>
 
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 Silent Aid | All Rights Reserved</p>
+    <p>Powered by Purpose</p>
+  </footer>
+
   <script>
-    const productData = {
-      "Freedom Hoodie": { price: 35, img: "https://www.meesho.com/free-palestine-hood/p/61ylov" },
-      "Peace Tee": { price: 20, img: "https://upload.wikimedia.org/wikipedia/commons/5/56/Palestinian_flag_t-shirt.jpg" },
-      "Palestine Flag Bracelet": { price: 10, img: "https://www.aftaab.com/wp-content/uploads/2021/10/bracelet-palestine-flag.jpg" }
+    const products = {
+      "Freedom Hoodie": { price: 25.99, image: "https://www.meesho.com/free-palestine-hood/p/61ylov" },
+      "Peace Tee": { price: 15.49, image: "https://upload.wikimedia.org/wikipedia/commons/5/56/Palestinian_flag_t-shirt.jpg" },
+      "Palestine Flag Bracelet": { price: 8.99, image: "https://www.aftaab.com/wp-content/uploads/2021/10/bracelet-palestine-flag.jpg" }
     };
 
-    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
     const cartItemsDiv = document.getElementById("cart-items");
-    const totalPriceSpan = document.getElementById("total-price");
+    const totalDiv = document.getElementById("cart-total");
+    const emptyMsg = document.getElementById("empty-msg");
 
     function renderCart() {
       cartItemsDiv.innerHTML = "";
+      if (cart.length === 0) {
+        emptyMsg.style.display = "block";
+        totalDiv.innerText = "";
+        return;
+      }
+
       let total = 0;
-
-      cart.forEach((item, index) => {
-        const product = productData[item];
-        if (!product) return;
-
+      cart.forEach((itemName, index) => {
+        const product = products[itemName];
         total += product.price;
 
         const itemDiv = document.createElement("div");
         itemDiv.className = "cart-item";
 
         itemDiv.innerHTML = `
-          <div class="cart-details">
-            <img src="${product.img}" alt="${item}">
-            <div class="cart-info">
-              <h4>${item}</h4>
-              <p>$${product.price}</p>
-            </div>
+          <div class="item-info">
+            <img src="${product.image}" alt="${itemName}">
+            <span class="item-name">${itemName}</span>
           </div>
+          <div class="item-price">$${product.price.toFixed(2)}</div>
           <button class="remove-btn" onclick="removeFromCart(${index})">Remove</button>
         `;
-
         cartItemsDiv.appendChild(itemDiv);
       });
 
-      totalPriceSpan.textContent = total.toFixed(2);
+      totalDiv.innerText = `Total: $${total.toFixed(2)}`;
+      emptyMsg.style.display = "none";
     }
 
     function removeFromCart(index) {
       cart.splice(index, 1);
       localStorage.setItem("cart", JSON.stringify(cart));
       renderCart();
+    }
+
+    function checkout() {
+      if (cart.length === 0) return alert("Cart is empty.");
+      alert("Checkout flow coming soon!");
     }
 
     renderCart();
