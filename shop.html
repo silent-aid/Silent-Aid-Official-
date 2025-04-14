@@ -320,7 +320,7 @@
     </div>
   </footer>
 
- <script>
+<script>
   // Initialize cart as empty or load from localStorage
   let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
@@ -377,36 +377,24 @@
   }
 
   // Proceed to checkout
-  <script>
   function checkout() {
-    if (cart.length === 0) {
-      alert("🛒 Your cart is empty!");
-      return;
-    }
-
-    const name = prompt("Enter your name:");
-    const email = prompt("Enter your email:");
-
-    if (!name || !email) {
-      alert("⚠️ Please enter both your name and email.");
-      return;
-    }
-
-    // Save details to localStorage for use in thankyou.html
-    localStorage.setItem('checkoutName', name);
-    localStorage.setItem('checkoutEmail', email);
-
-    // You can save cart if needed here too (optional)
-    localStorage.setItem('checkoutCart', JSON.stringify(cart));
-
-    // Clear the cart
-    cart = [];
-    saveCart();
-
-    // Redirect to thankyou page
-    window.location.href = 'thankyou.html';
+    window.location.href = 'checkout.html';
   }
-</script>
 
+  // Filter products based on category
+  function filterProducts(category) {
+    const products = document.querySelectorAll('.product');
+    products.forEach(product => {
+      if (category === 'all' || product.getAttribute('data-category') === category) {
+        product.style.display = 'block';
+      } else {
+        product.style.display = 'none';
+      }
+    });
+  }
+
+  // Update cart on page load
+  updateCart();
+</script>
 </body>
 </html>
