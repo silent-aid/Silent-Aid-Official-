@@ -1,75 +1,95 @@
-<script>
-  // Initialize cart as empty or load from localStorage
-  let cart = JSON.parse(localStorage.getItem('cart')) || [];
-
-  // Toggle the cart modal visibility
-  function toggleCart() {
-    const cartModal = document.getElementById('cart-modal');
-    cartModal.style.display = cartModal.style.display === 'flex' ? 'none' : 'flex';
-    updateCart();
-  }
-
-  // Add items to the cart
-  function addToCart(name, price) {
-    const existing = cart.find(item => item.name === name);
-    if (existing) {
-      existing.qty++;
-    } else {
-      cart.push({ name, price, qty: 1 });
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkout | Silent Aid</title>
+  <style>
+    body {
+      background: #121212;
+      color: #f1f1f1;
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 40px 20px;
     }
-    saveCart();
-    updateCart();
-  }
 
-  // Remove items from the cart
-  function removeFromCart(name) {
-    cart = cart.filter(item => item.name !== name);
-    saveCart();
-    updateCart();
-  }
+    h1 {
+      text-align: center;
+      color: #d64c4c;
+    }
 
-  // Update the cart view and total
-  function updateCart() {
-    const cartItems = document.getElementById('cart-items');
-    const cartCount = document.getElementById('cart-count');
-    const cartTotal = document.getElementById('cart-total');
-    cartItems.innerHTML = cart.map(item => `
-      <div class="cart-item">
-        <div>${item.name} (x${item.qty})</div>
-        <div>$${(item.qty * item.price).toFixed(2)}</div>
-        <button onclick="removeFromCart('${item.name}')">Remove</button>
-      </div>
-    `).join('');
+    form {
+      max-width: 500px;
+      margin: 0 auto;
+      background: #222;
+      padding: 30px;
+      border-radius: 8px;
+    }
 
-    // Update total
-    cartTotal.textContent = `Total: $${cart.reduce((total, item) => total + (item.price * item.qty), 0).toFixed(2)}`;
-    // Update cart item count
-    cartCount.textContent = cart.reduce((total, item) => total + item.qty, 0);
-  }
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
 
-  // Save the cart to localStorage
-  function saveCart() {
-    localStorage.setItem('cart', JSON.stringify(cart));
-  }
+    input, select, textarea {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 20px;
+      border: none;
+      border-radius: 5px;
+      background: #333;
+      color: #fff;
+    }
 
-  // ✅ Fixed: Proceed to checkout with redirection
-  function checkout() {
-    localStorage.removeItem('cart'); // Clear the cart
-    window.location.href = 'thankyou.html'; // Redirect to thank you page
-  }
+    button {
+      background: #d64c4c;
+      color: white;
+      border: none;
+      padding: 12px;
+      width: 100%;
+      font-size: 16px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
 
-  // Filter products based on category
-  function filterProducts(category) {
-    const products = document.querySelectorAll('.product');
-    products.forEach(product => {
-      if (category === 'all' || product.getAttribute('data-category') === category) {
-        product.style.display = 'block';
-      } else {
-        product.style.display = 'none';
-      }
+    button:hover {
+      background: #b83838;
+    }
+  </style>
+</head>
+<body>
+  <h1>Checkout</h1>
+  <form id="checkout-form">
+    <label for="name">Full Name</label>
+    <input type="text" id="name" required>
+
+    <label for="address">Shipping Address</label>
+    <textarea id="address" rows="3" required></textarea>
+
+    <label for="email">Email</label>
+    <input type="email" id="email" required>
+
+    <label for="payment">Payment Method</label>
+    <select id="payment" required>
+      <option value="cod">Cash on Delivery</option>
+      <option value="stripe">Stripe</option>
+      <option value="paypal">PayPal</option>
+    </select>
+
+    <button type="submit">Place Order</button>
+  </form>
+
+  <script>
+    document.getElementById('checkout-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      // You can send this data to a backend in future
+      localStorage.removeItem('cart'); // Clear the cart
+
+      // Redirect to thank you page
+      window.location.href = 'thankyou.html';
     });
-  }
-
-  // Update cart on page load
-  updateCart();
-</script>
+  </script>
+</body>
+</html>
