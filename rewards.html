@@ -1,77 +1,73 @@
+<!-- rewards.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Silent Aid | Rewards</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Silent Aid Rewards</title>
   <style>
     body {
       font-family: 'Segoe UI', sans-serif;
-      background-color: #f6f6f6;
-      margin: 0;
+      background: #f0f2f5;
       padding: 40px;
-      text-align: center;
+      color: #111;
     }
-
-    .reward-card {
-      background: white;
+    h1 {
+      text-align: center;
+      color: #d90429;
+    }
+    form {
       max-width: 500px;
       margin: auto;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-      overflow: hidden;
-      padding: 20px;
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
     }
-
-    .reward-card img {
-      width: 100%;
-      border-radius: 8px;
-    }
-
-    .reward-card h2 {
+    label {
+      display: block;
       margin-top: 15px;
-      font-size: 24px;
-      color: #222;
+      font-weight: 600;
     }
-
-    .reward-card p {
-      color: #555;
-      margin: 10px 0;
+    input, textarea {
+      width: 100%;
+      padding: 12px;
+      margin-top: 8px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
     }
-
-    .reward-card .price {
-      font-size: 20px;
-      font-weight: bold;
-      color: #111;
-      margin: 15px 0;
-    }
-
-    .reward-card button {
-      padding: 12px 20px;
-      background-color: #000;
+    button {
+      margin-top: 20px;
+      background: #d90429;
       color: white;
+      padding: 12px 18px;
       border: none;
-      font-size: 16px;
       border-radius: 6px;
       cursor: pointer;
     }
-
-    .reward-card button:hover {
-      background-color: #222;
+    button:hover {
+      background: #a4031f;
     }
   </style>
 </head>
 <body>
+  <h1>Redeem Your Rewards</h1>
+  <form action="checkout2.html" method="GET">
+    <label for="name">Full Name</label>
+    <input type="text" name="name" id="name" required />
 
-  <div class="reward-card">
-    <img src="https://www.incrediblegifts.in/wp-content/uploads/2023/09/Untitled-3-4.jpg" alt="AirPods Pro 4" />
-    <h2>AirPods Pro 4 (Premium Edition)</h2>
-    <p>Crystal-clear sound with advanced noise cancellation and MagSafe case. Limited-time reward deal!</p>
-    <div class="price">₹2799</div>
-    <a href="checkout2.html?product=AirPods%20Pro%204&price=2799">
-      <button>Buy Now</button>
-    </a>
-  </div>
+    <label for="email">Email</label>
+    <input type="email" name="email" id="email" required />
 
+    <label for="phone">Phone Number</label>
+    <input type="tel" name="phone" id="phone" required />
+
+    <label for="city">City</label>
+    <input type="text" name="city" id="city" required />
+
+    <label for="location">Exact Location</label>
+    <textarea name="location" id="location" rows="3" required></textarea>
+
+    <button type="submit">Proceed to Checkout</button>
+  </form>
 </body>
 </html>
