@@ -2,160 +2,76 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Rewards | Silent Aid</title>
+  <title>Silent Aid | Rewards</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <style>
     body {
       font-family: 'Segoe UI', sans-serif;
+      background-color: #f6f6f6;
       margin: 0;
-      padding: 0;
-      background-color: #fff;
-    }
-
-    header {
-      background-color: #111;
-      color: white;
-      padding: 20px;
+      padding: 40px;
       text-align: center;
     }
 
-    section {
-      padding: 40px 20px;
-    }
-
-    .container {
-      max-width: 1200px;
-      margin: auto;
-    }
-
-    .product-row {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      align-items: center;
-      gap: 40px;
-    }
-
-    .product-image {
-      max-width: 400px;
-      border-radius: 12px;
-    }
-
-    .product-info {
+    .reward-card {
+      background: white;
       max-width: 500px;
+      margin: auto;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      padding: 20px;
     }
 
-    .product-info h2 {
-      font-size: 28px;
-      margin-bottom: 10px;
+    .reward-card img {
+      width: 100%;
+      border-radius: 8px;
     }
 
-    .product-info ul {
-      padding-left: 20px;
-      line-height: 1.6;
+    .reward-card h2 {
+      margin-top: 15px;
+      font-size: 24px;
+      color: #222;
     }
 
-    .buy-btn {
+    .reward-card p {
+      color: #555;
+      margin: 10px 0;
+    }
+
+    .reward-card .price {
+      font-size: 20px;
+      font-weight: bold;
+      color: #111;
+      margin: 15px 0;
+    }
+
+    .reward-card button {
+      padding: 12px 20px;
       background-color: #000;
-      color: #fff;
+      color: white;
       border: none;
-      padding: 12px 24px;
       font-size: 16px;
       border-radius: 6px;
       cursor: pointer;
-      margin-top: 15px;
     }
 
-    .buy-btn:hover {
+    .reward-card button:hover {
       background-color: #222;
-    }
-
-    .section-title {
-      text-align: center;
-      margin-bottom: 40px;
-      font-size: 24px;
-    }
-
-    .reward-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 30px;
-    }
-
-    .reward-item {
-      border: 1px solid #ddd;
-      padding: 16px;
-      border-radius: 8px;
-      text-align: center;
-      box-shadow: 0 0 8px rgba(0, 0, 0, 0.05);
-    }
-
-    .reward-item img {
-      max-width: 100%;
-      height: auto;
-      border-radius: 6px;
-      margin-bottom: 10px;
-    }
-
-    .reward-item h4 {
-      margin: 10px 0 5px;
-    }
-
-    .reward-item p {
-      font-size: 14px;
-      color: #444;
     }
   </style>
 </head>
 <body>
 
-<header>
-  <h1>Support Silent Aid – Get Rewards</h1>
-</header>
-
-<!-- AirPods Pro 4 Section -->
-<section>
-  <div class="container product-row">
-    <img src="https://www.incrediblegifts.in/wp-content/uploads/2023/09/Untitled-3-4.jpg" alt="AirPods Pro 4" class="product-image"/>
-
-    <div class="product-info">
-      <h2>Apple AirPods Pro 4</h2>
-      <p>Experience immersive sound, active noise cancellation, and all-day battery with the latest Apple AirPods Pro 4.</p>
-      <ul>
-        <li>✅ Active Noise Cancellation</li>
-        <li>✅ Transparency Mode</li>
-        <li>✅ MagSafe Charging Case</li>
-        <li>✅ Up to 30 Hours Battery Life</li>
-      </ul>
-      <h3 style="color: green;">Only ₹2,799</h3>
-      <button class="buy-btn" onclick="window.location.href='checkout.html?product=AirPods&price=2799'">Buy Now</button>
-      <p style="font-size: 13px; color: gray;">COD Available | Limited Stock</p>
-    </div>
+  <div class="reward-card">
+    <img src="https://www.incrediblegifts.in/wp-content/uploads/2023/09/Untitled-3-4.jpg" alt="AirPods Pro 4" />
+    <h2>AirPods Pro 4 (Premium Edition)</h2>
+    <p>Crystal-clear sound with advanced noise cancellation and MagSafe case. Limited-time reward deal!</p>
+    <div class="price">₹2799</div>
+    <a href="checkout2.html?product=AirPods%20Pro%204&price=2799">
+      <button>Buy Now</button>
+    </a>
   </div>
-</section>
-
-<!-- Rewards Section -->
-<section>
-  <div class="container">
-    <h2 class="section-title">Other Rewards – 100% Profit Goes to Humanitarian Aid</h2>
-
-    <div class="reward-grid">
-      <div class="reward-item">
-        <img src="https://example.com/tshirt.jpg" alt="T-shirt"/>
-        <h4>Silent Aid T-shirt</h4>
-        <p>Premium quality cotton T-shirt – ₹899</p>
-        <button class="buy-btn" onclick="window.location.href='checkout.html?product=Tshirt&price=899'">Buy</button>
-      </div>
-      <div class="reward-item">
-        <img src="https://example.com/mug.jpg" alt="Mug"/>
-        <h4>Silent Aid Mug</h4>
-        <p>Ceramic mug with logo – ₹499</p>
-        <button class="buy-btn" onclick="window.location.href='checkout.html?product=Mug&price=499'">Buy</button>
-      </div>
-      <!-- Add more reward items here -->
-    </div>
-  </div>
-</section>
 
 </body>
 </html>
