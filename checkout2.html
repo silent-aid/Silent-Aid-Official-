@@ -4,9 +4,89 @@
   <meta charset="UTF-8" />
   <title>Place Order - Silent Aid</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f9f9f9;
+      padding: 20px;
+      text-align: center;
+    }
+
+    h1 {
+      color: #111;
+    }
+
+    .gallery {
+      display: flex;
+      overflow-x: auto;
+      gap: 10px;
+      padding: 10px 0;
+      margin-bottom: 30px;
+      scroll-snap-type: x mandatory;
+    }
+
+    .gallery img {
+      width: 300px;
+      height: auto;
+      border-radius: 10px;
+      scroll-snap-align: center;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+      flex-shrink: 0;
+    }
+
+    form {
+      background-color: white;
+      max-width: 400px;
+      margin: auto;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      text-align: left;
+    }
+
+    label {
+      font-weight: bold;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      background-color: #000;
+      color: white;
+      border: none;
+      font-size: 16px;
+      border-radius: 6px;
+      margin-top: 15px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #222;
+    }
+  </style>
 </head>
 <body>
+
   <h1>Place Your Order</h1>
+
+  <!-- Scrollable Image Gallery -->
+  <div class="gallery">
+    <img src="https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/MWP22_AV2?wid=2000&hei=2000&fmt=jpeg&qlt=90&.v=1591634795000" alt="AirPods Pro Front View">
+    <img src="https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/MWP22_AV1?wid=2000&hei=2000&fmt=jpeg&qlt=90&.v=1591634795000" alt="AirPods Pro with Case">
+    <img src="https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/MWP22?wid=2000&hei=2000&fmt=jpeg&qlt=90&.v=1591634795000" alt="AirPods Pro Side Angle">
+    <img src="https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/MWP22_AV3?wid=2000&hei=2000&fmt=jpeg&qlt=90&.v=1591634795000" alt="AirPods Pro Back View">
+  </div>
+
+  <!-- Order Form -->
   <form id="orderForm" method="POST" action="https://script.google.com/macros/s/AKfycbxisICLhzPNqqXPnFdBcAZkiz2iuLvmoIy-kvbzXf5e4JtVyr7jKpuUldWQT9iWlex4/exec">
     <label>
       Name:<br />
@@ -23,10 +103,13 @@
       <textarea name="address" required></textarea>
     </label>
     <br /><br />
-    <!-- Pass product and price dynamically or fixed -->
+
+    <!-- Hidden Fields for Product Info -->
     <input type="hidden" name="product" value="AirPods Pro 4 (Premium Edition)" />
     <input type="hidden" name="price" value="2799" />
+
     <button type="submit">Place Order</button>
   </form>
+
 </body>
 </html>
