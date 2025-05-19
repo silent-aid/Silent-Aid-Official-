@@ -2,139 +2,31 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Silent Aid | Checkout 2</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <style>
-    * { box-sizing: border-box; }
-
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      background-color: #fafafa;
-      padding: 30px;
-      margin: 0;
-    }
-
-    .checkout-box {
-      background-color: #fff;
-      max-width: 550px;
-      margin: auto;
-      padding: 30px;
-      border-radius: 10px;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-    }
-
-    h2 {
-      text-align: center;
-      margin-bottom: 30px;
-      color: #222;
-    }
-
-    label {
-      display: block;
-      margin-top: 15px;
-      font-weight: 600;
-      color: #444;
-    }
-
-    input, textarea {
-      width: 100%;
-      padding: 10px;
-      margin-top: 5px;
-      border-radius: 6px;
-      border: 1px solid #ccc;
-      font-size: 15px;
-    }
-
-    .order-summary {
-      margin-top: 25px;
-      padding: 15px;
-      background: #f3f3f3;
-      border-radius: 8px;
-    }
-
-    .order-summary p {
-      margin: 8px 0;
-      font-weight: 500;
-    }
-
-    button {
-      width: 100%;
-      margin-top: 25px;
-      background: #111;
-      color: white;
-      border: none;
-      padding: 12px;
-      font-size: 16px;
-      border-radius: 8px;
-      cursor: pointer;
-    }
-
-    button:hover {
-      background: #222;
-    }
-  </style>
+  <title>Place Order - Silent Aid</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
 </head>
 <body>
-
-<div class="checkout-box">
-  <h2>Checkout</h2>
-
-  <form id="checkout2Form">
-    <label for="name">Full Name</label>
-    <input type="text" id="name" required />
-
-    <label for="email">Email Address</label>
-    <input type="email" id="email" required />
-
-    <label for="phone">Phone Number</label>
-    <input type="tel" id="phone" required />
-
-    <label for="city">City</label>
-    <input type="text" id="city" required />
-
-    <label for="address">Exact Location</label>
-    <textarea id="address" rows="3" required></textarea>
-
-    <div class="order-summary">
-      <p><strong>Product:</strong> <span id="product-name">Loading...</span></p>
-      <p><strong>Total Price:</strong> ₹<span id="product-price">0</span></p>
-    </div>
-
+  <h1>Place Your Order</h1>
+  <form id="orderForm" method="POST" action="https://script.google.com/macros/s/AKfycbxisICLhzPNqqXPnFdBcAZkiz2iuLvmoIy-kvbzXf5e4JtVyr7jKpuUldWQT9iWlex4/exec">
+    <label>
+      Name:<br />
+      <input type="text" name="name" required />
+    </label>
+    <br /><br />
+    <label>
+      Email:<br />
+      <input type="email" name="email" required />
+    </label>
+    <br /><br />
+    <label>
+      Address:<br />
+      <textarea name="address" required></textarea>
+    </label>
+    <br /><br />
+    <!-- Pass product and price dynamically or fixed -->
+    <input type="hidden" name="product" value="AirPods Pro 4 (Premium Edition)" />
+    <input type="hidden" name="price" value="2799" />
     <button type="submit">Place Order</button>
   </form>
-</div>
-
-<script>
-  // Read product info from URL
-  const urlParams = new URLSearchParams(window.location.search);
-  const product = urlParams.get("product") || "Unknown";
-  const price = urlParams.get("price") || "0";
-
-  // Display it on the page
-  document.getElementById("product-name").textContent = product;
-  document.getElementById("product-price").textContent = price;
-
-  // Handle form submission
-  document.getElementById("checkout2Form").addEventListener("submit", function (e) {
-    e.preventDefault();
-
-    const orderData = {
-      name: document.getElementById("name").value,
-      email: document.getElementById("email").value,
-      phone: document.getElementById("phone").value,
-      city: document.getElementById("city").value,
-      address: document.getElementById("address").value,
-      product,
-      price
-    };
-
-    console.log("Order placed:", orderData);
-    alert("✅ Order placed successfully!");
-
-    // Redirect to confirmation (you can create confirmation2.html)
-    window.location.href = "confirmation.html";
-  });
-</script>
-
 </body>
 </html>
