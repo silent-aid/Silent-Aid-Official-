@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Silent Aid | Checkout 2</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #fafafa;
+      padding: 30px;
+      margin: 0;
+    }
+
+    .checkout-box {
+      background-color: #fff;
+      max-width: 500px;
+      margin: auto;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 30px;
+      color: #222;
+    }
+
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: 600;
+      color: #444;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      font-size: 15px;
+    }
+
+    .order-summary {
+      margin-top: 25px;
+      padding: 15px;
+      background: #f3f3f3;
+      border-radius: 8px;
+    }
+
+    .order-summary p {
+      margin: 8px 0;
+      font-weight: 500;
+    }
+
+    button {
+      width: 100%;
+      margin-top: 25px;
+      background: #111;
+      color: white;
+      border: none;
+      padding: 12px;
+      font-size: 16px;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #222;
+    }
+  </style>
+</head>
+<body>
+
+<div class="checkout-box">
+  <h2>Checkout - Final Step</h2>
+
+  <form id="checkout2Form">
+    <label for="name">Full Name</label>
+    <input type="text" id="name" name="name" required />
+
+    <label for="email">Email Address</label>
+    <input type="email" id="email" name="email" required />
+
+    <label for="address">Shipping Address</label>
+    <textarea id="address" name="address" rows="3" required></textarea>
+
+    <div class="order-summary">
+      <p><strong>Product:</strong> <span id="product-name">Loading...</span></p>
+      <p><strong>Total Price:</strong> ₹<span id="product-price">0</span></p>
+    </div>
+
+    <button type="submit">Place Order</button>
+  </form>
+</div>
+
+<script>
+  // Read product info from URL
+  const urlParams = new URLSearchParams(window.location.search);
+  const product = urlParams.get("product") || "Unknown";
+  const price = urlParams.get("price") || "0";
+
+  // Display it on the page
+  document.getElementById("product-name").textContent = product;
+  document.getElementById("product-price").textContent = price;
+
+  // Handle form submission
+  document.getElementById("checkout2Form").addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    // Collect form data if needed
+    const name = document.getElementById("name").value;
+    const email = document.getElementById("email").value;
+    const address = document.getElementById("address").value;
+
+    // ✅ Optionally send to backend here
+
+    alert("Order placed successfully!");
+    window.location.href = "confirmation.html";
+  });
+</script>
+
+</body>
+</html>
