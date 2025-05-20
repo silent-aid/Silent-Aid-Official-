@@ -1,84 +1,20 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <title>Place Order - Silent Aid</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <style>
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      background-color: #f6f6f6;
-      padding: 20px;
-    }
-    form {
-      max-width: 500px;
-      margin: auto;
-      background: #fff;
-      padding: 20px;
-      border-radius: 12px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    }
-    label {
-      display: block;
-      margin-top: 15px;
-    }
-    input, textarea {
-      width: 100%;
-      padding: 10px;
-      margin-top: 5px;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-    }
-    button {
-      margin-top: 20px;
-      padding: 12px;
-      background: black;
-      color: white;
-      border: none;
-      font-size: 16px;
-      border-radius: 6px;
-      cursor: pointer;
-    }
-  </style>
-</head>
-<body>
-  <marquee behavior="scroll" direction="left" style="background: black; color: white; padding: 10px;">
-    🎉 Welcome to Silent Aid | Free Delivery Available All Over India 🇮🇳
-  </marquee>
-
-  <h2 style="text-align:center;">Place Your Order</h2>
-
-  <form method="POST" action="https://script.google.com/macros/s/AKfycbxisICLhzPNqqXPnFdBcAZkiz2iuLvmoIy-kvbzXf5e4JtVyr7jKpuUldWQT9iWlex4/exec">
-    <label>
-      Full Name:
-      <input type="text" name="name" required />
-    </label>
-
-    <label>
-      Email:
-      <input type="email" name="email" required />
-    </label>
-
-    <label>
-      Phone Number:
-      <input type="tel" name="phone" required />
-    </label>
-
-    <label>
-      City:
-      <input type="text" name="city" required />
-    </label>
-
-    <label>
-      Full Address:
-      <textarea name="address" required></textarea>
-    </label>
-
-    <!-- Hidden product and price -->
-    <input type="hidden" name="product" value="AirPods Pro 4 (Premium Edition)" />
-    <input type="hidden" name="price" value="999" />
-
-    <button type="submit">Place Order</button>
-  </form>
-</body>
-</html>
+<form method="POST" action="YOUR_SCRIPT_URL">
+  <label>Full Name:
+    <input type="text" name="name" required />
+  </label>
+  <label>Email:
+    <input type="email" name="email" required />
+  </label>
+  <label>Phone Number:
+    <input type="tel" name="phone" required />
+  </label>
+  <label>City:
+    <input type="text" name="city" required />
+  </label>
+  <label>Address:
+    <textarea name="address" required></textarea>
+  </label>
+  <input type="hidden" name="product" value="AirPods Pro 4 (Premium Edition)" />
+  <input type="hidden" name="price" value="999" />
+  <button type="submit">Place Order</button>
+</form>
