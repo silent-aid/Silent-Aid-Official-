@@ -7,113 +7,106 @@
   <style>
     body {
       font-family: 'Segoe UI', sans-serif;
-      background-color: #f9f9f9;
-      padding: 20px;
+      background-color: #121212;
+      margin: 0;
+      padding: 70px 20px 40px;
+      color: #fff;
+    }
+
+    .announcement-bar {
+      background-color: #000;
+      color: #fff;
+      font-size: 14px;
       text-align: center;
+      padding: 12px 0;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 999;
+      animation: slideDown 0.8s ease-out;
+    }
+
+    @keyframes slideDown {
+      0% {
+        transform: translateY(-100%);
+      }
+      100% {
+        transform: translateY(0);
+      }
     }
 
     h1 {
-      color: #111;
-    }
-
-    .gallery {
-      display: flex;
-      overflow-x: auto;
-      gap: 10px;
-      padding: 10px 0;
-      margin-bottom: 30px;
-      scroll-snap-type: x mandatory;
-    }
-
-    .gallery img {
-      width: 300px;
-      height: auto;
-      border-radius: 10px;
-      scroll-snap-align: center;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-      flex-shrink: 0;
+      text-align: center;
+      color: #00ffcc;
     }
 
     form {
-      background-color: white;
-      max-width: 400px;
+      max-width: 500px;
+      background-color: #1e1e1e;
+      padding: 25px;
       margin: auto;
-      padding: 20px;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-      text-align: left;
+      border-radius: 10px;
+      box-shadow: 0 0 12px rgba(0, 255, 204, 0.2);
     }
 
     label {
-      font-weight: bold;
+      display: block;
+      margin-bottom: 15px;
+      color: #ccc;
     }
 
     input, textarea {
       width: 100%;
       padding: 10px;
-      margin-top: 5px;
+      border: none;
       border-radius: 6px;
-      border: 1px solid #ccc;
-      box-sizing: border-box;
+      background-color: #2a2a2a;
+      color: #fff;
+      font-size: 14px;
     }
 
     button {
-      width: 100%;
-      padding: 12px;
-      background-color: #000;
-      color: white;
+      margin-top: 15px;
+      padding: 12px 24px;
+      background-color: #00ffcc;
+      color: #000;
       border: none;
       font-size: 16px;
       border-radius: 6px;
-      margin-top: 15px;
       cursor: pointer;
     }
 
     button:hover {
-      background-color: #222;
+      background-color: #00ccaa;
     }
   </style>
 </head>
 <body>
-
-  <h1>Place Your Order</h1>
-
-  <!-- Scrollable Image Gallery -->
-  <div class="gallery">
-    <img src="https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/MWP22_AV2?wid=2000&hei=2000&fmt=jpeg&qlt=90&.v=1591634795000" alt="AirPods Pro Front View">
-    <img src="https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/MWP22_AV1?wid=2000&hei=2000&fmt=jpeg&qlt=90&.v=1591634795000" alt="AirPods Pro with Case">
-    <img src="https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/MWP22?wid=2000&hei=2000&fmt=jpeg&qlt=90&.v=1591634795000" alt="AirPods Pro Side Angle">
-    <img src="https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/MWP22_AV3?wid=2000&hei=2000&fmt=jpeg&qlt=90&.v=1591634795000" alt="AirPods Pro Back View">
+  <div class="announcement-bar">
+    🎉 Welcome to Silent Aid! Enjoy Free Delivery on All Orders! 🚚
   </div>
 
-  <!-- Order Form -->
+  <h1>Place Your Order</h1>
   <form id="orderForm" method="POST" action="https://script.google.com/macros/s/AKfycbxisICLhzPNqqXPnFdBcAZkiz2iuLvmoIy-kvbzXf5e4JtVyr7jKpuUldWQT9iWlex4/exec">
     <label>
-      Name:<br />
+      Name:
       <input type="text" name="name" required />
     </label>
-    <br /><br />
+
     <label>
-      Email:<br />
+      Email:
       <input type="email" name="email" required />
     </label>
-    <br /><br />
+
     <label>
-      Address:<br />
+      Address:
       <textarea name="address" required></textarea>
     </label>
-    <br /><br />
-     <label>
-      Phone Number:<br />
-      <input type="Phone Number" name="Phone Number" required />
-    </label>
 
-    <!-- Hidden Fields for Product Info -->
     <input type="hidden" name="product" value="AirPods Pro 4 (Premium Edition)" />
     <input type="hidden" name="price" value="999" />
 
     <button type="submit">Place Order</button>
   </form>
-
 </body>
 </html>
