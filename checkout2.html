@@ -1,35 +1,137 @@
-function doPost(e) {
-  const sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Place Order - Silent Aid</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #121212;
+      margin: 0;
+      padding: 70px 20px 40px;
+      color: #fff;
+    }
 
-  const name = e.parameter.name;
-  const email = e.parameter.email;
-  const phone = e.parameter.phone;
-  const city = e.parameter.city;
-  const address = e.parameter.address;
-  const product = e.parameter.product;
-  const price = e.parameter.price;
-  const timestamp = new Date();
+    .announcement-bar {
+      background-color: #000;
+      color: #fff;
+      font-size: 14px;
+      text-align: center;
+      padding: 12px 0;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 999;
+      animation: slideDown 0.8s ease-out;
+    }
 
-  // Add to sheet
-  sheet.appendRow([timestamp, name, email, phone, city, address, product, price]);
+    @keyframes slideDown {
+      0% { transform: translateY(-100%); }
+      100% { transform: translateY(0); }
+    }
 
-  // Email to you
-  MailApp.sendEmail({
-    to: "silentaidofficial@gmail.com",
-    subject: `New Order: ${product}`,
-    body: `
-🛒 New Order Received via Silent Aid:
+    h1 {
+      text-align: center;
+      color: #00ffcc;
+    }
 
-🧑 Name: ${name}
-📧 Email: ${email}
-📞 Phone: ${phone}
-🏙️ City: ${city}
-🏠 Address: ${address}
-📦 Product: ${product}
-💰 Price: ₹${price}
-🕒 Time: ${timestamp}
-    `
-  });
+    form {
+      max-width: 500px;
+      background-color: #1e1e1e;
+      padding: 25px;
+      margin: auto;
+      border-radius: 10px;
+      box-shadow: 0 0 12px rgba(0, 255, 204, 0.2);
+    }
 
-  return ContentService.createTextOutput("Order received. Thank you!");
-}
+    label {
+      display: block;
+      margin-bottom: 12px;
+      color: #ccc;
+      text-align: left;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 10px;
+      margin-top: 6px;
+      border: none;
+      border-radius: 6px;
+      background-color: #2a2a2a;
+      color: #fff;
+      font-size: 14px;
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 12px 24px;
+      background-color: #00ffcc;
+      color: #000;
+      border: none;
+      font-size: 16px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #00ccaa;
+    }
+  </style>
+</head>
+<body>
+  <div class="announcement-bar">
+    🎉 Welcome to Silent Aid! Enjoy Free Delivery on All Orders! 🚚
+  </div>
+
+  <h1>Place Your Order</h1>
+  <form id="orderForm">
+    <label>Full Name:
+      <input type="text" name="name" required />
+    </label>
+
+    <label>Email Address:
+      <input type="email" name="email" required />
+    </label>
+
+    <label>Phone Number:
+      <input type="tel" name="phone" required />
+    </label>
+
+    <label>City:
+      <input type="text" name="city" required />
+    </label>
+
+    <label>Exact Delivery Address:
+      <textarea name="address" rows="4" required></textarea>
+    </label>
+
+    <input type="hidden" name="product" value="AirPods Pro 4 (Premium Edition)" />
+    <input type="hidden" name="price" value="999" />
+
+    <button type="submit">Place Order</button>
+  </form>
+
+  <script>
+    const form = document.getElementById("orderForm");
+    form.addEventListener("submit", async function(event) {
+      event.preventDefault();
+
+      const formData = new FormData(form);
+      const data = new URLSearchParams(formData);
+
+      try {
+        await fetch("https://script.google.com/macros/s/AKfycbxisICLhzPNqqXPnFdBcAZkiz2iuLvmoIy-kvbzXf5e4JtVyr7jKpuUldWQT9iWlex4/exec", {
+          method: "POST",
+          body: data
+        });
+
+        window.location.href = "thankyou.html";
+      } catch (error) {
+        alert("Something went wrong. Please try again.");
+        console.error("Error submitting form:", error);
+      }
+    });
+  </script>
+</body>
+</html>
