@@ -5,11 +5,33 @@
   <title>Silent Aid | Rewards</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <style>
+    .announcement-bar {
+      background-color: #000;
+      color: #fff;
+      font-size: 14px;
+      text-align: center;
+      padding: 10px 0;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+      animation: slideDown 1s ease forwards;
+    }
+
+    @keyframes slideDown {
+      0% {
+        transform: translateY(-100%);
+      }
+      100% {
+        transform: translateY(0%);
+      }
+    }
+
     body {
       font-family: 'Segoe UI', sans-serif;
       background-color: #f6f6f6;
       margin: 0;
-      padding: 40px 20px;
+      padding: 60px 20px 40px; /* Adjusted top padding */
       text-align: center;
     }
 
@@ -73,6 +95,10 @@
   </style>
 </head>
 <body>
+
+  <div class="announcement-bar">
+    🎉 Welcome to Silent Aid! Enjoy Free Delivery on All Orders! 🚚
+  </div>
 
   <div class="reward-card">
     <div class="image-gallery">
