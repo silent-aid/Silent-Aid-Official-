@@ -72,6 +72,11 @@
       0% { transform: translateX(100%); }
       100% { transform: translateX(-100%); }
     }
+
+    #otherCityField {
+      display: none;
+      margin-top: 10px;
+    }
   </style>
 </head>
 <body>
@@ -86,7 +91,7 @@
     <label>Phone Number: <input type="tel" name="phone" required /></label>
 
     <label>City:
-      <select name="city" required>
+      <select name="city" id="citySelect" required>
         <option value="">-- Select Your City --</option>
         <option>Hyderabad</option>
         <option>Delhi</option>
@@ -106,9 +111,13 @@
         <option>Coimbatore</option>
         <option>Visakhapatnam</option>
         <option>Thiruvananthapuram</option>
-        <!-- Add more as needed -->
+        <option value="Other">Other</option>
       </select>
     </label>
+
+    <div id="otherCityField">
+      <label>Enter Your City: <input type="text" id="otherCityInput" /></label>
+    </div>
 
     <label>Full Address: <textarea name="address" required></textarea></label>
 
@@ -121,10 +130,28 @@
 
   <script>
     const form = document.getElementById('orderForm');
+    const citySelect = document.getElementById('citySelect');
+    const otherCityField = document.getElementById('otherCityField');
+    const otherCityInput = document.getElementById('otherCityInput');
+
+    citySelect.addEventListener('change', () => {
+      if (citySelect.value === 'Other') {
+        otherCityField.style.display = 'block';
+        otherCityInput.required = true;
+      } else {
+        otherCityField.style.display = 'none';
+        otherCityInput.required = false;
+      }
+    });
+
     form.addEventListener('submit', function(event) {
       event.preventDefault();
 
       const formData = new FormData(form);
+      if (citySelect.value === 'Other') {
+        formData.set('city', otherCityInput.value.trim());
+      }
+
       const url = "https://script.google.com/macros/s/AKfycbxisICLhzPNqqXPnFdBcAZkiz2iuLvmoIy-kvbzXf5e4JtVyr7jKpuUldWQT9iWlex4/exec";
 
       fetch(url, {
@@ -133,7 +160,7 @@
       })
       .then(response => response.text())
       .then(data => {
-        window.location.href = "thank-you.html"; // Redirect to thank-you page
+        window.location.href = "thank-you.html"; // Redirect
       })
       .catch(error => {
         alert("There was an error submitting your order.");
