@@ -5,17 +5,30 @@
   <title>Silent Aid | Rewards</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #121212;
+      margin: 0;
+      padding: 60px 20px 40px;
+      text-align: center;
+      color: #fff;
+    }
+
     .announcement-bar {
       background-color: #000;
       color: #fff;
       font-size: 14px;
       text-align: center;
-      padding: 10px 0;
+      padding: 12px 0;
       position: fixed;
       top: 0;
       width: 100%;
-      z-index: 1000;
-      animation: slideDown 1s ease forwards;
+      z-index: 999;
+      animation: slideDown 0.8s ease-out;
     }
 
     @keyframes slideDown {
@@ -23,24 +36,16 @@
         transform: translateY(-100%);
       }
       100% {
-        transform: translateY(0%);
+        transform: translateY(0);
       }
     }
 
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      background-color: #f6f6f6;
-      margin: 0;
-      padding: 60px 20px 40px; /* Adjusted top padding */
-      text-align: center;
-    }
-
     .reward-card {
-      background: white;
-      max-width: 500px;
+      background: #1e1e1e;
+      max-width: 550px;
       margin: auto;
       border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
       overflow: hidden;
       padding: 20px;
     }
@@ -48,65 +53,69 @@
     .image-gallery {
       display: flex;
       overflow-x: auto;
-      gap: 10px;
       scroll-snap-type: x mandatory;
+      gap: 10px;
       margin-bottom: 15px;
     }
 
     .image-gallery img {
       width: 100%;
-      max-width: 460px;
-      border-radius: 10px;
+      max-width: 500px;
+      border-radius: 8px;
       scroll-snap-align: center;
       flex-shrink: 0;
     }
 
     .reward-card h2 {
-      margin-top: 15px;
       font-size: 24px;
-      color: #222;
+      margin-top: 10px;
+      color: #fff;
     }
 
     .reward-card p {
-      color: #555;
+      color: #ccc;
       margin: 10px 0;
     }
 
     .reward-card .price {
-      font-size: 20px;
+      font-size: 22px;
       font-weight: bold;
-      color: #111;
+      color: #00ffcc;
       margin: 15px 0;
     }
 
     .reward-card button {
-      padding: 12px 20px;
-      background-color: #000;
-      color: white;
+      padding: 12px 24px;
+      background-color: #00ffcc;
+      color: #000;
       border: none;
       font-size: 16px;
       border-radius: 6px;
       cursor: pointer;
+      transition: 0.3s;
     }
 
     .reward-card button:hover {
-      background-color: #222;
+      background-color: #00ccaa;
+    }
+
+    a {
+      text-decoration: none;
     }
   </style>
 </head>
 <body>
-
   <div class="announcement-bar">
     🎉 Welcome to Silent Aid! Enjoy Free Delivery on All Orders! 🚚
   </div>
 
   <div class="reward-card">
     <div class="image-gallery">
-      <img src="https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/MWP22_AV2?wid=2000&hei=2000&fmt=jpeg&qlt=90&.v=1591634795000" alt="AirPods Pro Front View">
-      <img src="https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/MWP22_AV1?wid=2000&hei=2000&fmt=jpeg&qlt=90&.v=1591634795000" alt="AirPods Pro with Case">
-      <img src="https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/MWP22?wid=2000&hei=2000&fmt=jpeg&qlt=90&.v=1591634795000" alt="AirPods Pro Side View">
-      <img src="https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/MWP22_AV3?wid=2000&hei=2000&fmt=jpeg&qlt=90&.v=1591634795000" alt="AirPods Pro Back View">
-      <img src="https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/MWP22_AV4?wid=2000&hei=2000&fmt=jpeg&qlt=90&.v=1591634795000" alt="AirPods Pro Top Case View">
+      <img src="https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/MWP22_AV1?wid=2000&hei=2000&fmt=jpeg&qlt=90&.v=1591634795000" alt="AirPods Pro 1">
+      <img src="https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/MWP22_AV2?wid=2000&hei=2000&fmt=jpeg&qlt=90&.v=1591634795000" alt="AirPods Pro 2">
+      <img src="https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/MWP22_AV3?wid=2000&hei=2000&fmt=jpeg&qlt=90&.v=1591634795000" alt="AirPods Pro 3">
+      <img src="https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/MWP22_AV4?wid=2000&hei=2000&fmt=jpeg&qlt=90&.v=1591634795000" alt="AirPods Pro 4">
+      <img src="https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/MWP22?wid=2000&hei=2000&fmt=jpeg&qlt=90&.v=1591634795000" alt="AirPods Pro Case">
     </div>
 
     <h2>AirPods Pro 4 (Premium Edition)</h2>
@@ -116,6 +125,5 @@
       <button>Buy Now</button>
     </a>
   </div>
-
 </body>
 </html>
