@@ -1,116 +1,35 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <title>Place Order - Silent Aid</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <style>
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      background-color: #121212;
-      margin: 0;
-      padding: 70px 20px 40px;
-      color: #fff;
-    }
+function doPost(e) {
+  const sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
 
-    .announcement-bar {
-      background-color: #000;
-      color: #fff;
-      font-size: 14px;
-      text-align: center;
-      padding: 12px 0;
-      position: fixed;
-      top: 0;
-      width: 100%;
-      z-index: 999;
-      animation: slideDown 0.8s ease-out;
-    }
+  const name = e.parameter.name;
+  const email = e.parameter.email;
+  const phone = e.parameter.phone;
+  const city = e.parameter.city;
+  const address = e.parameter.address;
+  const product = e.parameter.product;
+  const price = e.parameter.price;
+  const timestamp = new Date();
 
-    @keyframes slideDown {
-      0% {
-        transform: translateY(-100%);
-      }
-      100% {
-        transform: translateY(0);
-      }
-    }
+  // Add to sheet
+  sheet.appendRow([timestamp, name, email, phone, city, address, product, price]);
 
-    h1 {
-      text-align: center;
-      color: #00ffcc;
-    }
+  // Email to you
+  MailApp.sendEmail({
+    to: "silentaidofficial@gmail.com",
+    subject: `New Order: ${product}`,
+    body: `
+🛒 New Order Received via Silent Aid:
 
-    form {
-      max-width: 500px;
-      background-color: #1e1e1e;
-      padding: 25px;
-      margin: auto;
-      border-radius: 10px;
-      box-shadow: 0 0 12px rgba(0, 255, 204, 0.2);
-    }
+🧑 Name: ${name}
+📧 Email: ${email}
+📞 Phone: ${phone}
+🏙️ City: ${city}
+🏠 Address: ${address}
+📦 Product: ${product}
+💰 Price: ₹${price}
+🕒 Time: ${timestamp}
+    `
+  });
 
-    label {
-      display: block;
-      margin-bottom: 15px;
-      color: #ccc;
-    }
-
-    input, textarea {
-      width: 100%;
-      padding: 10px;
-      border: none;
-      border-radius: 6px;
-      background-color: #2a2a2a;
-      color: #fff;
-      font-size: 14px;
-    }
-
-    button {
-      margin-top: 15px;
-      padding: 12px 24px;
-      background-color: #00ffcc;
-      color: #000;
-      border: none;
-      font-size: 16px;
-      border-radius: 6px;
-      cursor: pointer;
-    }
-
-    button:hover {
-      background-color: #00ccaa;
-    }
-  </style>
-</head>
-<body>
-  <div class="announcement-bar">
-    🎉 Welcome to Silent Aid! Enjoy Free Delivery on All Orders! 🚚
-  </div>
-
-  <h1>Place Your Order</h1>
-  <form id="orderForm" method="POST" action="https://script.google.com/macros/s/AKfycbxisICLhzPNqqXPnFdBcAZkiz2iuLvmoIy-kvbzXf5e4JtVyr7jKpuUldWQT9iWlex4/exec">
-    <label>
-      Name:
-      <input type="text" name="name" required />
-    </label>
-
-    <label>
-      Email:
-      <input type="email" name="email" required />
-    </label>
-    <label>
-      Phone Number:
-      <textarea name="Phone Number" required></textarea>
-    </label>
-
-    <label>
-      Address:
-      <textarea name="address" required></textarea>
-    </label>
-
-    <input type="hidden" name="product" value="AirPods Pro 4 (Premium Edition)" />
-    <input type="hidden" name="price" value="999" />
-
-    <button type="submit">Place Order</button>
-  </form>
-</body>
-</html>
+  return ContentService.createTextOutput("Order received. Thank you!");
+}
