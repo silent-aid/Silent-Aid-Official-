@@ -13,67 +13,30 @@
       text-align: center;
     }
 
-    .announcement {
-      background: #d90429;
-      color: white;
-      text-align: center;
-      padding: 10px 20px;
-      font-weight: bold;
-      font-size: 1em;
-    }
-
-    nav {
-      background-color: #0a0a0a;
-      padding: 15px 30px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-    }
-
-    .nav-left h1 {
-      color: #fff;
-      font-size: 1.8em;
-      letter-spacing: 1px;
-    }
-
-    .nav-center ul {
-      list-style: none;
-      display: flex;
-      gap: 20px;
-    }
-
-    .nav-center li a {
-      color: #fff;
-      font-weight: 600;
-      transition: 0.3s;
-      text-decoration: none;
-    }
-
-    .nav-center li a:hover {
-      color: #ffca28;
-    }
-
-    .nav-right i {
-      font-size: 1.2em;
-      color: white;
-      margin-left: 15px;
-      cursor: pointer;
-    }
-
     .reward-card {
       background: white;
       max-width: 500px;
-      margin: 60px auto;
+      margin: auto;
       border-radius: 12px;
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
       overflow: hidden;
       padding: 20px;
     }
 
-    .reward-card img {
+    .image-gallery {
+      display: flex;
+      overflow-x: auto;
+      gap: 10px;
+      scroll-snap-type: x mandatory;
+      margin-bottom: 15px;
+    }
+
+    .image-gallery img {
       width: 100%;
-      border-radius: 8px;
+      max-width: 460px;
+      border-radius: 10px;
+      scroll-snap-align: center;
+      flex-shrink: 0;
     }
 
     .reward-card h2 {
@@ -107,62 +70,26 @@
     .reward-card button:hover {
       background-color: #222;
     }
-
-    footer {
-      background-color: #0a0a0a;
-      color: #ccc;
-      text-align: center;
-      padding: 30px 10px;
-      font-size: 0.95em;
-    }
-
-    @media (max-width: 768px) {
-      .nav-center ul {
-        flex-direction: column;
-        gap: 10px;
-        padding-top: 10px;
-      }
-    }
   </style>
 </head>
-
 <body>
-  <div class="announcement">
-    EVERY ORDER GIVES BACK TO HUMANITY | Free Shipping: US $59, CA $200, UK £160
-  </div>
-
-  <nav>
-    <div class="nav-left"><h1>Silent Aid</h1></div>
-    <div class="nav-center">
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="shop.html">Shop</a></li>
-        <li><a href="#">Collections 🍉</a></li>
-        <li><a href="#">New Arrivals</a></li>
-        <li><a href="impact.html">Impact</a></li>
-        <li><a href="rewards.html">Rewards</a></li>
-        <li><a href="#">Contact</a></li>
-      </ul>
-    </div>
-    <div class="nav-right">
-      <i>🔍</i>
-      <i>🛒</i>
-      <i>👤</i>
-    </div>
-  </nav>
 
   <div class="reward-card">
-    <img src="https://www.incrediblegifts.in/wp-content/uploads/2023/09/Untitled-3-4.jpg" alt="AirPods Pro 4" />
+    <div class="image-gallery">
+      <img src="https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/MWP22_AV2?wid=2000&hei=2000&fmt=jpeg&qlt=90&.v=1591634795000" alt="AirPods Pro Front View">
+      <img src="https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/MWP22_AV1?wid=2000&hei=2000&fmt=jpeg&qlt=90&.v=1591634795000" alt="AirPods Pro with Case">
+      <img src="https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/MWP22?wid=2000&hei=2000&fmt=jpeg&qlt=90&.v=1591634795000" alt="AirPods Pro Side View">
+      <img src="https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/MWP22_AV3?wid=2000&hei=2000&fmt=jpeg&qlt=90&.v=1591634795000" alt="AirPods Pro Back View">
+      <img src="https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/MWP22_AV4?wid=2000&hei=2000&fmt=jpeg&qlt=90&.v=1591634795000" alt="AirPods Pro Top Case View">
+    </div>
+
     <h2>AirPods Pro 4 (Premium Edition)</h2>
     <p>Crystal-clear sound with advanced noise cancellation and MagSafe case. Limited-time reward deal!</p>
-    <div class="price">₹2799</div>
-    <a href="checkout2.html?product=AirPods%20Pro%204&price=2799">
+    <div class="price">₹999</div>
+    <a href="checkout2.html?product=AirPods%20Pro%204&price=999">
       <button>Buy Now</button>
     </a>
   </div>
 
-  <footer>
-    © 2025 Silent Aid | Powered by Purpose | Built to Uplift Humanity
-  </footer>
 </body>
 </html>
