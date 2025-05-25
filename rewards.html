@@ -15,6 +15,7 @@
       padding: 60px 20px 40px;
       text-align: center;
       color: #fff;
+      overflow-x: hidden;
     }
     .announcement-bar {
       background-color: #000;
@@ -35,35 +36,54 @@
     .yaqeen-card {
       background: #1e1e1e;
       max-width: 800px;
-      margin: auto;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+      margin: 80px auto 20px;
+      border-radius: 16px;
+      box-shadow: 0 0 25px rgba(0, 255, 204, 0.2);
       overflow: hidden;
       padding: 30px;
+      position: relative;
+      animation: fadeIn 1.2s ease;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .badge {
+      position: absolute;
+      top: -12px;
+      right: -12px;
+      background: #00ffcc;
+      color: #000;
+      padding: 10px 15px;
+      border-radius: 12px;
+      font-weight: bold;
+      font-size: 13px;
+      box-shadow: 0 0 15px rgba(0, 255, 204, 0.6);
     }
     .image-gallery {
       display: flex;
       overflow-x: auto;
       scroll-snap-type: x mandatory;
       gap: 10px;
-      margin-bottom: 15px;
+      margin-bottom: 20px;
     }
     .image-gallery img {
       width: 100%;
       max-width: 500px;
-      border-radius: 8px;
+      border-radius: 10px;
       scroll-snap-align: center;
       flex-shrink: 0;
+      border: 2px solid #00ffcc40;
     }
     h2 {
-      font-size: 26px;
+      font-size: 28px;
       margin: 15px 0;
       color: #fff;
     }
     p {
       color: #ccc;
       font-size: 16px;
-      line-height: 1.6;
+      line-height: 1.7;
     }
     .price {
       font-size: 22px;
@@ -71,18 +91,30 @@
       color: #00ffcc;
       margin: 20px 0;
     }
-    button {
-      padding: 12px 24px;
+    .btn {
+      padding: 12px 28px;
       background-color: #00ffcc;
       color: #000;
       border: none;
       font-size: 16px;
+      font-weight: bold;
       border-radius: 6px;
       cursor: pointer;
-      transition: 0.3s;
+      transition: 0.4s ease;
+      margin: 10px;
     }
-    button:hover {
-      background-color: #00ccaa;
+    .btn:hover {
+      background-color: #00e6b3;
+      transform: scale(1.05);
+    }
+    .donate-btn {
+      background: transparent;
+      border: 2px solid #00ffcc;
+      color: #00ffcc;
+    }
+    .donate-btn:hover {
+      background-color: #00ffcc;
+      color: #000;
     }
     a {
       text-decoration: none;
@@ -90,31 +122,36 @@
   </style>
 </head>
 <body>
+
   <div class="announcement-bar">
-    🕊️ In Loving Memory of Yaqeen — Every Purchase Funds Gaza Children | Free Delivery 🇮🇳
+    🕊️ In Memory of Yaqeen – A Voice Silenced Too Soon | 100% Proceeds Aid Gaza 🇵🇸
   </div>
 
   <div class="yaqeen-card">
+    <div class="badge">100% to Gaza 🇵🇸</div>
+    
     <div class="image-gallery">
-      <img src=""C:\Users\Mohammed Wajid Ali\Documents\yaqeen-shirt.jpg"" alt="Yaqeen T-Shirt">
+      <img src="images/yaqeen-shirt.jpg" alt="Yaqeen T-Shirt">
       <img src="images/yaqeen-keychain.jpg" alt="Yaqeen Keychain">
     </div>
 
-    <h2>🕊️ The Yaqeen Collection</h2>
+    <h2>🌸 Yaqeen Collection</h2>
     <p>
-      On May 23, 2025, a young Palestinian girl named <strong>Yaqeen</strong> lost her life in a brutal airstrike by Israeli forces. 
-      She was full of hope, innocence, and faith — her name literally means "certainty" — a powerful reminder of the unwavering belief that justice will prevail. <br><br>
-      In her memory, we launch the <strong>Yaqeen Collection</strong>. All profits from these items — including specially designed T-shirts and keychains — will be donated 
-      directly to support food, water, shelter, and emergency aid for children in Gaza.
-      <br><br>
-      This is not just a product. This is a promise. A symbol. A movement. Wear her name proudly and join us in turning grief into action.
+      On May 23rd, 2025, <strong>Yaqeen</strong>, a beautiful young girl from Gaza, was martyred in an Israeli airstrike. She was full of dreams, love, and laughter — a radiant symbol of hope in the middle of despair.<br><br>
+      This collection is dedicated to her memory. Every T-shirt and keychain sold is a step toward justice, as <strong>100% of proceeds go to providing food, aid, and relief to children in Gaza</strong> — those who survive but still suffer.<br><br>
+      Let her name live on through you. Wear it. Share it. Make it echo through the world.
     </p>
 
-    <div class="price">From ₹299 – All Profits to Gaza Aid</div>
-    
-    <a href="checkout2.html?product=Yaqeen%20Collection%20Combo&price=999">
-      <button>Shop Yaqeen Collection</button>
+    <div class="price">Combo Starting at ₹999</div>
+
+    <a href="checkout2.html?product=Yaqeen%20Tshirt%20+%20Keychain&price=999">
+      <button class="btn">🛒 Shop Now</button>
+    </a>
+
+    <a href="https://donate.silent-aid.org" target="_blank">
+      <button class="btn donate-btn">❤️ Donate Without Buying</button>
     </a>
   </div>
+
 </body>
 </html>
