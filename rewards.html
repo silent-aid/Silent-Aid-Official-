@@ -76,7 +76,13 @@
       color: #00ffcc;
       margin: 15px 0;
     }
-    .reward-card button {
+    .button-group {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: 20px;
+    }
+    .button-group a button {
       padding: 12px 24px;
       background-color: #00ffcc;
       color: #000;
@@ -86,7 +92,7 @@
       cursor: pointer;
       transition: 0.3s;
     }
-    .reward-card button:hover {
+    .button-group a button:hover {
       background-color: #00ccaa;
     }
     a {
@@ -99,22 +105,31 @@
 
   <div class="reward-card">
     <div class="image-gallery">
-      <img src="https://shop.yaqeeninstitute.org/cdn/shop/products/yaqeen-q-t-shirt-white.jpg" alt="Yaqeen T-Shirt White">
-      <img src="https://shop.yaqeeninstitute.org/cdn/shop/products/yaqeen-q-t-shirt-black.jpg" alt="Yaqeen T-Shirt Black">
-      <img src="https://i.etsystatic.com/10411000/r/il/0a0d5d/4520993604/il_794xN.4520993604_osx0.jpg" alt="Keychain Palestine">
-      <img src="https://i.etsystatic.com/22213782/r/il/6c4c7f/3211211050/il_794xN.3211211050_7tul.jpg" alt="Aid Keychain 2">
+      <!-- T-shirts -->
+      <img src="https://i.etsystatic.com/27965964/r/il/4b6fce/3638768393/il_794xN.3638768393_j1ge.jpg" alt="Free Palestine T-Shirt 1">
+      <img src="https://i.etsystatic.com/16147289/r/il/79bcbb/4694927749/il_794xN.4694927749_c4cz.jpg" alt="Palestine Map T-Shirt">
+      <img src="https://i.etsystatic.com/17256671/r/il/0e56c7/1806816673/il_794xN.1806816673_hijm.jpg" alt="Stand With Palestine T-Shirt">
+      <!-- Keychains -->
+      <img src="https://i.etsystatic.com/22213782/r/il/6c4c7f/3211211050/il_794xN.3211211050_7tul.jpg" alt="Keychain Palestine">
+      <img src="https://i.etsystatic.com/21415453/r/il/1aeb77/4609204134/il_794xN.4609204134_fp09.jpg" alt="Free Palestine Heart Keychain">
+      <img src="https://i.etsystatic.com/21116091/r/il/cfd64d/2170927071/il_794xN.2170927071_b9s4.jpg" alt="Gaza Aid Keychain">
     </div>
 
     <h2>Yaqeen Collection – In Memory of a Brave Soul</h2>
     <p>
-      On May 23rd, Yaqeen — a young girl — lost her life in a brutal Israeli airstrike. This collection is dedicated to her memory and to the innocent children of Gaza. Every T-shirt and keychain you purchase contributes directly to food, medicine, and shelter for children in need.
+      On May 23rd, Yaqeen — a young girl — was martyred in an Israeli airstrike. This collection is a tribute to her courage and to the children suffering in Gaza. Every T-shirt and keychain you buy funds food, water, shelter, and medical aid for these innocent lives. Let her name echo through kindness.
     </p>
 
     <div class="price">Starting at ₹299</div>
 
-    <a href="yaqeen-products.html">
-      <button>Shop Now</button>
-    </a>
+    <div class="button-group">
+      <a href="yaqeen-products.html">
+        <button>Shop Now</button>
+      </a>
+      <a href="donate.html">
+        <button>Directly Donate</button>
+      </a>
+    </div>
   </div>
 </body>
 </html>
