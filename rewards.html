@@ -29,16 +29,12 @@
       animation: slideDown 0.8s ease-out;
     }
     @keyframes slideDown {
-      0% {
-        transform: translateY(-100%);
-      }
-      100% {
-        transform: translateY(0);
-      }
+      0% { transform: translateY(-100%); }
+      100% { transform: translateY(0); }
     }
-    .reward-card {
+    .collection-card {
       background: #1e1e1e;
-      max-width: 600px;
+      max-width: 700px;
       margin: auto;
       border-radius: 12px;
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
@@ -51,11 +47,10 @@
       scroll-snap-type: x mandatory;
       gap: 10px;
       margin-bottom: 15px;
-      padding-bottom: 10px;
     }
     .image-gallery img {
       width: 100%;
-      max-width: 500px;
+      max-width: 300px;
       border-radius: 8px;
       scroll-snap-align: center;
       flex-shrink: 0;
@@ -65,12 +60,13 @@
       margin-top: 10px;
       color: #00ffcc;
     }
-    .reward-card p {
+    .description {
       color: #ccc;
-      margin: 12px 0 20px;
+      margin: 10px 0;
+      font-size: 16px;
       line-height: 1.6;
     }
-    .reward-card .price {
+    .price {
       font-size: 22px;
       font-weight: bold;
       color: #00ffcc;
@@ -78,9 +74,9 @@
     }
     .button-group {
       display: flex;
-      flex-direction: column;
-      gap: 12px;
-      margin-top: 20px;
+      justify-content: center;
+      gap: 15px;
+      flex-wrap: wrap;
     }
     .button-group a button {
       padding: 12px 24px;
@@ -101,35 +97,30 @@
   </style>
 </head>
 <body>
-  <div class="announcement-bar">🕊️ Yaqeen Collection – 100% proceeds go to feed and support children in Gaza 🇵🇸</div>
 
-  <div class="reward-card">
+  <div class="announcement-bar">
+    💖 100% of profits from the Yaqeen Collection go to children in Gaza 🇵🇸 | In loving memory of Yaqeen (May 23rd)
+  </div>
+
+  <div class="collection-card">
     <div class="image-gallery">
-      <!-- T-shirts -->
-      <img src="https://i.etsystatic.com/27965964/r/il/4b6fce/3638768393/il_794xN.3638768393_j1ge.jpg" alt="Free Palestine T-Shirt 1">
-      <img src="https://i.etsystatic.com/16147289/r/il/79bcbb/4694927749/il_794xN.4694927749_c4cz.jpg" alt="Palestine Map T-Shirt">
-      <img src="https://i.etsystatic.com/17256671/r/il/0e56c7/1806816673/il_794xN.1806816673_hijm.jpg" alt="Stand With Palestine T-Shirt">
-      <!-- Keychains -->
-      <img src="https://i.etsystatic.com/22213782/r/il/6c4c7f/3211211050/il_794xN.3211211050_7tul.jpg" alt="Keychain Palestine">
-      <img src="https://i.etsystatic.com/21415453/r/il/1aeb77/4609204134/il_794xN.4609204134_fp09.jpg" alt="Free Palestine Heart Keychain">
-      <img src="https://i.etsystatic.com/21116091/r/il/cfd64d/2170927071/il_794xN.2170927071_b9s4.jpg" alt="Gaza Aid Keychain">
+      <img src="https://i.imgur.com/MUskgJz.jpg" alt="Yaqeen T-Shirt 1">
+      <img src="https://i.imgur.com/tW4yEvk.jpg" alt="Yaqeen T-Shirt 2">
+      <img src="https://i.imgur.com/WI4Px8X.jpg" alt="Yaqeen Keychain 1">
+      <img src="https://i.imgur.com/yc3OnGM.jpg" alt="Yaqeen Keychain 2">
     </div>
-
-    <h2>Yaqeen Collection – In Memory of a Brave Soul</h2>
-    <p>
-      On May 23rd, Yaqeen — a young girl — was martyred in an Israeli airstrike. This collection is a tribute to her courage and to the children suffering in Gaza. Every T-shirt and keychain you buy funds food, water, shelter, and medical aid for these innocent lives. Let her name echo through kindness.
+    <h2>Yaqeen Collection</h2>
+    <p class="description">
+      The Yaqeen Collection is a tribute to a young girl named Yaqeen who was martyred in an Israeli airstrike on May 23rd.
+      Her name now symbolizes hope, resistance, and compassion. Each product in this collection—whether a T-shirt or a keychain—
+      funds vital food and medical aid for children in Gaza. Join us in turning pain into purpose.
     </p>
-
-    <div class="price">Starting at ₹299</div>
-
+    <div class="price">Starting from ₹199</div>
     <div class="button-group">
-      <a href="yaqeen-products.html">
-        <button>Shop Now</button>
-      </a>
-      <a href="donate.html">
-        <button>Directly Donate</button>
-      </a>
+      <a href="shop.html"><button>Shop Now</button></a>
+      <a href="donate.html"><button>Directly Donate</button></a>
     </div>
   </div>
+
 </body>
 </html>
