@@ -1,27 +1,120 @@
-<section id="yaqeen-collection" style="background-color: #000; color: white; padding: 60px 20px;">
-  <div style="max-width: 1000px; margin: auto; text-align: center;">
-    <h2 style="font-size: 2.5em; margin-bottom: 10px;">🕊️ Yaqeen Collection</h2>
-    <p style="font-size: 1.1em; color: #ccc; margin-bottom: 30px;">
-      In memory of <strong>Yaqeen</strong>, a brave young girl martyred in an Israeli airstrike on May 23, 2025.  
-      Every purchase from this collection directly funds food, water, and aid for the children of Gaza.
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Silent Aid | Yaqeen Collection</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #121212;
+      margin: 0;
+      padding: 60px 20px 40px;
+      text-align: center;
+      color: #fff;
+    }
+    .announcement-bar {
+      background-color: #000;
+      color: #fff;
+      font-size: 14px;
+      text-align: center;
+      padding: 12px 0;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 999;
+      animation: slideDown 0.8s ease-out;
+    }
+    @keyframes slideDown {
+      0% { transform: translateY(-100%); }
+      100% { transform: translateY(0); }
+    }
+    .yaqeen-card {
+      background: #1e1e1e;
+      max-width: 800px;
+      margin: auto;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+      overflow: hidden;
+      padding: 30px;
+    }
+    .image-gallery {
+      display: flex;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      gap: 10px;
+      margin-bottom: 15px;
+    }
+    .image-gallery img {
+      width: 100%;
+      max-width: 500px;
+      border-radius: 8px;
+      scroll-snap-align: center;
+      flex-shrink: 0;
+    }
+    h2 {
+      font-size: 26px;
+      margin: 15px 0;
+      color: #fff;
+    }
+    p {
+      color: #ccc;
+      font-size: 16px;
+      line-height: 1.6;
+    }
+    .price {
+      font-size: 22px;
+      font-weight: bold;
+      color: #00ffcc;
+      margin: 20px 0;
+    }
+    button {
+      padding: 12px 24px;
+      background-color: #00ffcc;
+      color: #000;
+      border: none;
+      font-size: 16px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    button:hover {
+      background-color: #00ccaa;
+    }
+    a {
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="announcement-bar">
+    🕊️ In Loving Memory of Yaqeen — Every Purchase Funds Gaza Children | Free Delivery 🇮🇳
+  </div>
+
+  <div class="yaqeen-card">
+    <div class="image-gallery">
+      <img src="images/yaqeen-shirt.jpg" alt="Yaqeen T-Shirt">
+      <img src="images/yaqeen-keychain.jpg" alt="Yaqeen Keychain">
+    </div>
+
+    <h2>🕊️ The Yaqeen Collection</h2>
+    <p>
+      On May 23, 2025, a young Palestinian girl named <strong>Yaqeen</strong> lost her life in a brutal airstrike by Israeli forces. 
+      She was full of hope, innocence, and faith — her name literally means "certainty" — a powerful reminder of the unwavering belief that justice will prevail. <br><br>
+      In her memory, we launch the <strong>Yaqeen Collection</strong>. All profits from these items — including specially designed T-shirts and keychains — will be donated 
+      directly to support food, water, shelter, and emergency aid for children in Gaza.
+      <br><br>
+      This is not just a product. This is a promise. A symbol. A movement. Wear her name proudly and join us in turning grief into action.
     </p>
 
-    <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 40px;">
-      <!-- T-Shirt -->
-      <div style="background: #111; padding: 20px; border-radius: 12px; max-width: 250px;">
-        <img src="images/yaqeen-shirt.jpg" alt="Yaqeen T-Shirt" style="width: 100%; border-radius: 8px;">
-        <h3 style="margin: 10px 0;">Yaqeen T-Shirt</h3>
-        <p>₹999</p>
-        <button onclick="addToCart('Yaqeen T-Shirt', 999)" style="padding: 10px 20px; border: none; background: red; color: white; border-radius: 6px;">Buy Now</button>
-      </div>
-
-      <!-- Keychain -->
-      <div style="background: #111; padding: 20px; border-radius: 12px; max-width: 250px;">
-        <img src="images/yaqeen-keychain.jpg" alt="Yaqeen Keychain" style="width: 100%; border-radius: 8px;">
-        <h3 style="margin: 10px 0;">Yaqeen Keychain</h3>
-        <p>₹299</p>
-        <button onclick="addToCart('Yaqeen Keychain', 299)" style="padding: 10px 20px; border: none; background: red; color: white; border-radius: 6px;">Buy Now</button>
-      </div>
-    </div>
+    <div class="price">From ₹299 – All Profits to Gaza Aid</div>
+    
+    <a href="checkout2.html?product=Yaqeen%20Collection%20Combo&price=999">
+      <button>Shop Yaqeen Collection</button>
+    </a>
   </div>
-</section>
+</body>
+</html>
