@@ -15,7 +15,6 @@
       padding: 60px 20px 40px;
       text-align: center;
       color: #fff;
-      overflow-x: hidden;
     }
     .announcement-bar {
       background-color: #000;
@@ -30,91 +29,65 @@
       animation: slideDown 0.8s ease-out;
     }
     @keyframes slideDown {
-      0% { transform: translateY(-100%); }
-      100% { transform: translateY(0); }
+      0% {
+        transform: translateY(-100%);
+      }
+      100% {
+        transform: translateY(0);
+      }
     }
-    .yaqeen-card {
+    .reward-card {
       background: #1e1e1e;
-      max-width: 800px;
-      margin: 80px auto 20px;
-      border-radius: 16px;
-      box-shadow: 0 0 25px rgba(0, 255, 204, 0.2);
-      overflow: hidden;
-      padding: 30px;
-      position: relative;
-      animation: fadeIn 1.2s ease;
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(30px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    .badge {
-      position: absolute;
-      top: -12px;
-      right: -12px;
-      background: #00ffcc;
-      color: #000;
-      padding: 10px 15px;
+      max-width: 600px;
+      margin: auto;
       border-radius: 12px;
-      font-weight: bold;
-      font-size: 13px;
-      box-shadow: 0 0 15px rgba(0, 255, 204, 0.6);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+      overflow: hidden;
+      padding: 20px;
     }
     .image-gallery {
       display: flex;
       overflow-x: auto;
       scroll-snap-type: x mandatory;
       gap: 10px;
-      margin-bottom: 20px;
+      margin-bottom: 15px;
+      padding-bottom: 10px;
     }
     .image-gallery img {
       width: 100%;
       max-width: 500px;
-      border-radius: 10px;
+      border-radius: 8px;
       scroll-snap-align: center;
       flex-shrink: 0;
-      border: 2px solid #00ffcc40;
     }
     h2 {
-      font-size: 28px;
-      margin: 15px 0;
-      color: #fff;
+      font-size: 26px;
+      margin-top: 10px;
+      color: #00ffcc;
     }
-    p {
+    .reward-card p {
       color: #ccc;
-      font-size: 16px;
-      line-height: 1.7;
+      margin: 12px 0 20px;
+      line-height: 1.6;
     }
-    .price {
+    .reward-card .price {
       font-size: 22px;
       font-weight: bold;
       color: #00ffcc;
-      margin: 20px 0;
+      margin: 15px 0;
     }
-    .btn {
-      padding: 12px 28px;
+    .reward-card button {
+      padding: 12px 24px;
       background-color: #00ffcc;
       color: #000;
       border: none;
       font-size: 16px;
-      font-weight: bold;
       border-radius: 6px;
       cursor: pointer;
-      transition: 0.4s ease;
-      margin: 10px;
+      transition: 0.3s;
     }
-    .btn:hover {
-      background-color: #00e6b3;
-      transform: scale(1.05);
-    }
-    .donate-btn {
-      background: transparent;
-      border: 2px solid #00ffcc;
-      color: #00ffcc;
-    }
-    .donate-btn:hover {
-      background-color: #00ffcc;
-      color: #000;
+    .reward-card button:hover {
+      background-color: #00ccaa;
     }
     a {
       text-decoration: none;
@@ -122,37 +95,26 @@
   </style>
 </head>
 <body>
+  <div class="announcement-bar">🕊️ Yaqeen Collection – 100% proceeds go to feed and support children in Gaza 🇵🇸</div>
 
-  <div class="announcement-bar">
-    🕊️ In Memory of Yaqeen – A Voice Silenced Too Soon | 100% Proceeds Aid Gaza 🇵🇸
-  </div>
-
-  <div class="yaqeen-card">
-    <div class="badge">100% to Gaza 🇵🇸</div>
-    
+  <div class="reward-card">
     <div class="image-gallery">
-      <img src="https://shop.yaqeeninstitute.org/cdn/shop/products/yaqeen-q-t-shirt-white.jpg" alt="Yaqeen T-Shirt in White">
-      <img src="https://shop.yaqeeninstitute.org/cdn/shop/products/yaqeen-q-t-shirt-black.jpg" alt="Yaqeen T-Shirt in Black">
-      <img src="https://www.mehskreations.com/cdn/shop/products/yaqeen-keychain.jpg" alt="Yaqeen Keychain">
+      <img src="https://shop.yaqeeninstitute.org/cdn/shop/products/yaqeen-q-t-shirt-white.jpg" alt="Yaqeen T-Shirt White">
+      <img src="https://shop.yaqeeninstitute.org/cdn/shop/products/yaqeen-q-t-shirt-black.jpg" alt="Yaqeen T-Shirt Black">
+      <img src="https://i.etsystatic.com/10411000/r/il/0a0d5d/4520993604/il_794xN.4520993604_osx0.jpg" alt="Keychain Palestine">
+      <img src="https://i.etsystatic.com/22213782/r/il/6c4c7f/3211211050/il_794xN.3211211050_7tul.jpg" alt="Aid Keychain 2">
     </div>
 
-    <h2>🌸 Yaqeen Collection</h2>
+    <h2>Yaqeen Collection – In Memory of a Brave Soul</h2>
     <p>
-      On May 23rd, 2025, <strong>Yaqeen</strong>, a beautiful young girl from Gaza, was martyred in an Israeli airstrike. She was full of dreams, love, and laughter — a radiant symbol of hope in the middle of despair.<br><br>
-      This collection is dedicated to her memory. Every T-shirt and keychain sold is a step toward justice, as <strong>100% of proceeds go to providing food, aid, and relief to children in Gaza</strong> — those who survive but still suffer.<br><br>
-      Let her name live on through you. Wear it. Share it. Make it echo through the world.
+      On May 23rd, Yaqeen — a young girl — lost her life in a brutal Israeli airstrike. This collection is dedicated to her memory and to the innocent children of Gaza. Every T-shirt and keychain you purchase contributes directly to food, medicine, and shelter for children in need.
     </p>
 
-    <div class="price">Combo Starting at ₹999</div>
+    <div class="price">Starting at ₹299</div>
 
-   <a href="yaqeen-shop.html">
-  <button class="btn">🛒 Shop Now</button>
-</a>
-
-    <a href="https://donate.silent-aid.org" target="_blank">
-      <button class="btn donate-btn">❤️ Donate Without Buying</button>
+    <a href="yaqeen-products.html">
+      <button>Shop Now</button>
     </a>
   </div>
-
 </body>
 </html>
