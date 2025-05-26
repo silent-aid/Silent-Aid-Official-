@@ -20,7 +20,6 @@
       padding: 30px;
       border-radius: 12px;
       box-shadow: 0 0 15px rgba(255,255,255,0.1);
-      transition: all 0.3s ease;
     }
 
     label {
@@ -89,6 +88,17 @@
     <label>Full Name: <input type="text" name="name" required /></label>
     <label>Email: <input type="email" name="email" required /></label>
     <label>Phone Number: <input type="tel" name="phone" required /></label>
+    <label>WhatsApp Number: <input type="tel" name="whatsapp" required /></label>
+
+    <label>Choose Product:
+      <select name="product" required>
+        <option value="">-- Select Product --</option>
+        <option value="Yaqeen T-Shirt">Yaqeen T-Shirt</option>
+        <option value="Yaqeen Keychain">Yaqeen Keychain</option>
+        <option value="Combo (T-Shirt + Keychain)">Combo (T-Shirt + Keychain)</option>
+        <option value="Only Donate (No Product)">Only Donate (No Product)</option>
+      </select>
+    </label>
 
     <label>City:
       <select name="city" id="citySelect" required>
@@ -120,10 +130,6 @@
     </div>
 
     <label>Full Address: <textarea name="address" required></textarea></label>
-
-    <!-- Hidden product and price -->
-    <input type="hidden" name="product" value="AirPods Pro 4 (Premium Edition)" />
-    <input type="hidden" name="price" value="999" />
 
     <button type="submit">Place Order</button>
   </form>
@@ -160,7 +166,7 @@
       })
       .then(response => response.text())
       .then(data => {
-        window.location.href = "thank-you.html"; // Redirect
+        window.location.href = "thank-you.html";
       })
       .catch(error => {
         alert("There was an error submitting your order.");
