@@ -91,13 +91,17 @@
     <label>WhatsApp Number: <input type="tel" name="whatsapp" required /></label>
 
     <label>Choose Product:
-      <select name="product" required>
+      <select name="product" id="productSelect" required>
         <option value="">-- Select Product --</option>
         <option value="Yaqeen T-Shirt">Yaqeen T-Shirt</option>
         <option value="Yaqeen Keychain">Yaqeen Keychain</option>
         <option value="Combo (T-Shirt + Keychain)">Combo (T-Shirt + Keychain)</option>
         <option value="Only Donate (No Product)">Only Donate (No Product)</option>
       </select>
+    </label>
+
+    <label>Price:
+      <input type="text" id="priceDisplay" name="price" readonly />
     </label>
 
     <label>City:
@@ -139,6 +143,20 @@
     const citySelect = document.getElementById('citySelect');
     const otherCityField = document.getElementById('otherCityField');
     const otherCityInput = document.getElementById('otherCityInput');
+    const productSelect = document.getElementById('productSelect');
+    const priceDisplay = document.getElementById('priceDisplay');
+
+    const productPrices = {
+      "Yaqeen T-Shirt": "499",
+      "Yaqeen Keychain": "199",
+      "Combo (T-Shirt + Keychain)": "649",
+      "Only Donate (No Product)": "Any Amount"
+    };
+
+    productSelect.addEventListener('change', () => {
+      const selectedProduct = productSelect.value;
+      priceDisplay.value = productPrices[selectedProduct] || '';
+    });
 
     citySelect.addEventListener('change', () => {
       if (citySelect.value === 'Other') {
