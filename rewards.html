@@ -32,25 +32,44 @@
       0% { transform: translateY(-100%); }
       100% { transform: translateY(0); }
     }
-    .collection-card {
-      background: #1e1e1e;
-      max-width: 700px;
-      margin: auto;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
-      overflow: hidden;
-      padding: 20px;
+
+    .yaqeen-photo {
+      margin-top: 30px;
     }
+    .yaqeen-photo img {
+      width: 250px;
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+    }
+    .yaqeen-photo img:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 30px rgba(0, 255, 204, 0.6);
+    }
+    .yaqeen-quote {
+      font-size: 16px;
+      color: #ccc;
+      margin: 15px 0 30px;
+    }
+
     .image-gallery {
       display: flex;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      gap: 10px;
+      margin: 0 auto 20px;
       justify-content: center;
-      margin-bottom: 15px;
+      padding-bottom: 10px;
+      max-width: 700px;
     }
     .image-gallery img {
       width: 100%;
       max-width: 300px;
       border-radius: 8px;
+      scroll-snap-align: center;
+      flex-shrink: 0;
     }
+
     h2 {
       font-size: 26px;
       margin-top: 10px;
@@ -58,9 +77,10 @@
     }
     .description {
       color: #ccc;
-      margin: 10px 0;
+      margin: 10px auto;
       font-size: 16px;
       line-height: 1.6;
+      max-width: 700px;
     }
     .price {
       font-size: 22px;
@@ -68,6 +88,7 @@
       color: #00ffcc;
       margin: 15px 0;
     }
+
     .button-group {
       display: flex;
       justify-content: center;
@@ -99,26 +120,37 @@
     💖 100% of profits from the Yaqeen Collection go to children in Gaza 🇵🇸 | In loving memory of Yaqeen (May 23rd)
   </div>
 
-  <div class="collection-card">
-    <div class="image-gallery">
-      <img src="https://www.aljazeera.com/wp-content/uploads/2025/05/Screenshot-2025-05-26-at-8.53.23%E2%80%AFAM-1-1748239179.jpg?resize=770%2C513&quality=80" alt="Yaqeen">
-    </div>
-    <h2>Yaqeen Collection</h2>
-    <p class="description">
-      The Yaqeen Collection is dedicated to a brave young soul, Yaqeen, who tragically lost her life in an Israeli airstrike on May 23rd.
-      Her memory lives on as a symbol of faith, resistance, and innocence. Every item in this collection — from symbolic T-shirts to meaningful keychains —
-      contributes directly to providing food and aid for children in Gaza.
+  <div class="yaqeen-photo">
+    <img src="cc.png" alt="Yaqeen">
+    <p class="yaqeen-quote">
+      “In her smile lived hope — in her eyes, resilience. This collection carries her light forward.” 🕊️
     </p>
-    <p class="description">
-      📝 <strong>To place an order or donate:</strong><br />
-      Please click <strong>Shop Now</strong> to register yourself. After clicking, we will reach out to you on WhatsApp and Email to confirm your interest.
-      Whether you want to buy something from the Yaqeen Collection or just support Gaza’s children, we’ll guide you personally.
-    </p>
-    <div class="price">Starting from ₹199</div>
-    <div class="button-group">
-      <a href="checkout2.html"><button>Shop Now</button></a>
-      <a href="donate.html"><button>Directly Donate</button></a>
-    </div>
+  </div>
+
+  <h2>Yaqeen Collection</h2>
+  <p class="description">
+    The Yaqeen Collection is dedicated to a brave young soul, Yaqeen, who tragically lost her life in an Israeli airstrike on May 23rd.
+    Her memory lives on as a symbol of faith, resistance, and innocence. Every item in this collection — from symbolic T-shirts to meaningful keychains —
+    contributes directly to providing food and aid for children in Gaza.
+  </p>
+
+  <div class="image-gallery">
+    <img src="https://i.imgur.com/MUskgJz.jpg" alt="Yaqeen T-Shirt 1">
+    <img src="https://i.imgur.com/tW4yEvk.jpg" alt="Yaqeen T-Shirt 2">
+    <img src="https://i.imgur.com/WI4Px8X.jpg" alt="Yaqeen Keychain 1">
+    <img src="https://i.imgur.com/yc3OnGM.jpg" alt="Yaqeen Keychain 2">
+  </div>
+
+  <p class="description">
+    📝 <strong>To place an order or donate:</strong><br />
+    Please click <strong>Shop Now</strong> to register yourself. After clicking, we will reach out to you on WhatsApp and Email to confirm your interest.
+    Whether you want to buy something from the Yaqeen Collection or just support Gaza’s children, we’ll guide you personally.
+  </p>
+
+  <div class="price">Starting from ₹199</div>
+  <div class="button-group">
+    <a href="checkout2.html"><button>Shop Now</button></a>
+    <a href="donate.html"><button>Directly Donate</button></a>
   </div>
 
 </body>
