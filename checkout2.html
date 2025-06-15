@@ -2,211 +2,193 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Place Order - Silent Aid</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Silent Aid – Place Order</title>
   <style>
     body {
-      font-family: 'Segoe UI', sans-serif;
-      background-color: #000;
-      color: white;
+      font-family: Arial, sans-serif;
+      background-color: #fefefe;
       padding: 20px;
-      margin: 0;
-    }
-
-    form {
-      max-width: 550px;
+      max-width: 700px;
       margin: auto;
-      background: #111;
-      padding: 30px;
-      border-radius: 12px;
-      box-shadow: 0 0 15px rgba(255,255,255,0.1);
     }
-
+    h1 {
+      text-align: center;
+      color: #d63031;
+    }
+    form {
+      background: #fff;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
     label {
       display: block;
-      margin-top: 15px;
-      font-weight: 600;
+      margin: 15px 0 5px;
     }
-
-    input, select, textarea {
+    input[type="text"],
+    textarea,
+    select {
       width: 100%;
       padding: 10px;
-      margin-top: 5px;
-      background: #222;
-      color: white;
-      border: 1px solid #555;
-      border-radius: 6px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      margin-bottom: 10px;
     }
-
-    button {
-      margin-top: 20px;
-      padding: 12px;
-      background: white;
-      color: black;
-      border: none;
-      font-size: 16px;
-      font-weight: bold;
-      border-radius: 6px;
-      cursor: pointer;
-      transition: background 0.3s ease, color 0.3s ease;
+    textarea {
+      resize: vertical;
     }
-
-    button:hover {
-      background: red;
-      color: white;
+    .product-options {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin-top: 10px;
     }
-
-    .marquee {
-      background: red;
-      color: white;
+    .product-option {
+      border: 2px solid #ccc;
+      border-radius: 10px;
       padding: 10px;
-      font-weight: bold;
+      cursor: pointer;
       text-align: center;
-      animation: slideText 15s linear infinite;
-      white-space: nowrap;
-      overflow: hidden;
+      width: 47%;
+      transition: 0.3s ease;
+      box-sizing: border-box;
     }
-
-    @keyframes slideText {
-      0% { transform: translateX(100%); }
-      100% { transform: translateX(-100%); }
+    .product-option img {
+      width: 100%;
+      height: auto;
+      border-radius: 6px;
     }
-
+    .product-option span {
+      display: block;
+      margin-top: 8px;
+      font-weight: bold;
+    }
+    .product-option.selected {
+      border-color: #d63031;
+      background-color: #fff5f5;
+    }
     #otherCityField {
       display: none;
+    }
+    button {
+      background-color: #d63031;
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      font-size: 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      width: 100%;
       margin-top: 10px;
+    }
+    button:hover {
+      background-color: #c0392b;
+    }
+    @media (max-width: 600px) {
+      .product-option {
+        width: 100%;
+      }
     }
   </style>
 </head>
 <body>
 
-  <div class="marquee">🎉 Welcome to Silent Aid | Free Delivery All Over India 🇮🇳</div>
-
-  <h2 style="text-align:center; margin-top: 30px;">Place Your Order</h2>
+  <h1>Place Your Order – Silent Aid</h1>
 
   <form id="orderForm">
-    <label>Full Name: <input type="text" name="name" required /></label>
-    <label>Email: <input type="email" name="email" required /></label>
-    <label>Phone Number: <input type="tel" name="phone" required /></label>
-    <label>WhatsApp Number: <input type="tel" name="whatsapp" required /></label>
 
-  <label>Choose Product:
-  <select name="product" id="productSelect" required>
-    <option value="">-- Select Product --</option>
-    <option value="Yaqeen T-Shirt">Yaqeen T-Shirt</option>
-    <option value="Yaqeen Keychain">Yaqeen Keychain</option>
-    <option value="Combo (T-Shirt + Keychain)">Combo (T-Shirt + Keychain)</option>
-    <option value="Only Donate (No Product)">Only Donate (No Product)</option>
-  </select>
-</label>
+    <label>Choose Product:</label>
+    <div id="productOptions" class="product-options">
+      <div class="product-option" data-product="Yaqeen T-Shirt" data-price="599">
+        <img src="images/yaqeen-tshirt.jpg" alt="Yaqeen T-Shirt" />
+        <span>Yaqeen T-Shirt – ₹599</span>
+      </div>
+      <div class="product-option" data-product="Yaqeen Keychain" data-price="399">
+        <img src="images/yaqeen-keychain.jpg" alt="Yaqeen Keychain" />
+        <span>Yaqeen Keychain – ₹399</span>
+      </div>
+      <div class="product-option" data-product="Combo (T-Shirt + Keychain)" data-price="899">
+        <img src="images/yaqeen-combo.jpg" alt="Combo" />
+        <span>Combo (T-Shirt + Keychain) – ₹899</span>
+      </div>
+      <div class="product-option" data-product="Only Donate (No Product)" data-price="Any Amount">
+        <img src="images/donate-only.jpg" alt="Donate Only" />
+        <span>Only Donate (No Product)</span>
+      </div>
+    </div>
 
-<label>Price:
-  <input type="text" id="priceDisplay" name="price" readonly />
-</label>
+    <input type="hidden" id="productSelect" name="product" required />
 
-<label>City:
-  <select name="city" id="citySelect" required>
-    <option value="">-- Select Your City --</option>
-    <option>Hyderabad</option>
-    <option>Delhi</option>
-    <option>Mumbai</option>
-    <option>Bengaluru</option>
-    <option>Chennai</option>
-    <option>Kolkata</option>
-    <option>Pune</option>
-    <option>Ahmedabad</option>
-    <option>Lucknow</option>
-    <option>Jaipur</option>
-    <option>Indore</option>
-    <option>Bhopal</option>
-    <option>Patna</option>
-    <option>Srinagar</option>
-    <option>Amritsar</option>
-    <option>Coimbatore</option>
-    <option>Visakhapatnam</option>
-    <option>Thiruvananthapuram</option>
-    <option value="Other">Other</option>
-  </select>
-</label>
+    <label>Price:</label>
+    <input type="text" id="priceDisplay" name="price" readonly />
 
-<div id="otherCityField" style="display:none;">
-  <label>Enter Your City: <input type="text" id="otherCityInput" /></label>
-</div>
+    <label>City:</label>
+    <select name="city" id="citySelect" required>
+      <option value="">-- Select Your City --</option>
+      <option>Hyderabad</option>
+      <option>Delhi</option>
+      <option>Mumbai</option>
+      <option>Bengaluru</option>
+      <option>Chennai</option>
+      <option>Kolkata</option>
+      <option>Pune</option>
+      <option>Ahmedabad</option>
+      <option>Lucknow</option>
+      <option>Jaipur</option>
+      <option>Indore</option>
+      <option>Bhopal</option>
+      <option>Patna</option>
+      <option>Srinagar</option>
+      <option>Amritsar</option>
+      <option>Coimbatore</option>
+      <option>Visakhapatnam</option>
+      <option>Thiruvananthapuram</option>
+      <option value="Other">Other</option>
+    </select>
 
-<label>Full Address: <textarea name="address" required></textarea></label>
+    <div id="otherCityField">
+      <label>Enter Your City:</label>
+      <input type="text" id="otherCityInput" name="otherCity" />
+    </div>
 
-<button type="submit">Place Order</button>
+    <label>Full Address:</label>
+    <textarea name="address" rows="4" required></textarea>
 
-<script>
-  const form = document.getElementById('orderForm');
-  const citySelect = document.getElementById('citySelect');
-  const otherCityField = document.getElementById('otherCityField');
-  const otherCityInput = document.getElementById('otherCityInput');
-  const productSelect = document.getElementById('productSelect');
-  const priceDisplay = document.getElementById('priceDisplay');
+    <button type="submit">Place Order</button>
 
-  const productPrices = {
-    "Yaqeen T-Shirt": "599",
-    "Yaqeen Keychain": "399",
-    "Combo (T-Shirt + Keychain)": "899",
-    "Only Donate (No Product)": "Any Amount"
-  };
+  </form>
 
-  // Show price when product is selected
-  productSelect.addEventListener("change", () => {
-    const selected = productSelect.value;
-    priceDisplay.value = productPrices[selected] || "";
-  });
+  <script>
+    const productOptions = document.querySelectorAll(".product-option");
+    const productSelect = document.getElementById("productSelect");
+    const priceDisplay = document.getElementById("priceDisplay");
 
-  // Show 'Other' city input if needed
-  citySelect.addEventListener("change", () => {
-    if (citySelect.value === "Other") {
-      otherCityField.style.display = "block";
-      otherCityInput.required = true;
-    } else {
-      otherCityField.style.display = "none";
-      otherCityInput.required = false;
-    }
-  });
-</script>
+    productOptions.forEach(option => {
+      option.addEventListener("click", () => {
+        const product = option.getAttribute("data-product");
+        const price = option.getAttribute("data-price");
 
-    productSelect.addEventListener('change', () => {
-      const selectedProduct = productSelect.value;
-      priceDisplay.value = productPrices[selectedProduct] || '';
+        productOptions.forEach(opt => opt.classList.remove("selected"));
+        option.classList.add("selected");
+
+        productSelect.value = product;
+        priceDisplay.value = price;
+      });
     });
 
-    citySelect.addEventListener('change', () => {
-      if (citySelect.value === 'Other') {
-        otherCityField.style.display = 'block';
+    const citySelect = document.getElementById("citySelect");
+    const otherCityField = document.getElementById("otherCityField");
+    const otherCityInput = document.getElementById("otherCityInput");
+
+    citySelect.addEventListener("change", () => {
+      if (citySelect.value === "Other") {
+        otherCityField.style.display = "block";
         otherCityInput.required = true;
       } else {
-        otherCityField.style.display = 'none';
+        otherCityField.style.display = "none";
         otherCityInput.required = false;
       }
-    });
-
-    form.addEventListener('submit', function(event) {
-      event.preventDefault();
-
-      const formData = new FormData(form);
-      if (citySelect.value === 'Other') {
-        formData.set('city', otherCityInput.value.trim());
-      }
-
-      const url = "https://script.google.com/macros/s/AKfycbxisICLhzPNqqXPnFdBcAZkiz2iuLvmoIy-kvbzXf5e4JtVyr7jKpuUldWQT9iWlex4/exec";
-
-      fetch(url, {
-        method: 'POST',
-        body: formData
-      })
-      .then(response => response.text())
-      .then(data => {
-        window.location.href = "thank-you.html";
-      })
-      .catch(error => {
-        alert("There was an error submitting your order.");
-        console.error('Error:', error);
-      });
     });
   </script>
 
