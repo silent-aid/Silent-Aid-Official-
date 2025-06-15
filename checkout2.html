@@ -90,68 +90,85 @@
     <label>Phone Number: <input type="tel" name="phone" required /></label>
     <label>WhatsApp Number: <input type="tel" name="whatsapp" required /></label>
 
-    <label>Choose Product:
-      <select name="product" id="productSelect" required>
-        <option value="">-- Select Product --</option>
-        <option value="Yaqeen T-Shirt">Yaqeen T-Shirt</option>
-        <option value="Yaqeen Keychain">Yaqeen Keychain</option>
-        <option value="Combo (T-Shirt + Keychain)">Combo (T-Shirt + Keychain)</option>
-        <option value="Only Donate (No Product)">Only Donate (No Product)</option>
-      </select>
-    </label>
+  <label>Choose Product:
+  <select name="product" id="productSelect" required>
+    <option value="">-- Select Product --</option>
+    <option value="Yaqeen T-Shirt">Yaqeen T-Shirt</option>
+    <option value="Yaqeen Keychain">Yaqeen Keychain</option>
+    <option value="Combo (T-Shirt + Keychain)">Combo (T-Shirt + Keychain)</option>
+    <option value="Only Donate (No Product)">Only Donate (No Product)</option>
+  </select>
+</label>
 
-    <label>Price:
-      <input type="text" id="priceDisplay" name="price" readonly />
-    </label>
+<label>Price:
+  <input type="text" id="priceDisplay" name="price" readonly />
+</label>
 
-    <label>City:
-      <select name="city" id="citySelect" required>
-        <option value="">-- Select Your City --</option>
-        <option>Hyderabad</option>
-        <option>Delhi</option>
-        <option>Mumbai</option>
-        <option>Bengaluru</option>
-        <option>Chennai</option>
-        <option>Kolkata</option>
-        <option>Pune</option>
-        <option>Ahmedabad</option>
-        <option>Lucknow</option>
-        <option>Jaipur</option>
-        <option>Indore</option>
-        <option>Bhopal</option>
-        <option>Patna</option>
-        <option>Srinagar</option>
-        <option>Amritsar</option>
-        <option>Coimbatore</option>
-        <option>Visakhapatnam</option>
-        <option>Thiruvananthapuram</option>
-        <option value="Other">Other</option>
-      </select>
-    </label>
+<label>City:
+  <select name="city" id="citySelect" required>
+    <option value="">-- Select Your City --</option>
+    <option>Hyderabad</option>
+    <option>Delhi</option>
+    <option>Mumbai</option>
+    <option>Bengaluru</option>
+    <option>Chennai</option>
+    <option>Kolkata</option>
+    <option>Pune</option>
+    <option>Ahmedabad</option>
+    <option>Lucknow</option>
+    <option>Jaipur</option>
+    <option>Indore</option>
+    <option>Bhopal</option>
+    <option>Patna</option>
+    <option>Srinagar</option>
+    <option>Amritsar</option>
+    <option>Coimbatore</option>
+    <option>Visakhapatnam</option>
+    <option>Thiruvananthapuram</option>
+    <option value="Other">Other</option>
+  </select>
+</label>
 
-    <div id="otherCityField">
-      <label>Enter Your City: <input type="text" id="otherCityInput" /></label>
-    </div>
+<div id="otherCityField" style="display:none;">
+  <label>Enter Your City: <input type="text" id="otherCityInput" /></label>
+</div>
 
-    <label>Full Address: <textarea name="address" required></textarea></label>
+<label>Full Address: <textarea name="address" required></textarea></label>
 
-    <button type="submit">Place Order</button>
-  </form>
+<button type="submit">Place Order</button>
 
-  <script>
-    const form = document.getElementById('orderForm');
-    const citySelect = document.getElementById('citySelect');
-    const otherCityField = document.getElementById('otherCityField');
-    const otherCityInput = document.getElementById('otherCityInput');
-    const productSelect = document.getElementById('productSelect');
-    const priceDisplay = document.getElementById('priceDisplay');
+<script>
+  const form = document.getElementById('orderForm');
+  const citySelect = document.getElementById('citySelect');
+  const otherCityField = document.getElementById('otherCityField');
+  const otherCityInput = document.getElementById('otherCityInput');
+  const productSelect = document.getElementById('productSelect');
+  const priceDisplay = document.getElementById('priceDisplay');
 
-    const productPrices = {
-      "Yaqeen T-Shirt": "599",
-      "Yaqeen Keychain": "299",
-      "Combo (T-Shirt + Keychain)": "849",
-      "Only Donate (No Product)": "Any Amount"
-    };
+  const productPrices = {
+    "Yaqeen T-Shirt": "599",
+    "Yaqeen Keychain": "399",
+    "Combo (T-Shirt + Keychain)": "899",
+    "Only Donate (No Product)": "Any Amount"
+  };
+
+  // Show price when product is selected
+  productSelect.addEventListener("change", () => {
+    const selected = productSelect.value;
+    priceDisplay.value = productPrices[selected] || "";
+  });
+
+  // Show 'Other' city input if needed
+  citySelect.addEventListener("change", () => {
+    if (citySelect.value === "Other") {
+      otherCityField.style.display = "block";
+      otherCityInput.required = true;
+    } else {
+      otherCityField.style.display = "none";
+      otherCityInput.required = false;
+    }
+  });
+</script>
 
     productSelect.addEventListener('change', () => {
       const selectedProduct = productSelect.value;
