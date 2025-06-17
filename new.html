@@ -4,45 +4,125 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>New Arrivals – Silent Aid</title>
-  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      background-color: #f0f2f5;
+      color: #111;
+    }
+    .announcement {
+      background-color: #d90429;
+      color: #fff;
+      text-align: center;
+      padding: 10px;
+      font-weight: bold;
+    }
+    nav {
+      background-color: #0a0a0a;
+      padding: 15px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    nav h1 a {
+      color: white;
+      text-decoration: none;
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+    }
+    nav ul li a {
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+    }
+    nav ul li a:hover {
+      color: #ffca28;
+    }
+    .section {
+      padding: 60px 20px;
+      text-align: center;
+    }
+    .section h2 {
+      font-size: 2.2em;
+      margin-bottom: 20px;
+    }
+    .products {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      flex-wrap: wrap;
+    }
+    .product-card {
+      background: #fff;
+      padding: 20px;
+      width: 250px;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+    .product-card img {
+      width: 100%;
+      border-radius: 8px;
+    }
+    .product-card h3 {
+      margin: 12px 0 5px;
+    }
+    .product-card p {
+      font-size: 0.9em;
+      color: #555;
+    }
+    .product-card button {
+      background-color: #d90429;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      margin-top: 10px;
+      cursor: pointer;
+    }
+    footer {
+      background-color: #0a0a0a;
+      color: #ccc;
+      text-align: center;
+      padding: 20px;
+    }
+  </style>
 </head>
 <body>
-  <div class="announcement"> EVERY ORDER GIVES BACK TO HUMANITY | Free Shipping: US $59, CA $200, UK £160 </div>
-
+  <div class="announcement">EVERY ORDER GIVES BACK TO HUMANITY | Free Shipping: US $59, CA $200, UK £160</div>
   <nav>
-    <div class="nav-left"><h1><a href="index.html">Silent Aid</a></h1></div>
-    <div class="nav-center">
-      <ul>
-        <li><a href="shop.html">Shop</a></li>
-        <li><a href="collections.html">Collections 🍉</a></li>
-        <li><a href="new.html" style="color: #ffca28;">New Arrivals</a></li>
-        <li><a href="impact.html">Impact</a></li>
-        <li><a href="rewards.html">Rewards</a></li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
-    </div>
+    <h1><a href="index.html">Silent Aid</a></h1>
+    <ul>
+      <li><a href="shop.html">Shop</a></li>
+      <li><a href="collections.html">Collections 🍉</a></li>
+      <li><a href="new.html" style="color:#ffca28;">New Arrivals</a></li>
+      <li><a href="impact.html">Impact</a></li>
+      <li><a href="rewards.html">Rewards</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
   </nav>
-
-  <section class="product-section">
-    <h2>🔥 New Arrivals</h2>
+  <section class="section">
+    <h2>🆕 New Arrivals</h2>
     <div class="products">
       <div class="product-card">
-        <img src="https://i.ibb.co/5YBk1zQ/free-palestine-shirt.jpg" alt="Free Palestine Shirt">
-        <h3>Free Palestine Tee</h3>
-        <p>Bold. Brave. Beautiful. Just dropped!</p>
+        <img src="https://i.ibb.co/Q8g7NTq/free-palestine-tshirt.jpg" alt="Free Palestine Shirt">
+        <h3>Free Palestine T-Shirt</h3>
+        <p>New drop. Soft fabric. Bold statement. Funds aid in Gaza.</p>
         <button>Buy Now</button>
       </div>
       <div class="product-card">
-        <img src="https://i.ibb.co/Dkw9bCJ/free-gaza-shirt.jpg" alt="Free Gaza Shirt">
-        <h3>Free Gaza Shirt</h3>
-        <p>Let your outfit speak up for justice.</p>
+        <img src="https://i.ibb.co/rx7QhH2/gaza-keffiyeh-tee.jpg" alt="Gaza Tee">
+        <h3>Gaza Keffiyeh Tee</h3>
+        <p>Inspired by heritage. Delivered with hope.</p>
         <button>Buy Now</button>
       </div>
     </div>
   </section>
-
   <footer>
-    © 2025 Silent Aid | Stand with Gaza
+    © 2025 Silent Aid | Powered by Purpose | Built to Uplift Humanity
   </footer>
 </body>
 </html>
