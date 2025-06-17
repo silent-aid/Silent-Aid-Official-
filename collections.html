@@ -4,46 +4,114 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Collections – Silent Aid</title>
-  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      background-color: #f0f2f5;
+      color: #111;
+    }
+    .announcement {
+      background-color: #d90429;
+      color: #fff;
+      text-align: center;
+      padding: 10px;
+      font-weight: bold;
+    }
+    nav {
+      background-color: #0a0a0a;
+      padding: 15px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    nav h1 a {
+      color: white;
+      text-decoration: none;
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+    }
+    nav ul li a {
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+    }
+    nav ul li a:hover {
+      color: #ffca28;
+    }
+    .section {
+      padding: 60px 20px;
+      text-align: center;
+    }
+    .section h2 {
+      font-size: 2.2em;
+      margin-bottom: 20px;
+    }
+    .collections {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 40px;
+    }
+    .collection {
+      width: 260px;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      padding: 20px;
+    }
+    .collection img {
+      width: 100%;
+      border-radius: 8px;
+    }
+    .collection h3 {
+      margin: 15px 0 10px;
+    }
+    .collection p {
+      font-size: 0.95em;
+      color: #444;
+    }
+    footer {
+      background-color: #0a0a0a;
+      color: #ccc;
+      text-align: center;
+      padding: 20px;
+    }
+  </style>
 </head>
 <body>
-  <div class="announcement"> EVERY ORDER GIVES BACK TO HUMANITY | Free Shipping: US $59, CA $200, UK £160 </div>
-
+  <div class="announcement">EVERY ORDER GIVES BACK TO HUMANITY | Free Shipping: US $59, CA $200, UK £160</div>
   <nav>
-    <div class="nav-left"><h1><a href="index.html">Silent Aid</a></h1></div>
-    <div class="nav-center">
-      <ul>
-        <li><a href="shop.html">Shop</a></li>
-        <li><a href="collections.html" style="color: #ffca28;">Collections 🍉</a></li>
-        <li><a href="new.html">New Arrivals</a></li>
-        <li><a href="impact.html">Impact</a></li>
-        <li><a href="rewards.html">Rewards</a></li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
-    </div>
+    <h1><a href="index.html">Silent Aid</a></h1>
+    <ul>
+      <li><a href="shop.html">Shop</a></li>
+      <li><a href="collections.html" style="color:#ffca28;">Collections 🍉</a></li>
+      <li><a href="new.html">New Arrivals</a></li>
+      <li><a href="impact.html">Impact</a></li>
+      <li><a href="rewards.html">Rewards</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
   </nav>
-
-  <section class="product-section">
-    <h2>🍉 Our Collections</h2>
-    <p style="margin-bottom: 40px;">Each collection represents a cause — wear the message, spread the impact.</p>
-    <div class="products">
-      <div class="product-card">
-        <img src="https://i.ibb.co/MkC1PgY/free-gaza-collection.jpg" alt="Free Gaza Collection">
-        <h3>Free Gaza Collection</h3>
-        <p>Every item supports relief efforts on the ground.</p>
-        <button>Shop Collection</button>
-      </div>
-      <div class="product-card">
-        <img src="https://i.ibb.co/5vV1mF3/yaqeen-shirt.jpg" alt="Yaqeen Shirt">
+  <section class="section">
+    <h2>🍉 Featured Collections</h2>
+    <div class="collections">
+      <div class="collection">
+        <img src="https://i.ibb.co/k36qKmx/yaqeen-collection.jpg" alt="Yaqeen Collection">
         <h3>Yaqeen Collection</h3>
-        <p>Inspired by faith, dedicated to children lost in the struggle.</p>
-        <button>Shop Collection</button>
+        <p>Dedicated to martyrs of Gaza. Every item tells a story of love, resistance, and hope.</p>
+      </div>
+      <div class="collection">
+        <img src="https://i.ibb.co/B3JfDJY/dignity-drop.jpg" alt="Dignity Drop">
+        <h3>Dignity Drop</h3>
+        <p>Minimal yet bold. This collection funds hygiene kits and food parcels for displaced families.</p>
       </div>
     </div>
   </section>
-
   <footer>
-    © 2025 Silent Aid | Collections that Care
+    © 2025 Silent Aid | Powered by Purpose | Built to Uplift Humanity
   </footer>
 </body>
 </html>
