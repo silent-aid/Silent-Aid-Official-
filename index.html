@@ -4,10 +4,14 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Silent Aid – Stand with Gaza</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+
   <style>
     /* Reset */
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: 'Segoe UI', sans-serif; background-color: #f8f9fa; color: #1d1d1d; line-height: 1.6; }
+    body { font-family: 'Roboto', sans-serif; background-color: #1b1b1b; color: #f4f4f4; line-height: 1.6; }
 
     a { color: inherit; text-decoration: none; }
 
@@ -17,80 +21,67 @@
       color: white;
       text-align: center;
       padding: 12px 20px;
-      font-weight: bold;
-      font-size: 1em;
+      font-weight: 700;
+      font-family: 'Montserrat', sans-serif;
       letter-spacing: 0.5px;
     }
 
     /* Navbar */
     nav {
-      background-color: #1a1a1a;
+      background-color: #111;
       padding: 15px 30px;
       display: flex;
       justify-content: space-between;
       align-items: center;
       flex-wrap: wrap;
     }
-    .nav-left h1 { color: #fff; font-size: 1.9em; letter-spacing: 1px; }
+    .nav-left h1 { color: #f4f4f4; font-size: 2em; font-family: 'Montserrat', sans-serif; letter-spacing: 1px; }
     .nav-center ul { list-style: none; display: flex; gap: 25px; }
-    .nav-center li a { color: #fff; font-weight: 600; transition: 0.3s; }
+    .nav-center li a { color: #f4f4f4; font-weight: 500; transition: 0.3s; font-family: 'Montserrat', sans-serif; }
     .nav-center li a:hover { color: #f77f00; }
-    .nav-right i { font-size: 1.3em; color: white; margin-left: 15px; cursor: pointer; transition: 0.3s; }
+    .nav-right i { font-size: 1.3em; color: #f4f4f4; margin-left: 15px; cursor: pointer; transition: 0.3s; }
     .nav-right i:hover { color: #f77f00; }
 
-    /* Hero Slider */
-    .hero { width: 100%; height: 500px; overflow: hidden; position: relative; }
-    .slides { display: flex; width: 300%; height: 100%; animation: slide 12s infinite; }
-    .slide { width: 100%; height: 100%; flex-shrink: 0; background-size: cover; background-position: center; position: relative; }
-    .slide::after {
+    /* Hero Section */
+    .hero { width: 100%; height: 500px; position: relative; overflow: hidden; }
+    .hero::after {
       content: '';
       position: absolute;
       top:0; left:0; width:100%; height:100%;
-      background: rgba(0,0,0,0.4); /* overlay for text readability */
+      background: linear-gradient(180deg, rgba(0,0,0,0.4), rgba(0,0,0,0.7));
     }
-    .slide1 { background-image: url(https://static.vecteezy.com/system/resources/previews/029/226/849/non_2x/long-wavy-palestine-flag-free-vector.jpg); }
-    .slide2 { background-image: url(https://images-cdn.ubuy.co.in/652c7dca1a3ae52f9855d705-soulbuty-big-palestine-flag-for-wall-3x5.jpg); }
-    .slide3 { background-image: url(https://i0.wp.com/3sjshop.com/wp-content/uploads/2024/09/img_5079-scaled.jpeg); }
-
-    @keyframes slide {
-      0% { transform: translateX(0); }
-      33% { transform: translateX(-100%); }
-      66% { transform: translateX(-200%); }
-      100% { transform: translateX(0); }
-    }
+    .hero img { width: 100%; height: 500px; object-fit: cover; display: block; }
 
     /* Hero Content */
     .hero-content {
+      position: relative;
       text-align: center;
-      padding: 80px 20px;
-      background-color: #fff;
-      border-radius: 15px;
-      margin: -120px auto 50px auto;
+      padding: 100px 20px;
       max-width: 900px;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+      margin: -400px auto 50px auto;
     }
-    .hero-content h2 { font-size: 2.8em; color: #1d1d1d; margin-bottom: 20px; }
-    .hero-content p { max-width: 750px; margin: auto; font-size: 1.2em; color: #444; line-height: 1.8; }
+    .hero-content h2 { font-size: 3em; color: #f77f00; font-family: 'Montserrat', sans-serif; margin-bottom: 20px; }
+    .hero-content p { font-size: 1.2em; color: #f4f4f4; max-width: 750px; margin: auto; line-height: 1.8; }
 
     /* Product Section */
-    .product-section { padding: 60px 20px; background: #fff; text-align: center; }
-    .product-section h2 { font-size: 2.5em; margin-bottom: 40px; color: #e63946; }
+    .product-section { padding: 60px 20px; background: #111; text-align: center; }
+    .product-section h2 { font-size: 2.5em; margin-bottom: 40px; color: #f77f00; font-family: 'Montserrat', sans-serif; }
     .products { display: flex; gap: 30px; flex-wrap: wrap; justify-content: center; }
     .product-card {
-      background: #f8f9fa;
+      background: #1e1e1e;
       padding: 20px;
       border-radius: 15px;
       width: 260px;
-      box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.5);
       transition: transform 0.3s, box-shadow 0.3s;
     }
-    .product-card:hover { transform: translateY(-10px); box-shadow: 0 10px 20px rgba(0,0,0,0.2); }
+    .product-card:hover { transform: translateY(-10px); box-shadow: 0 12px 25px rgba(0,0,0,0.7); }
     .product-card img { width: 100%; border-radius: 12px; margin-bottom: 15px; }
-    .product-card h3 { margin: 10px 0; color: #1d1d1d; }
-    .product-card p { color: #555; font-size: 0.95em; }
+    .product-card h3 { margin: 10px 0; color: #f4f4f4; font-family: 'Montserrat', sans-serif; }
+    .product-card p { color: #ccc; font-size: 0.95em; }
     .product-card button {
-      background: linear-gradient(45deg, #e63946, #f77f00);
-      color: white;
+      background: #f77f00;
+      color: #1b1b1b;
       border: none;
       padding: 12px 25px;
       border-radius: 8px;
@@ -102,38 +93,30 @@
     .product-card button:hover { opacity: 0.9; transform: scale(1.05); }
 
     /* Impact Section */
-    .impact {
-      background: #1a1a1a;
-      color: white;
-      padding: 60px 20px;
-      text-align: center;
-      border-radius: 15px;
-      margin: 50px auto;
-      max-width: 900px;
-    }
-    .impact h2 { font-size: 2.5em; color: #f77f00; margin-bottom: 20px; }
-    .impact p { max-width: 750px; margin: auto; font-size: 1.2em; line-height: 1.8; }
+    .impact { background: #1b1b1b; color: #f4f4f4; padding: 60px 20px; text-align: center; border-radius: 15px; margin: 50px auto; max-width: 900px; }
+    .impact h2 { font-size: 2.5em; color: #f77f00; margin-bottom: 20px; font-family: 'Montserrat', sans-serif; }
+    .impact p { font-size: 1.2em; line-height: 1.8; color: #ccc; }
 
     /* Donor Section */
-    .donor-section { padding: 60px 20px; background: #fff; text-align: center; border-radius: 15px; margin-bottom: 50px; }
-    .donor-section h2 { font-size: 2em; margin-bottom: 25px; color: #e63946; }
+    .donor-section { padding: 60px 20px; background: #222; text-align: center; border-radius: 15px; margin-bottom: 50px; }
+    .donor-section h2 { font-size: 2em; margin-bottom: 25px; color: #f77f00; font-family: 'Montserrat', sans-serif; }
     .donor-list { display: flex; flex-direction: column; gap: 12px; max-width: 400px; margin: auto; }
-    .donor { background: #f1f1f1; padding: 12px; border-radius: 8px; font-weight: bold; color: #333; }
+    .donor { background: #333; padding: 12px; border-radius: 8px; font-weight: bold; color: #f4f4f4; }
 
     /* Newsletter */
-    .newsletter { background: #fff; padding: 60px 20px; text-align: center; border-radius: 15px; margin-bottom: 50px; }
-    .newsletter h2 { font-size: 2em; margin-bottom: 20px; color: #1d1d1d; }
-    .newsletter input { padding: 14px; width: 280px; border: 1px solid #ccc; border-radius: 8px; }
-    .newsletter button { padding: 14px 25px; background: #e63946; color: white; border: none; border-radius: 8px; margin-left: 10px; cursor: pointer; transition: 0.3s; }
+    .newsletter { background: #1b1b1b; padding: 60px 20px; text-align: center; border-radius: 15px; margin-bottom: 50px; }
+    .newsletter h2 { font-size: 2em; margin-bottom: 20px; color: #f77f00; font-family: 'Montserrat', sans-serif; }
+    .newsletter input { padding: 14px; width: 280px; border: 1px solid #555; border-radius: 8px; background: #222; color: #f4f4f4; }
+    .newsletter button { padding: 14px 25px; background: #f77f00; color: #1b1b1b; border: none; border-radius: 8px; margin-left: 10px; cursor: pointer; transition: 0.3s; }
     .newsletter button:hover { opacity: 0.9; transform: scale(1.05); }
 
     /* Footer */
-    footer { background-color: #1a1a1a; color: #ccc; text-align: center; padding: 30px 10px; font-size: 0.95em; border-top: 3px solid #e63946; }
+    footer { background-color: #111; color: #ccc; text-align: center; padding: 30px 10px; font-size: 0.95em; border-top: 3px solid #f77f00; }
 
     /* Responsive */
     @media(max-width: 768px){
       .products { flex-direction: column; align-items: center; }
-      .hero-content { margin: -100px 20px 50px 20px; }
+      .hero-content { margin: -300px 20px 50px 20px; }
     }
   </style>
 </head>
@@ -145,7 +128,7 @@
     <div class="nav-left"><h1>Silent Aid</h1></div>
     <div class="nav-center">
       <ul>
-        <li><a href="https://www.gofundme.com/f/keeping-houssem-and-his-family-safe-this-winter" target="_blank" style="color:#f77f00;">Help Malek Family</a></li>
+        <li><a href="#" target="_blank" style="color:#f77f00;">Help Malek Family</a></li>
         <li><a href="collections.html">Collections 🍉</a></li>
         <li><a href="new.html">New Arrivals</a></li>
         <li><a href="impact.html">Impact</a></li>
@@ -163,11 +146,7 @@
 
   <!-- Hero -->
   <div class="hero">
-    <div class="slides">
-      <div class="slide slide1"></div>
-      <div class="slide slide2"></div>
-      <div class="slide slide3"></div>
-    </div>
+    <img src="https://static.vecteezy.com/system/resources/previews/029/226/849/non_2x/long-wavy-palestine-flag-free-vector.jpg" alt="Gaza Support Hero">
   </div>
 
   <div class="hero-content">
@@ -232,7 +211,7 @@
   </footer>
 
   <script>
-    async function subscribeToBrevo(event) {
+    function subscribeToBrevo(event) {
       event.preventDefault();
       const email = document.querySelector("#newsletter-email").value;
       if (!email) return alert("Please enter a valid email address.");
@@ -240,5 +219,6 @@
       document.querySelector("#newsletter-email").value = "";
     }
   </script>
+
 </body>
 </html>
