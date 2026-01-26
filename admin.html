@@ -5,15 +5,19 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Silent Aid Admin Panel</title>
 <style>
-    body{font-family:Poppins, sans-serif;padding:20px;background:#f9f9f9;}
-    input, select{padding:8px;margin:5px 0;width:100%;}
-    button{padding:10px 20px;margin-top:10px;cursor:pointer;}
+body { font-family: 'Poppins', sans-serif; background: #f0f2f5; padding: 30px; }
+h2 { text-align: center; margin-bottom: 20px; }
+form { max-width: 500px; margin: auto; background: #fff; padding: 20px; border-radius: 12px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); }
+input, select, button { width: 100%; padding: 10px; margin: 8px 0; border-radius: 8px; border: 1px solid #ccc; }
+button { background: #28a745; color: white; border: none; cursor: pointer; }
+button:hover { background: #218838; }
 </style>
 </head>
 <body>
-<h2>Admin Panel - Add / Update Orders</h2>
 
+<h2>Admin Panel - Add Order</h2>
 <form id="orderForm">
+    <input type="text" id="orderId" placeholder="Order ID" required>
     <input type="text" id="customerName" placeholder="Customer Name" required>
     <input type="text" id="productName" placeholder="Product Name" required>
     <select id="paymentStatus" required>
@@ -34,30 +38,30 @@
 
 <script>
 const orderForm = document.getElementById('orderForm');
-
-orderForm.addEventListener('submit', (e)=>{
+orderForm.addEventListener('submit', (e) => {
     e.preventDefault();
-    
-    // Get values
     const order = {
-        customer: document.getElementById('customerName').value,
-        product: document.getElementById('productName').value,
+        id: document.getElementById('orderId').value.trim(),
+        customer: document.getElementById('customerName').value.trim(),
+        product: document.getElementById('productName').value.trim(),
         payment: document.getElementById('paymentStatus').value,
         stage: document.getElementById('currentStage').value
     };
-    
-    // Get existing orders from localStorage
     let orders = JSON.parse(localStorage.getItem('silentAidOrders')) || [];
     
-    // Add new order
-    orders.push(order);
+    // Check if order ID exists, update if yes
+    const index = orders.findIndex(o => o.id === order.id);
+    if(index > -1) {
+        orders[index] = order;
+    } else {
+        orders.push(order);
+    }
     
-    // Save back to localStorage
     localStorage.setItem('silentAidOrders', JSON.stringify(orders));
-    
     alert('Order saved!');
     orderForm.reset();
 });
 </script>
+
 </body>
 </html>
