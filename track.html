@@ -71,7 +71,6 @@ button{
   margin-right:15px;
 }
 .step.done .circle{ background:#00c853; }
-.step.active .circle{ background:#e10600; }
 
 .badge{
   padding:6px 12px;
@@ -157,12 +156,13 @@ function trackOrder(){
     paymentStatus.className = "badge pending";
   }
 
-  // Progress Steps (100% WORKING)
+  // FINAL PROGRESS LOGIC (WHAT YOU WANT)
   let steps = document.querySelectorAll(".step");
   steps.forEach((step, i)=>{
-    step.classList.remove("done","active");
-    if(i < order.status) step.classList.add("done");
-    else if(i === order.status) step.classList.add("active");
+    step.classList.remove("done");
+    if(i <= order.status){
+      step.classList.add("done"); // green including current
+    }
   });
 
   document.getElementById("statusBox").style.display = "block";
