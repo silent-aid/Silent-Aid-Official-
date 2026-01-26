@@ -5,22 +5,27 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Silent Aid | Track Order</title>
 <style>
-body { font-family: 'Poppins', sans-serif; background: #f0f2f5; margin:0; padding:0; }
-.container { max-width: 700px; margin: 40px auto; background: #fff; padding: 30px; border-radius: 15px; box-shadow: 0 5px 30px rgba(0,0,0,0.1); }
-h2 { text-align: center; margin-bottom: 20px; color: #333; }
-input, button { padding: 12px; margin: 10px 0; border-radius: 10px; border: 1px solid #ccc; width: 100%; font-size: 16px; }
-button { background: #28a745; color: #fff; border: none; cursor: pointer; }
-button:hover { background: #218838; }
-#orderDetails { margin-top: 30px; display:none; }
-
-.order-info p { margin: 6px 0; font-size: 16px; color: #555; }
-.tracker { display: flex; justify-content: space-between; position: relative; margin-top: 25px; }
-.tracker::before { content: ''; position: absolute; top: 15px; left: 0; right: 0; height: 5px; background: #ddd; border-radius: 5px; z-index:0; }
-.step { position: relative; z-index: 1; text-align: center; width: 14%; }
-.step .circle { width: 35px; height: 35px; background: #ddd; border-radius: 50%; margin: auto; line-height: 35px; color:white; font-weight:bold; font-size:16px; transition: 0.3s; }
-.step.active .circle, .step.completed .circle { background: #28a745; }
-.step p { margin-top: 8px; font-size: 12px; color: #333; }
-.status { text-align: center; font-weight: bold; margin-top: 15px; font-size: 16px; color: #333; }
+body{font-family:'Poppins',sans-serif;background:#f0f2f5;margin:0;padding:0;}
+.container{max-width:700px;margin:40px auto;background:#fff;padding:30px;border-radius:15px;box-shadow:0 5px 30px rgba(0,0,0,0.1);}
+h2{text-align:center;margin-bottom:20px;color:#333;}
+input,button{padding:12px;margin:10px 0;border-radius:10px;border:1px solid #ccc;width:100%;font-size:16px;}
+button{background:#28a745;color:#fff;border:none;cursor:pointer;transition:0.3s;}
+button:hover{background:#218838;}
+#orderDetails{margin-top:30px;display:none;}
+.order-info p{margin:6px 0;font-size:16px;color:#555;}
+.price{font-weight:bold;color:#333;margin-top:5px;}
+.tracker{display:flex;justify-content:space-between;position:relative;margin-top:25px;}
+.tracker::before{content:'';position:absolute;top:18px;left:0;right:0;height:6px;background:#ddd;border-radius:5px;z-index:0;}
+.step{position:relative;z-index:1;text-align:center;width:14%;transition: all 0.5s ease;}
+.step .circle{width:40px;height:40px;background:#ddd;border-radius:50%;margin:auto;line-height:40px;color:white;font-weight:bold;font-size:16px;transition: all 0.5s ease;}
+.step.completed .circle{background:#28a745;}
+.step.active .circle{background:#ff9800;}
+.step p{margin-top:8px;font-size:12px;color:#333;}
+.status{text-align:center;font-weight:bold;margin-top:15px;font-size:16px;color:#333;}
+@media(max-width:600px){
+    .step p{font-size:10px;}
+    .step .circle{width:30px;height:30px;line-height:30px;font-size:14px;}
+}
 </style>
 </head>
 <body>
@@ -34,6 +39,7 @@ button:hover { background: #218838; }
     <div class="order-info">
         <p><strong>Customer:</strong> <span id="customerName"></span></p>
         <p><strong>Product:</strong> <span id="productName"></span></p>
+        <p class="price"><strong>Price:</strong> ₹ <span id="price"></span></p>
         <p><strong>Payment:</strong> <span id="paymentStatus"></span></p>
         <p><strong>Order ID:</strong> <span id="orderId"></span></p>
     </div>
@@ -44,7 +50,7 @@ button:hover { background: #218838; }
 <script>
 const stages = ["Design Selected","Payment Done","Dispatched","Shipping","Out for Delivery","Delivered"];
 
-function trackOrder() {
+function trackOrder(){
     const orderId = document.getElementById('orderIdInput').value.trim();
     const orders = JSON.parse(localStorage.getItem('silentAidOrders')) || [];
     const order = orders.find(o => o.id === orderId);
@@ -52,28 +58,39 @@ function trackOrder() {
     const detailsDiv = document.getElementById('orderDetails');
     const trackerDiv = document.getElementById('trackerContainer');
 
-    if(!order) {
+    if(!order){
         alert('Order not found!');
-        detailsDiv.style.display = 'none';
+        detailsDiv.style.display='none';
         return;
     }
 
-    // Fill details
     document.getElementById('customerName').innerText = order.customer;
     document.getElementById('productName').innerText = order.product;
+    document.getElementById('price').innerText = order.price;
     document.getElementById('paymentStatus').innerText = order.payment;
     document.getElementById('orderId').innerText = order.id;
     document.getElementById('currentStatus').innerText = order.stage;
 
-    // Build tracker
-    trackerDiv.innerHTML = stages.map(stage => {
-        let classes = '';
-        if(stages.indexOf(stage) < stages.indexOf(order.stage)) classes='completed';
-        if(stage === order.stage) classes+=' active';
-        return `<div class="step ${classes.trim()}"><div class="circle">${stages.indexOf(stage)+1}</div><p>${stage}</p></div>`;
-    }).join('');
+    trackerDiv.innerHTML = '';
+    stages.forEach((stage,index)=>{
+        const step = document.createElement('div');
+        step.className='step';
+        const circle = document.createElement('div');
+        circle.className='circle';
+        circle.innerText=index+1;
+        const p = document.createElement('p');
+        p.innerText=stage;
+        step.appendChild(circle);
+        step.appendChild(p);
+        trackerDiv.appendChild(step);
 
-    detailsDiv.style.display = 'block';
+        setTimeout(()=>{
+            if(index < stages.indexOf(order.stage)) step.classList.add('completed');
+            if(index === stages.indexOf(order.stage)) step.classList.add('active');
+        }, 100*index); // sliding animation
+    });
+
+    detailsDiv.style.display='block';
 }
 </script>
 
