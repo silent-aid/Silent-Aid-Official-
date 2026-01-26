@@ -1,17 +1,33 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Silent Aid Admin</title>
+<title>Silent Aid Admin Panel</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <style>
-body{font-family:Poppins;background:#0b0b0b;color:white;padding:30px}
-input,select,button{
-  width:100%;padding:12px;margin:10px 0;
-  border-radius:8px;border:none;
+body{
+  font-family:Poppins,Arial;
+  background:#0b0b0b;
+  color:white;
+  padding:30px;
 }
-button{background:#e10600;color:white;font-size:16px}
+input, select, button{
+  width:100%;
+  padding:12px;
+  margin:10px 0;
+  border-radius:8px;
+  border:none;
+  font-size:15px;
+}
+button{
+  background:#e10600;
+  color:white;
+  font-size:16px;
+  cursor:pointer;
+}
 </style>
 </head>
+
 <body>
 
 <h2>Silent Aid – Admin Panel</h2>
@@ -43,11 +59,11 @@ button{background:#e10600;color:white;font-size:16px}
 <script>
 function saveOrder(){
   let order = {
-    id: id.value.trim(),
-    name: name.value,
-    paymentType: paymentType.value,
-    paymentStatus: paymentStatus.value,
-    status: Number(status.value) // IMPORTANT
+    id: document.getElementById("id").value.trim(),
+    name: document.getElementById("name").value.trim(),
+    paymentType: document.getElementById("paymentType").value,
+    paymentStatus: document.getElementById("paymentStatus").value,
+    status: Number(document.getElementById("status").value) // FORCE NUMBER
   };
 
   localStorage.setItem(order.id, JSON.stringify(order));
