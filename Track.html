@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Track Your Order | Silent Aid</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body{
+    margin:0;
+    font-family:Poppins,Arial;
+    background:#0b0b0b;
+    color:white;
+}
+
+.container{
+    max-width:700px;
+    margin:40px auto;
+    padding:20px;
+}
+
+h1{
+    text-align:center;
+    color:#e10600;
+}
+
+.card{
+    background:#111;
+    border-radius:12px;
+    padding:20px;
+    margin-top:20px;
+}
+
+input{
+    width:100%;
+    padding:12px;
+    margin:10px 0;
+    border-radius:8px;
+    border:none;
+    outline:none;
+}
+
+button{
+    width:100%;
+    padding:12px;
+    background:#e10600;
+    border:none;
+    color:white;
+    font-size:16px;
+    border-radius:8px;
+    cursor:pointer;
+}
+
+.status{
+    margin-top:30px;
+    display:none;
+}
+
+.step{
+    display:flex;
+    align-items:center;
+    margin:15px 0;
+}
+
+.circle{
+    width:18px;
+    height:18px;
+    border-radius:50%;
+    background:#333;
+    margin-right:15px;
+}
+
+.step.done .circle{
+    background:#00c853;
+}
+
+.step.active .circle{
+    background:#e10600;
+}
+
+.badge{
+    display:inline-block;
+    padding:6px 12px;
+    border-radius:20px;
+    font-size:12px;
+}
+
+.cod{ background:orange; }
+.online{ background:#2979ff; }
+.done{ background:#00c853; }
+.pending{ background:#777; }
+
+.error{
+    color:red;
+    margin-top:10px;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Track Your Order</h1>
+
+    <div class="card">
+        <input type="text" id="orderId" placeholder="Enter your Order ID">
+        <button onclick="trackOrder()">Track Order</button>
+        <div class="error" id="error"></div>
+    </div>
+
+    <div class="card status" id="statusBox">
+        <h3>Order ID: <span id="showId"></span></h3>
+        <h4>Customer: <span id="showName"></span></h4>
+
+        <p>
+            Payment Mode: 
+            <span id="paymentMode" class="badge cod">COD</span>
+            <span id="paymentStatus" class="badge pending">Pending</span>
+        </p>
+
+        <div class="step">
+            <div class="circle"></div> Design Selected
+        </div>
+        <div class="step">
+            <div class="circle"></div> Order Confirmed
+        </div>
+        <div class="step">
+            <div class="circle"></div> Shipping
+        </div>
+        <div class="step">
+            <div class="circle"></div> Dispatched
+        </div>
+        <div class="step">
+            <div class="circle"></div> Out for Delivery
+        </div>
+        <div class="step">
+            <div class="circle"></div> Delivered
+        </div>
+    </div>
+</div>
+
+<script>
+function trackOrder(){
+    let id = document.getElementById("orderId").value.trim();
+    let data = localStorage.getItem(id);
+
+    if(!data){
+        document.getElementById("error").innerText = "Order not found. Please check your Order ID.";
+        document.getElementById("statusBox").style.display = "none";
+        return;
+    }
+
+    document.getElementById("error").innerText = "";
+
+    let order = JSON.parse(data);
+
+    document.getElementById("showId").innerText = order.id;
+    document.getElementById("showName").innerText = order.name || "Customer";
+
+    // Payment Mode
+    if(order.paymentType === "ONLINE"){
+        document.getElementById("paymentMode").innerText = "Online";
+        document.getElementById("paymentMode").className = "badge online";
+    }else{
+        document.getElementById("paymentMode").innerText = "COD";
+        document.getElementById("paymentMode").className = "badge cod";
+    }
+
+    // Payment Status
+    if(order.paymentStatus === "Done"){
+        document.getElementById("paymentStatus").innerText = "Done";
+        document.getElementById("paymentStatus").className = "badge done";
+    }else{
+        document.getElementById("paymentStatus").innerText = "Pending";
+        document.getElementById("paymentStatus").className = "badge pending";
+    }
+
+    // Steps
+    let steps = document.querySelectorAll(".step");
+    steps.forEach((step, i)=>{
+        step.className = "step";
+        if(i < order.status) step.classList.add("done");
+        if(i === order.status) step.classList.add("active");
+    });
+
+    document.getElementById("statusBox").style.display = "block";
+}
+</script>
+
+</body>
+</html>
