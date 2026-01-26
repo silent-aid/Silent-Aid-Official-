@@ -1,171 +1,81 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-<meta charset="UTF-8">
-<title>Track Order | Silent Aid</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Track Order - Silent Aid</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body{background:#000;color:#fff;font-family:Arial;padding:20px}
+    .card{background:#111;padding:20px;border-radius:15px}
+    input,button{width:100%;padding:12px;border-radius:8px;border:none}
+    button{background:red;color:white;margin-top:10px}
 
-<style>
-body{
-  margin:0;
-  font-family:Poppins,Arial;
-  background:#0b0b0b;
-  color:white;
-}
-nav{
-  background:black;
-  padding:15px;
-  text-align:center;
-}
-nav a{
-  color:white;
-  text-decoration:none;
-  margin:0 15px;
-  font-weight:bold;
-}
-.container{
-  max-width:700px;
-  margin:40px auto;
-  padding:20px;
-}
-h1{
-  text-align:center;
-  color:#e10600;
-}
-.card{
-  background:#111;
-  border-radius:12px;
-  padding:20px;
-  margin-top:20px;
-}
-input{
-  width:100%;
-  padding:12px;
-  margin:10px 0;
-  border-radius:8px;
-  border:none;
-}
-button{
-  width:100%;
-  padding:12px;
-  background:#e10600;
-  border:none;
-  color:white;
-  font-size:16px;
-  border-radius:8px;
-}
-.status{
-  display:none;
-  margin-top:20px;
-}
-.step{
-  display:flex;
-  align-items:center;
-  margin:15px 0;
-}
-.circle{
-  width:18px;
-  height:18px;
-  border-radius:50%;
-  background:#333;
-  margin-right:15px;
-}
-.step.done .circle{ background:#00c853; }
-
-.badge{
-  padding:6px 12px;
-  border-radius:20px;
-  font-size:12px;
-}
-.cod{ background:orange; }
-.online{ background:#2979ff; }
-.done{ background:#00c853; }
-.pending{ background:#777; }
-
-.error{ color:red; margin-top:10px; }
-</style>
+    .step{display:flex;align-items:center;margin:10px 0;color:#777}
+    .circle{width:14px;height:14px;border-radius:50%;background:#444;margin-right:10px}
+    .done{color:#00ff66}
+    .done .circle{background:#00ff66}
+  </style>
 </head>
-
 <body>
 
-<nav>
-  <a href="index.html">Home</a>
-  <a href="track.html">Track Order</a>
-</nav>
-
-<div class="container">
-<h1>Track Your Order</h1>
+<h1 style="color:red;text-align:center">Track Your Order</h1>
 
 <div class="card">
-  <input type="text" id="orderId" placeholder="Enter Order ID (eg: SA-2026-001)">
+  <input id="trackInput" placeholder="Enter Order ID">
   <button onclick="trackOrder()">Track Order</button>
-  <div class="error" id="error"></div>
 </div>
 
-<div class="card status" id="statusBox">
-  <h3>Order ID: <span id="showId"></span></h3>
-  <h4>Customer: <span id="showName"></span></h4>
+<br>
 
-  <p>
-    Payment:
-    <span id="paymentMode" class="badge cod">COD</span>
-    <span id="paymentStatus" class="badge pending">Pending</span>
-  </p>
+<div id="result" class="card" style="display:none">
 
-  <div class="step"><div class="circle"></div>Design Selected</div>
-  <div class="step"><div class="circle"></div>Order Confirmed</div>
-  <div class="step"><div class="circle"></div>Shipping</div>
-  <div class="step"><div class="circle"></div>Dispatched</div>
-  <div class="step"><div class="circle"></div>Out for Delivery</div>
-  <div class="step"><div class="circle"></div>Delivered</div>
-</div>
+  <p><b>Order ID:</b> <span id="oid"></span></p>
+  <p><b>Customer:</b> <span id="cust"></span></p>
+  <p><b>Payment:</b> <span id="pay"></span></p>
+
+  <div id="steps">
+    <div class="step"><div class="circle"></div>Design Selected</div>
+    <div class="step"><div class="circle"></div>Order Confirmed</div>
+    <div class="step"><div class="circle"></div>Shipping</div>
+    <div class="step"><div class="circle"></div>Dispatched</div>
+    <div class="step"><div class="circle"></div>Out for Delivery</div>
+    <div class="step"><div class="circle"></div>Delivered</div>
+  </div>
+
 </div>
 
 <script>
 function trackOrder(){
-  let id = document.getElementById("orderId").value.trim();
-  let data = localStorage.getItem(id);
+  let id = trackInput.value.trim();
+  let data = localStorage.getItem("order_"+id);
 
   if(!data){
-    document.getElementById("error").innerText = "Order not found!";
-    document.getElementById("statusBox").style.display = "none";
+    alert("Order not found");
     return;
   }
 
   let order = JSON.parse(data);
-  order.status = Number(order.status); // FORCE NUMBER
 
-  document.getElementById("error").innerText = "";
-  document.getElementById("showId").innerText = order.id;
-  document.getElementById("showName").innerText = order.name || "Silent Aid Customer";
+  document.getElementById("result").style.display="block";
+  oid.innerText = order.id;
+  cust.innerText = order.customer;
+  pay.innerText = order.paymentType+" - "+order.paymentStatus;
 
-  // Payment
-  if(order.paymentType === "ONLINE"){
-    paymentMode.innerText = "Online";
-    paymentMode.className = "badge online";
-  }else{
-    paymentMode.innerText = "COD";
-    paymentMode.className = "badge cod";
-  }
-
-  if(order.paymentStatus === "Done"){
-    paymentStatus.innerText = "Done";
-    paymentStatus.className = "badge done";
-  }else{
-    paymentStatus.innerText = "Pending";
-    paymentStatus.className = "badge pending";
-  }
-
-  // FINAL PROGRESS LOGIC (WHAT YOU WANT)
   let steps = document.querySelectorAll(".step");
-  steps.forEach((step, i)=>{
-    step.classList.remove("done");
-    if(i <= order.status){
-      step.classList.add("done"); // green including current
-    }
-  });
 
-  document.getElementById("statusBox").style.display = "block";
+  // RESET
+  steps.forEach(s=>s.classList.remove("done"));
+
+  // FINAL CORRECT LOGIC
+  for(let i=0;i<=order.status;i++){
+    steps[i].classList.add("done");
+  }
+}
+
+// Auto-load from link
+let params = new URLSearchParams(window.location.search);
+if(params.get("id")){
+  trackInput.value = params.get("id");
+  trackOrder();
 }
 </script>
 
