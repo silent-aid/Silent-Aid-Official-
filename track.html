@@ -1,62 +1,58 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Track Order</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Silent Aid | Order Tracking</title>
+<style>
+body{font-family:'Poppins',sans-serif;background:#f9f9f9;padding:20px;}
+.container{max-width:900px;margin:auto;background:#fff;padding:20px;border-radius:12px;box-shadow:0 5px 25px rgba(0,0,0,0.1);}
+h2{text-align:center;margin-bottom:20px;}
+.order{border:1px solid #ddd;border-radius:10px;padding:15px;margin-bottom:20px;background:#fefefe;}
+.order p{margin:4px 0;}
+.tracker{display:flex;justify-content:space-between;position:relative;margin-top:15px;}
+.tracker::before{content:'';position:absolute;top:15px;left:0;right:0;height:4px;background:#ddd;z-index:0;}
+.step{position:relative;z-index:1;text-align:center;width:14%;}
+.step .circle{width:30px;height:30px;background:#ddd;border-radius:50%;margin:auto;line-height:30px;color:white;font-weight:bold;}
+.step.active .circle{background:#28a745;}
+.step.completed .circle{background:#28a745;}
+.step p{margin-top:8px;font-size:12px;}
+</style>
 </head>
-<body style="background:#000;color:#fff;font-family:Arial;padding:20px">
-
-<h1 style="color:red">Track Your Order</h1>
-
-<input id="input"><button onclick="track()">Track</button>
-
-<div id="box" style="display:none">
-
-<p id="name"></p>
-
-<div class="step">Design Selected</div>
-<div class="step">Order Confirmed</div>
-<div class="step">Shipping</div>
-<div class="step">Dispatched</div>
-<div class="step">Out for Delivery</div>
-<div class="step">Delivered</div>
-
+<body>
+<div class="container">
+<h2>Order Tracking</h2>
+<div id="ordersContainer"></div>
 </div>
 
-<style>
-.step{margin:10px 0;color:#555}
-.done{color:#00ff66;font-weight:bold}
-</style>
-
 <script>
-function track(){
-  let id = input.value;
-  let data = localStorage.getItem("order_"+id);
+const ordersContainer = document.getElementById('ordersContainer');
+const stages = ["Design Selected","Payment Done","Dispatched","Shipping","Out for Delivery","Delivered"];
 
-  if(!data){ alert("Not found"); return; }
+// Get orders from localStorage
+const orders = JSON.parse(localStorage.getItem('silentAidOrders')) || [];
 
-  let order = JSON.parse(data);
-
-  console.log(order.status, typeof order.status); // DEBUG
-
-  box.style.display="block";
-  name.innerText = "Customer: "+order.customer;
-
-  let steps = document.querySelectorAll(".step");
-  steps.forEach(s=>s.classList.remove("done"));
-
-  for(let i=0; i<=order.status; i++){
-    steps[i].classList.add("done");
-  }
-}
-
-// auto load from link
-let p = new URLSearchParams(location.search);
-if(p.get("id")){
-  input.value = p.get("id");
-  track();
-}
+orders.forEach(order => {
+    // Create order div
+    const div = document.createElement('div');
+    div.className = 'order';
+    
+    div.innerHTML = `
+        <p><strong>Customer:</strong> ${order.customer}</p>
+        <p><strong>Product:</strong> ${order.product}</p>
+        <p><strong>Payment:</strong> ${order.payment}</p>
+        <p><strong>Current Stage:</strong> ${order.stage}</p>
+        <div class="tracker">
+            ${stages.map(stage=>{
+                let classes = '';
+                if(stages.indexOf(stage) < stages.indexOf(order.stage)) classes='completed';
+                if(stage === order.stage) classes+=' active';
+                return `<div class="step ${classes.trim()}"><div class="circle">${stages.indexOf(stage)+1}</div><p>${stage}</p></div>`;
+            }).join('')}
+        </div>
+    `;
+    ordersContainer.appendChild(div);
+});
 </script>
-
 </body>
 </html>
