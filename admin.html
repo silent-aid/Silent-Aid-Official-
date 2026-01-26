@@ -1,39 +1,63 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Silent Aid Admin</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Silent Aid Admin Panel</title>
+<style>
+    body{font-family:Poppins, sans-serif;padding:20px;background:#f9f9f9;}
+    input, select{padding:8px;margin:5px 0;width:100%;}
+    button{padding:10px 20px;margin-top:10px;cursor:pointer;}
+</style>
 </head>
-<body style="background:#000;color:#fff;font-family:Arial;padding:20px">
+<body>
+<h2>Admin Panel - Add / Update Orders</h2>
 
-<h2>Admin Panel</h2>
-
-<input id="orderId" placeholder="Order ID"><br><br>
-<input id="customer" placeholder="Customer"><br><br>
-
-<select id="status">
-  <option value="0">Design Selected</option>
-  <option value="1">Order Confirmed</option>
-  <option value="2">Shipping</option>
-  <option value="3">Dispatched</option>
-  <option value="4">Out for Delivery</option>
-  <option value="5">Delivered</option>
-</select><br><br>
-
-<button onclick="save()">Save</button>
+<form id="orderForm">
+    <input type="text" id="customerName" placeholder="Customer Name" required>
+    <input type="text" id="productName" placeholder="Product Name" required>
+    <select id="paymentStatus" required>
+        <option value="Pending">Payment Pending</option>
+        <option value="Online - Done">Online - Done</option>
+        <option value="COD">COD</option>
+    </select>
+    <select id="currentStage" required>
+        <option value="Design Selected">Design Selected</option>
+        <option value="Payment Done">Payment Done</option>
+        <option value="Dispatched">Dispatched</option>
+        <option value="Shipping">Shipping</option>
+        <option value="Out for Delivery">Out for Delivery</option>
+        <option value="Delivered">Delivered</option>
+    </select>
+    <button type="submit">Save Order</button>
+</form>
 
 <script>
-function save(){
-  let order = {
-    id: orderId.value,
-    customer: customer.value,
-    status: parseInt(status.value) // FORCE NUMBER
-  };
+const orderForm = document.getElementById('orderForm');
 
-  localStorage.setItem("order_"+order.id, JSON.stringify(order));
-  alert("Saved. Track: track.html?id="+order.id);
-}
+orderForm.addEventListener('submit', (e)=>{
+    e.preventDefault();
+    
+    // Get values
+    const order = {
+        customer: document.getElementById('customerName').value,
+        product: document.getElementById('productName').value,
+        payment: document.getElementById('paymentStatus').value,
+        stage: document.getElementById('currentStage').value
+    };
+    
+    // Get existing orders from localStorage
+    let orders = JSON.parse(localStorage.getItem('silentAidOrders')) || [];
+    
+    // Add new order
+    orders.push(order);
+    
+    // Save back to localStorage
+    localStorage.setItem('silentAidOrders', JSON.stringify(orders));
+    
+    alert('Order saved!');
+    orderForm.reset();
+});
 </script>
-
 </body>
 </html>
