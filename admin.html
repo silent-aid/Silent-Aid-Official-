@@ -1,43 +1,24 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Silent Aid Admin Panel</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<style>
-body{
-  font-family:Poppins,Arial;
-  background:#0b0b0b;
-  color:white;
-  padding:30px;
-}
-input, select, button{
-  width:100%;
-  padding:12px;
-  margin:10px 0;
-  border-radius:8px;
-  border:none;
-  font-size:15px;
-}
-button{
-  background:#e10600;
-  color:white;
-  font-size:16px;
-  cursor:pointer;
-}
-</style>
+  <title>Silent Aid Admin Panel</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body{background:#000;color:#fff;font-family:Arial;padding:20px}
+    input,select,button{width:100%;padding:12px;margin:10px 0;border-radius:8px;border:none}
+    button{background:red;color:white;font-size:16px}
+  </style>
 </head>
-
 <body>
 
-<h2>Silent Aid – Admin Panel</h2>
+<h2>Silent Aid Admin Panel</h2>
 
-<input id="id" placeholder="Order ID (eg: SA-2026-001)">
-<input id="name" placeholder="Customer Name">
+<input id="orderId" placeholder="Order ID (e.g SA123)">
+<input id="customer" placeholder="Customer Name">
 
 <select id="paymentType">
-  <option value="COD">COD</option>
-  <option value="ONLINE">ONLINE</option>
+  <option value="COD">Cash on Delivery</option>
+  <option value="Online">Online</option>
 </select>
 
 <select id="paymentStatus">
@@ -58,16 +39,19 @@ button{
 
 <script>
 function saveOrder(){
+  let id = orderId.value.trim();
+  if(!id){ alert("Enter Order ID"); return; }
+
   let order = {
-    id: document.getElementById("id").value.trim(),
-    name: document.getElementById("name").value.trim(),
-    paymentType: document.getElementById("paymentType").value,
-    paymentStatus: document.getElementById("paymentStatus").value,
-    status: Number(document.getElementById("status").value) // FORCE NUMBER
+    id: id,
+    customer: customer.value || "Silent Aid Customer",
+    paymentType: paymentType.value,
+    paymentStatus: paymentStatus.value,
+    status: Number(status.value)   // VERY IMPORTANT
   };
 
-  localStorage.setItem(order.id, JSON.stringify(order));
-  alert("Order Saved Successfully!");
+  localStorage.setItem("order_"+id, JSON.stringify(order));
+  alert("Order Saved!\nShare this link:\ntrack.html?id="+id);
 }
 </script>
 
