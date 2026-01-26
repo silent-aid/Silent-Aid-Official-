@@ -1,81 +1,60 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Track Order - Silent Aid</title>
+  <title>Track Order</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <style>
-    body{background:#000;color:#fff;font-family:Arial;padding:20px}
-    .card{background:#111;padding:20px;border-radius:15px}
-    input,button{width:100%;padding:12px;border-radius:8px;border:none}
-    button{background:red;color:white;margin-top:10px}
-
-    .step{display:flex;align-items:center;margin:10px 0;color:#777}
-    .circle{width:14px;height:14px;border-radius:50%;background:#444;margin-right:10px}
-    .done{color:#00ff66}
-    .done .circle{background:#00ff66}
-  </style>
 </head>
-<body>
+<body style="background:#000;color:#fff;font-family:Arial;padding:20px">
 
-<h1 style="color:red;text-align:center">Track Your Order</h1>
+<h1 style="color:red">Track Your Order</h1>
 
-<div class="card">
-  <input id="trackInput" placeholder="Enter Order ID">
-  <button onclick="trackOrder()">Track Order</button>
-</div>
+<input id="input"><button onclick="track()">Track</button>
 
-<br>
+<div id="box" style="display:none">
 
-<div id="result" class="card" style="display:none">
+<p id="name"></p>
 
-  <p><b>Order ID:</b> <span id="oid"></span></p>
-  <p><b>Customer:</b> <span id="cust"></span></p>
-  <p><b>Payment:</b> <span id="pay"></span></p>
-
-  <div id="steps">
-    <div class="step"><div class="circle"></div>Design Selected</div>
-    <div class="step"><div class="circle"></div>Order Confirmed</div>
-    <div class="step"><div class="circle"></div>Shipping</div>
-    <div class="step"><div class="circle"></div>Dispatched</div>
-    <div class="step"><div class="circle"></div>Out for Delivery</div>
-    <div class="step"><div class="circle"></div>Delivered</div>
-  </div>
+<div class="step">Design Selected</div>
+<div class="step">Order Confirmed</div>
+<div class="step">Shipping</div>
+<div class="step">Dispatched</div>
+<div class="step">Out for Delivery</div>
+<div class="step">Delivered</div>
 
 </div>
+
+<style>
+.step{margin:10px 0;color:#555}
+.done{color:#00ff66;font-weight:bold}
+</style>
 
 <script>
-function trackOrder(){
-  let id = trackInput.value.trim();
+function track(){
+  let id = input.value;
   let data = localStorage.getItem("order_"+id);
 
-  if(!data){
-    alert("Order not found");
-    return;
-  }
+  if(!data){ alert("Not found"); return; }
 
   let order = JSON.parse(data);
 
-  document.getElementById("result").style.display="block";
-  oid.innerText = order.id;
-  cust.innerText = order.customer;
-  pay.innerText = order.paymentType+" - "+order.paymentStatus;
+  console.log(order.status, typeof order.status); // DEBUG
+
+  box.style.display="block";
+  name.innerText = "Customer: "+order.customer;
 
   let steps = document.querySelectorAll(".step");
-
-  // RESET
   steps.forEach(s=>s.classList.remove("done"));
 
-  // FINAL CORRECT LOGIC
-  for(let i=0;i<=order.status;i++){
+  for(let i=0; i<=order.status; i++){
     steps[i].classList.add("done");
   }
 }
 
-// Auto-load from link
-let params = new URLSearchParams(window.location.search);
-if(params.get("id")){
-  trackInput.value = params.get("id");
-  trackOrder();
+// auto load from link
+let p = new URLSearchParams(location.search);
+if(p.get("id")){
+  input.value = p.get("id");
+  track();
 }
 </script>
 
