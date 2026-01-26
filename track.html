@@ -7,30 +7,83 @@
 
 <style>
 body{
-margin:0;font-family:Poppins;background:#0b0b0b;color:white;
+  margin:0;
+  font-family:Poppins,Arial;
+  background:#0b0b0b;
+  color:white;
 }
 nav{
-background:black;padding:15px;text-align:center;
+  background:black;
+  padding:15px;
+  text-align:center;
 }
 nav a{
-color:white;text-decoration:none;margin:0 15px;font-weight:bold;
+  color:white;
+  text-decoration:none;
+  margin:0 15px;
+  font-weight:bold;
 }
-.container{max-width:700px;margin:40px auto;padding:20px;}
-h1{text-align:center;color:#e10600;}
-.card{background:#111;border-radius:12px;padding:20px;margin-top:20px;}
-input{width:100%;padding:12px;margin:10px 0;border-radius:8px;border:none;}
-button{width:100%;padding:12px;background:#e10600;border:none;color:white;font-size:16px;border-radius:8px;}
-.status{display:none;margin-top:20px;}
-.step{display:flex;align-items:center;margin:15px 0;}
-.circle{width:18px;height:18px;border-radius:50%;background:#333;margin-right:15px;}
-.step.done .circle{background:#00c853;}
-.step.active .circle{background:#e10600;}
-.badge{padding:6px 12px;border-radius:20px;font-size:12px;}
-.cod{background:orange;}
-.online{background:#2979ff;}
-.done{background:#00c853;}
-.pending{background:#777;}
-.error{color:red;margin-top:10px;}
+.container{
+  max-width:700px;
+  margin:40px auto;
+  padding:20px;
+}
+h1{
+  text-align:center;
+  color:#e10600;
+}
+.card{
+  background:#111;
+  border-radius:12px;
+  padding:20px;
+  margin-top:20px;
+}
+input{
+  width:100%;
+  padding:12px;
+  margin:10px 0;
+  border-radius:8px;
+  border:none;
+}
+button{
+  width:100%;
+  padding:12px;
+  background:#e10600;
+  border:none;
+  color:white;
+  font-size:16px;
+  border-radius:8px;
+}
+.status{
+  display:none;
+  margin-top:20px;
+}
+.step{
+  display:flex;
+  align-items:center;
+  margin:15px 0;
+}
+.circle{
+  width:18px;
+  height:18px;
+  border-radius:50%;
+  background:#333;
+  margin-right:15px;
+}
+.step.done .circle{ background:#00c853; }
+.step.active .circle{ background:#e10600; }
+
+.badge{
+  padding:6px 12px;
+  border-radius:20px;
+  font-size:12px;
+}
+.cod{ background:orange; }
+.online{ background:#2979ff; }
+.done{ background:#00c853; }
+.pending{ background:#777; }
+
+.error{ color:red; margin-top:10px; }
 </style>
 </head>
 
@@ -45,75 +98,76 @@ button{width:100%;padding:12px;background:#e10600;border:none;color:white;font-s
 <h1>Track Your Order</h1>
 
 <div class="card">
-<input type="text" id="orderId" placeholder="Enter Order ID (eg: SA-2026-001)">
-<button onclick="trackOrder()">Track Order</button>
-<div class="error" id="error"></div>
+  <input type="text" id="orderId" placeholder="Enter Order ID (eg: SA-2026-001)">
+  <button onclick="trackOrder()">Track Order</button>
+  <div class="error" id="error"></div>
 </div>
 
 <div class="card status" id="statusBox">
-<h3>Order ID: <span id="showId"></span></h3>
-<h4>Customer: <span id="showName"></span></h4>
+  <h3>Order ID: <span id="showId"></span></h3>
+  <h4>Customer: <span id="showName"></span></h4>
 
-<p>
-Payment:
-<span id="paymentMode" class="badge cod">COD</span>
-<span id="paymentStatus" class="badge pending">Pending</span>
-</p>
+  <p>
+    Payment:
+    <span id="paymentMode" class="badge cod">COD</span>
+    <span id="paymentStatus" class="badge pending">Pending</span>
+  </p>
 
-<div class="step"><div class="circle"></div>Design Selected</div>
-<div class="step"><div class="circle"></div>Order Confirmed</div>
-<div class="step"><div class="circle"></div>Shipping</div>
-<div class="step"><div class="circle"></div>Dispatched</div>
-<div class="step"><div class="circle"></div>Out for Delivery</div>
-<div class="step"><div class="circle"></div>Delivered</div>
+  <div class="step"><div class="circle"></div>Design Selected</div>
+  <div class="step"><div class="circle"></div>Order Confirmed</div>
+  <div class="step"><div class="circle"></div>Shipping</div>
+  <div class="step"><div class="circle"></div>Dispatched</div>
+  <div class="step"><div class="circle"></div>Out for Delivery</div>
+  <div class="step"><div class="circle"></div>Delivered</div>
 </div>
 </div>
 
 <script>
 function trackOrder(){
-let id = document.getElementById("orderId").value.trim();
-let data = localStorage.getItem(id);
+  let id = document.getElementById("orderId").value.trim();
+  let data = localStorage.getItem(id);
 
-if(!data){
-document.getElementById("error").innerText = "Order not found!";
-document.getElementById("statusBox").style.display = "none";
-return;
-}
+  if(!data){
+    document.getElementById("error").innerText = "Order not found!";
+    document.getElementById("statusBox").style.display = "none";
+    return;
+  }
 
-let order = JSON.parse(data);
-document.getElementById("error").innerText = "";
-document.getElementById("showId").innerText = order.id;
-document.getElementById("showName").innerText = order.name;
+  let order = JSON.parse(data);
+  order.status = Number(order.status); // FORCE NUMBER
 
-// Payment
-if(order.paymentType === "ONLINE"){
-paymentMode.innerText = "Online";
-paymentMode.className = "badge online";
-}else{
-paymentMode.innerText = "COD";
-paymentMode.className = "badge cod";
-}
+  document.getElementById("error").innerText = "";
+  document.getElementById("showId").innerText = order.id;
+  document.getElementById("showName").innerText = order.name || "Silent Aid Customer";
 
-if(order.paymentStatus === "Done"){
-paymentStatus.innerText = "Done";
-paymentStatus.className = "badge done";
-}else{
-paymentStatus.innerText = "Pending";
-paymentStatus.className = "badge pending";
-}
+  // Payment
+  if(order.paymentType === "ONLINE"){
+    paymentMode.innerText = "Online";
+    paymentMode.className = "badge online";
+  }else{
+    paymentMode.innerText = "COD";
+    paymentMode.className = "badge cod";
+  }
 
-// Steps logic (FIXED)
-let steps = document.querySelectorAll(".step");
-steps.forEach((step,i)=>{
-step.classList.remove("done","active");
-if(i < order.status) step.classList.add("done");
-else if(i === order.status) step.classList.add("active");
-});
+  if(order.paymentStatus === "Done"){
+    paymentStatus.innerText = "Done";
+    paymentStatus.className = "badge done";
+  }else{
+    paymentStatus.innerText = "Pending";
+    paymentStatus.className = "badge pending";
+  }
 
-statusBox.style.display = "block";
+  // Progress Steps (100% WORKING)
+  let steps = document.querySelectorAll(".step");
+  steps.forEach((step, i)=>{
+    step.classList.remove("done","active");
+    if(i < order.status) step.classList.add("done");
+    else if(i === order.status) step.classList.add("active");
+  });
+
+  document.getElementById("statusBox").style.display = "block";
 }
 </script>
 
 </body>
 </html>
-
