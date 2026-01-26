@@ -1,30 +1,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Silent Aid Admin Panel</title>
+  <title>Silent Aid Admin</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <style>
-    body{background:#000;color:#fff;font-family:Arial;padding:20px}
-    input,select,button{width:100%;padding:12px;margin:10px 0;border-radius:8px;border:none}
-    button{background:red;color:white;font-size:16px}
-  </style>
 </head>
-<body>
+<body style="background:#000;color:#fff;font-family:Arial;padding:20px">
 
-<h2>Silent Aid Admin Panel</h2>
+<h2>Admin Panel</h2>
 
-<input id="orderId" placeholder="Order ID (e.g SA123)">
-<input id="customer" placeholder="Customer Name">
-
-<select id="paymentType">
-  <option value="COD">Cash on Delivery</option>
-  <option value="Online">Online</option>
-</select>
-
-<select id="paymentStatus">
-  <option value="Pending">Pending</option>
-  <option value="Done">Done</option>
-</select>
+<input id="orderId" placeholder="Order ID"><br><br>
+<input id="customer" placeholder="Customer"><br><br>
 
 <select id="status">
   <option value="0">Design Selected</option>
@@ -33,25 +18,20 @@
   <option value="3">Dispatched</option>
   <option value="4">Out for Delivery</option>
   <option value="5">Delivered</option>
-</select>
+</select><br><br>
 
-<button onclick="saveOrder()">Save / Update Order</button>
+<button onclick="save()">Save</button>
 
 <script>
-function saveOrder(){
-  let id = orderId.value.trim();
-  if(!id){ alert("Enter Order ID"); return; }
-
+function save(){
   let order = {
-    id: id,
-    customer: customer.value || "Silent Aid Customer",
-    paymentType: paymentType.value,
-    paymentStatus: paymentStatus.value,
-    status: Number(status.value)   // VERY IMPORTANT
+    id: orderId.value,
+    customer: customer.value,
+    status: parseInt(status.value) // FORCE NUMBER
   };
 
-  localStorage.setItem("order_"+id, JSON.stringify(order));
-  alert("Order Saved!\nShare this link:\ntrack.html?id="+id);
+  localStorage.setItem("order_"+order.id, JSON.stringify(order));
+  alert("Saved. Track: track.html?id="+order.id);
 }
 </script>
 
