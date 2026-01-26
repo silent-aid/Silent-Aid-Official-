@@ -2,26 +2,33 @@
 <html>
 <head>
 <title>Silent Aid Admin</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>
 body{font-family:Poppins;background:#0b0b0b;color:white;padding:30px}
-input,select,button{width:100%;padding:10px;margin:8px 0;border-radius:6px;border:none}
-button{background:#e10600;color:white}
+input,select,button{
+  width:100%;padding:12px;margin:10px 0;
+  border-radius:8px;border:none;
+}
+button{background:#e10600;color:white;font-size:16px}
 </style>
 </head>
 <body>
 
-<h2>Silent Aid Admin Panel</h2>
+<h2>Silent Aid – Admin Panel</h2>
 
-<input id="id" placeholder="Order ID">
+<input id="id" placeholder="Order ID (eg: SA-2026-001)">
 <input id="name" placeholder="Customer Name">
+
 <select id="paymentType">
-  <option>COD</option>
-  <option>ONLINE</option>
+  <option value="COD">COD</option>
+  <option value="ONLINE">ONLINE</option>
 </select>
+
 <select id="paymentStatus">
-  <option>Pending</option>
-  <option>Done</option>
+  <option value="Pending">Pending</option>
+  <option value="Done">Done</option>
 </select>
+
 <select id="status">
   <option value="0">Design Selected</option>
   <option value="1">Order Confirmed</option>
@@ -36,15 +43,17 @@ button{background:#e10600;color:white}
 <script>
 function saveOrder(){
   let order = {
-    id: id.value,
+    id: id.value.trim(),
     name: name.value,
     paymentType: paymentType.value,
     paymentStatus: paymentStatus.value,
-    status: parseInt(status.value)
+    status: Number(status.value) // IMPORTANT
   };
+
   localStorage.setItem(order.id, JSON.stringify(order));
-  alert("Order Saved");
+  alert("Order Saved Successfully!");
 }
 </script>
+
 </body>
 </html>
