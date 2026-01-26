@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Silent Aid Admin</title>
+<style>
+body{font-family:Poppins;background:#0b0b0b;color:white;padding:30px}
+input,select,button{width:100%;padding:10px;margin:8px 0;border-radius:6px;border:none}
+button{background:#e10600;color:white}
+</style>
+</head>
+<body>
+
+<h2>Silent Aid Admin Panel</h2>
+
+<input id="id" placeholder="Order ID">
+<input id="name" placeholder="Customer Name">
+<select id="paymentType">
+  <option>COD</option>
+  <option>ONLINE</option>
+</select>
+<select id="paymentStatus">
+  <option>Pending</option>
+  <option>Done</option>
+</select>
+<select id="status">
+  <option value="0">Design Selected</option>
+  <option value="1">Order Confirmed</option>
+  <option value="2">Shipping</option>
+  <option value="3">Dispatched</option>
+  <option value="4">Out for Delivery</option>
+  <option value="5">Delivered</option>
+</select>
+
+<button onclick="saveOrder()">Save / Update Order</button>
+
+<script>
+function saveOrder(){
+  let order = {
+    id: id.value,
+    name: name.value,
+    paymentType: paymentType.value,
+    paymentStatus: paymentStatus.value,
+    status: parseInt(status.value)
+  };
+  localStorage.setItem(order.id, JSON.stringify(order));
+  alert("Order Saved");
+}
+</script>
+</body>
+</html>
