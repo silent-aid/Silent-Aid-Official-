@@ -3,161 +3,208 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Silent Aid – For Palestine</title>
+<title>Silent Aid — For Palestine</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:wght@500;700&display=swap" rel="stylesheet">
 
 <style>
 :root{
-  --bg:#0b0b0b;
-  --card:#121212;
-  --red:#d62828;
-  --green:#1faa59;
-  --white:#ffffff;
+  --bg:#0e0e0e;
+  --card:#161616;
+  --text:#f2f2f2;
+  --muted:#aaaaaa;
+  --red:#c53030;
+  --green:#1e9e63;
 }
 
-*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,Helvetica,sans-serif;}
-body{background:var(--bg);color:var(--white);}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:Inter,sans-serif;
+  line-height:1.6;
+}
+
+/* ANNOUNCEMENT */
+.announce{
+  background:#000;
+  color:var(--muted);
+  text-align:center;
+  padding:10px;
+  font-size:0.85rem;
+}
 
 /* NAV */
-nav{
-  position:fixed;top:0;left:0;width:100%;
-  background:#000;
-  display:flex;justify-content:space-between;align-items:center;
-  padding:15px 25px;z-index:1000;
+header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:20px 40px;
+  position:sticky;top:0;
+  background:rgba(14,14,14,0.95);
+  z-index:10;
 }
-nav h1{color:var(--red);}
+header h1{
+  font-family:Playfair Display,serif;
+  font-size:1.4rem;
+}
 nav a{
-  color:#ccc;margin:0 10px;text-decoration:none;
+  margin:0 12px;
+  color:var(--muted);
+  text-decoration:none;
+  font-size:0.9rem;
 }
-nav a:hover{color:var(--white);border-bottom:2px solid var(--red);}
+nav a:hover{color:var(--text);}
 
-/* HERO SLIDER */
+/* HERO */
 .hero{
-  margin-top:70px;height:85vh;position:relative;overflow:hidden;
+  min-height:90vh;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  align-items:center;
+  padding:80px 60px;
+  gap:40px;
 }
-.slide{
-  position:absolute;width:100%;height:100%;
-  background-size:cover;background-position:center;
-  opacity:0;transition:1s;
+.hero h2{
+  font-family:Playfair Display,serif;
+  font-size:3rem;
 }
-.slide.active{opacity:1;}
-.hero-text{
-  position:absolute;bottom:20%;left:10%;
-  max-width:500px;
+.hero p{color:var(--muted);margin:20px 0;}
+.btn{
+  padding:14px 26px;
+  border:none;
+  background:var(--red);
+  color:#fff;
+  cursor:pointer;
+  font-weight:600;
 }
-.hero-text h2{font-size:2.5em;}
-.hero-text span{color:var(--red);}
-.hero-text button{
-  margin-top:15px;padding:12px 20px;border:none;
-  background:linear-gradient(45deg,var(--red),var(--green));
-  color:#fff;font-weight:bold;border-radius:5px;cursor:pointer;
+.hero-img{
+  background:url('https://images.unsplash.com/photo-1604152135912-04a022e2363f?auto=format&fit=crop&w=1200&q=80') center/cover;
+  height:70vh;
+  border-radius:10px;
 }
 
 /* SECTIONS */
-section{padding:60px 20px;max-width:1100px;margin:auto;}
+section{padding:100px 60px;}
+.section-title{
+  font-family:Playfair Display,serif;
+  font-size:2rem;
+  margin-bottom:40px;
+}
+
+/* GRID */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:30px;
+}
 .card{
-  background:var(--card);padding:25px;border-radius:10px;margin:15px 0;
+  background:var(--card);
+  padding:30px;
+  border-radius:10px;
 }
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px;}
+.card h3{margin-bottom:10px;}
 
-.flag{
-  width:80px;margin:10px auto;display:block;
+/* STORY */
+.story{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:40px;
 }
-
-/* IMPACT */
-.stat{font-size:2em;color:var(--green);}
+.story-img{
+  background:url('https://images.unsplash.com/photo-1581804928342-4e3405e39c91?auto=format&fit=crop&w=1200&q=80') center/cover;
+  border-radius:10px;
+  height:60vh;
+}
 
 /* FOOTER */
-footer{text-align:center;padding:30px;background:#000;color:#aaa;}
+footer{
+  background:#000;
+  padding:60px;
+  color:var(--muted);
+  display:grid;
+  grid-template-columns:2fr 1fr 1fr;
+  gap:30px;
+}
+
+/* MOBILE */
+@media(max-width:800px){
+  .hero,.story{grid-template-columns:1fr;}
+  section,header{padding:40px 20px;}
+  footer{grid-template-columns:1fr;}
+}
 </style>
 </head>
 
 <body>
 
-<nav>
-  <h1>Silent Aid</h1>
-  <div>
-    <a href="#about">About</a>
-    <a href="#impact">Impact</a>
-    <a href="#donate">Donate</a>
-    <a href="#campaigns">Campaigns</a>
-  </div>
-</nav>
+<div class="announce">100% of proceeds support humanitarian relief in Gaza</div>
+
+<header>
+  <h1>SILENT AID</h1>
+  <nav>
+    <a href="#">Shop</a>
+    <a href="#">Impact</a>
+    <a href="#">Campaigns</a>
+    <a href="#">About</a>
+    <a href="#">Donate</a>
+  </nav>
+</header>
 
 <!-- HERO -->
 <div class="hero">
-  <div class="slide active" style="background-image:url('https://images.unsplash.com/photo-1604152135912-04a022e2363f?auto=format&fit=crop&w=1400&q=80');"></div>
-  <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1581804928342-4e3405e39c91?auto=format&fit=crop&w=1400&q=80');"></div>
-  <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1614680376573-df3480f0c6ff?auto=format&fit=crop&w=1400&q=80');"></div>
-
-  <div class="hero-text">
-    <h2>For <span>Palestine</span>, For Humanity</h2>
-    <p>Silent Aid is a global movement delivering hope, dignity, and support.</p>
-    <button>Support Palestine</button>
+  <div>
+    <h2>For Palestine.<br>For Humanity.</h2>
+    <p>A global humanitarian movement bringing dignity, aid and hope to those in need.</p>
+    <button class="btn">Support the Cause</button>
   </div>
+  <div class="hero-img"></div>
 </div>
 
-<!-- ABOUT -->
-<section id="about">
-<img src="https://upload.wikimedia.org/wikipedia/commons/0/00/Flag_of_Palestine.svg" class="flag">
-<h2>About Silent Aid</h2>
-<div class="card">
-<p>Silent Aid was born to serve humanity and stand with Palestine. We provide food, shelter, education and hope to the oppressed.</p>
-</div>
-
-<h3>My Story</h3>
-<div class="card">
-<p>I started Silent Aid because silence in the face of injustice is also a crime. This is my way of turning pain into purpose.</p>
-</div>
+<!-- MISSION -->
+<section>
+  <h2 class="section-title">Our Mission</h2>
+  <p style="max-width:600px;color:var(--muted);">
+    Silent Aid exists to serve humanity through meaningful action. We focus on food, shelter, education and emergency relief for communities affected by conflict.
+  </p>
 </section>
 
 <!-- IMPACT -->
-<section id="impact">
-<h2>Our Impact</h2>
-<div class="grid">
-  <div class="card"><div class="stat">10K+</div> Meals Delivered</div>
-  <div class="card"><div class="stat">5K+</div> Families Helped</div>
-  <div class="card"><div class="stat">20+</div> Campaigns</div>
-</div>
-</section>
-
-<!-- DONATE -->
-<section id="donate">
-<h2>Donate & Support</h2>
-<div class="grid">
-  <div class="card">
-    <h3>Emergency Relief</h3>
-    <button>Donate Now</button>
+<section>
+  <h2 class="section-title">Our Impact</h2>
+  <div class="grid">
+    <div class="card"><h3>10,000+</h3><p>Meals Delivered</p></div>
+    <div class="card"><h3>5,000+</h3><p>Families Supported</p></div>
+    <div class="card"><h3>25+</h3><p>Campaigns Worldwide</p></div>
   </div>
-  <div class="card">
-    <h3>Monthly Support</h3>
-    <button>Become Supporter</button>
+</section>
+
+<!-- STORY -->
+<section>
+  <div class="story">
+    <div>
+      <h2 class="section-title">My Story</h2>
+      <p style="color:var(--muted);">
+        I founded Silent Aid because silence in the face of injustice is not neutral. This movement is a promise to stand for humanity and Palestine with action, not words.
+      </p>
+    </div>
+    <div class="story-img"></div>
   </div>
-</div>
 </section>
 
-<!-- CAMPAIGNS -->
-<section id="campaigns">
-<h2>Campaigns</h2>
-<div class="grid">
-  <div class="card">Echoes of the Unseen</div>
-  <div class="card">Free Gaza</div>
-  <div class="card">Humanity First</div>
-</div>
-</section>
-
+<!-- FOOTER -->
 <footer>
-<p>© Silent Aid | For Palestine & Humanity</p>
+  <div>
+    <h3>SILENT AID</h3>
+    <p>For Palestine. For Humanity.</p>
+  </div>
+  <div>
+    <p>Shop</p><p>Impact</p><p>Campaigns</p>
+  </div>
+  <div>
+    <p>About</p><p>Donate</p><p>Contact</p>
+  </div>
 </footer>
-
-<script>
-let slides=document.querySelectorAll(".slide");
-let i=0;
-setInterval(()=>{
-  slides[i].classList.remove("active");
-  i=(i+1)%slides.length;
-  slides[i].classList.add("active");
-},4000);
-</script>
 
 </body>
 </html>
