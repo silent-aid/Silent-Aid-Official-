@@ -10,22 +10,19 @@
 html,body{max-width:100%;overflow-x:hidden;font-family:Poppins,sans-serif;background:#f4f4f4;color:#222}
 
 /* Announcement */
-.announcement{background:#d90429;color:#fff;text-align:center;padding:12px;font-weight:bold}
+.announcement{background:#d90429;color:#fff;text-align:center;padding:10px;font-weight:bold}
+
+/* Ticker */
+.ticker{background:#111;overflow:hidden;white-space:nowrap}
+.ticker-move{display:inline-block;color:#ffca28;padding:8px 0;animation:scroll 15s linear infinite}
+@keyframes scroll{from{transform:translateX(100%)}to{transform:translateX(-100%)}}
 
 /* NAV */
-nav{
-  background:#0a0a0a;
-  padding:15px 20px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  flex-wrap:wrap;
-}
+nav{background:#0a0a0a;padding:15px 20px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap}
 .hamburger{display:none;font-size:1.8em;color:#fff;cursor:pointer}
 .nav-left h1{color:#ffca28;font-size:1.8em}
 .nav-center ul{list-style:none;display:flex;gap:20px}
 .nav-center a{color:#fff;font-weight:600;text-decoration:none}
-.nav-center a:hover{color:#d90429}
 .nav-right i{color:#fff;font-size:1.3em;margin-left:12px;cursor:pointer}
 
 /* HERO */
@@ -37,10 +34,8 @@ nav{
 .slide3{background-image:url('https://i0.wp.com/3sjshop.com/wp-content/uploads/2024/09/img_5079-scaled.jpeg')}
 
 .slide-overlay{
-  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
-  background:rgba(0,0,0,.5);color:#fff;
-  padding:25px;border-radius:12px;text-align:center;width:80%;
-}
+position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+background:rgba(0,0,0,.5);color:#fff;padding:25px;border-radius:12px;text-align:center;width:80%}
 .slide-overlay h2{font-size:2em;margin-bottom:10px}
 .slide-overlay p{font-size:1em;margin-bottom:15px}
 .slide-overlay button{padding:10px 20px;background:#d90429;color:#fff;border:none;border-radius:6px}
@@ -67,27 +62,30 @@ nav{
 /* FOOTER */
 footer{background:#000;color:#ccc;text-align:center;padding:25px}
 
-/* STICKY DONATE */
+/* CART */
+.cart-drawer{
+position:fixed;bottom:-100%;left:0;width:100%;background:#fff;
+border-top-left-radius:20px;border-top-right-radius:20px;padding:20px;
+transition:.4s;z-index:9999}
+.cart-drawer.show{bottom:0}
+
+/* STICKY */
 .sticky-donate{display:none}
 
 /* MOBILE */
 @media(max-width:768px){
-  .hamburger{display:block}
-  .nav-center{display:none;width:100%}
-  .nav-center.active{display:block}
-  .nav-center ul{flex-direction:column;margin-top:10px}
-  .hero{height:auto}
-  .slide-overlay{width:90%}
-  .products{flex-direction:column}
-  .product-card{width:100%;max-width:340px}
-  .newsletter form{flex-direction:column}
-  .newsletter input,.newsletter button{width:100%}
-  .sticky-donate{
-    display:block;
-    position:fixed;bottom:0;left:0;width:100%;
-    background:#d90429;text-align:center;padding:15px;
-  }
-  .sticky-donate a{color:#fff;font-weight:bold;text-decoration:none}
+.hamburger{display:block}
+.nav-center{display:none;width:100%}
+.nav-center.active{display:block}
+.nav-center ul{flex-direction:column;margin-top:10px}
+.hero{height:auto}
+.products{flex-direction:column}
+.product-card{width:100%;max-width:340px}
+.newsletter form{flex-direction:column}
+.newsletter input,.newsletter button{width:100%}
+.sticky-donate{display:block;position:fixed;bottom:0;left:0;width:100%;
+background:#d90429;text-align:center;padding:15px}
+.sticky-donate a{color:#fff;font-weight:bold;text-decoration:none}
 }
 </style>
 </head>
@@ -95,42 +93,44 @@ footer{background:#000;color:#ccc;text-align:center;padding:25px}
 <body>
 
 <div class="announcement">EVERY ORDER GIVES BACK TO HUMANITY</div>
+<div class="ticker"><div class="ticker-move">🇵🇸 FREE PALESTINE • STAND WITH GAZA • HUMANITY FIRST • 🇵🇸 FREE PALESTINE • STAND WITH GAZA •</div></div>
 
 <nav>
-  <div class="hamburger" onclick="toggleMenu()">☰</div>
-  <div class="nav-left"><h1>Silent Aid</h1></div>
-  <div class="nav-center">
-    <ul>
-      <li><a href="#">Collections</a></li>
-      <li><a href="#">New</a></li>
-      <li><a href="#">Impact</a></li>
-      <li><a href="#">Contact</a></li>
-      <li><a href="#">Shop</a></li>
-    </ul>
-  </div>
-  <div class="nav-right">
-    <i>🔍</i><i>🛒</i><i>👤</i>
-  </div>
+<div class="hamburger" onclick="toggleMenu()">☰</div>
+<div class="nav-left"><h1>Silent Aid</h1></div>
+<div class="nav-center">
+<ul>
+<li><a href="collections.html">Collections</a></li>
+<li><a href="shop.html">Shop</a></li>
+<li><a href="impact.html">Impact</a></li>
+<li><a href="contact.html">Contact</a></li>
+</ul>
+</div>
+<div class="nav-right">
+<i>🔍</i>
+<i onclick="openCart()">🛒</i>
+<i>👤</i>
+</div>
 </nav>
 
 <div class="hero">
-  <div class="slides">
-    <div class="slide slide1"></div>
-    <div class="slide slide2"></div>
-    <div class="slide slide3"></div>
-  </div>
-  <div class="slide-overlay">
-    <h2>Stand with Gaza</h2>
-    <p>Every order delivers hope.</p>
-    <button>Shop Now</button>
-  </div>
+<div class="slides">
+<div class="slide slide1"></div>
+<div class="slide slide2"></div>
+<div class="slide slide3"></div>
+</div>
+<div class="slide-overlay">
+<h2>Stand with Gaza</h2>
+<p>Every order delivers hope.</p>
+<button onclick="location.href='shop.html'">Shop Now</button>
+</div>
 </div>
 
 <section class="product-section">
 <h2>Best Sellers</h2>
 <div class="products">
-  <div class="product-card"><img src="https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcQG_HGDlxLROZrUv7riXPuP1eyKxtDbUXo7c3_BPhmep43dJdQyXDixESk9CkmOPi932Y50LxNctgWPt0oJI6eP5OIdhDpRGdrDsfRsxb0bxEbnN9EZvky41w"><h3>Free Palestine Tee</h3></div>
-  <div class="product-card"><img src="https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcQADJVvQ_8dCQAoIp79t_DUtto3PZJVvBYgkg7KRnn6CuX8KtTf0Gb_Kcmfun-wBCrtdhsxeNuebmPh-vViyKPaIdbd7Ny28jG3zUcb0qvIE8reg7MnhUSlTQ"><h3>Free Gaza Tee</h3></div>
+<div class="product-card"><img src="https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcQG_HGDlxLROZrUv7riXPuP1eyKxtDbUXo7c3_BPhmep43dJdQyXDixESk9CkmOPi932Y50LxNctgWPt0oJI6eP5OIdhDpRGdrDsfRsxb0bxEbnN9EZvky41w"><h3>Free Palestine Tee</h3></div>
+<div class="product-card"><img src="https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcQADJVvQ_8dCQAoIp79t_DUtto3PZJVvBYgkg7KRnn6CuX8KtTf0Gb_Kcmfun-wBCrtdhsxeNuebmPh-vViyKPaIdbd7Ny28jG3zUcb0qvIE8reg7MnhUSlTQ"><h3>Free Gaza Tee</h3></div>
 </div>
 </section>
 
@@ -157,18 +157,37 @@ footer{background:#000;color:#ccc;text-align:center;padding:25px}
 
 <div class="sticky-donate"><a href="shop.html">Donate for Gaza</a></div>
 
+<div class="cart-drawer" id="cartDrawer">
+<h3>Your Cart</h3>
+<p>No items yet.</p>
+<button onclick="closeCart()">Close</button>
+</div>
+
 <script>
-function toggleMenu(){
-  document.querySelector('.nav-center').classList.toggle('active');
-}
+function toggleMenu(){document.querySelector('.nav-center').classList.toggle('active');}
+function openCart(){document.getElementById("cartDrawer").classList.add("show");}
+function closeCart(){document.getElementById("cartDrawer").classList.remove("show");}
 
 let index=0;
 const slides=document.querySelectorAll('.slide');
 const slider=document.querySelector('.slides');
-setInterval(()=>{
-  index=(index+1)%slides.length;
-  slider.style.transform=`translateX(-${index*100}%)`;
-},2500);
+function nextSlide(){
+index=(index+1)%slides.length;
+slider.style.transform=`translateX(-${index*100}%)`;
+}
+setInterval(nextSlide,2500);
+
+// swipe
+let startX=0;
+slider.addEventListener("touchstart",e=>startX=e.touches[0].clientX);
+slider.addEventListener("touchend",e=>{
+let endX=e.changedTouches[0].clientX;
+if(startX-endX>50) nextSlide();
+if(endX-startX>50){
+index=(index-1+slides.length)%slides.length;
+slider.style.transform=`translateX(-${index*100}%)`;
+}
+});
 </script>
 
 </body>
