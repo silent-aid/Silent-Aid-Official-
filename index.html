@@ -1,220 +1,175 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Silent Aid – Stand with Gaza</title>
-  <style>
-    /* Reset */
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: 'Poppins', sans-serif; background-color: #f4f4f4; color: #222; line-height: 1.6; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Silent Aid – Stand with Gaza</title>
 
-    /* Announcement */
-    .announcement {
-      background: #d90429;
-      color: white;
-      text-align: center;
-      padding: 12px 20px;
-      font-weight: bold;
-      font-size: 1em;
-    }
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+html,body{max-width:100%;overflow-x:hidden;font-family:Poppins,sans-serif;background:#f4f4f4;color:#222}
 
-    /* Navigation */
-    nav {
-      background-color: #0a0a0a;
-      padding: 15px 30px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-    }
-    .nav-left h1 { color: #ffca28; font-size: 2em; letter-spacing: 1px; }
-    .nav-center ul { list-style: none; display: flex; gap: 20px; flex-wrap: wrap; }
-    .nav-center li a { color: #fff; font-weight: 600; transition: 0.3s; }
-    .nav-center li a:hover { color: #d90429; }
-    .nav-right i { font-size: 1.3em; color: white; margin-left: 15px; cursor: pointer; }
+/* Announcement */
+.announcement{background:#d90429;color:#fff;text-align:center;padding:12px;font-weight:bold}
 
-    /* Hero Section */
-    .hero { position: relative; width: 100%; height: 500px; overflow: hidden; margin-bottom: 30px; }
-    .slides { display: flex; width: 300%; height: 100%; transition: transform 1s ease-in-out; }
-    .slide { width: 100%; flex-shrink: 0; background-size: cover; background-position: center; }
-    .slide1 { background-image: url('https://static.vecteezy.com/system/resources/previews/029/226/849/non_2x/long-wavy-palestine-flag-free-vector.jpg'); }
-    .slide2 { background-image: url('https://images-cdn.ubuy.co.in/652c7dca1a3ae52f9855d705-soulbuty-big-palestine-flag-for-wall-3x5.jpg'); }
-    .slide3 { background-image: url('https://i0.wp.com/3sjshop.com/wp-content/uploads/2024/09/img_5079-scaled.jpeg'); }
+/* NAV */
+nav{
+  background:#0a0a0a;
+  padding:15px 20px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  flex-wrap:wrap;
+}
+.hamburger{display:none;font-size:1.8em;color:#fff;cursor:pointer}
+.nav-left h1{color:#ffca28;font-size:1.8em}
+.nav-center ul{list-style:none;display:flex;gap:20px}
+.nav-center a{color:#fff;font-weight:600;text-decoration:none}
+.nav-center a:hover{color:#d90429}
+.nav-right i{color:#fff;font-size:1.3em;margin-left:12px;cursor:pointer}
 
-    /* Overlay Text */
-    .slide-overlay { 
-      position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
-      text-align: center;
-      background: rgba(0,0,0,0.5);
-      padding: 30px 25px;
-      border-radius: 12px;
-      color: #fff;
-    }
-    .slide-overlay h2 { font-size: 2.5em; margin-bottom: 15px; }
-    .slide-overlay p { font-size: 1.2em; margin-bottom: 20px; max-width: 600px; }
-    .slide-overlay button { padding: 12px 25px; font-size: 1em; background: #d90429; color: #fff; border: none; border-radius: 5px; cursor: pointer; }
-    .slide-overlay button:hover { background: #a4031f; }
+/* HERO */
+.hero{position:relative;width:100%;height:500px;overflow:hidden}
+.slides{display:flex;width:300%;height:100%;transition:transform .6s ease}
+.slide{width:100%;background-size:cover;background-position:center}
+.slide1{background-image:url('https://static.vecteezy.com/system/resources/previews/029/226/849/non_2x/long-wavy-palestine-flag-free-vector.jpg')}
+.slide2{background-image:url('https://images-cdn.ubuy.co.in/652c7dca1a3ae52f9855d705-soulbuty-big-palestine-flag-for-wall-3x5.jpg')}
+.slide3{background-image:url('https://i0.wp.com/3sjshop.com/wp-content/uploads/2024/09/img_5079-scaled.jpeg')}
 
-    /* Product Section */
-    .product-section { padding: 60px 20px; background: #fff; text-align: center; }
-    .product-section h2 { font-size: 2.2em; margin-bottom: 40px; color: #d90429; }
-    .products { display: flex; gap: 30px; flex-wrap: wrap; justify-content: center; }
-    .product-card { background: #f9f9f9; padding: 20px; border-radius: 12px; width: 260px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); transition: 0.3s; }
-    .product-card:hover { transform: translateY(-10px); }
-    .product-card img { width: 100%; border-radius: 8px; margin-bottom: 12px; }
-    .product-card h3 { margin-bottom: 10px; color: #222; }
-    .product-card p { color: #555; font-size: 0.95em; }
-    .product-card button { background: #d90429; color: white; border: none; padding: 10px 18px; border-radius: 6px; cursor: pointer; margin-top: 12px; }
-    .product-card button:hover { background: #a4031f; }
+.slide-overlay{
+  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  background:rgba(0,0,0,.5);color:#fff;
+  padding:25px;border-radius:12px;text-align:center;width:80%;
+}
+.slide-overlay h2{font-size:2em;margin-bottom:10px}
+.slide-overlay p{font-size:1em;margin-bottom:15px}
+.slide-overlay button{padding:10px 20px;background:#d90429;color:#fff;border:none;border-radius:6px}
 
-    /* Impact Section */
-    .impact { background: #111; color: #fff; padding: 60px 20px; text-align: center; }
-    .impact h2 { font-size: 2.2em; color: #ffca28; margin-bottom: 20px; }
-    .impact p { max-width: 800px; margin: auto; font-size: 1.2em; line-height: 1.8; }
+/* PRODUCTS */
+.product-section{padding:50px 20px;background:#fff;text-align:center}
+.products{display:flex;gap:25px;flex-wrap:wrap;justify-content:center}
+.product-card{background:#f9f9f9;padding:20px;border-radius:12px;width:260px;box-shadow:0 4px 15px rgba(0,0,0,.1)}
+.product-card img{width:100%;border-radius:8px}
 
-    /* Donor Section */
-    .donor-section { padding: 60px 20px; background: #fff; text-align: center; }
-    .donor-section h2 { font-size: 2em; margin-bottom: 20px; color: #d90429; }
-    .donor-list { display: flex; flex-direction: column; gap: 10px; max-width: 400px; margin: auto; }
-    .donor { background: #f0f0f0; padding: 10px; border-radius: 5px; font-weight: bold; color: #333; }
+/* IMPACT */
+.impact{background:#111;color:#fff;padding:50px 20px;text-align:center}
 
-    /* Newsletter Section */
-    .newsletter { background: #fff; padding: 60px 20px; text-align: center; }
-    .newsletter h2 { font-size: 2em; margin-bottom: 20px; color: #111; }
-    .newsletter input[type="email"] { padding: 12px; width: 250px; border: 1px solid #ccc; border-radius: 6px; }
-    .newsletter button { padding: 12px 25px; background: #d90429; color: white; border: none; border-radius: 6px; margin-left: 10px; cursor: pointer; }
-    .newsletter button:hover { background: #a4031f; }
+/* DONORS */
+.donor-section{padding:50px 20px;text-align:center}
+.donor{background:#eee;padding:10px;margin:5px;border-radius:6px}
 
-    /* Footer */
-    footer { background-color: #0a0a0a; color: #ccc; text-align: center; padding: 30px 10px; font-size: 0.95em; }
+/* NEWSLETTER */
+.newsletter{padding:50px 20px;text-align:center}
+.newsletter form{display:flex;justify-content:center;gap:10px;flex-wrap:wrap}
+.newsletter input{padding:12px;border-radius:6px;border:1px solid #ccc}
+.newsletter button{padding:12px 20px;background:#d90429;color:#fff;border:none;border-radius:6px}
 
-    /* Responsive */
-    @media (max-width: 768px){
-      .nav-center ul { flex-direction: column; gap: 15px; margin-top: 10px; }
-      .products { flex-direction: column; align-items: center; }
-    }
-  </style>
+/* FOOTER */
+footer{background:#000;color:#ccc;text-align:center;padding:25px}
+
+/* STICKY DONATE */
+.sticky-donate{display:none}
+
+/* MOBILE */
+@media(max-width:768px){
+  .hamburger{display:block}
+  .nav-center{display:none;width:100%}
+  .nav-center.active{display:block}
+  .nav-center ul{flex-direction:column;margin-top:10px}
+  .hero{height:auto}
+  .slide-overlay{width:90%}
+  .products{flex-direction:column}
+  .product-card{width:100%;max-width:340px}
+  .newsletter form{flex-direction:column}
+  .newsletter input,.newsletter button{width:100%}
+  .sticky-donate{
+    display:block;
+    position:fixed;bottom:0;left:0;width:100%;
+    background:#d90429;text-align:center;padding:15px;
+  }
+  .sticky-donate a{color:#fff;font-weight:bold;text-decoration:none}
+}
+</style>
 </head>
+
 <body>
 
-  <div class="announcement">EVERY ORDER GIVES BACK TO HUMANITY | Free Shipping: US $59, CA $200, UK £160</div>
+<div class="announcement">EVERY ORDER GIVES BACK TO HUMANITY</div>
 
-  <nav>
-    <div class="nav-left"><h1>Silent Aid</h1></div>
-    <div class="nav-center">
-      <ul>
-        <li><a href="https://www.gofundme.com/f/keeping-houssem-and-his-family-safe-this-winter" target="_blank">Help Malek Family</a></li>
-        <li><a href="collections.html">Collections</a></li>
-        <li><a href="new.html">New Arrivals</a></li>
-        <li><a href="impact.html">Impact</a></li>
-        <li><a href="rewards.html">Rewards</a></li>
-        <li><a href="contact.html">Contact</a></li>
-        <li><a href="shop.html">Shop</a></li>
-      </ul>
-    </div>
-    <div class="nav-right">
-      <i onclick="alert('Search coming soon!')">🔍</i>
-      <i onclick="window.location.href='cart.html'">🛒</i>
-      <i onclick="alert('Login coming soon!')">👤</i>
-    </div>
-  </nav>
-
-  <!-- Hero -->
-  <div class="hero">
-    <div class="slides">
-      <div class="slide slide1"></div>
-      <div class="slide slide2"></div>
-      <div class="slide slide3"></div>
-    </div>
-    <div class="slide-overlay">
-      <h2>Stand with Gaza</h2>
-      <p>Every order delivers food, shelter, and hope to children in need.</p>
-      <button onclick="window.location.href='shop.html'">Shop Now</button>
-    </div>
+<nav>
+  <div class="hamburger" onclick="toggleMenu()">☰</div>
+  <div class="nav-left"><h1>Silent Aid</h1></div>
+  <div class="nav-center">
+    <ul>
+      <li><a href="#">Collections</a></li>
+      <li><a href="#">New</a></li>
+      <li><a href="#">Impact</a></li>
+      <li><a href="#">Contact</a></li>
+      <li><a href="#">Shop</a></li>
+    </ul>
   </div>
+  <div class="nav-right">
+    <i>🔍</i><i>🛒</i><i>👤</i>
+  </div>
+</nav>
 
-  <!-- Products -->
-  <section class="product-section">
-    <h2>🌟 Best Sellers</h2>
-    <div class="products">
-      <div class="product-card">
-        <img src="https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcQG_HGDlxLROZrUv7riXPuP1eyKxtDbUXo7c3_BPhmep43dJdQyXDixESk9CkmOPi932Y50LxNctgWPt0oJI6eP5OIdhDpRGdrDsfRsxb0bxEbnN9EZvky41w" alt="Free Palestine T-shirt">
-        <h3>Free Palestine Tee</h3>
-        <p>Bold message for peace. 100% proceeds go to Gaza children.</p>
-        <button>Buy Now</button>
-      </div>
-      <div class="product-card">
-        <img src="https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcQADJVvQ_8dCQAoIp79t_DUtto3PZJVvBYgkg7KRnn6CuX8KtTf0Gb_Kcmfun-wBCrtdhsxeNuebmPh-vViyKPaIdbd7Ny28jG3zUcb0qvIE8reg7MnhUSlTQ" alt="Free Gaza T-shirt">
-        <h3>Free Gaza T-shirt</h3>
-        <p>Premium cotton. Speak truth with every wear.</p>
-        <button>Buy Now</button>
-      </div>
-      <div class="product-card">
-        <img src="https://image.made-in-china.com/2f0j00NHqouylFSLpA/Wholesale-Good-Quality-Palestine-T-Shirt-Custom-Color-Print-Embriodery-Black-Free-Palestine-T-Shirts-Men-Women.webp" alt="Palestine Flag Shirt">
-        <h3>Flag Pride Shirt</h3>
-        <p>Palestine flag design. Support with style & heart.</p>
-        <button>Buy Now</button>
-      </div>
-    </div>
-  </section>
+<div class="hero">
+  <div class="slides">
+    <div class="slide slide1"></div>
+    <div class="slide slide2"></div>
+    <div class="slide slide3"></div>
+  </div>
+  <div class="slide-overlay">
+    <h2>Stand with Gaza</h2>
+    <p>Every order delivers hope.</p>
+    <button>Shop Now</button>
+  </div>
+</div>
 
-  <!-- Impact -->
-  <section class="impact">
-    <h2>Our Mission</h2>
-    <p>Silent Aid is more than a store — it's a commitment. Every product funds food, water, shelter kits, and education for children in Gaza. We've pledged 100% transparency and 100% love. Your support means the world — because behind every order is a story, a face, a life.</p>
-  </section>
+<section class="product-section">
+<h2>Best Sellers</h2>
+<div class="products">
+  <div class="product-card"><img src="https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcQG_HGDlxLROZrUv7riXPuP1eyKxtDbUXo7c3_BPhmep43dJdQyXDixESk9CkmOPi932Y50LxNctgWPt0oJI6eP5OIdhDpRGdrDsfRsxb0bxEbnN9EZvky41w"><h3>Free Palestine Tee</h3></div>
+  <div class="product-card"><img src="https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcQADJVvQ_8dCQAoIp79t_DUtto3PZJVvBYgkg7KRnn6CuX8KtTf0Gb_Kcmfun-wBCrtdhsxeNuebmPh-vViyKPaIdbd7Ny28jG3zUcb0qvIE8reg7MnhUSlTQ"><h3>Free Gaza Tee</h3></div>
+</div>
+</section>
 
-  <!-- Donors -->
-  <section class="donor-section">
-    <h2>🢖 Recent Donors</h2>
-    <div class="donor-list">
-      <div class="donor">Sameer Shaik – ₹599</div>
-      <div class="donor">Fatima Ansari – ₹799</div>
-      <div class="donor">Yusuf Khan – ₹299</div>
-      <div class="donor">Aisha Raza – ₹999</div>
-      <div class="donor">Zainab Malik – ₹499</div>
-    </div>
-  </section>
+<section class="impact">
+<h2>Our Mission</h2>
+<p>Every product funds aid for Gaza.</p>
+</section>
 
-  <!-- Newsletter -->
-  <section class="newsletter">
-    <h2>Subscribe to Our Newsletter 💌</h2>
-    <form onsubmit="subscribeToBrevo(event)">
-      <input id="newsletter-email" type="email" placeholder="Enter your email" required>
-      <button type="submit">Subscribe</button>
-    </form>
-  </section>
+<section class="donor-section">
+<h2>Recent Donors</h2>
+<div class="donor">Sameer – ₹599</div>
+<div class="donor">Fatima – ₹799</div>
+</section>
 
-  <footer>
-    © 2025 Silent Aid | Powered by Purpose | Built to Uplift Humanity
-  </footer>
-  
-<a href="track.html">
-  <button style="padding:10px 20px;background:#e10600;color:white;border:none;border-radius:6px;">
-    Track Your Order
-  </button>
-</a>
-  
-  <script>
-    // Newsletter subscription
-    async function subscribeToBrevo(event){
-      event.preventDefault();
-      const email = document.querySelector("#newsletter-email").value;
-      if(!email) return alert("Please enter a valid email.");
-      alert("Thank you for subscribing! 💌");
-      document.querySelector("#newsletter-email").value = "";
-    }
+<section class="newsletter">
+<h2>Subscribe</h2>
+<form>
+<input type="email" placeholder="Email">
+<button>Join</button>
+</form>
+</section>
 
-    // Hero slider
-    let currentIndex = 0;
-    const slides = document.querySelectorAll('.slide');
-    setInterval(() => {
-      currentIndex = (currentIndex + 1) % slides.length;
-      document.querySelector('.slides').style.transform = `translateX(-${currentIndex * 100}%)`;
-    }, 4000);
-  </script>
+<footer>© Silent Aid</footer>
+
+<div class="sticky-donate"><a href="shop.html">Donate for Gaza</a></div>
+
+<script>
+function toggleMenu(){
+  document.querySelector('.nav-center').classList.toggle('active');
+}
+
+let index=0;
+const slides=document.querySelectorAll('.slide');
+const slider=document.querySelector('.slides');
+setInterval(()=>{
+  index=(index+1)%slides.length;
+  slider.style.transform=`translateX(-${index*100}%)`;
+},2500);
+</script>
 
 </body>
 </html>
-
