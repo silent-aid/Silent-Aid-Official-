@@ -2,243 +2,161 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Silent Aid — Stand With Palestine</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Manrope:wght@300;400;600&display=swap" rel="stylesheet">
+<title>Silent Aid – For Palestine</title>
 
 <style>
 :root{
- --bg:#050505;
- --red:#c1121f;
- --green:#1fa36a;
- --white:#f5f5f5;
- --grey:#9a9a9a;
+  --bg:#0b0b0b;
+  --card:#121212;
+  --red:#d62828;
+  --green:#1faa59;
+  --white:#ffffff;
 }
-*{margin:0;padding:0;box-sizing:border-box}
-body{
- background:radial-gradient(circle at top,#111,#000);
- color:var(--white);
- font-family:Manrope,sans-serif;
- overflow-x:hidden;
-}
-header{
- position:fixed;
- top:0;width:100%;
- display:flex;
- justify-content:space-between;
- align-items:center;
- padding:20px 60px;
- backdrop-filter:blur(12px);
- background:rgba(0,0,0,.7);
- z-index:1000;
-}
-.logo{
- font-family:Inter;
- font-weight:900;
- letter-spacing:3px;
-}
-nav a{
- color:var(--white);
- margin-left:20px;
- text-decoration:none;
- position:relative;
-}
-nav a::after{
- content:"";
- width:0;height:2px;
- background:linear-gradient(90deg,var(--red),var(--green));
- position:absolute;
- bottom:-5px;left:0;
- transition:.3s;
-}
-nav a:hover::after{width:100%}
 
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,Helvetica,sans-serif;}
+body{background:var(--bg);color:var(--white);}
+
+/* NAV */
+nav{
+  position:fixed;top:0;left:0;width:100%;
+  background:#000;
+  display:flex;justify-content:space-between;align-items:center;
+  padding:15px 25px;z-index:1000;
+}
+nav h1{color:var(--red);}
+nav a{
+  color:#ccc;margin:0 10px;text-decoration:none;
+}
+nav a:hover{color:var(--white);border-bottom:2px solid var(--red);}
+
+/* HERO SLIDER */
 .hero{
- height:100vh;
- position:relative;
- overflow:hidden;
+  margin-top:70px;height:85vh;position:relative;overflow:hidden;
 }
 .slide{
- position:absolute;
- inset:0;
- background-size:cover;
- background-position:center;
- opacity:0;
- transition:opacity 1.2s ease;
+  position:absolute;width:100%;height:100%;
+  background-size:cover;background-position:center;
+  opacity:0;transition:1s;
 }
-.slide.active{opacity:1}
-.hero-content{
- position:absolute;
- bottom:20%;
- left:80px;
- max-width:650px;
- animation:fadeUp 1.5s ease forwards;
+.slide.active{opacity:1;}
+.hero-text{
+  position:absolute;bottom:20%;left:10%;
+  max-width:500px;
 }
-.hero-content h1{
- font-family:Inter;
- font-size:4rem;
+.hero-text h2{font-size:2.5em;}
+.hero-text span{color:var(--red);}
+.hero-text button{
+  margin-top:15px;padding:12px 20px;border:none;
+  background:linear-gradient(45deg,var(--red),var(--green));
+  color:#fff;font-weight:bold;border-radius:5px;cursor:pointer;
 }
-.tagline{
- background:linear-gradient(90deg,var(--red),var(--green));
- -webkit-background-clip:text;
- -webkit-text-fill-color:transparent;
- margin:10px 0;
- font-weight:700;
-}
-.sub{color:var(--grey)}
 
-.btn{
- display:inline-block;
- margin-top:20px;
- padding:14px 34px;
- border:1px solid var(--red);
- color:var(--white);
- text-decoration:none;
- position:relative;
- overflow:hidden;
- border-radius:30px;
-}
-.btn::before{
- content:"";
- position:absolute;
- inset:0;
- background:linear-gradient(90deg,var(--red),var(--green));
- transform:translateX(-100%);
- transition:.4s;
- z-index:-1;
-}
-.btn:hover::before{transform:translateX(0)}
-
-section{padding:120px 60px}
-
-.mission,.impact-grid,.about{
- display:grid;
- grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
- gap:30px;
-}
+/* SECTIONS */
+section{padding:60px 20px;max-width:1100px;margin:auto;}
 .card{
- background:linear-gradient(145deg,#111,#000);
- padding:50px;
- border-radius:14px;
- box-shadow:0 0 40px rgba(193,18,31,.25);
- transform:translateY(40px);
- opacity:0;
- transition:.8s;
+  background:var(--card);padding:25px;border-radius:10px;margin:15px 0;
 }
-.card.show{transform:translateY(0);opacity:1}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px;}
 
-.stats{
- display:flex;
- justify-content:space-around;
- font-size:2rem;
+.flag{
+  width:80px;margin:10px auto;display:block;
 }
 
-.about img{
- width:100%;
- border-radius:14px;
- filter:grayscale(100%);
-}
+/* IMPACT */
+.stat{font-size:2em;color:var(--green);}
 
-footer{text-align:center;padding:40px;color:var(--grey)}
-
-@keyframes fadeUp{
- from{opacity:0;transform:translateY(40px)}
- to{opacity:1;transform:translateY(0)}
-}
+/* FOOTER */
+footer{text-align:center;padding:30px;background:#000;color:#aaa;}
 </style>
 </head>
 
 <body>
 
-<header>
- <div class="logo">SILENT AID</div>
- <nav>
-  <a href="#home">Home</a>
-  <a href="#mission">Mission</a>
-  <a href="#impact">Impact</a>
-  <a href="#donate">Donate</a>
-  <a href="#about">About</a>
- </nav>
-</header>
+<nav>
+  <h1>Silent Aid</h1>
+  <div>
+    <a href="#about">About</a>
+    <a href="#impact">Impact</a>
+    <a href="#donate">Donate</a>
+    <a href="#campaigns">Campaigns</a>
+  </div>
+</nav>
 
-<section id="home" class="hero">
- <div class="slide active" style="background-image:url('https://images.unsplash.com/photo-1601050690293-3f5c9e62b0a6?auto=format&fit=crop&w=1600&q=80')"></div>
- <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1601066525710-4c6e4ef4c5f4?auto=format&fit=crop&w=1600&q=80')"></div>
- <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1589187155472-1f6d8b7b9f66?auto=format&fit=crop&w=1600&q=80')"></div>
+<!-- HERO -->
+<div class="hero">
+  <div class="slide active" style="background-image:url('https://images.unsplash.com/photo-1604152135912-04a022e2363f?auto=format&fit=crop&w=1400&q=80');"></div>
+  <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1581804928342-4e3405e39c91?auto=format&fit=crop&w=1400&q=80');"></div>
+  <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1614680376573-df3480f0c6ff?auto=format&fit=crop&w=1400&q=80');"></div>
 
- <div class="hero-content">
-  <h1>SILENT AID</h1>
-  <p class="tagline">Stand With Palestine</p>
-  <p class="sub">Your silence can become action. Your support becomes aid.</p>
-  <a href="#donate" class="btn">Donate for Gaza</a>
-  <a href="#impact" class="btn">See Our Impact</a>
- </div>
+  <div class="hero-text">
+    <h2>For <span>Palestine</span>, For Humanity</h2>
+    <p>Silent Aid is a global movement delivering hope, dignity, and support.</p>
+    <button>Support Palestine</button>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+<img src="https://upload.wikimedia.org/wikipedia/commons/0/00/Flag_of_Palestine.svg" class="flag">
+<h2>About Silent Aid</h2>
+<div class="card">
+<p>Silent Aid was born to serve humanity and stand with Palestine. We provide food, shelter, education and hope to the oppressed.</p>
+</div>
+
+<h3>My Story</h3>
+<div class="card">
+<p>I started Silent Aid because silence in the face of injustice is also a crime. This is my way of turning pain into purpose.</p>
+</div>
 </section>
 
-<section id="mission" class="mission">
- <div class="card">Emergency Aid for Gaza Families</div>
- <div class="card">Global Awareness & Justice</div>
- <div class="card">Community-Powered Relief</div>
-</section>
-
+<!-- IMPACT -->
 <section id="impact">
- <h2>Our Impact</h2>
- <div class="stats">
-  <div><span id="funds">0</span>+ Donations</div>
-  <div><span id="families">0</span> Families Helped</div>
-  <div><span id="campaigns">0</span> Campaigns</div>
- </div>
+<h2>Our Impact</h2>
+<div class="grid">
+  <div class="card"><div class="stat">10K+</div> Meals Delivered</div>
+  <div class="card"><div class="stat">5K+</div> Families Helped</div>
+  <div class="card"><div class="stat">20+</div> Campaigns</div>
+</div>
 </section>
 
+<!-- DONATE -->
 <section id="donate">
- <h2>Donate for Palestine</h2>
- <p>Your contribution sends food, water, and medical aid to Gaza.</p>
- <a class="btn">Support Now</a>
+<h2>Donate & Support</h2>
+<div class="grid">
+  <div class="card">
+    <h3>Emergency Relief</h3>
+    <button>Donate Now</button>
+  </div>
+  <div class="card">
+    <h3>Monthly Support</h3>
+    <button>Become Supporter</button>
+  </div>
+</div>
 </section>
 
-<section id="about" class="about">
- <div class="card">
-  <h2>My Story</h2>
-  <p>
-   Silent Aid was born from pain, faith, and responsibility.
-   I could not stay silent while Gaza suffered.
-   This is my promise to stand for humanity, truth, and justice.
-  </p>
- </div>
- <img src="https://images.unsplash.com/photo-1520975698519-59c0a8f1c6b5?auto=format&fit=crop&w=800&q=80">
+<!-- CAMPAIGNS -->
+<section id="campaigns">
+<h2>Campaigns</h2>
+<div class="grid">
+  <div class="card">Echoes of the Unseen</div>
+  <div class="card">Free Gaza</div>
+  <div class="card">Humanity First</div>
+</div>
 </section>
 
-<footer>© 2026 Silent Aid — Stand With Palestine</footer>
+<footer>
+<p>© Silent Aid | For Palestine & Humanity</p>
+</footer>
 
 <script>
 let slides=document.querySelectorAll(".slide");
 let i=0;
 setInterval(()=>{
- slides.forEach(s=>s.classList.remove("active"));
- i=(i+1)%slides.length;
- slides[i].classList.add("active");
-},5000);
-
-let cards=document.querySelectorAll(".card");
-window.addEventListener("scroll",()=>{
- cards.forEach(card=>{
-  let top=card.getBoundingClientRect().top;
-  if(top<window.innerHeight-50){
-    card.classList.add("show");
-  }
- });
-});
-
-let f=0,fam=0,c=0;
-setInterval(()=>{
- if(f<500)f++;
- if(fam<200)fam++;
- if(c<12)c++;
- funds.innerText=f;
- families.innerText=fam;
- campaigns.innerText=c;
-},40);
+  slides[i].classList.remove("active");
+  i=(i+1)%slides.length;
+  slides[i].classList.add("active");
+},4000);
 </script>
 
 </body>
