@@ -2,36 +2,125 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Silent Aid — Global Humanitarian Movement</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Manrope:wght@300;400;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/style.css">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+  background:#0B0B0B;
+  color:#F5F5F5;
+  font-family:Manrope, sans-serif;
+}
+header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:20px 60px;
+}
+.logo{
+  font-family:Inter;
+  font-weight:900;
+  font-size:20px;
+}
+nav a{
+  color:#F5F5F5;
+  margin-left:20px;
+  text-decoration:none;
+  position:relative;
+}
+nav a::after{
+  content:"";
+  width:0;height:2px;
+  background:#C1121F;
+  position:absolute;
+  bottom:-5px;left:0;
+  transition:.3s;
+}
+nav a:hover::after{width:100%}
+
+section{padding:80px 60px}
+.hero{
+  height:90vh;
+  display:flex;
+  align-items:center;
+}
+.hero h1{
+  font-family:Inter;
+  font-size:4rem;
+}
+.tagline{color:#C1121F;margin:10px 0}
+.sub{color:#9A9A9A}
+
+.btn{
+  padding:12px 25px;
+  border:1px solid #C1121F;
+  color:#F5F5F5;
+  text-decoration:none;
+  margin-right:15px;
+}
+.red{background:#C1121F}
+.outline{background:none}
+
+.mission{
+  display:flex;
+  justify-content:space-between;
+  gap:20px;
+}
+.card{
+  background:#111;
+  padding:40px;
+  flex:1;
+  text-align:center;
+}
+
+.stats{
+  display:flex;
+  justify-content:space-around;
+  margin-top:30px;
+}
+
+.shop-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+  gap:20px;
+}
+.product{
+  background:#111;
+  padding:20px;
+  text-align:center;
+}
+
+footer{
+  text-align:center;
+  padding:30px;
+  color:#9A9A9A;
+}
+</style>
 </head>
+
 <body>
 
-<header class="nav">
+<header>
   <div class="logo">SILENT AID</div>
   <nav>
-    <a href="index.html">Home</a>
-    <a href="shop.html">Shop</a>
-    <a href="donate.html">Donate</a>
-    <a href="impact.html">Impact</a>
-    <a href="campaigns.html">Campaigns</a>
-    <a href="about.html">About</a>
-    <a href="contact.html">Contact</a>
+    <a href="#home">Home</a>
+    <a href="#shop">Shop</a>
+    <a href="#donate">Donate</a>
+    <a href="#impact">Impact</a>
+    <a href="#about">About</a>
   </nav>
 </header>
 
-<section class="hero">
-  <div class="hero-text">
+<section id="home" class="hero">
+  <div>
     <h1>SILENT AID</h1>
     <p class="tagline">A Global Humanitarian Movement</p>
-    <p class="sub">We do not shout. We act.</p>
-    <div class="hero-buttons">
-      <a href="donate.html" class="btn red">Support Gaza</a>
-      <a href="impact.html" class="btn outline">View Impact</a>
-    </div>
+    <p class="sub">We do not shout. We act.</p><br>
+    <a href="#donate" class="btn red">Support Gaza</a>
+    <a href="#impact" class="btn outline">View Impact</a>
   </div>
 </section>
 
@@ -41,7 +130,16 @@
   <div class="card">Global Action</div>
 </section>
 
-<section class="impact">
+<section id="shop">
+  <h2>Shop for a Cause</h2><br>
+  <div class="shop-grid">
+    <div class="product">Free Gaza Tee</div>
+    <div class="product">Silent Aid Hoodie</div>
+    <div class="product">Humanity Poster</div>
+  </div>
+</section>
+
+<section id="impact">
   <h2>Our Impact</h2>
   <div class="stats">
     <div><span id="funds">0</span>+ Funds Raised</div>
@@ -50,10 +148,32 @@
   </div>
 </section>
 
+<section id="donate">
+  <h2>Donate</h2>
+  <p>Your support provides real aid.</p><br>
+  <a class="btn red">Donate Now</a>
+</section>
+
+<section id="about">
+  <h2>About Silent Aid</h2>
+  <p>Silent Aid is a global movement for justice, humanity and real impact.</p>
+</section>
+
 <footer>
-  <p>© 2026 Silent Aid. All Rights Reserved.</p>
+  © 2026 Silent Aid. All Rights Reserved.
 </footer>
 
-<script src="assets/js/main.js"></script>
+<script>
+let f=0,fam=0,c=0;
+setInterval(()=>{
+  if(f<250)f++;
+  if(fam<120)fam++;
+  if(c<7)c++;
+  funds.innerText=f;
+  families.innerText=fam;
+  campaigns.innerText=c;
+},30);
+</script>
+
 </body>
 </html>
