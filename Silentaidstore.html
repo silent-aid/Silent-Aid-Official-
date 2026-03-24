@@ -15,33 +15,6 @@ body {
   font-family: 'Poppins', sans-serif;
   background: black;
   color: #F5F5F5;
-  overflow-x: hidden;
-}
-
-/* BACKGROUND */
-.hero-bg {
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(to bottom, rgba(0,0,0,0.8), black),
-              url("https://images.unsplash.com/photo-1604014237800-1c9102c219da");
-  background-size: cover;
-  z-index: -2;
-}
-
-/* FIRE GLOW */
-.fire-glow {
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  background: radial-gradient(circle at bottom, rgba(255,69,0,0.3), transparent);
-  z-index: -1;
-  animation: flicker 3s infinite alternate;
-}
-
-@keyframes flicker {
-  from {opacity: 0.6;}
-  to {opacity: 1;}
 }
 
 /* NAVBAR */
@@ -49,7 +22,7 @@ body {
   display: flex;
   justify-content: space-between;
   padding: 15px 25px;
-  backdrop-filter: blur(10px);
+  border-bottom: 1px solid #8B0000;
 }
 
 .logo img {
@@ -61,50 +34,39 @@ body {
 .container {
   display: flex;
   gap: 50px;
-  padding: 60px;
+  padding: 50px;
   align-items: center;
 }
 
-/* IMAGE */
+/* IMAGE SECTION */
 .product-img {
   flex: 1;
+  text-align: center;
 }
 
-.image-container {
-  overflow: hidden;
+.product-img img {
+  width: 100%;
+  max-width: 500px;
   border-radius: 16px;
 }
 
-#mainImage {
-  width: 100%;
-  transition: transform 0.4s ease;
-}
-
-/* ZOOM */
-.image-container:hover #mainImage {
-  transform: scale(1.15);
-}
-
-/* GALLERY */
-.gallery {
-  display: flex;
-  gap: 10px;
+/* BUTTONS */
+.image-buttons {
   margin-top: 15px;
 }
 
-.gallery img {
-  width: 70px;
-  height: 70px;
-  border-radius: 8px;
-  object-fit: cover;
+.image-buttons button {
+  padding: 10px 20px;
+  margin: 5px;
+  background: #8B0000;
+  border: none;
+  color: white;
+  border-radius: 6px;
   cursor: pointer;
-  opacity: 0.6;
-  transition: 0.3s;
 }
 
-.gallery img:hover {
-  opacity: 1;
-  transform: scale(1.1);
+.image-buttons button:hover {
+  background: #B22222;
 }
 
 /* DETAILS */
@@ -113,10 +75,7 @@ body {
 }
 
 .product-title {
-  font-size: 34px;
-  background: linear-gradient(to right, #fff, #D4AF37);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  font-size: 32px;
 }
 
 .product-desc {
@@ -126,11 +85,11 @@ body {
 }
 
 .price {
-  font-size: 28px;
+  font-size: 26px;
   color: #D4AF37;
 }
 
-/* BUTTON */
+/* BUY BUTTON */
 .btn {
   margin-top: 20px;
   padding: 15px 30px;
@@ -139,12 +98,17 @@ body {
   border-radius: 10px;
   color: white;
   cursor: pointer;
-  box-shadow: 0 0 20px rgba(255,69,0,0.6);
-  transition: 0.3s;
 }
 
-.btn:hover {
-  transform: scale(1.08);
+/* EXTRA SECTIONS */
+.section {
+  padding: 50px 20px;
+  border-top: 1px solid #222;
+  text-align: center;
+}
+
+.section h2 {
+  color: #D4AF37;
 }
 
 /* MOBILE */
@@ -160,9 +124,6 @@ body {
 
 <body>
 
-<div class="hero-bg"></div>
-<div class="fire-glow"></div>
-
 <!-- NAVBAR -->
 <div class="navbar">
   <div class="logo">
@@ -174,28 +135,27 @@ body {
 <!-- PRODUCT -->
 <div class="container">
 
+  <!-- IMAGE -->
   <div class="product-img">
+    <img id="mainImage" src="images/frame.png">
 
-    <div class="image-container">
-      <img id="mainImage" src="images/frame1.jpg">
+    <div class="image-buttons">
+      <button onclick="prevImage()">⬅ Prev</button>
+      <button onclick="nextImage()">Next ➡</button>
     </div>
-
-    <div class="gallery">
-      <img src="images/frame.png" onclick="changeImage(this)">
-      <img src="images/frame1.png" onclick="changeImage(this)">
-      <img src="images/frame2.png" onclick="changeImage(this)">
-      <img src="images/frame3.png" onclick="changeImage(this)">
-    </div>
-
   </div>
 
+  <!-- DETAILS -->
   <div class="product-details">
     <div class="product-title">Pray for Gaza – Premium Frame</div>
 
     <div class="product-desc">
-      A powerful visual reminder of faith, resilience, and humanity.  
-      Designed to inspire reflection and awareness.  
-      Every purchase contributes to meaningful impact.
+      A deeply meaningful frame designed to reflect strength, faith, and resilience.  
+      Inspired by real emotions and powerful visuals, this piece serves as a reminder  
+      of patience and humanity in difficult times.
+      <br><br>
+      Crafted with a premium finish, it enhances any space while carrying a message  
+      that truly matters.
     </div>
 
     <div class="price">₹999</div>
@@ -203,6 +163,31 @@ body {
     <button class="btn">Buy Now</button>
   </div>
 
+</div>
+
+<!-- EXTRA DESCRIPTION -->
+<div class="section">
+  <h2>Product Details</h2>
+  <p>
+    High-quality print with rich colors and depth.  
+    Durable frame with a premium matte finish.  
+    Perfect for home, office, or gifting.
+  </p>
+</div>
+
+<div class="section">
+  <h2>Why Choose Silent Aid?</h2>
+  <p>
+    Every product is designed with purpose — combining aesthetics with meaning.  
+    Your purchase supports awareness and contributes towards impactful initiatives.
+  </p>
+</div>
+
+<div class="section">
+  <h2>Make an Impact</h2>
+  <p>
+    This is more than decor — it's a message, a reminder, and a step towards change.
+  </p>
 </div>
 
 <!-- JS -->
@@ -216,32 +201,20 @@ let images = [
 ];
 
 let index = 0;
-let autoSlide;
 
-/* CLICK */
-function changeImage(element) {
-  document.getElementById("mainImage").src = element.src;
-  index = images.indexOf("images/" + element.src.split('/').pop());
+function showImage() {
+  document.getElementById("mainImage").src = images[index];
 }
 
-/* AUTO SLIDE */
-function startSlide() {
-  autoSlide = setInterval(() => {
-    index = (index + 1) % images.length;
-    document.getElementById("mainImage").src = images[index];
-  }, 2500);
+function nextImage() {
+  index = (index + 1) % images.length;
+  showImage();
 }
 
-/* STOP ON HOVER */
-document.querySelector(".image-container").addEventListener("mouseenter", () => {
-  clearInterval(autoSlide);
-});
-
-document.querySelector(".image-container").addEventListener("mouseleave", () => {
-  startSlide();
-});
-
-startSlide();
+function prevImage() {
+  index = (index - 1 + images.length) % images.length;
+  showImage();
+}
 
 </script>
 
