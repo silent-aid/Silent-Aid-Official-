@@ -16,6 +16,7 @@ body {
   color: #F5F5F5;
   background: black;
   overflow-x: hidden;
+  transition: opacity 0.3s ease;
 }
 
 /* 🔥 FIRE BACKGROUND */
@@ -70,7 +71,7 @@ body {
   transition: 0.4s;
 }
 
-/* PREVIEW IMAGES */
+/* PREVIEW */
 .preview {
   display: flex;
   justify-content: center;
@@ -136,7 +137,7 @@ body {
   box-shadow: 0 0 50px rgba(255,69,0,1);
 }
 
-/* EXTRA SECTIONS */
+/* SECTIONS */
 .section {
   padding: 60px 20px;
   text-align: center;
@@ -199,7 +200,7 @@ body {
 
     <div class="price">₹999</div>
 
-    <button class="btn">Buy Now</button>
+    <button class="btn" onclick="goToCheckout()">Buy Now</button>
   </div>
 
 </div>
@@ -217,9 +218,20 @@ body {
 
 <!-- JS -->
 <script>
+
+/* CHANGE IMAGE */
 function changeImage(element) {
   document.getElementById("mainImage").src = element.src;
 }
+
+/* REDIRECT TO CHECKOUT */
+function goToCheckout() {
+  document.body.style.opacity = "0";
+  setTimeout(() => {
+    window.location.href = "checkout2.html";
+  }, 300);
+}
+
 </script>
 
 </body>
