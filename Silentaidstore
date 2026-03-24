@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Silent Aid Store</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+
+/* BASE */
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  color: #F5F5F5;
+  background: black;
+  overflow-x: hidden;
+}
+
+/* 🔥 CINEMATIC BACKGROUND */
+.hero-bg {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: 
+    linear-gradient(to bottom, rgba(0,0,0,0.8), black),
+    url("https://images.unsplash.com/photo-1604014237800-1c9102c219da");
+  background-size: cover;
+  background-position: center;
+  z-index: -2;
+}
+
+/* 🔥 FIRE GLOW */
+.fire-glow {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at bottom, rgba(255,69,0,0.3), transparent 60%);
+  z-index: -1;
+  animation: flicker 3s infinite alternate;
+}
+
+@keyframes flicker {
+  0% { opacity: 0.6; }
+  100% { opacity: 1; }
+}
+
+/* NAVBAR */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  padding: 15px 30px;
+  backdrop-filter: blur(8px);
+}
+
+/* LOGO */
+.logo img {
+  width: 50px;
+  border-radius: 50%;
+  box-shadow: 0 0 20px rgba(255,0,0,0.6);
+}
+
+.nav-links {
+  color: #ccc;
+}
+
+/* CONTAINER */
+.container {
+  display: flex;
+  align-items: center;
+  padding: 80px;
+  gap: 60px;
+}
+
+/* PRODUCT IMAGE */
+.product-img {
+  flex: 1;
+  animation: float 4s ease-in-out infinite;
+}
+
+.product-img img {
+  width: 100%;
+  border-radius: 16px;
+  box-shadow: 0 0 60px rgba(255,50,0,0.5);
+}
+
+@keyframes float {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+/* DETAILS */
+.product-details {
+  flex: 1;
+}
+
+.product-title {
+  font-size: 38px;
+  background: linear-gradient(to right, #fff, #D4AF37);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.product-desc {
+  color: #ccc;
+  margin: 20px 0;
+  line-height: 1.7;
+}
+
+.price {
+  font-size: 28px;
+  color: #D4AF37;
+}
+
+/* BUTTON */
+.btn {
+  margin-top: 20px;
+  background: linear-gradient(45deg, #8B0000, #FF4500);
+  padding: 15px 35px;
+  border-radius: 12px;
+  border: none;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.4s;
+  box-shadow: 0 0 25px rgba(255,69,0,0.6);
+}
+
+.btn:hover {
+  transform: scale(1.08);
+  box-shadow: 0 0 50px rgba(255,69,0,1);
+}
+
+/* IMPACT */
+.impact {
+  text-align: center;
+  padding: 80px 20px;
+}
+
+.impact h2 {
+  color: #D4AF37;
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+    padding: 30px;
+  }
+
+  .product-title {
+    font-size: 26px;
+  }
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="hero-bg"></div>
+<div class="fire-glow"></div>
+
+<!-- NAVBAR -->
+<div class="navbar">
+  <div class="logo">
+    <!-- ADD YOUR LOGO FILE NAME HERE -->
+    <img src="logo.png">
+  </div>
+  <div class="nav-links">Shop | Impact | Cart</div>
+</div>
+
+<!-- PRODUCT -->
+<div class="container">
+
+  <div class="product-img">
+    <img src="your-frame.png">
+  </div>
+
+  <div class="product-details">
+    <div class="product-title">Pray for Gaza – Premium Frame</div>
+
+    <div class="product-desc">
+      A cinematic expression of faith, resilience, and truth.  
+      Inspired by the strength of those who endure, this frame
+      brings depth and meaning into your space.
+      <br><br>
+      More than a product — a statement of awareness and purpose.
+    </div>
+
+    <div class="price">₹999</div>
+
+    <button class="btn">Buy Now</button>
+  </div>
+
+</div>
+
+<!-- IMPACT -->
+<div class="impact">
+  <h2>Silent Aid Mission</h2>
+  <p>
+    Every purchase helps amplify awareness and support meaningful causes.
+  </p>
+</div>
+
+</body>
+</html>
