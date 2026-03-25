@@ -13,10 +13,9 @@ body {
   font-family: 'Poppins', sans-serif;
   background: black;
   color: white;
-  overflow-x: hidden;
 }
 
-/* 🔥 FIRE GLOW BACKGROUND */
+/* 🔥 FIRE BG */
 .bg-glow {
   position: fixed;
   width: 100%;
@@ -31,16 +30,15 @@ body {
   100% { opacity: 1; }
 }
 
-/* NAV */
+/* HEADER */
 .marquee {
   background: #8B0000;
-  color: white;
   padding: 10px;
   text-align: center;
   font-weight: bold;
 }
 
-/* HEADING */
+/* TITLE */
 h2 {
   text-align: center;
   margin-top: 30px;
@@ -54,8 +52,31 @@ form {
   background: rgba(20,20,20,0.9);
   padding: 30px;
   border-radius: 12px;
-  backdrop-filter: blur(10px);
   box-shadow: 0 0 25px rgba(255,69,0,0.3);
+}
+
+/* PRODUCT BOX */
+.product-box {
+  display: flex;
+  gap: 15px;
+  background: #111;
+  padding: 15px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  align-items: center;
+}
+
+.product-box img {
+  width: 80px;
+  border-radius: 8px;
+}
+
+.product-info h3 {
+  margin: 0;
+}
+
+.price {
+  color: #D4AF37;
 }
 
 /* INPUTS */
@@ -86,31 +107,6 @@ button {
   font-size: 16px;
   border-radius: 8px;
   cursor: pointer;
-  box-shadow: 0 0 20px rgba(255,69,0,0.5);
-  transition: 0.3s;
-}
-
-button:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0 40px rgba(255,69,0,1);
-}
-
-/* PRODUCT BOX */
-.product-box {
-  background: #111;
-  padding: 15px;
-  border-radius: 10px;
-  margin-bottom: 20px;
-  border: 1px solid #333;
-}
-
-.product-box h3 {
-  margin: 0;
-}
-
-.price {
-  color: #D4AF37;
-  font-size: 18px;
 }
 
 /* OTHER CITY */
@@ -132,10 +128,13 @@ button:hover {
 
 <form id="orderForm">
 
-  <!-- PRODUCT INFO -->
+  <!-- PRODUCT -->
   <div class="product-box">
-    <h3>Pray For Gaza Frame</h3>
-    <p class="price">Price: ₹399</p>
+    <img src="images/frame.png">
+    <div class="product-info">
+      <h3>Pray For Gaza Frame</h3>
+      <p class="price">₹399</p>
+    </div>
   </div>
 
   <label>Full Name:
@@ -164,9 +163,6 @@ button:hover {
       <option>Chennai</option>
       <option>Kolkata</option>
       <option>Pune</option>
-      <option>Ahmedabad</option>
-      <option>Lucknow</option>
-      <option>Jaipur</option>
       <option value="Other">Other</option>
     </select>
   </label>
@@ -192,7 +188,6 @@ const citySelect = document.getElementById('citySelect');
 const otherCityField = document.getElementById('otherCityField');
 const otherCityInput = document.getElementById('otherCityInput');
 
-/* CITY LOGIC */
 citySelect.addEventListener('change', () => {
   if (citySelect.value === 'Other') {
     otherCityField.style.display = 'block';
@@ -203,7 +198,6 @@ citySelect.addEventListener('change', () => {
   }
 });
 
-/* SUBMIT */
 form.addEventListener('submit', function(e) {
   e.preventDefault();
 
