@@ -12,8 +12,8 @@
 body {
   margin: 0;
   font-family: 'Poppins', sans-serif;
+  color: #F5F5F5;
   background: black;
-  color: white;
 }
 
 /* TOP BAR */
@@ -37,6 +37,11 @@ body {
   display: flex;
   justify-content: space-between;
   padding: 12px;
+}
+
+.logo img {
+  width: 45px;
+  border-radius: 50%;
 }
 
 /* CONTAINER */
@@ -89,7 +94,6 @@ body {
   color: gold;
 }
 
-/* BUTTON */
 .btn {
   width: 100%;
   padding: 14px;
@@ -98,6 +102,17 @@ body {
   border-radius: 8px;
   color: white;
   margin-top: 10px;
+}
+
+/* SECTION */
+.section {
+  padding: 25px 15px;
+  border-top: 1px solid #222;
+}
+
+.section h2 {
+  color: #D4AF37;
+  font-size: 18px;
 }
 
 /* STICKY */
@@ -111,36 +126,35 @@ body {
   font-weight: bold;
 }
 
-/* 🔔 ORDER POPUP */
+/* POPUP */
 .order-popup {
   position: fixed;
   bottom: 80px;
   left: 10px;
   background: #111;
-  padding: 10px;
-  border-radius: 8px;
+  padding: 8px;
   font-size: 12px;
+  border-radius: 6px;
   display: none;
 }
 
-/* 🔥 EXIT POPUP */
+/* EXIT */
 .exit-popup {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0,0,0,0.8);
-  display: none;
-  justify-content: center;
-  align-items: center;
+  top:0;
+  width:100%;
+  height:100%;
+  background:rgba(0,0,0,0.9);
+  display:none;
+  justify-content:center;
+  align-items:center;
 }
 
 .exit-box {
-  background: #111;
-  padding: 20px;
-  text-align: center;
-  border-radius: 10px;
+  background:#111;
+  padding:20px;
+  border-radius:10px;
+  text-align:center;
 }
 
 </style>
@@ -148,15 +162,12 @@ body {
 
 <body>
 
-<div class="topbar">
-🚚 Free Delivery | 💰 COD | ⚡ Limited Stock
-</div>
-
+<div class="topbar">🚚 Free Delivery | 💰 COD | ⚡ Limited Stock</div>
 <div class="timer" id="timer">⏳ Offer ends in 10:00</div>
 
 <div class="navbar">
-<img src="images/logo1.jpg" width="40">
-<div>Cart</div>
+  <img src="images/logo1.jpg">
+  <div>Cart</div>
 </div>
 
 <div class="container">
@@ -171,33 +182,53 @@ body {
 </div>
 
 <div class="product-title">Pray for Gaza – Premium Frame</div>
-
 <div class="trust">⭐ 100+ Orders | 🔒 Secure Checkout</div>
+<div class="urgency" id="stock">📦 Only 7 left</div>
 
-<div class="urgency" id="stock">📦 Only 7 left in stock</div>
-
-<p>A small reminder that means everything. Keep Gaza in your heart daily.</p>
+<p>A small reminder… that means everything. Keep Gaza in your heart daily.</p>
 
 <div class="price">₹299</div>
-
 <button class="btn" onclick="goToCheckout()">🛒 Order Now (COD)</button>
 
 </div>
 
-<div class="sticky-btn" onclick="goToCheckout()">
-🛒 Buy Now ₹299
+<!-- 🔥 DETAILS BACK -->
+<div class="section">
+<h2>Product Details</h2>
+<p>✔ High-quality engineered wood frame</p>
+<p>✔ Ultra HD fade-resistant print</p>
+<p>✔ Premium matte finish</p>
+<p>✔ Ready to hang</p>
 </div>
 
-<!-- 🔔 ORDER POPUP -->
-<div class="order-popup" id="orderPopup">
-Someone from Delhi just ordered 🔥
+<div class="section">
+<h2>Why You’ll Love It</h2>
+<p>🕊️ Meaningful reminder</p>
+<p>✨ Premium finish</p>
+<p>🏠 Perfect for room</p>
+<p>💔 Emotional impact</p>
+<p>🤍 Supports aid</p>
 </div>
 
-<!-- 🔥 EXIT POPUP -->
+<div class="section">
+<h2>Silent Aid Mission</h2>
+<p>🍞 Feed families</p>
+<p>💧 Water support</p>
+<p>🏥 Medical help</p>
+<p>🚛 Supplies delivery</p>
+</div>
+
+<!-- STICKY -->
+<div class="sticky-btn" onclick="goToCheckout()">🛒 Buy Now ₹299</div>
+
+<!-- 🔔 POPUP -->
+<div class="order-popup" id="orderPopup"></div>
+
+<!-- 🔥 EXIT -->
 <div class="exit-popup" id="exitPopup">
   <div class="exit-box">
-    <h3>Wait! 😳</h3>
-    <p>Get ₹50 OFF if you order now!</p>
+    <h3>Wait 😳</h3>
+    <p>Get ₹50 OFF now!</p>
     <button class="btn" onclick="goToCheckout()">Claim Offer</button>
   </div>
 </div>
@@ -206,7 +237,7 @@ Someone from Delhi just ordered 🔥
 
 /* IMAGE */
 function changeImage(el){
-document.getElementById("mainImage").src = el.src;
+document.getElementById("mainImage").src=el.src;
 }
 
 /* CHECKOUT */
@@ -215,39 +246,38 @@ window.location.href="checkout2.html";
 }
 
 /* TIMER */
-let time = 600;
+let t=600;
 setInterval(()=>{
-let m = Math.floor(time/60);
-let s = time%60;
+let m=Math.floor(t/60);
+let s=t%60;
 if(s<10)s="0"+s;
 document.getElementById("timer").innerHTML="⏳ Offer ends in "+m+":"+s;
-time--;
-if(time<=0) time=600;
+t--;
+if(t<=0)t=600;
 },1000);
 
-/* 🔔 FAKE ORDER POPUP */
+/* POPUP */
 setInterval(()=>{
-let names=["Delhi","Mumbai","Hyderabad","Bangalore"];
-let random=names[Math.floor(Math.random()*names.length)];
-let popup=document.getElementById("orderPopup");
-popup.innerHTML="Someone from "+random+" just ordered 🔥";
-popup.style.display="block";
+let cities=["Delhi","Mumbai","Hyderabad","Bangalore"];
+let c=cities[Math.floor(Math.random()*cities.length)];
+let p=document.getElementById("orderPopup");
+p.innerHTML="Someone from "+c+" just ordered 🔥";
+p.style.display="block";
+setTimeout(()=>p.style.display="none",3000);
+},7000);
 
-setTimeout(()=>{popup.style.display="none"},3000);
-},8000);
-
-/* 📦 STOCK COUNTER */
-let stock = 7;
+/* STOCK */
+let stock=7;
 setInterval(()=>{
 if(stock>3){
 stock--;
-document.getElementById("stock").innerHTML="📦 Only "+stock+" left in stock";
+document.getElementById("stock").innerHTML="📦 Only "+stock+" left";
 }
 },15000);
 
-/* 🔥 EXIT POPUP */
-document.addEventListener("mouseout", function(e){
-if(e.clientY < 0){
+/* EXIT */
+document.addEventListener("mouseout",e=>{
+if(e.clientY<0){
 document.getElementById("exitPopup").style.display="flex";
 }
 });
