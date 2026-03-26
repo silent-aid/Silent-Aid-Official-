@@ -43,6 +43,15 @@ body {
   border-bottom: 1px solid rgba(139,0,0,0.4);
 }
 
+/* 🔥 TOP BAR (NEW) */
+.topbar {
+  text-align: center;
+  background: #8B0000;
+  padding: 8px;
+  font-size: 14px;
+  color: white;
+}
+
 .logo img {
   width: 50px;
   border-radius: 50%;
@@ -68,7 +77,6 @@ body {
   max-width: 520px;
   border-radius: 16px;
   box-shadow: 0 0 60px rgba(255,50,0,0.5);
-  transition: 0.4s;
 }
 
 /* PREVIEW */
@@ -108,6 +116,21 @@ body {
   -webkit-text-fill-color: transparent;
 }
 
+/* 🔥 TRUST BADGES */
+.trust {
+  margin-top: 10px;
+  color: #aaa;
+  font-size: 14px;
+}
+
+/* 🔥 URGENCY */
+.urgency {
+  color: #FF4500;
+  margin: 10px 0;
+  font-weight: 600;
+}
+
+/* DESCRIPTION */
 .product-desc {
   color: #ccc;
   margin: 20px 0;
@@ -130,11 +153,31 @@ body {
   cursor: pointer;
   box-shadow: 0 0 25px rgba(255,69,0,0.6);
   transition: 0.3s;
+  font-size: 16px;
 }
 
 .btn:hover {
   transform: scale(1.08);
   box-shadow: 0 0 50px rgba(255,69,0,1);
+}
+
+/* 🔥 STICKY BUTTON (MOBILE BOOST) */
+.sticky-btn {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .sticky-btn {
+    display: block;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    padding: 15px;
+    background: #8B0000;
+    text-align: center;
+    font-weight: bold;
+    z-index: 999;
+  }
 }
 
 /* SECTIONS */
@@ -148,20 +191,17 @@ body {
   color: #D4AF37;
 }
 
-/* MOBILE */
-@media (max-width: 768px) {
-  .container {
-    flex-direction: column;
-    padding: 20px;
-  }
-}
-
 </style>
 </head>
 
 <body>
 
 <div class="bg-glow"></div>
+
+<!-- 🔥 TOP BAR -->
+<div class="topbar">
+  🚚 Free Delivery | 💰 Cash on Delivery Available | ⚡ Limited Stock
+</div>
 
 <!-- NAVBAR -->
 <div class="navbar">
@@ -190,17 +230,27 @@ body {
   <div class="product-details">
     <div class="product-title">Pray for Gaza – Premium Frame</div>
 
+    <!-- 🔥 TRUST -->
+    <div class="trust">⭐ Trusted by 100+ customers | 🔒 Secure Checkout</div>
+
+    <!-- 🔥 URGENCY -->
+    <div class="urgency">⚡ Only few pieces left – selling fast</div>
+
     <div class="product-desc">
-      A powerful visual expression of faith, resilience, and humanity.  
-      Designed to inspire reflection and awareness while maintaining  
-      a premium and elegant aesthetic.
-      <br><br>
-      Every purchase carries meaning — turning awareness into action.
+      A small reminder… that means everything.<br><br>
+
+      Keep Gaza in your heart every day with this premium frame.  
+      This is not just decor — it’s a symbol of faith, awareness, and purpose.<br><br>
+
+      Every purchase supports a meaningful cause through Silent Aid.
     </div>
 
     <div class="price">₹299</div>
 
-    <button class="btn" onclick="goToCheckout()">Buy Now</button>
+    <button class="btn" onclick="goToCheckout()">
+      🛒 Order Now (COD Available)
+    </button>
+
   </div>
 
 </div>
@@ -208,51 +258,42 @@ body {
 <!-- EXTRA -->
 <div class="section">
   <h2>Product Details</h2>
-  <p>*Material: High-quality engineered wood / durable frame finish<p>
-    
-<p>*Print Quality: Ultra HD, fade-resistant print<p>
-    
-<p>*Finish: Matte / semi-gloss premium texture<p>
-    
-<p>*Design: Minimal, aesthetic Islamic-inspired artwork<p>
-    
-<p>*Mounting: Ready to hang (hook included)<p>
-    
-<p>*Orientation: Vertical<p>
-    
-<p>*Weight: Lightweight & easy to install</p>
+  <p>✔ High-quality engineered wood frame</p>
+  <p>✔ Ultra HD fade-resistant print</p>
+  <p>✔ Premium matte finish</p>
+  <p>✔ Ready to hang</p>
 </div>
   
 <div class="section">
   <h2>Why You’ll Love It</h2>
-<p>🕊️ Meaningful & Purpose-Driven – A constant reminder to make dua and stay connected to the Ummah<p>
-<p>✨ Premium Quality Finish – Sharp print with a clean, luxury look<p>
-<p>🏠 Perfect for Any Space – Bedroom, desk, or prayer corner<p>
-<p>💔 Emotionally Powerful Design – Sparks reflection every time you see it<p>
-<p>🤍 Support a Cause – A portion goes towards humanitarian aid via Silent Aid<p>
+<p>🕊️ Meaningful reminder for daily dua</p>
+<p>✨ Premium luxury finish</p>
+<p>🏠 Perfect for any space</p>
+<p>💔 Emotionally powerful design</p>
+<p>🤍 Supports humanitarian aid</p>
 </div>
   
 <div class="section">
   <h2>Silent Aid Mission</h2>
-  <p>Blending design with purpose to create meaningful impact.
-  
-    <p>Every purchase helps us move closer to:<p>
+  <p>Every purchase helps:</p>
+<p>🍞 Feed families</p>
+<p>💧 Provide clean water</p>
+<p>🏥 Support medical aid</p>
+<p>🚛 Deliver supplies</p>
+</div>
 
-<p>🍞 Feeding families in need<p>
-<p>💧 Providing clean drinking water<p>
-<p>🏥 Supporting basic medical aid<p>
-<p>🚛 Delivering essential supplies</p>
+<!-- 🔥 STICKY BUY BUTTON -->
+<div class="sticky-btn" onclick="goToCheckout()">
+  🛒 Buy Now ₹299
 </div>
 
 <!-- JS -->
 <script>
 
-/* CHANGE IMAGE */
 function changeImage(element) {
   document.getElementById("mainImage").src = element.src;
 }
 
-/* REDIRECT TO CHECKOUT */
 function goToCheckout() {
   document.body.style.opacity = "0";
   setTimeout(() => {
@@ -263,4 +304,4 @@ function goToCheckout() {
 </script>
 
 </body>
-</html>
+    </html>
