@@ -10,113 +10,102 @@
 body {
   margin: 0;
   font-family: 'Poppins', sans-serif;
-  background: black;
+  background: #000;
   color: white;
 }
 
-/* 🔥 BG */
-.bg-glow {
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  background: radial-gradient(circle at bottom, rgba(255,69,0,0.3), transparent 60%);
-  z-index: -1;
-}
-
-/* TOP BAR */
-.marquee {
-  background: #8B0000;
-  padding: 10px;
+/* TOP */
+.topbar {
   text-align: center;
-  font-weight: bold;
+  background: #8B0000;
+  padding: 8px;
+  font-size: 13px;
 }
 
 /* TIMER */
 .timer {
   text-align: center;
-  padding: 8px;
   color: #FF4500;
+  padding: 8px;
   font-weight: bold;
 }
 
-/* TITLE */
-h2 {
-  text-align: center;
-  margin-top: 20px;
-  color: #D4AF37;
+/* CONTAINER */
+.container {
+  max-width: 500px;
+  margin: auto;
+  padding: 15px;
 }
 
-/* FORM */
-form {
-  max-width: 550px;
-  margin: 20px auto;
-  background: #111;
-  padding: 20px;
-  border-radius: 12px;
-}
-
-/* PRODUCT */
+/* PRODUCT BOX */
 .product-box {
   display: flex;
   gap: 10px;
-  background: #000;
+  background: #111;
   padding: 10px;
   border-radius: 8px;
-  align-items: center;
 }
 
 .product-box img {
   width: 70px;
+  border-radius: 6px;
 }
 
 .price {
   color: gold;
 }
 
-/* INPUT */
-label {
-  margin-top: 10px;
-  display: block;
-}
-
-input, select, textarea {
-  width: 100%;
-  padding: 10px;
-  margin-top: 5px;
-  background: #222;
-  border: none;
-  color: white;
-}
-
 /* TRUST */
 .trust {
   font-size: 12px;
   color: #aaa;
+  margin: 10px 0;
+}
+
+/* INPUT */
+input, textarea {
+  width: 100%;
+  padding: 12px;
   margin-top: 10px;
+  background: #111;
+  border: 1px solid #333;
+  color: white;
+  border-radius: 6px;
+}
+
+/* UPSELL */
+.upsell {
+  background: #111;
+  padding: 10px;
+  margin-top: 10px;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+/* TOTAL */
+.total {
+  font-size: 18px;
+  margin-top: 10px;
+  color: gold;
 }
 
 /* BUTTON */
 button {
-  margin-top: 20px;
+  margin-top: 15px;
   padding: 14px;
   width: 100%;
-  background: #FF4500;
   border: none;
-  color: white;
+  border-radius: 8px;
   font-size: 16px;
-  border-radius: 6px;
+  cursor: pointer;
 }
 
-/* 🔔 ORDER POPUP */
-.order-popup {
-  position: fixed;
-  bottom: 10px;
-  left: 10px;
-  background: #111;
-  padding: 8px;
-  font-size: 12px;
-  border-radius: 6px;
-  display: none;
+.main-btn {
+  background: #FF4500;
+}
+
+.whatsapp-btn {
+  background: #25D366;
 }
 
 </style>
@@ -124,151 +113,95 @@ button {
 
 <body>
 
-<div class="bg-glow"></div>
-
-<div class="marquee">🚚 Free Delivery | 💰 Cash on Delivery Available</div>
-
+<div class="topbar">🚚 Free Delivery | 💰 Cash on Delivery</div>
 <div class="timer" id="timer">⏳ Offer ends in 10:00</div>
 
-<h2>Complete Your Order</h2>
+<div class="container">
+
+<!-- PRODUCT -->
+<div class="product-box">
+  <img src="images/frame.png">
+  <div>
+    <h3>Pray For Gaza Frame</h3>
+    <p class="price" id="price">₹299</p>
+  </div>
+</div>
+
+<div class="trust">🔒 Secure Checkout | 🚚 Fast Delivery | 💰 Pay on Delivery</div>
 
 <form id="orderForm">
 
-  <!-- PRODUCT -->
-  <div class="product-box">
-    <img src="images/frame.png">
-    <div>
-      <h3>Pray For Gaza Frame</h3>
-      <p class="price">₹299</p>
-      <p id="stock">📦 Only 7 left</p>
-    </div>
-  </div>
+<input type="text" name="name" placeholder="Full Name" required>
+<input type="tel" name="phone" placeholder="Phone Number" required>
+<input type="text" name="city" placeholder="City" required>
+<textarea name="address" placeholder="Full Address" required></textarea>
 
-  <div class="trust">🔒 Secure Checkout | 🚚 Fast Delivery | 💰 COD Available</div>
+<!-- UPSELL -->
+<div class="upsell">
+<input type="checkbox" id="upsell">
+ Add 1 more frame for just ₹100 extra (Save ₹100)
+</div>
 
-  <label>Full Name:
-    <input type="text" name="name" required>
-  </label>
+<div class="total" id="total">Total: ₹299</div>
 
-  <label>Email:
-    <input type="email" name="email" required>
-  </label>
-
-  <label>Phone Number:
-    <input type="tel" name="phone" required>
-  </label>
-
-  <label>WhatsApp Number:
-    <input type="tel" name="whatsapp" required>
-  </label>
-
-  <label>City:
-    <select name="city" id="citySelect" required>
-      <option value="">-- Select Your City --</option>
-      <option>Hyderabad</option>
-      <option>Delhi</option>
-      <option>Mumbai</option>
-      <option>Bengaluru</option>
-      <option>Chennai</option>
-      <option>Kolkata</option>
-      <option>Pune</option>
-      <option value="Other">Other</option>
-    </select>
-  </label>
-
-  <div id="otherCityField" style="display:none;">
-    <label>Enter Your City:
-      <input type="text" id="otherCityInput">
-    </label>
-  </div>
-
-  <label>Full Address:
-    <textarea name="address" required></textarea>
-  </label>
-
-  <button type="submit">🛒 Place Order Now</button>
+<button class="main-btn" type="submit">🛒 Place Order Securely</button>
 
 </form>
 
-<!-- 🔔 ORDER POPUP -->
-<div class="order-popup" id="orderPopup">
-Someone just ordered 🔥
+<!-- WHATSAPP BACKUP -->
+<button class="whatsapp-btn" onclick="orderWhatsApp()">💬 Order via WhatsApp</button>
+
 </div>
 
 <script>
 
-/* CITY */
-const citySelect = document.getElementById('citySelect');
-const otherCityField = document.getElementById('otherCityField');
-const otherCityInput = document.getElementById('otherCityInput');
-
-citySelect.addEventListener('change', () => {
-  if (citySelect.value === 'Other') {
-    otherCityField.style.display = 'block';
-    otherCityInput.required = true;
-  } else {
-    otherCityField.style.display = 'none';
-    otherCityInput.required = false;
-  }
-});
-
 /* TIMER */
-let time = 600;
+let t=600;
 setInterval(()=>{
-let m = Math.floor(time/60);
-let s = time%60;
+let m=Math.floor(t/60);
+let s=t%60;
 if(s<10)s="0"+s;
 document.getElementById("timer").innerHTML="⏳ Offer ends in "+m+":"+s;
-time--;
-if(time<=0) time=600;
+t--;
+if(t<=0)t=600;
 },1000);
 
-/* 🔔 FAKE ORDERS */
-setInterval(()=>{
-let cities=["Delhi","Mumbai","Hyderabad","Bangalore"];
-let c=cities[Math.floor(Math.random()*cities.length)];
-let popup=document.getElementById("orderPopup");
-popup.innerHTML="Someone from "+c+" just ordered 🔥";
-popup.style.display="block";
-setTimeout(()=>popup.style.display="none",3000);
-},7000);
+/* UPSELL */
+let upsell=document.getElementById("upsell");
+let total=document.getElementById("total");
 
-/* 📦 STOCK */
-let stock=7;
-setInterval(()=>{
-if(stock>3){
-stock--;
-document.getElementById("stock").innerHTML="📦 Only "+stock+" left";
-}
-},15000);
-
-/* FORM SUBMIT */
-const form = document.getElementById('orderForm');
-
-form.addEventListener('submit', function(e) {
-  e.preventDefault();
-
-  const formData = new FormData(form);
-
-  if (citySelect.value === 'Other') {
-    formData.set('city', otherCityInput.value.trim());
-  }
-
-  formData.set('product', 'Pray For Gaza Frame');
-  formData.set('price', '299');
-
-  fetch("https://script.google.com/macros/s/AKfycbxisICLhzPNqqXPnFdBcAZkiz2iuLvmoIy-kvbzXf5e4JtVyr7jKpuUldWQT9iWlex4/exec", {
-    method: 'POST',
-    body: formData
-  })
-  .then(() => {
-    window.location.href = "thank-you.html";
-  })
-  .catch(() => {
-    alert("Error submitting order");
-  });
-
+upsell.addEventListener("change",()=>{
+total.innerHTML = upsell.checked ? "Total: ₹499" : "Total: ₹299";
 });
+
+/* FORM */
+document.getElementById("orderForm").addEventListener("submit",function(e){
+e.preventDefault();
+
+let name=this.name.value;
+let phone=this.phone.value;
+let city=this.city.value;
+let address=this.address.value;
+
+let price=upsell.checked?"₹499":"₹299";
+let product=upsell.checked?"2 Frames":"1 Frame";
+
+let msg=`New Order
+Name: ${name}
+Phone: ${phone}
+City: ${city}
+Address: ${address}
+Product: ${product}
+Total: ${price}`;
+
+window.location.href="https://wa.me/919121783895?text="+encodeURIComponent(msg);
+});
+
+/* WHATSAPP */
+function orderWhatsApp(){
+let msg="I want to order Pray for Gaza Frame";
+window.location.href="https://wa.me/919121783895?text="+encodeURIComponent(msg);
+}
 
 </script>
 
