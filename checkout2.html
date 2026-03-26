@@ -125,7 +125,7 @@ button {
   <img src="images/frame.png">
   <div>
     <h3>Pray For Gaza Frame</h3>
-    <p class="price">₹299</p>
+    <p class="price">₹399</p>
   </div>
 </div>
 
@@ -165,7 +165,7 @@ button {
  Add 1 more frame for just ₹100 extra (Save ₹200)
 </div>
 
-<div class="total" id="total">Total: ₹299</div>
+<div class="total" id="total">Total: ₹399</div>
 
 <button class="main-btn" type="submit">🛒 Place Order Securely</button>
 
@@ -193,7 +193,7 @@ let upsell=document.getElementById("upsell");
 let total=document.getElementById("total");
 
 upsell.addEventListener("change",()=>{
-total.innerHTML = upsell.checked ? "Total: ₹399" : "Total: ₹299";
+total.innerHTML = upsell.checked ? "Total: ₹499" : "Total: ₹399";
 });
 
 /* FORM SUBMIT */
@@ -203,7 +203,7 @@ e.preventDefault();
 const formData = new FormData(this);
 
 let product = upsell.checked ? "2 Frames" : "1 Frame";
-let price = upsell.checked ? "₹399" : "₹299";
+let price = upsell.checked ? "₹499" : "399";
 
 /* FORMAT MESSAGE */
 let message = `
