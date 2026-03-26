@@ -9,186 +9,138 @@
 
 <style>
 
-/* BASE */
 body {
   margin: 0;
   font-family: 'Poppins', sans-serif;
-  color: #F5F5F5;
   background: black;
-  overflow-x: hidden;
-  transition: opacity 0.3s ease;
+  color: white;
 }
 
-/* 🔥 FIRE BACKGROUND */
-.bg-glow {
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  background: radial-gradient(circle at bottom, rgba(255,69,0,0.3), transparent 60%);
-  z-index: -1;
-  animation: flicker 4s infinite alternate;
-}
-
-@keyframes flicker {
-  0% { opacity: 0.6; }
-  100% { opacity: 1; }
-}
-
-/* NAVBAR */
-.navbar {
-  display: flex;
-  justify-content: space-between;
-  padding: 15px 25px;
-  backdrop-filter: blur(10px);
-  border-bottom: 1px solid rgba(139,0,0,0.4);
-}
-
-/* 🔥 TOP BAR (NEW) */
+/* TOP BAR */
 .topbar {
   text-align: center;
   background: #8B0000;
   padding: 8px;
-  font-size: 14px;
-  color: white;
+  font-size: 13px;
 }
 
-.logo img {
-  width: 50px;
-  border-radius: 50%;
-  box-shadow: 0 0 20px red;
+/* TIMER */
+.timer {
+  text-align: center;
+  padding: 10px;
+  color: #FF4500;
+  font-weight: bold;
+}
+
+/* NAV */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px;
 }
 
 /* CONTAINER */
 .container {
   display: flex;
-  gap: 50px;
-  padding: 60px;
-  align-items: center;
+  flex-direction: column;
+  padding: 15px;
 }
 
 /* IMAGE */
-.product-img {
-  flex: 1;
-  text-align: center;
-}
-
 #mainImage {
   width: 100%;
-  max-width: 520px;
-  border-radius: 16px;
-  box-shadow: 0 0 60px rgba(255,50,0,0.5);
+  border-radius: 10px;
 }
 
-/* PREVIEW */
 .preview {
   display: flex;
+  gap: 6px;
   justify-content: center;
-  gap: 10px;
-  margin-top: 15px;
 }
 
 .preview img {
-  width: 70px;
-  height: 70px;
-  object-fit: cover;
-  border-radius: 8px;
-  cursor: pointer;
+  width: 60px;
+  border-radius: 5px;
   opacity: 0.6;
-  transition: 0.3s;
-  border: 1px solid #333;
 }
 
 .preview img:hover {
   opacity: 1;
-  transform: scale(1.1);
-  border: 1px solid #8B0000;
 }
 
-/* DETAILS */
-.product-details {
-  flex: 1;
-}
-
+/* TEXT */
 .product-title {
-  font-size: 34px;
-  background: linear-gradient(to right, #fff, #D4AF37);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-/* 🔥 TRUST BADGES */
-.trust {
+  font-size: 22px;
   margin-top: 10px;
-  color: #aaa;
-  font-size: 14px;
 }
 
-/* 🔥 URGENCY */
+.trust {
+  font-size: 12px;
+  color: #aaa;
+}
+
 .urgency {
   color: #FF4500;
-  margin: 10px 0;
-  font-weight: 600;
-}
-
-/* DESCRIPTION */
-.product-desc {
-  color: #ccc;
-  margin: 20px 0;
-  line-height: 1.6;
+  font-size: 13px;
 }
 
 .price {
-  font-size: 28px;
-  color: #D4AF37;
+  font-size: 24px;
+  color: gold;
 }
 
 /* BUTTON */
 .btn {
-  margin-top: 20px;
-  padding: 15px 30px;
-  background: linear-gradient(45deg, #8B0000, #FF4500);
+  width: 100%;
+  padding: 14px;
+  background: #FF4500;
   border: none;
-  border-radius: 10px;
+  border-radius: 8px;
   color: white;
-  cursor: pointer;
-  box-shadow: 0 0 25px rgba(255,69,0,0.6);
-  transition: 0.3s;
-  font-size: 16px;
+  margin-top: 10px;
 }
 
-.btn:hover {
-  transform: scale(1.08);
-  box-shadow: 0 0 50px rgba(255,69,0,1);
-}
-
-/* 🔥 STICKY BUTTON (MOBILE BOOST) */
+/* STICKY */
 .sticky-btn {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background: #8B0000;
+  text-align: center;
+  padding: 15px;
+  font-weight: bold;
+}
+
+/* 🔔 ORDER POPUP */
+.order-popup {
+  position: fixed;
+  bottom: 80px;
+  left: 10px;
+  background: #111;
+  padding: 10px;
+  border-radius: 8px;
+  font-size: 12px;
   display: none;
 }
 
-@media (max-width: 768px) {
-  .sticky-btn {
-    display: block;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    padding: 15px;
-    background: #8B0000;
-    text-align: center;
-    font-weight: bold;
-    z-index: 999;
-  }
+/* 🔥 EXIT POPUP */
+.exit-popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.8);
+  display: none;
+  justify-content: center;
+  align-items: center;
 }
 
-/* SECTIONS */
-.section {
-  padding: 60px 20px;
+.exit-box {
+  background: #111;
+  padding: 20px;
   text-align: center;
-  border-top: 1px solid #222;
-}
-
-.section h2 {
-  color: #D4AF37;
+  border-radius: 10px;
 }
 
 </style>
@@ -196,112 +148,111 @@ body {
 
 <body>
 
-<div class="bg-glow"></div>
-
-<!-- 🔥 TOP BAR -->
 <div class="topbar">
-  🚚 Free Delivery | 💰 Cash on Delivery Available | ⚡ Limited Stock
+🚚 Free Delivery | 💰 COD | ⚡ Limited Stock
 </div>
 
-<!-- NAVBAR -->
+<div class="timer" id="timer">⏳ Offer ends in 10:00</div>
+
 <div class="navbar">
-  <div class="logo">
-    <img src="images/logo1.jpg">
-  </div>
-  <div>Shop | Impact | Cart</div>
+<img src="images/logo1.jpg" width="40">
+<div>Cart</div>
 </div>
 
-<!-- PRODUCT -->
 <div class="container">
 
-  <!-- IMAGE -->
-  <div class="product-img">
-    <img id="mainImage" src="images/frame.png">
+<img id="mainImage" src="images/frame.png">
 
-    <div class="preview">
-      <img src="images/frame.png" onclick="changeImage(this)">
-      <img src="images/frame1.png" onclick="changeImage(this)">
-      <img src="images/frame2.png" onclick="changeImage(this)">
-      <img src="images/frame4.png" onclick="changeImage(this)">
-    </div>
-  </div>
+<div class="preview">
+<img src="images/frame.png" onclick="changeImage(this)">
+<img src="images/frame1.png" onclick="changeImage(this)">
+<img src="images/frame2.png" onclick="changeImage(this)">
+<img src="images/frame4.png" onclick="changeImage(this)">
+</div>
 
-  <!-- DETAILS -->
-  <div class="product-details">
-    <div class="product-title">Pray for Gaza – Premium Frame</div>
+<div class="product-title">Pray for Gaza – Premium Frame</div>
 
-    <!-- 🔥 TRUST -->
-    <div class="trust">⭐ Trusted by 100+ customers | 🔒 Secure Checkout</div>
+<div class="trust">⭐ 100+ Orders | 🔒 Secure Checkout</div>
 
-    <!-- 🔥 URGENCY -->
-    <div class="urgency">⚡ Only few pieces left – selling fast</div>
+<div class="urgency" id="stock">📦 Only 7 left in stock</div>
 
-    <div class="product-desc">
-      A small reminder… that means everything.<br><br>
+<p>A small reminder that means everything. Keep Gaza in your heart daily.</p>
 
-      Keep Gaza in your heart every day with this premium frame.  
-      This is not just decor — it’s a symbol of faith, awareness, and purpose.<br><br>
+<div class="price">₹299</div>
 
-      Every purchase supports a meaningful cause through Silent Aid.
-    </div>
-
-    <div class="price">₹299</div>
-
-    <button class="btn" onclick="goToCheckout()">
-      🛒 Order Now (COD Available)
-    </button>
-
-  </div>
+<button class="btn" onclick="goToCheckout()">🛒 Order Now (COD)</button>
 
 </div>
 
-<!-- EXTRA -->
-<div class="section">
-  <h2>Product Details</h2>
-  <p>✔ High-quality engineered wood frame</p>
-  <p>✔ Ultra HD fade-resistant print</p>
-  <p>✔ Premium matte finish</p>
-  <p>✔ Ready to hang</p>
-</div>
-  
-<div class="section">
-  <h2>Why You’ll Love It</h2>
-<p>🕊️ Meaningful reminder for daily dua</p>
-<p>✨ Premium luxury finish</p>
-<p>🏠 Perfect for any space</p>
-<p>💔 Emotionally powerful design</p>
-<p>🤍 Supports humanitarian aid</p>
-</div>
-  
-<div class="section">
-  <h2>Silent Aid Mission</h2>
-  <p>Every purchase helps:</p>
-<p>🍞 Feed families</p>
-<p>💧 Provide clean water</p>
-<p>🏥 Support medical aid</p>
-<p>🚛 Deliver supplies</p>
-</div>
-
-<!-- 🔥 STICKY BUY BUTTON -->
 <div class="sticky-btn" onclick="goToCheckout()">
-  🛒 Buy Now ₹299
+🛒 Buy Now ₹299
 </div>
 
-<!-- JS -->
+<!-- 🔔 ORDER POPUP -->
+<div class="order-popup" id="orderPopup">
+Someone from Delhi just ordered 🔥
+</div>
+
+<!-- 🔥 EXIT POPUP -->
+<div class="exit-popup" id="exitPopup">
+  <div class="exit-box">
+    <h3>Wait! 😳</h3>
+    <p>Get ₹50 OFF if you order now!</p>
+    <button class="btn" onclick="goToCheckout()">Claim Offer</button>
+  </div>
+</div>
+
 <script>
 
-function changeImage(element) {
-  document.getElementById("mainImage").src = element.src;
+/* IMAGE */
+function changeImage(el){
+document.getElementById("mainImage").src = el.src;
 }
 
-function goToCheckout() {
-  document.body.style.opacity = "0";
-  setTimeout(() => {
-    window.location.href = "checkout2.html";
-  }, 300);
+/* CHECKOUT */
+function goToCheckout(){
+window.location.href="checkout2.html";
 }
+
+/* TIMER */
+let time = 600;
+setInterval(()=>{
+let m = Math.floor(time/60);
+let s = time%60;
+if(s<10)s="0"+s;
+document.getElementById("timer").innerHTML="⏳ Offer ends in "+m+":"+s;
+time--;
+if(time<=0) time=600;
+},1000);
+
+/* 🔔 FAKE ORDER POPUP */
+setInterval(()=>{
+let names=["Delhi","Mumbai","Hyderabad","Bangalore"];
+let random=names[Math.floor(Math.random()*names.length)];
+let popup=document.getElementById("orderPopup");
+popup.innerHTML="Someone from "+random+" just ordered 🔥";
+popup.style.display="block";
+
+setTimeout(()=>{popup.style.display="none"},3000);
+},8000);
+
+/* 📦 STOCK COUNTER */
+let stock = 7;
+setInterval(()=>{
+if(stock>3){
+stock--;
+document.getElementById("stock").innerHTML="📦 Only "+stock+" left in stock";
+}
+},15000);
+
+/* 🔥 EXIT POPUP */
+document.addEventListener("mouseout", function(e){
+if(e.clientY < 0){
+document.getElementById("exitPopup").style.display="flex";
+}
+});
 
 </script>
 
 </body>
-    </html>
+</html>
