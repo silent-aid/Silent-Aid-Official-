@@ -2,8 +2,10 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Checkout - Silent Aid</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Silent Aid Store</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
 
@@ -14,70 +16,153 @@ body {
   color: white;
 }
 
-/* TOP */
-.marquee {
+/* TOP BAR */
+.topbar {
+  text-align: center;
   background: #8B0000;
   padding: 8px;
-  text-align: center;
   font-size: 13px;
 }
 
-/* FORM */
-form {
-  max-width: 500px;
-  margin: 15px auto;
-  padding: 15px;
-}
-
-/* PRODUCT */
-.product-box {
-  display: flex;
-  gap: 10px;
-  background: #111;
-  padding: 10px;
-  border-radius: 8px;
-}
-
-.product-box img {
-  width: 70px;
-}
-
-/* TEXT */
-.price {
-  color: gold;
-  font-size: 18px;
-}
-
-/* INPUT */
-input, select, textarea {
-  width: 100%;
-  padding: 12px;
-  margin-top: 8px;
-  background: #222;
-  border: none;
-  color: white;
-  border-radius: 6px;
-}
-
-/* UPSELL */
-.upsell {
-  background: #111;
-  padding: 10px;
-  margin-top: 10px;
-  border-radius: 8px;
+/* TIMER */
+.timer {
+  text-align: center;
+  padding: 8px;
+  color: #FF4500;
+  font-weight: bold;
   font-size: 14px;
 }
 
-/* BUTTON */
-button {
-  margin-top: 15px;
-  padding: 14px;
+/* NAV */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 12px;
+}
+
+.logo img {
+  width: 40px;
+  border-radius: 50%;
+}
+
+/* CONTAINER */
+.container {
+  padding: 12px;
+}
+
+/* IMAGE */
+#mainImage {
   width: 100%;
+  border-radius: 10px;
+}
+
+/* PREVIEW */
+.preview {
+  display: flex;
+  gap: 6px;
+  justify-content: center;
+  margin-top: 8px;
+}
+
+.preview img {
+  width: 55px;
+  border-radius: 5px;
+  opacity: 0.6;
+}
+
+.preview img:hover {
+  opacity: 1;
+}
+
+/* TEXT */
+.product-title {
+  font-size: 20px;
+  margin-top: 10px;
+}
+
+.trust {
+  font-size: 12px;
+  color: #aaa;
+}
+
+.urgency {
+  color: #FF4500;
+  font-size: 13px;
+  margin: 5px 0;
+}
+
+.price {
+  font-size: 22px;
+  color: gold;
+  margin-top: 5px;
+}
+
+/* BUTTONS */
+.btn {
+  width: 100%;
+  padding: 14px;
   background: #FF4500;
   border: none;
-  color: white;
-  font-size: 16px;
   border-radius: 8px;
+  color: white;
+  margin-top: 10px;
+  font-size: 15px;
+}
+
+.whatsapp-btn {
+  background: #25D366;
+}
+
+/* SECTIONS */
+.section {
+  padding: 20px 12px;
+  border-top: 1px solid #222;
+}
+
+.section h2 {
+  color: #D4AF37;
+  font-size: 17px;
+}
+
+/* STICKY */
+.sticky-btn {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background: #8B0000;
+  text-align: center;
+  padding: 14px;
+  font-weight: bold;
+}
+
+/* POPUPS */
+.order-popup {
+  position: fixed;
+  bottom: 80px;
+  left: 10px;
+  background: #111;
+  padding: 8px;
+  font-size: 12px;
+  border-radius: 6px;
+  display: none;
+}
+
+.exit-popup {
+  position: fixed;
+  top:0;
+  width:100%;
+  height:100%;
+  background:rgba(0,0,0,0.9);
+  display:none;
+  justify-content:center;
+  align-items:center;
+}
+
+.exit-box {
+  background:#111;
+  padding:20px;
+  border-radius:10px;
+  text-align:center;
 }
 
 </style>
@@ -85,70 +170,133 @@ button {
 
 <body>
 
-<div class="marquee">🚚 Free Delivery | 💰 COD Available</div>
+<div class="topbar">🚚 Free Delivery | 💰 COD | ⚡ Limited Stock</div>
+<div class="timer" id="timer">⏳ Offer ends in 10:00</div>
 
-<form id="orderForm">
-
-<div class="product-box">
-<img src="images/frame.png">
-<div>
-<h3>Pray For Gaza Frame</h3>
-<p class="price" id="totalPrice">₹299</p>
-</div>
+<div class="navbar">
+  <img src="images/logo1.jpg">
+  <div>Cart</div>
 </div>
 
-<!-- 🔥 UPSELL -->
-<div class="upsell">
-<input type="checkbox" id="upsell">
-Add 1 more frame for just ₹100 extra (Save ₹200)
+<div class="container">
+
+<img id="mainImage" src="images/frame.png">
+
+<div class="preview">
+<img src="images/frame.png" onclick="changeImage(this)">
+<img src="images/frame1.png" onclick="changeImage(this)">
+<img src="images/frame2.png" onclick="changeImage(this)">
+<img src="images/frame4.png" onclick="changeImage(this)">
 </div>
 
-<input type="text" name="name" placeholder="Full Name" required>
-<input type="tel" name="phone" placeholder="Phone Number" required>
-<input type="text" name="city" placeholder="City" required>
-<textarea name="address" placeholder="Full Address" required></textarea>
+<div class="product-title">Pray for Gaza – Premium Frame</div>
+<div class="trust">⭐ 100+ Orders | 🔒 Secure Checkout</div>
+<div class="urgency" id="stock">📦 Only 7 left</div>
 
-<button type="submit">🛒 Place Order</button>
+<p style="font-size:14px;">
+A small reminder… that means everything.<br>
+Keep Gaza in your heart daily.
+</p>
 
-</form>
+<div class="price">₹299</div>
+
+<button class="btn" onclick="goToCheckout()">🛒 Order Now (COD)</button>
+
+<!-- 💬 WHATSAPP QUICK ORDER -->
+<button class="btn whatsapp-btn" onclick="orderWhatsApp()">💬 Order on WhatsApp</button>
+
+</div>
+
+<!-- DETAILS -->
+<div class="section">
+<h2>Product Details</h2>
+<p>✔ Premium frame</p>
+<p>✔ HD print</p>
+<p>✔ Ready to hang</p>
+</div>
+
+<div class="section">
+<h2>Why You’ll Love It</h2>
+<p>🕊️ Meaningful reminder</p>
+<p>✨ Premium finish</p>
+<p>🏠 Perfect for any space</p>
+</div>
+
+<div class="section">
+<h2>Silent Aid Mission</h2>
+<p>🍞 Feed families</p>
+<p>💧 Provide water</p>
+<p>🏥 Medical aid</p>
+</div>
+
+<!-- STICKY -->
+<div class="sticky-btn" onclick="goToCheckout()">🛒 Buy Now ₹299</div>
+
+<!-- POPUP -->
+<div class="order-popup" id="orderPopup"></div>
+
+<!-- EXIT -->
+<div class="exit-popup" id="exitPopup">
+  <div class="exit-box">
+    <h3>Wait 😳</h3>
+    <p>Get ₹50 OFF now!</p>
+    <button class="btn" onclick="goToCheckout()">Claim Offer</button>
+  </div>
+</div>
 
 <script>
 
-/* PRICE UPDATE */
-let base = 299;
-let upsell = document.getElementById("upsell");
-let price = document.getElementById("totalPrice");
-
-upsell.addEventListener("change", ()=>{
-if(upsell.checked){
-price.innerHTML = "₹399";
-}else{
-price.innerHTML = "₹299";
+/* IMAGE */
+function changeImage(el){
+document.getElementById("mainImage").src=el.src;
 }
-});
 
-/* WHATSAPP ORDER */
-document.getElementById("orderForm").addEventListener("submit", function(e){
-e.preventDefault();
+/* CHECKOUT */
+function goToCheckout(){
+window.location.href="checkout2.html";
+}
 
-let name = this.name.value;
-let phone = this.phone.value;
-let city = this.city.value;
-let address = this.address.value;
+/* WHATSAPP */
+function orderWhatsApp(){
+let msg = "I want to order Pray for Gaza Frame for ₹299";
+window.location.href = "https://wa.me/919121783895?text=" + encodeURIComponent(msg);
+}
 
-let finalPrice = upsell.checked ? "₹399" : "₹299";
-let product = upsell.checked ? "2 Frames" : "1 Frame";
+/* TIMER */
+let t=600;
+setInterval(()=>{
+let m=Math.floor(t/60);
+let s=t%60;
+if(s<10)s="0"+s;
+document.getElementById("timer").innerHTML="⏳ Offer ends in "+m+":"+s;
+t--;
+if(t<=0)t=600;
+},1000);
 
-let msg = `New Order%0A
-Name: ${name}%0A
-Phone: ${phone}%0A
-City: ${city}%0A
-Address: ${address}%0A
-Product: ${product}%0A
-Total: ${finalPrice}`;
+/* POPUP */
+setInterval(()=>{
+let cities=["Delhi","Mumbai","Hyderabad","Bangalore"];
+let c=cities[Math.floor(Math.random()*cities.length)];
+let p=document.getElementById("orderPopup");
+p.innerHTML="Someone from "+c+" just ordered 🔥";
+p.style.display="block";
+setTimeout(()=>p.style.display="none",3000);
+},7000);
 
-window.location.href = "https://wa.me/919121783895?text=" + msg;
+/* STOCK */
+let stock=7;
+setInterval(()=>{
+if(stock>3){
+stock--;
+document.getElementById("stock").innerHTML="📦 Only "+stock+" left";
+}
+},15000);
 
+/* EXIT */
+document.addEventListener("mouseout",e=>{
+if(e.clientY<0){
+document.getElementById("exitPopup").style.display="flex";
+}
 });
 
 </script>
