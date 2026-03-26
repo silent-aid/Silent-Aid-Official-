@@ -7,7 +7,6 @@
 
 <style>
 
-/* BASE */
 body {
   margin: 0;
   font-family: 'Poppins', sans-serif;
@@ -15,22 +14,16 @@ body {
   color: white;
 }
 
-/* 🔥 FIRE BG */
+/* 🔥 BG */
 .bg-glow {
   position: fixed;
   width: 100%;
   height: 100%;
   background: radial-gradient(circle at bottom, rgba(255,69,0,0.3), transparent 60%);
   z-index: -1;
-  animation: flicker 4s infinite alternate;
 }
 
-@keyframes flicker {
-  0% { opacity: 0.6; }
-  100% { opacity: 1; }
-}
-
-/* HEADER */
+/* TOP BAR */
 .marquee {
   background: #8B0000;
   padding: 10px;
@@ -38,52 +31,52 @@ body {
   font-weight: bold;
 }
 
+/* TIMER */
+.timer {
+  text-align: center;
+  padding: 8px;
+  color: #FF4500;
+  font-weight: bold;
+}
+
 /* TITLE */
 h2 {
   text-align: center;
-  margin-top: 30px;
+  margin-top: 20px;
   color: #D4AF37;
 }
 
 /* FORM */
 form {
   max-width: 550px;
-  margin: 30px auto;
-  background: rgba(20,20,20,0.9);
-  padding: 30px;
+  margin: 20px auto;
+  background: #111;
+  padding: 20px;
   border-radius: 12px;
-  box-shadow: 0 0 25px rgba(255,69,0,0.3);
 }
 
-/* PRODUCT BOX */
+/* PRODUCT */
 .product-box {
   display: flex;
-  gap: 15px;
-  background: #111;
-  padding: 15px;
-  border-radius: 10px;
-  margin-bottom: 20px;
+  gap: 10px;
+  background: #000;
+  padding: 10px;
+  border-radius: 8px;
   align-items: center;
 }
 
 .product-box img {
-  width: 80px;
-  border-radius: 8px;
-}
-
-.product-info h3 {
-  margin: 0;
+  width: 70px;
 }
 
 .price {
-  color: #D4AF37;
+  color: gold;
 }
 
-/* INPUTS */
+/* INPUT */
 label {
+  margin-top: 10px;
   display: block;
-  margin-top: 15px;
-  font-weight: 600;
 }
 
 input, select, textarea {
@@ -91,28 +84,39 @@ input, select, textarea {
   padding: 10px;
   margin-top: 5px;
   background: #222;
+  border: none;
   color: white;
-  border: 1px solid #555;
-  border-radius: 6px;
+}
+
+/* TRUST */
+.trust {
+  font-size: 12px;
+  color: #aaa;
+  margin-top: 10px;
 }
 
 /* BUTTON */
 button {
-  margin-top: 25px;
+  margin-top: 20px;
   padding: 14px;
   width: 100%;
-  background: linear-gradient(45deg, #8B0000, #FF4500);
+  background: #FF4500;
   border: none;
   color: white;
   font-size: 16px;
-  border-radius: 8px;
-  cursor: pointer;
+  border-radius: 6px;
 }
 
-/* OTHER CITY */
-#otherCityField {
+/* 🔔 ORDER POPUP */
+.order-popup {
+  position: fixed;
+  bottom: 10px;
+  left: 10px;
+  background: #111;
+  padding: 8px;
+  font-size: 12px;
+  border-radius: 6px;
   display: none;
-  margin-top: 10px;
 }
 
 </style>
@@ -122,7 +126,9 @@ button {
 
 <div class="bg-glow"></div>
 
-<div class="marquee">🔥 Silent Aid | Free Delivery Across India 🇮🇳</div>
+<div class="marquee">🚚 Free Delivery | 💰 Cash on Delivery Available</div>
+
+<div class="timer" id="timer">⏳ Offer ends in 10:00</div>
 
 <h2>Complete Your Order</h2>
 
@@ -131,11 +137,14 @@ button {
   <!-- PRODUCT -->
   <div class="product-box">
     <img src="images/frame.png">
-    <div class="product-info">
+    <div>
       <h3>Pray For Gaza Frame</h3>
       <p class="price">₹299</p>
+      <p id="stock">📦 Only 7 left</p>
     </div>
   </div>
+
+  <div class="trust">🔒 Secure Checkout | 🚚 Fast Delivery | 💰 COD Available</div>
 
   <label>Full Name:
     <input type="text" name="name" required>
@@ -167,7 +176,7 @@ button {
     </select>
   </label>
 
-  <div id="otherCityField">
+  <div id="otherCityField" style="display:none;">
     <label>Enter Your City:
       <input type="text" id="otherCityInput">
     </label>
@@ -177,13 +186,18 @@ button {
     <textarea name="address" required></textarea>
   </label>
 
-  <button type="submit">Place Order</button>
+  <button type="submit">🛒 Place Order Now</button>
 
 </form>
 
+<!-- 🔔 ORDER POPUP -->
+<div class="order-popup" id="orderPopup">
+Someone just ordered 🔥
+</div>
+
 <script>
 
-const form = document.getElementById('orderForm');
+/* CITY */
 const citySelect = document.getElementById('citySelect');
 const otherCityField = document.getElementById('otherCityField');
 const otherCityInput = document.getElementById('otherCityInput');
@@ -198,6 +212,39 @@ citySelect.addEventListener('change', () => {
   }
 });
 
+/* TIMER */
+let time = 600;
+setInterval(()=>{
+let m = Math.floor(time/60);
+let s = time%60;
+if(s<10)s="0"+s;
+document.getElementById("timer").innerHTML="⏳ Offer ends in "+m+":"+s;
+time--;
+if(time<=0) time=600;
+},1000);
+
+/* 🔔 FAKE ORDERS */
+setInterval(()=>{
+let cities=["Delhi","Mumbai","Hyderabad","Bangalore"];
+let c=cities[Math.floor(Math.random()*cities.length)];
+let popup=document.getElementById("orderPopup");
+popup.innerHTML="Someone from "+c+" just ordered 🔥";
+popup.style.display="block";
+setTimeout(()=>popup.style.display="none",3000);
+},7000);
+
+/* 📦 STOCK */
+let stock=7;
+setInterval(()=>{
+if(stock>3){
+stock--;
+document.getElementById("stock").innerHTML="📦 Only "+stock+" left";
+}
+},15000);
+
+/* FORM SUBMIT */
+const form = document.getElementById('orderForm');
+
 form.addEventListener('submit', function(e) {
   e.preventDefault();
 
@@ -208,7 +255,7 @@ form.addEventListener('submit', function(e) {
   }
 
   formData.set('product', 'Pray For Gaza Frame');
-  formData.set('price', '399');
+  formData.set('price', '299');
 
   fetch("https://script.google.com/macros/s/AKfycbxisICLhzPNqqXPnFdBcAZkiz2iuLvmoIy-kvbzXf5e4JtVyr7jKpuUldWQT9iWlex4/exec", {
     method: 'POST',
