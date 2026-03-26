@@ -5,6 +5,8 @@
 <title>Checkout - Silent Aid</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
 <style>
 
 body {
@@ -37,7 +39,7 @@ body {
   padding: 15px;
 }
 
-/* PRODUCT BOX */
+/* PRODUCT */
 .product-box {
   display: flex;
   gap: 10px;
@@ -63,7 +65,7 @@ body {
 }
 
 /* INPUT */
-input, textarea {
+input, select, textarea {
   width: 100%;
   padding: 12px;
   margin-top: 10px;
@@ -77,7 +79,7 @@ input, textarea {
 .upsell {
   background: #111;
   padding: 10px;
-  margin-top: 10px;
+  margin-top: 12px;
   border-radius: 8px;
   font-size: 14px;
 }
@@ -101,7 +103,7 @@ button {
 }
 
 .main-btn {
-  background: #FF4500;
+  background: linear-gradient(45deg,#8B0000,#FF4500);
 }
 
 .whatsapp-btn {
@@ -113,7 +115,7 @@ button {
 
 <body>
 
-<div class="topbar">🚚 Free Delivery | 💰 Cash on Delivery</div>
+<div class="topbar">🚚 Free Delivery | 💰 Cash on Delivery | 🔒 Secure</div>
 <div class="timer" id="timer">⏳ Offer ends in 10:00</div>
 
 <div class="container">
@@ -123,7 +125,7 @@ button {
   <img src="images/frame.png">
   <div>
     <h3>Pray For Gaza Frame</h3>
-    <p class="price" id="price">₹299</p>
+    <p class="price">₹299</p>
   </div>
 </div>
 
@@ -131,15 +133,36 @@ button {
 
 <form id="orderForm">
 
-<input type="text" name="name" placeholder="Full Name" required>
-<input type="tel" name="phone" placeholder="Phone Number" required>
-<input type="text" name="city" placeholder="City" required>
-<textarea name="address" placeholder="Full Address" required></textarea>
+<input type="text" name="name" placeholder="👤 Full Name" required>
+
+<input type="email" name="email" placeholder="📧 Email Address" required>
+
+<input type="tel" name="phone" placeholder="📱 Phone Number" required>
+
+<!-- STATE -->
+<select name="state" required>
+<option value="">🇮🇳 Select State</option>
+<option>Andhra Pradesh</option>
+<option>Telangana</option>
+<option>Maharashtra</option>
+<option>Karnataka</option>
+<option>Tamil Nadu</option>
+<option>Delhi</option>
+<option>Uttar Pradesh</option>
+<option>Gujarat</option>
+<option>Rajasthan</option>
+<option>West Bengal</option>
+<option>Other</option>
+</select>
+
+<input type="text" name="city" placeholder="🏙️ City" required>
+
+<textarea name="address" placeholder="📦 Full Address" required></textarea>
 
 <!-- UPSELL -->
 <div class="upsell">
 <input type="checkbox" id="upsell">
- Add 1 more frame for just ₹100 extra (Save ₹100)
+ Add 1 more frame for just ₹100 extra (Save ₹200)
 </div>
 
 <div class="total" id="total">Total: ₹299</div>
@@ -148,7 +171,6 @@ button {
 
 </form>
 
-<!-- WHATSAPP BACKUP -->
 <button class="whatsapp-btn" onclick="orderWhatsApp()">💬 Order via WhatsApp</button>
 
 </div>
@@ -171,33 +193,47 @@ let upsell=document.getElementById("upsell");
 let total=document.getElementById("total");
 
 upsell.addEventListener("change",()=>{
-total.innerHTML = upsell.checked ? "Total: ₹499" : "Total: ₹299";
+total.innerHTML = upsell.checked ? "Total: ₹399" : "Total: ₹299";
 });
 
-/* FORM */
-document.getElementById("orderForm").addEventListener("submit",function(e){
+/* FORM SUBMIT */
+document.getElementById("orderForm").addEventListener("submit", function(e){
 e.preventDefault();
 
-let name=this.name.value;
-let phone=this.phone.value;
-let city=this.city.value;
-let address=this.address.value;
+const formData = new FormData(this);
 
-let price=upsell.checked?"₹499":"₹299";
-let product=upsell.checked?"2 Frames":"1 Frame";
+let product = upsell.checked ? "2 Frames" : "1 Frame";
+let price = upsell.checked ? "₹399" : "₹299";
 
-let msg=`New Order
-Name: ${name}
-Phone: ${phone}
-City: ${city}
-Address: ${address}
-Product: ${product}
-Total: ${price}`;
+/* FORMAT MESSAGE */
+let message = `
+👤 Name: ${formData.get("name")}
+📧 Email: ${formData.get("email")}
+📱 Phone: ${formData.get("phone")}
+🏙️ City: ${formData.get("city")}
+📦 Address: ${formData.get("address")}
+📦 Product: ${product}
+💰 Total: ${price}
+`;
 
-window.location.href="https://wa.me/919121783895?text="+encodeURIComponent(msg);
+formData.set("details", message);
+
+/* SEND TO GOOGLE SCRIPT */
+fetch("https://script.google.com/macros/s/AKfycbxisICLhzPNqqXPnFdBcAZkiz2iuLvmoIy-kvbzXf5e4JtVyr7jKpuUldWQT9iWlex4/exec", {
+method: "POST",
+body: formData
+})
+.then(()=>{
+alert("Order placed successfully ✅");
+window.location.href="thank-you.html";
+})
+.catch(()=>{
+alert("Error submitting order");
 });
 
-/* WHATSAPP */
+});
+
+/* WHATSAPP BACKUP */
 function orderWhatsApp(){
 let msg="I want to order Pray for Gaza Frame";
 window.location.href="https://wa.me/919121783895?text="+encodeURIComponent(msg);
